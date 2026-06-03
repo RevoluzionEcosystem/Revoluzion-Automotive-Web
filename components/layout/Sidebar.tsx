@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
   Home, Users, ShoppingBag, CalendarDays,
-  Car, Map, MessageSquare, Bell, User, Search, Store,
+  Car, Map, MessageSquare, Bell, User, Search, Store, BookOpen,
   LogIn, ChevronLeft, ChevronRight
 } from 'lucide-react'
 import { useState } from 'react'
@@ -17,6 +17,7 @@ const navItems = [
   { href: '/builds', label: 'Garage', icon: Car },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/shop', label: 'Shop', icon: ShoppingBag },
+  { href: '/guides', label: 'Guides', icon: BookOpen },
   { href: '/marketplace', label: 'Marketplace', icon: Store },
   { href: '/clubs', label: 'Clubs', icon: Users },
   { href: '/members', label: 'Members', icon: User },

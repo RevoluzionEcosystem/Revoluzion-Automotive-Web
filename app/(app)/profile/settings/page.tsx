@@ -82,7 +82,7 @@ export default function SettingsPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold text-text-primary mb-6 flex items-center gap-2">
+      <h1 className="text-2xl font-bold gradient-text mb-6 flex items-center gap-2" style={{ fontFamily: 'var(--font-orbitron)' }}>
         <Shield size={22} /> Settings
       </h1>
 

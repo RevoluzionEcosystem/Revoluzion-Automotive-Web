@@ -62,7 +62,7 @@ export default async function EventDetailPage({ params }: Props) {
           {/* Title & category */}
           <div>
             {event.category && <span className="badge-primary mb-3 inline-flex">{event.category}</span>}
-            <h1 className="text-2xl font-bold text-text-primary mb-2">{event.title}</h1>
+            <h1 className="text-2xl font-bold gradient-text mb-2" style={{ fontFamily: 'var(--font-orbitron)' }}>{event.title}</h1>
 
             {/* Organizer */}
             {profile && (

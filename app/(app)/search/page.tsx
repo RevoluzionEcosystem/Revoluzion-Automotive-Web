@@ -98,7 +98,7 @@ export default function SearchPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold text-text-primary mb-5">Search</h1>
+      <h1 className="text-2xl font-bold gradient-text mb-5" style={{ fontFamily: 'var(--font-orbitron)' }}>Search</h1>
 
       {/* Search input */}
       <div className="relative mb-6">

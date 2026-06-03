@@ -89,7 +89,7 @@ export default function GaragePage() {
     <div className="max-w-5xl mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary">My Garage</h1>
+          <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>My Garage</h1>
           <p className="text-text-muted text-sm mt-1">{cars.length} vehicle{cars.length !== 1 ? 's' : ''} in your garage</p>
         </div>
         <button

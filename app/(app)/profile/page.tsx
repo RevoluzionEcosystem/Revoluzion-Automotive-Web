@@ -114,7 +114,7 @@ export default function ProfilePage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-text-primary">My Profile</h1>
+        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>My Profile</h1>
         {!editing && (
           <button onClick={() => setEditing(true)} className="btn-secondary flex items-center gap-2 text-sm">
             <Edit2 size={14} /> Edit

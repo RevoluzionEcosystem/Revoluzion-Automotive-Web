@@ -40,7 +40,7 @@ export default function MembersPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-text-primary">Members</h1>
+        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Members</h1>
         <p className="text-text-muted text-sm mt-1">The Revoluzion community</p>
       </div>
 

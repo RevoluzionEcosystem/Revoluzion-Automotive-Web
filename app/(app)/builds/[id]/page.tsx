@@ -63,7 +63,7 @@ export default async function BuildDetailPage({ params }: Props) {
                 <Wrench size={12} /> {car.year} {car.make} {car.model}
               </span>
             )}
-            <h1 className="text-2xl font-bold text-text-primary mb-3">{build.title}</h1>
+            <h1 className="text-2xl font-bold gradient-text mb-3" style={{ fontFamily: 'var(--font-orbitron)' }}>{build.title}</h1>
 
             {/* Builder */}
             {profile && (

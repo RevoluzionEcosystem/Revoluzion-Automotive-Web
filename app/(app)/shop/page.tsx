@@ -44,7 +44,7 @@ export default async function ShopPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-text-primary">Shop</h1>
+        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Shop</h1>
         <p className="text-text-muted text-sm mt-1">Official merchandise & automotive accessories</p>
       </div>
 

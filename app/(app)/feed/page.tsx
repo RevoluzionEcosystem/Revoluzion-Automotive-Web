@@ -246,7 +246,7 @@ export default function FeedPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <h1 className="text-xl font-bold text-text-primary mb-4">Community Feed</h1>
+      <h1 className="text-xl font-bold gradient-text mb-4" style={{ fontFamily: 'var(--font-orbitron)' }}>Community Feed</h1>
 
       {user && <CreatePost currentUserId={user.id} />}
 

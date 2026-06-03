@@ -43,7 +43,7 @@ export default async function EventsPage({
     <div className="max-w-6xl mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary">Events</h1>
+          <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Events</h1>
           <p className="text-text-muted text-sm mt-1">Upcoming automotive events across Malaysia</p>
         </div>
       </div>

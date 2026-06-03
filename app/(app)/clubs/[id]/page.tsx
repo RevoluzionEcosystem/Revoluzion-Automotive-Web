@@ -84,7 +84,7 @@ export default async function ClubDetailPage({ params }: Props) {
             )}
           </div>
           <div className="flex-1 min-w-0 pt-8">
-            <h1 className="text-xl font-bold text-text-primary leading-tight">{club.name}</h1>
+            <h1 className="text-xl font-bold gradient-text leading-tight" style={{ fontFamily: 'var(--font-orbitron)' }}>{club.name}</h1>
             {club.category && <span className="badge badge-primary text-xs mt-1">{club.category}</span>}
           </div>
           <button className="p-2 rounded-lg border border-border text-text-muted hover:text-text-secondary hover:border-border/70 transition-colors">

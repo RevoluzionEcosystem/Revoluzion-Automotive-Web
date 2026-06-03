@@ -129,7 +129,7 @@ export default async function ProductDetailPage({ params }: Props) {
             {product.category && (
               <span className="badge badge-primary text-xs mb-2 inline-block">{product.category}</span>
             )}
-            <h1 className="text-2xl font-bold text-text-primary mt-1">{product.name}</h1>
+            <h1 className="text-2xl font-bold gradient-text mt-1" style={{ fontFamily: 'var(--font-orbitron)' }}>{product.name}</h1>
 
             {/* Rating placeholder */}
             <div className="flex items-center gap-1 mt-2">

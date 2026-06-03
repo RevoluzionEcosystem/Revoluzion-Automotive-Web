@@ -82,7 +82,7 @@ export default async function MarketplaceListingPage({ params }: Props) {
               {listing.condition && <span className="badge">{listing.condition}</span>}
               {listing.status === 'sold' && <span className="badge bg-error/20 text-error border-error/30">Sold</span>}
             </div>
-            <h1 className="text-2xl font-bold text-text-primary mb-2">{listing.title}</h1>
+            <h1 className="text-2xl font-bold gradient-text mb-2" style={{ fontFamily: 'var(--font-orbitron)' }}>{listing.title}</h1>
             <div className="text-3xl font-bold text-primary">{formatCurrency(listing.price)}</div>
           </div>
 

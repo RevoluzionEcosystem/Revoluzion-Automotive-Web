@@ -27,7 +27,7 @@ export default async function CommunityPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-text-primary">Community</h1>
+        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Community</h1>
         <p className="text-text-muted text-sm mt-1">Latest posts and discussions</p>
       </div>
 

@@ -54,7 +54,7 @@ export default async function ClubsPage() {
     <div className="max-w-6xl mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary">Clubs</h1>
+          <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Clubs</h1>
           <p className="text-text-muted text-sm mt-1">{displayClubs.length}+ communities to join</p>
         </div>
       </div>

@@ -59,7 +59,7 @@ export default function CartPage() {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
         <ShoppingCart size={48} className="mx-auto mb-4 text-text-muted opacity-30" />
-        <h1 className="text-xl font-bold text-text-primary mb-2">Your cart is empty</h1>
+        <h1 className="text-xl font-bold gradient-text mb-2" style={{ fontFamily: 'var(--font-orbitron)' }}>Your cart is empty</h1>
         <p className="text-text-muted mb-6">Add some items from the shop to get started</p>
         <Link href="/shop" className="btn-primary inline-flex items-center gap-2">
           Browse Shop <ArrowRight size={16} />
@@ -70,7 +70,7 @@ export default function CartPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold text-text-primary mb-6 flex items-center gap-2">
+      <h1 className="text-2xl font-bold gradient-text mb-6 flex items-center gap-2" style={{ fontFamily: 'var(--font-orbitron)' }}>
         <ShoppingCart size={22} /> Cart ({items.reduce((n, i) => n + i.qty, 0)} items)
       </h1>
 

@@ -78,7 +78,7 @@ export default async function PublicProfilePage({ params }: Props) {
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center flex-wrap gap-2 mb-1">
-              <h1 className="text-2xl font-bold text-text-primary">
+              <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>
                 {profile.display_name || profile.username}
               </h1>
               {profile.is_verified && (

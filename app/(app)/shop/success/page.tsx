@@ -10,7 +10,7 @@ export default function ShopSuccessPage() {
       <div className="w-20 h-20 rounded-full bg-success/15 border border-success/30 flex items-center justify-center mx-auto mb-6">
         <CheckCircle size={40} className="text-success" />
       </div>
-      <h1 className="text-2xl font-bold text-text-primary mb-3">Order Confirmed!</h1>
+      <h1 className="text-2xl font-bold gradient-text mb-3" style={{ fontFamily: 'var(--font-orbitron)' }}>Order Confirmed!</h1>
       <p className="text-text-secondary mb-2">
         Thank you for your purchase. We&apos;ve received your order and will process it shortly.
       </p>

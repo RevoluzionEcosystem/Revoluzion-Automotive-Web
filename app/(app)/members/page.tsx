@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery } from '@tanstack/react-query'
 import { Users, Search, UserCheck } from 'lucide-react'
-import { getInitials } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Profile } from '@/lib/supabase/types'
@@ -84,9 +84,7 @@ export default function MembersPage() {
                   className="w-16 h-16 rounded-full object-cover border-2 border-border group-hover:border-primary/50 transition-colors mx-auto mb-3"
                 />
               ) : (
-                <div className="w-16 h-16 rounded-full bg-primary/20 border-2 border-border group-hover:border-primary/50 transition-colors flex items-center justify-center text-primary text-xl font-bold mx-auto mb-3">
-                  {getInitials(member.display_name || member.username || 'U')}
-                </div>
+                <DefaultAvatar className="w-16 h-16 border-2 border-border group-hover:border-primary/50 transition-colors mx-auto mb-3" />
               )}
               <div className="flex items-center justify-center gap-1 mb-0.5">
                 <span className="font-semibold text-text-primary text-sm truncate">

@@ -6,7 +6,8 @@ import { Search, Users, Wrench, CalendarDays, Tag } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { timeAgo, getInitials, formatDate, formatCurrency } from '@/lib/utils'
+import { timeAgo, formatDate, formatCurrency } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import { useSearchParams, useRouter } from 'next/navigation'
 
 type SearchTab = 'all' | 'members' | 'builds' | 'events' | 'marketplace'
@@ -155,9 +156,7 @@ export default function SearchPage() {
                     {m.avatar_url ? (
                       <Image src={m.avatar_url} alt="" width={40} height={40} className="w-10 h-10 rounded-full object-cover border border-border" />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary text-sm font-bold">
-                        {getInitials(m.display_name || m.username || 'U')}
-                      </div>
+                      <DefaultAvatar className="w-10 h-10" />
                     )}
                     <div>
                       <div className="font-medium text-text-primary text-sm">{m.display_name || m.username}</div>

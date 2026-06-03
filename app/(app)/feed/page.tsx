@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { timeAgo, getInitials } from '@/lib/utils'
-import { Heart, MessageCircle, Image as ImageIcon, X, Send } from 'lucide-react'
+import { timeAgo } from '@/lib/utils'
+import { Heart, MessageCircle, Image as ImageIcon, X, Send, RefreshCw } from 'lucide-react'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { PostWithProfile } from '@/lib/supabase/types'
 import toast from 'react-hot-toast'
 import Image from 'next/image'
@@ -15,6 +16,8 @@ function PostCard({ post, currentUserId }: { post: PostWithProfile; currentUserI
   const supabase = createClient()
   const queryClient = useQueryClient()
   const profile = post.profiles
+  const [imgError, setImgError] = useState(false)
+  const [imgKey, setImgKey] = useState(0)
 
   const likeMutation = useMutation({
     mutationFn: async () => {
@@ -49,9 +52,7 @@ function PostCard({ post, currentUserId }: { post: PostWithProfile; currentUserI
               className="w-10 h-10 rounded-full object-cover border border-border"
             />
           ) : (
-            <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary text-sm font-bold">
-              {getInitials(profile?.display_name || profile?.username || 'U')}
-            </div>
+            <DefaultAvatar className="w-10 h-10" />
           )}
         </Link>
         <div className="flex-1 min-w-0">
@@ -78,13 +79,33 @@ function PostCard({ post, currentUserId }: { post: PostWithProfile; currentUserI
       {/* Image */}
       {post.image_url && (
         <div className="mb-3 rounded-lg overflow-hidden border border-border">
-          <Image
-            src={post.image_url}
-            alt="Post image"
-            width={600}
-            height={400}
-            className="w-full object-cover max-h-96"
-          />
+          {imgError ? (
+            <div className="flex flex-col items-center justify-center gap-3 py-10 bg-surface-variant">
+              <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12 opacity-50">
+                <rect x="4" y="8" width="40" height="32" rx="3" stroke="#9CA3AF" strokeWidth="2" />
+                <path d="M4 30 L15 19 L22 26 L30 16 L44 30" stroke="#9CA3AF" strokeWidth="2" strokeLinejoin="round" />
+                <circle cx="14" cy="18" r="3" stroke="#9CA3AF" strokeWidth="2" />
+                <path d="M26 8 L22 22 L30 26 L26 40" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <p className="text-text-muted text-xs">Image failed to load</p>
+              <button
+                onClick={() => { setImgError(false); setImgKey((k) => k + 1) }}
+                className="flex items-center gap-1.5 text-primary text-xs border border-primary/30 px-3 py-1 rounded-md hover:bg-primary/10 transition-colors"
+              >
+                <RefreshCw size={12} /> Reload
+              </button>
+            </div>
+          ) : (
+            <Image
+              key={imgKey}
+              src={post.image_url}
+              alt="Post image"
+              width={600}
+              height={400}
+              className="w-full object-cover max-h-96"
+              onError={() => setImgError(true)}
+            />
+          )}
         </div>
       )}
 

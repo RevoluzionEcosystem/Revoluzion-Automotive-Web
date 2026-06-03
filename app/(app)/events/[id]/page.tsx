@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { CalendarDays, MapPin, Users, ArrowLeft, Clock, DollarSign } from 'lucide-react'
-import { formatDate, formatCurrency, getInitials } from '@/lib/utils'
+import { formatDate, formatCurrency } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
 
 export const revalidate = 300
@@ -70,9 +71,7 @@ export default async function EventDetailPage({ params }: Props) {
                 {profile.avatar_url ? (
                   <Image src={profile.avatar_url} alt="" width={24} height={24} className="w-6 h-6 rounded-full object-cover" />
                 ) : (
-                  <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[10px] font-bold">
-                    {getInitials(profile.display_name || profile.username || 'U')}
-                  </div>
+                  <DefaultAvatar className="w-6 h-6" />
                 )}
                 Organized by <span className="text-text-primary">{profile.display_name || profile.username}</span>
               </Link>

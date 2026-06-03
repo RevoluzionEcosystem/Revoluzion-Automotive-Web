@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { MapPin, Calendar, Users, UserCheck, Car, Wrench, MessageSquare, Heart } from 'lucide-react'
-import { timeAgo, getInitials, formatDate } from '@/lib/utils'
+import { timeAgo, formatDate } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -71,9 +72,7 @@ export default async function PublicProfilePage({ params }: Props) {
               priority
             />
           ) : (
-            <div className="w-24 h-24 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center text-primary text-3xl font-bold shrink-0">
-              {getInitials(profile.display_name || profile.username || 'U')}
-            </div>
+            <DefaultAvatar className="w-24 h-24 border-2 shrink-0" />
           )}
 
           <div className="flex-1 min-w-0">

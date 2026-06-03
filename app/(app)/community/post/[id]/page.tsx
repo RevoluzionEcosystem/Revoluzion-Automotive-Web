@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Heart, MessageCircle } from 'lucide-react'
-import { timeAgo, getInitials } from '@/lib/utils'
+import { timeAgo } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -54,9 +55,7 @@ export default async function PostDetailPage({ params }: Props) {
             {profile?.avatar_url ? (
               <Image src={profile.avatar_url} alt="" width={40} height={40} className="w-10 h-10 rounded-full object-cover border border-border" />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary text-sm font-bold">
-                {getInitials(profile?.display_name || profile?.username || 'U')}
-              </div>
+              <DefaultAvatar className="w-10 h-10" />
             )}
           </Link>
           <div>
@@ -94,9 +93,7 @@ export default async function PostDetailPage({ params }: Props) {
                 {cp?.avatar_url ? (
                   <Image src={cp.avatar_url} alt="" width={32} height={32} className="w-8 h-8 rounded-full object-cover border border-border shrink-0" />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary text-xs font-bold shrink-0">
-                    {getInitials(cp?.display_name || cp?.username || 'U')}
-                  </div>
+                  <DefaultAvatar className="w-8 h-8 shrink-0" />
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">

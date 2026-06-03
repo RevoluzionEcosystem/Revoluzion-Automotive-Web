@@ -12,7 +12,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
 import toast from 'react-hot-toast'
-import { getInitials } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Profile } from '@/lib/supabase/types'
 import { useRouter } from 'next/navigation'
 
@@ -158,12 +158,10 @@ export default function ProfilePage() {
               style={{ width: 88, height: 88 }}
             />
           ) : (
-            <div
-              className="rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary text-2xl font-bold"
+            <DefaultAvatar
+              className="rounded-full border-2 border-primary"
               style={{ width: 88, height: 88 }}
-            >
-              {getInitials(profile?.display_name || profile?.username || 'U')}
-            </div>
+            />
           )}
           <button
             onClick={() => fileRef.current?.click()}

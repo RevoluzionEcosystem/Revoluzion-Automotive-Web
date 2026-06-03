@@ -2,7 +2,8 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
 import { MessageSquare, Heart } from 'lucide-react'
-import { timeAgo, getInitials } from '@/lib/utils'
+import { timeAgo } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
 import type { PostWithProfile } from '@/lib/supabase/types'
 
@@ -59,9 +60,7 @@ export default async function CommunityPage() {
                     {profile?.avatar_url ? (
                       <Image src={profile.avatar_url} alt="" width={24} height={24} className="w-6 h-6 rounded-full object-cover" />
                     ) : (
-                      <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[9px] font-bold">
-                        {getInitials(profile?.display_name || profile?.username || 'U')}
-                      </div>
+                      <DefaultAvatar className="w-6 h-6" />
                     )}
                     <span className="text-text-secondary text-xs">{profile?.display_name || profile?.username || 'Member'}</span>
                     <span className="text-text-disabled text-xs ml-auto">{timeAgo(post.created_at)}</span>

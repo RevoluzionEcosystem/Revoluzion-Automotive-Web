@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, MapPin, Tag, Phone, MessageCircle } from 'lucide-react'
-import { formatCurrency, timeAgo, getInitials } from '@/lib/utils'
+import { formatCurrency, timeAgo } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -108,9 +109,7 @@ export default async function MarketplaceListingPage({ params }: Props) {
                 {profile.avatar_url ? (
                   <Image src={profile.avatar_url} alt="" width={44} height={44} className="w-11 h-11 rounded-full object-cover border border-border" />
                 ) : (
-                  <div className="w-11 h-11 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary font-bold">
-                    {getInitials(profile.display_name || profile.username || 'U')}
-                  </div>
+                  <DefaultAvatar className="w-11 h-11" />
                 )}
                 <div>
                   <div className="font-medium text-text-primary text-sm">{profile.display_name || profile.username}</div>

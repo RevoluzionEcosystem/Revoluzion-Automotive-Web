@@ -2,7 +2,8 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Wrench, Heart } from 'lucide-react'
-import { timeAgo, getInitials } from '@/lib/utils'
+import { timeAgo } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
 import type { BuildWithProfile } from '@/lib/supabase/types'
 
@@ -80,9 +81,7 @@ export default async function BuildsPage() {
                       {profile?.avatar_url ? (
                         <Image src={profile.avatar_url} alt="" width={20} height={20} className="w-5 h-5 rounded-full object-cover" />
                       ) : (
-                        <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary text-[9px] font-bold">
-                          {getInitials(profile?.display_name || profile?.username || 'U')}
-                        </div>
+                        <DefaultAvatar className="w-5 h-5" />
                       )}
                       <span className="text-text-muted text-xs">{profile?.display_name || profile?.username || 'Member'}</span>
                     </div>

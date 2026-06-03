@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Send, Hash } from 'lucide-react'
-import { timeAgo, getInitials } from '@/lib/utils'
+import { timeAgo } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import type { ChatMessage } from '@/lib/supabase/types'
@@ -113,9 +114,7 @@ export default function ChatPage() {
             {msg.avatar_url ? (
               <Image src={msg.avatar_url} alt="" width={32} height={32} className="w-8 h-8 rounded-full object-cover border border-border shrink-0" />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary text-xs font-bold shrink-0">
-                {getInitials(msg.display_name || 'U')}
-              </div>
+              <DefaultAvatar className="w-8 h-8 shrink-0" />
             )}
             <div className={`max-w-xs lg:max-w-md ${msg.user_id === user?.id ? 'items-end' : 'items-start'} flex flex-col`}>
               <span className="text-text-muted text-xs mb-1">{msg.display_name} · {timeAgo(msg.created_at)}</span>

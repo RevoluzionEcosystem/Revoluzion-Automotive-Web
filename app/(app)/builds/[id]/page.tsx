@@ -3,7 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Heart, Wrench } from 'lucide-react'
-import { timeAgo, getInitials } from '@/lib/utils'
+import { timeAgo } from '@/lib/utils'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
 
 export const revalidate = 300
@@ -71,9 +72,7 @@ export default async function BuildDetailPage({ params }: Props) {
                 {profile.avatar_url ? (
                   <Image src={profile.avatar_url} alt="" width={28} height={28} className="w-7 h-7 rounded-full object-cover" />
                 ) : (
-                  <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold">
-                    {getInitials(profile.display_name || profile.username || 'U')}
-                  </div>
+                  <DefaultAvatar className="w-7 h-7" />
                 )}
                 <span>Built by</span>
                 <span className="text-text-primary font-medium">{profile.display_name || profile.username}</span>

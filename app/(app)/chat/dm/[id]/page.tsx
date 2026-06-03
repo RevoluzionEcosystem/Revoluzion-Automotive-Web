@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { Send, ArrowLeft, User } from 'lucide-react'
+import { Send, ArrowLeft } from 'lucide-react'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import Image from 'next/image'
 import Link from 'next/link'
 import { timeAgo } from '@/lib/utils'
@@ -125,9 +126,7 @@ export default function DMPage() {
             className="w-9 h-9 rounded-full object-cover border border-border"
           />
         ) : (
-          <div className="w-9 h-9 rounded-full bg-surface-variant border border-border flex items-center justify-center">
-            <User size={16} className="text-text-muted" />
-          </div>
+          <DefaultAvatar className="w-9 h-9" />
         )}
         <div>
           <div className="font-semibold text-text-primary text-sm">
@@ -152,13 +151,11 @@ export default function DMPage() {
           return (
             <div key={msg.id} className={`flex items-end gap-2 ${isOwn ? 'flex-row-reverse' : ''}`}>
               {!isOwn && (
-                <div className="w-7 h-7 rounded-full bg-surface-variant border border-border flex items-center justify-center shrink-0">
-                  {recipientProfile?.avatar_url ? (
-                    <Image src={recipientProfile.avatar_url} alt="" width={28} height={28} className="w-full h-full rounded-full object-cover" />
-                  ) : (
-                    <User size={12} className="text-text-muted" />
-                  )}
-                </div>
+                {recipientProfile?.avatar_url ? (
+                  <Image src={recipientProfile.avatar_url} alt="" width={28} height={28} className="w-7 h-7 rounded-full object-cover border border-border shrink-0" />
+                ) : (
+                  <DefaultAvatar className="w-7 h-7 shrink-0" />
+                )}
               )}
               <div
                 className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${

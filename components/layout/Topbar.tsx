@@ -59,7 +59,8 @@ export function Topbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-background h-16 flex items-center px-4">
+      <header className="sticky top-0 z-40 bg-background h-16">
+        <div className="max-w-2xl mx-auto h-full flex items-center gap-2 px-4">
         {/* Left: mobile menu + logo */}
         <div className="flex items-center gap-2">
           <button
@@ -80,8 +81,8 @@ export function Topbar() {
         </div>
 
         {/* Center: search */}
-        <div className="flex-1 flex justify-center px-6">
-          <div className="hidden md:block w-full max-w-2xl">
+        <div className="flex-1">
+          <div className="hidden md:block w-full">
             <div className="relative w-full">
               <Search size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted" />
               <input
@@ -135,6 +136,7 @@ export function Topbar() {
               Sign In
             </Link>
           )}
+        </div>
         </div>
       </header>
 

@@ -113,16 +113,15 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>My Profile</h1>
+      <div className="card p-6 mb-4 relative">
         {!editing && (
-          <button onClick={() => setEditing(true)} className="btn-secondary flex items-center gap-2 text-sm">
-            <Edit2 size={14} /> Edit
+          <button
+            onClick={() => setEditing(true)}
+            className="absolute top-4 right-4 p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-variant transition-colors"
+          >
+            <Edit2 size={15} />
           </button>
         )}
-      </div>
-
-      <div className="card p-6 mb-4">
         {/* Avatar */}
         <div className="flex items-start gap-5 mb-5">
           <div className="relative group">

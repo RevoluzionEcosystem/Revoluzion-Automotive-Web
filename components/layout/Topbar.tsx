@@ -59,42 +59,43 @@ export function Topbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-border h-16 flex items-center px-4 gap-4">
-        {/* Mobile menu toggle */}
-        <button
-          onClick={() => setMobileMenuOpen((o) => !o)}
-          className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
-        >
-          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+      <header className="sticky top-0 z-40 bg-background border-b border-border h-16 flex items-center px-4">
+        {/* Left: mobile menu + logo */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setMobileMenuOpen((o) => !o)}
+            className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
 
-        {/* Logo (mobile) */}
-        <Link href="/" className="lg:hidden flex items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden">
-            <Image src="/logo.png" alt="Revoluzion" width={32} height={32} className="w-8 h-8 object-contain" priority />
-          </div>
-          <span className="font-bold text-xs tracking-widest gradient-text uppercase" style={{ fontFamily: 'var(--font-orbitron)' }}>
-            Revoluzion
-          </span>
-        </Link>
+          <Link href="/" className="lg:hidden flex items-center gap-2">
+            <div className="flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden">
+              <Image src="/logo.png" alt="Revoluzion" width={32} height={32} className="w-8 h-8 object-contain" priority />
+            </div>
+            <span className="font-bold text-xs tracking-widest gradient-text uppercase" style={{ fontFamily: 'var(--font-orbitron)' }}>
+              Revoluzion
+            </span>
+          </Link>
+        </div>
 
-        {/* Search bar (desktop) */}
-        <div className="hidden md:flex flex-1 max-w-md">
-          <div className="relative w-full">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
-            <input
-              type="text"
-              placeholder="Search builds, events, members..."
-              className="input pl-9 py-1.5 text-sm bg-background"
-              onFocus={() => router.push('/search')}
-              readOnly
-            />
+        {/* Center: search */}
+        <div className="flex-1 flex justify-center">
+          <div className="hidden md:block w-full max-w-sm">
+            <div className="relative w-full">
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
+              <input
+                type="text"
+                placeholder="Search builds, events, members..."
+                className="input pl-9 py-1.5 text-sm bg-surface"
+                onFocus={() => router.push('/search')}
+                readOnly
+              />
+            </div>
           </div>
         </div>
 
-        <div className="flex-1 lg:hidden" />
-
-        {/* Right actions */}
+        {/* Right: actions */}
         <div className="flex items-center gap-1">
           {/* Search (mobile) */}
           <button

@@ -80,8 +80,8 @@ export function Topbar() {
         </div>
 
         {/* Center: search */}
-        <div className="flex-1 flex justify-center">
-          <div className="hidden md:block w-full max-w-xl">
+        <div className="flex-1 flex justify-center px-6">
+          <div className="hidden md:block w-full max-w-2xl">
             <div className="relative w-full">
               <Search size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted" />
               <input

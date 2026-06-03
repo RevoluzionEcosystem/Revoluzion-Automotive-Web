@@ -44,7 +44,7 @@ export default async function GuidesPage({
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Guides</h1>
-        <p className="text-[var(--color-text-secondary)] mt-1">
+        <p className="text-text-secondary mt-1">
           Step-by-step DIY guides for every skill level
         </p>
       </div>
@@ -55,8 +55,8 @@ export default async function GuidesPage({
           href="/guides"
           className={`px-4 py-1.5 rounded-full text-sm border transition-colors ${
             !category
-              ? 'bg-[var(--color-primary)] text-black border-[var(--color-primary)] font-semibold'
-              : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-white'
+              ? 'bg-primary text-black border-primary font-semibold'
+              : 'border-border text-text-secondary hover:border-primary hover:text-white'
           }`}
         >
           All
@@ -67,8 +67,8 @@ export default async function GuidesPage({
             href={`/guides?category=${c}`}
             className={`px-4 py-1.5 rounded-full text-sm border transition-colors capitalize ${
               category === c
-                ? 'bg-[var(--color-primary)] text-black border-[var(--color-primary)] font-semibold'
-                : 'border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-white'
+                ? 'bg-primary text-black border-primary font-semibold'
+                : 'border-border text-text-secondary hover:border-primary hover:text-white'
             }`}
           >
             {c}
@@ -78,7 +78,7 @@ export default async function GuidesPage({
 
       {/* Guides grid */}
       {(guides ?? []).length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-24 text-[var(--color-text-secondary)]">
+        <div className="flex flex-col items-center justify-center py-24 text-text-secondary">
           <BookOpen className="h-12 w-12 opacity-20 mb-3" />
           <p className="text-lg font-medium">No guides yet</p>
           <p className="text-sm mt-1">Check back soon for how-to content</p>
@@ -89,10 +89,10 @@ export default async function GuidesPage({
             <Link
               key={guide.id}
               href={`/guides/${guide.slug}`}
-              className="group flex flex-col bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl overflow-hidden hover:border-[var(--color-primary)]/50 transition-all"
+              className="group flex flex-col bg-surface border border-border rounded-2xl overflow-hidden hover:border-primary/50 transition-all"
             >
               {/* Cover image */}
-              <div className="relative w-full aspect-video bg-[var(--color-surface-variant)] overflow-hidden">
+              <div className="relative w-full aspect-video bg-surface-variant overflow-hidden">
                 {guide.cover_image_url ? (
                   <Image
                     src={guide.cover_image_url}
@@ -102,7 +102,7 @@ export default async function GuidesPage({
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <BookOpen className="h-10 w-10 text-[var(--color-text-muted)]" />
+                    <BookOpen className="h-10 w-10 text-text-muted" />
                   </div>
                 )}
                 {/* Difficulty badge */}
@@ -117,21 +117,21 @@ export default async function GuidesPage({
               <div className="flex flex-col flex-1 p-4 gap-2">
                 <div>
                   {guide.category && (
-                    <span className="text-xs font-medium text-[var(--color-primary)] uppercase tracking-wide">
+                    <span className="text-xs font-medium text-primary uppercase tracking-wide">
                       {guide.category}
                     </span>
                   )}
-                  <h3 className="text-sm font-semibold text-white mt-0.5 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors">
+                  <h3 className="text-sm font-semibold text-white mt-0.5 line-clamp-2 group-hover:text-primary transition-colors">
                     {guide.title}
                   </h3>
                   {guide.description && (
-                    <p className="text-xs text-[var(--color-text-secondary)] mt-1 line-clamp-2">
+                    <p className="text-xs text-text-secondary mt-1 line-clamp-2">
                       {guide.description}
                     </p>
                   )}
                 </div>
 
-                <div className="mt-auto flex items-center gap-4 pt-2 border-t border-[var(--color-border)] text-[var(--color-text-muted)] text-xs">
+                <div className="mt-auto flex items-center gap-4 pt-2 border-t border-border text-text-muted text-xs">
                   {guide.estimated_minutes && (
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" /> {guide.estimated_minutes} min
@@ -140,7 +140,7 @@ export default async function GuidesPage({
                   <span className="flex items-center gap-1">
                     <Eye className="h-3 w-3" /> {guide.views ?? 0}
                   </span>
-                  <span className="ml-auto flex items-center gap-0.5 text-[var(--color-primary)] font-medium">
+                  <span className="ml-auto flex items-center gap-0.5 text-primary font-medium">
                     Read <ChevronRight className="h-3 w-3" />
                   </span>
                 </div>

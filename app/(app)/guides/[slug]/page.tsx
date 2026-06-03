@@ -71,14 +71,14 @@ export default async function GuideDetailPage({
       {/* Back */}
       <Link
         href="/guides"
-        className="inline-flex items-center gap-2 text-sm text-[var(--color-text-secondary)] hover:text-white transition-colors"
+        className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-white transition-colors"
       >
         <ArrowLeft className="h-4 w-4" /> All Guides
       </Link>
 
       {/* Cover image */}
       {guide.cover_image_url && (
-        <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-[var(--color-surface-variant)]">
+        <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-surface-variant">
           <Image
             src={guide.cover_image_url}
             alt={guide.title}
@@ -93,7 +93,7 @@ export default async function GuideDetailPage({
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2">
           {guide.category && (
-            <span className="text-xs font-semibold text-[var(--color-primary)] uppercase tracking-wide">
+            <span className="text-xs font-semibold text-primary uppercase tracking-wide">
               {guide.category}
             </span>
           )}
@@ -103,18 +103,18 @@ export default async function GuideDetailPage({
             </span>
           )}
           {guide.estimated_minutes && (
-            <span className="inline-flex items-center gap-1 text-xs text-[var(--color-text-secondary)]">
+            <span className="inline-flex items-center gap-1 text-xs text-text-secondary">
               <Clock className="h-3 w-3" /> {guide.estimated_minutes} min
             </span>
           )}
-          <span className="inline-flex items-center gap-1 text-xs text-[var(--color-text-muted)]">
+          <span className="inline-flex items-center gap-1 text-xs text-text-muted">
             <Eye className="h-3 w-3" /> {guide.views ?? 0} views
           </span>
         </div>
 
         <h1 className="text-2xl sm:text-3xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>{guide.title}</h1>
         {guide.description && (
-          <p className="text-[var(--color-text-secondary)]">{guide.description}</p>
+          <p className="text-text-secondary">{guide.description}</p>
         )}
       </div>
 
@@ -123,15 +123,15 @@ export default async function GuideDetailPage({
         <div className="grid sm:grid-cols-2 gap-4">
           {/* Tools */}
           {(tools ?? []).length > 0 && (
-            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-5">
+            <div className="bg-surface border border-border rounded-xl p-5">
               <h2 className="font-semibold text-sm flex items-center gap-2 mb-3">
-                <Wrench className="h-4 w-4 text-[var(--color-primary)]" /> Tools Needed
+                <Wrench className="h-4 w-4 text-primary" /> Tools Needed
               </h2>
               <ul className="space-y-2">
                 {(tools ?? []).map((t) => (
                   <li key={t.id} className="flex items-center justify-between text-sm">
                     <span className="text-white">{t.name}</span>
-                    <span className="text-[var(--color-text-muted)] text-xs">×{t.quantity}</span>
+                    <span className="text-text-muted text-xs">×{t.quantity}</span>
                   </li>
                 ))}
               </ul>
@@ -140,9 +140,9 @@ export default async function GuideDetailPage({
 
           {/* Parts */}
           {(parts ?? []).length > 0 && (
-            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl p-5">
+            <div className="bg-surface border border-border rounded-xl p-5">
               <h2 className="font-semibold text-sm flex items-center gap-2 mb-3">
-                <Package className="h-4 w-4 text-[var(--color-primary)]" /> Parts Needed
+                <Package className="h-4 w-4 text-primary" /> Parts Needed
               </h2>
               <ul className="space-y-2">
                 {(parts ?? []).map((p: any) => (
@@ -150,14 +150,14 @@ export default async function GuideDetailPage({
                     {p.products ? (
                       <Link
                         href={`/shop/product/${p.products.id}`}
-                        className="text-[var(--color-primary)] hover:underline"
+                        className="text-primary hover:underline"
                       >
                         {p.name}
                       </Link>
                     ) : (
                       <span className="text-white">{p.name}</span>
                     )}
-                    <span className="text-[var(--color-text-muted)] text-xs">×{p.quantity}</span>
+                    <span className="text-text-muted text-xs">×{p.quantity}</span>
                   </li>
                 ))}
               </ul>
@@ -169,20 +169,20 @@ export default async function GuideDetailPage({
       {/* Steps */}
       <div className="space-y-6">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          <BookOpen className="h-5 w-5 text-[var(--color-primary)]" />
+          <BookOpen className="h-5 w-5 text-primary" />
           Steps
-          <span className="text-sm font-normal text-[var(--color-text-muted)]">({(steps ?? []).length})</span>
+          <span className="text-sm font-normal text-text-muted">({(steps ?? []).length})</span>
         </h2>
 
         <div className="space-y-5">
           {(steps ?? []).map((step) => (
             <div
               key={step.id}
-              className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-2xl overflow-hidden"
+              className="bg-surface border border-border rounded-2xl overflow-hidden"
             >
               {/* Step image */}
               {step.image_url && (
-                <div className="relative w-full aspect-video bg-[var(--color-surface-variant)]">
+                <div className="relative w-full aspect-video bg-surface-variant">
                   <Image
                     src={step.image_url}
                     alt={step.title}
@@ -195,7 +195,7 @@ export default async function GuideDetailPage({
               <div className="p-5 space-y-3">
                 {/* Step header */}
                 <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-[var(--color-primary)]/15 border border-[var(--color-primary)]/30 text-[var(--color-primary)] text-sm font-bold flex items-center justify-center shrink-0">
+                  <span className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-bold flex items-center justify-center shrink-0">
                     {step.step_number}
                   </span>
                   <h3 className="font-semibold text-white">{step.title}</h3>
@@ -203,7 +203,7 @@ export default async function GuideDetailPage({
 
                 {/* Body */}
                 {step.body && (
-                  <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed pl-11">
+                  <p className="text-text-secondary text-sm leading-relaxed pl-11">
                     {step.body}
                   </p>
                 )}

@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname, useRouter } from 'next/navigation'
-import { cn } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 import { Search, Bell, ShoppingCart, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -11,7 +10,6 @@ import { useQuery } from '@tanstack/react-query'
 
 export function Topbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
   const router = useRouter()
   const supabase = createClient()
 

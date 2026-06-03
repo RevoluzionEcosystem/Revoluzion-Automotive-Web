@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
-  Home, Users, ShoppingBag, Wrench, CalendarDays,
+  Home, Users, ShoppingBag, CalendarDays,
   Car, Map, MessageSquare, Bell, User, Search, Store,
   LogIn, ChevronLeft, ChevronRight
 } from 'lucide-react'
@@ -14,7 +14,7 @@ import { useState } from 'react'
 const navItems = [
   { href: '/feed', label: 'Feed', icon: Home },
   { href: '/community', label: 'Community', icon: Users },
-  { href: '/builds', label: 'Builds', icon: Wrench },
+  { href: '/builds', label: 'Garage', icon: Car },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/shop', label: 'Shop', icon: ShoppingBag },
   { href: '/marketplace', label: 'Marketplace', icon: Store },

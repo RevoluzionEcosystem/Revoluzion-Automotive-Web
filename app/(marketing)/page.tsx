@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const features = [
   {
     icon: Wrench,
-    title: 'Showcase Builds',
+    title: 'Showcase Your Garage',
     description: 'Document and share your car modification journey with the community.',
   },
   {
@@ -66,7 +66,7 @@ export default async function LandingPage() {
 
   const statItems = [
     { value: formatCount(stats.members_count), label: 'Members' },
-    { value: formatCount(stats.builds_count),  label: 'Builds' },
+    { value: formatCount(stats.builds_count),  label: 'Garage' },
     { value: formatCount(stats.events_count),  label: 'Events' },
     { value: formatCount(stats.clubs_count),   label: 'Clubs' },
   ]

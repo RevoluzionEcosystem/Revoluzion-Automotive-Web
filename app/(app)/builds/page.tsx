@@ -7,7 +7,7 @@ import type { Metadata } from 'next'
 import type { BuildWithProfile } from '@/lib/supabase/types'
 
 export const metadata: Metadata = {
-  title: 'Builds',
+  title: 'Garage',
   description: 'Explore car builds and modifications from the Revoluzion community',
 }
 
@@ -28,7 +28,7 @@ export default async function BuildsPage() {
     <div className="max-w-6xl mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary">Builds</h1>
+          <h1 className="text-2xl font-bold text-text-primary">Garage</h1>
           <p className="text-text-muted text-sm mt-1">Community car builds and modifications</p>
         </div>
       </div>

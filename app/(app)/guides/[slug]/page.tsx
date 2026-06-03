@@ -112,7 +112,7 @@ export default async function GuideDetailPage({
           </span>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-bold text-white">{guide.title}</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>{guide.title}</h1>
         {guide.description && (
           <p className="text-[var(--color-text-secondary)]">{guide.description}</p>
         )}

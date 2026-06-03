@@ -43,10 +43,8 @@ export default async function GuidesPage({
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold tracking-tight text-white">
-          <span className="text-[var(--color-primary)]">Automotive</span> Guides
-        </h1>
-        <p className="text-[var(--color-text-secondary)] mt-2">
+        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Guides</h1>
+        <p className="text-[var(--color-text-secondary)] mt-1">
           Step-by-step DIY guides for every skill level
         </p>
       </div>

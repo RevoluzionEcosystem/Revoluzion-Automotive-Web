@@ -4,8 +4,11 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { timeAgo } from '@/lib/utils'
-import { Heart, MessageCircle, Image as ImageIcon, X, Send, RefreshCw } from 'lucide-react'
+import { Heart, MessageCircle, Image as ImageIcon, X, Send, RefreshCw, AtSign } from 'lucide-react'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
+import { PostContent } from '@/components/ui/PostContent'
+import { LinkPreview } from '@/components/ui/LinkPreview'
+import { MentionTextarea } from '@/components/ui/MentionTextarea'
 import type { PostWithProfile } from '@/lib/supabase/types'
 import toast from 'react-hot-toast'
 import Image from 'next/image'
@@ -72,9 +75,8 @@ function PostCard({ post, currentUserId }: { post: PostWithProfile; currentUserI
       </div>
 
       {/* Content */}
-      <p className="text-text-primary text-sm leading-relaxed mb-3 whitespace-pre-wrap">
-        {post.content}
-      </p>
+      <PostContent content={post.content} />
+      <LinkPreview content={post.content} />
 
       {/* Image */}
       {post.image_url && (
@@ -181,13 +183,14 @@ function CreatePost({ currentUserId }: { currentUserId: string }) {
 
   return (
     <form onSubmit={handleSubmit} className="card p-4 mb-4">
-      <textarea
+      <MentionTextarea
         value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="What's happening in the automotive world?"
-        className="input resize-none text-sm min-h-[80px] mb-3 bg-background"
+        onChange={setContent}
+        placeholder="What's happening in the automotive world? Use @ to mention members."
+        className="input resize-none text-sm min-h-[80px] mb-3 bg-background w-full"
         maxLength={1000}
       />
+      <LinkPreview content={content} />
 
       {imagePreview && (
         <div className="relative mb-3 inline-block">
@@ -209,9 +212,14 @@ function CreatePost({ currentUserId }: { currentUserId: string }) {
             type="button"
             onClick={() => fileRef.current?.click()}
             className="p-2 rounded-lg text-text-muted hover:text-primary hover:bg-surface-variant transition-colors"
+            title="Add image"
           >
             <ImageIcon size={18} />
           </button>
+          <div className="flex items-center gap-1 text-text-muted/50 text-xs" title="Type @ to mention members">
+            <AtSign size={13} />
+            <span>mention</span>
+          </div>
           <span className="text-text-muted text-xs">{content.length}/1000</span>
         </div>
         <button

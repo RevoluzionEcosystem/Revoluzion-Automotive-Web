@@ -410,7 +410,7 @@ function ActionBtn({
   return (
     <button
       onClick={onClick}
-      className="flex-1 flex items-center justify-center gap-1.5 h-10 border border-border bg-surface-variant rounded-lg text-text-secondary hover:text-text-primary hover:bg-accent transition-colors text-xs font-semibold"
+      className="flex-1 flex items-center justify-center gap-1.5 h-10 border border-border-light bg-surface-light rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-elevated transition-colors text-xs font-semibold"
     >
       {icon}
       <span className="truncate">{label}</span>
@@ -440,7 +440,7 @@ function NavCard({ rows }: { rows: NavRow[] }) {
         const inner = (
           <div className="flex items-center gap-3 px-4 py-3.5 hover:bg-surface-variant transition-colors w-full">
             <span className="text-text-secondary shrink-0">{row.icon}</span>
-            <span className="flex-1 text-sm font-medium text-text-primary text-left">{row.label}</span>
+            <span className="flex-1 text-sm font-medium text-text-secondary text-left">{row.label}</span>
             <ChevronRight size={15} className="text-text-muted shrink-0" />
           </div>
         )

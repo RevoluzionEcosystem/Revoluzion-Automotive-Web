@@ -59,7 +59,7 @@ export function Topbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-background border-b border-border h-16 flex items-center px-4">
+      <header className="sticky top-0 z-40 bg-background h-16 flex items-center px-4">
         {/* Left: mobile menu + logo */}
         <div className="flex items-center gap-2">
           <button

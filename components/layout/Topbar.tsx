@@ -81,13 +81,13 @@ export function Topbar() {
 
         {/* Center: search */}
         <div className="flex-1 flex justify-center">
-          <div className="hidden md:block w-full max-w-sm">
+          <div className="hidden md:block w-full max-w-xl">
             <div className="relative w-full">
-              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" />
+              <Search size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted" />
               <input
                 type="text"
                 placeholder="Search builds, events, members..."
-                className="input pl-9 py-1.5 text-sm bg-surface"
+                className="input pl-10 py-2.5 text-sm bg-surface"
                 onFocus={() => router.push('/search')}
                 readOnly
               />
@@ -111,7 +111,7 @@ export function Topbar() {
                 href="/notifications"
                 className="relative p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
               >
-                <Bell size={20} />
+                <Bell size={23} />
                 {unreadCount ? (
                   <span className="absolute top-1 right-1 w-4 h-4 bg-primary text-black text-[9px] font-bold rounded-full flex items-center justify-center">
                     {unreadCount > 9 ? '9+' : unreadCount}
@@ -122,10 +122,10 @@ export function Topbar() {
                 href="/shop/cart"
                 className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
               >
-                <ShoppingCart size={20} />
+                <ShoppingCart size={23} />
               </Link>
               <Link href="/profile">
-                <div className="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary text-xs font-bold hover:border-primary transition-colors">
+                <div className="w-9 h-9 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary text-sm font-bold hover:border-primary transition-colors">
                   U
                 </div>
               </Link>

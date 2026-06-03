@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Search, Bell, ShoppingCart, Menu, X } from 'lucide-react'
@@ -69,11 +70,8 @@ export function Topbar() {
 
         {/* Logo (mobile) */}
         <Link href="/" className="lg:hidden flex items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-surface-variant border border-primary/40">
-            <svg width="16" height="16" viewBox="0 0 40 40" fill="none">
-              <path d="M10 20 L20 8 L30 20 L20 32 Z" stroke="#06B6D4" strokeWidth="2" fill="none" />
-              <path d="M15 20 L20 13 L25 20 L20 27 Z" fill="#06B6D4" fillOpacity="0.9" />
-            </svg>
+          <div className="flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden">
+            <Image src="/logo.png" alt="Revoluzion" width={32} height={32} className="w-8 h-8 object-contain" priority />
           </div>
           <span className="font-bold text-sm tracking-wider gradient-text uppercase">
             Revoluzion

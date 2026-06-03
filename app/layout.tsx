@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   description:
     "Malaysia's premier automotive community — builds, events, marketplace, and more.",
   keywords: ['automotive', 'cars', 'Malaysia', 'community', 'builds', 'JDM', 'modified cars'],
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+    shortcut: '/logo.png',
+  },
   openGraph: {
     title: 'Revoluzion Automotive',
     description: "Malaysia's premier automotive community",
@@ -20,11 +25,13 @@ export const metadata: Metadata = {
     siteName: 'Revoluzion Automotive',
     locale: 'en_MY',
     type: 'website',
+    images: [{ url: '/logo.png', width: 800, height: 800, alt: 'Revoluzion Automotive' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Revoluzion Automotive',
     description: "Malaysia's premier automotive community",
+    images: ['/logo.png'],
   },
   robots: { index: true, follow: true },
 }

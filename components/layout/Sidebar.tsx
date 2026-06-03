@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
@@ -38,13 +39,10 @@ export function Sidebar() {
       <div className="flex items-center h-16 px-4 border-b border-border shrink-0">
         <Link href="/" className="flex items-center gap-3 min-w-0">
           <div
-            className="flex items-center justify-center w-8 h-8 rounded-lg bg-surface-variant border border-primary/40 shrink-0"
+            className="flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden shrink-0"
             style={{ boxShadow: '0 0 10px rgba(6,182,212,0.2)' }}
           >
-            <svg width="18" height="18" viewBox="0 0 40 40" fill="none">
-              <path d="M10 20 L20 8 L30 20 L20 32 Z" stroke="#06B6D4" strokeWidth="2" fill="none" />
-              <path d="M15 20 L20 13 L25 20 L20 27 Z" fill="#06B6D4" fillOpacity="0.9" />
-            </svg>
+            <Image src="/logo.png" alt="Revoluzion" width={32} height={32} className="w-8 h-8 object-contain" priority />
           </div>
           {!collapsed && (
             <span className="font-bold text-sm tracking-wider gradient-text uppercase truncate">

@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Orbitron } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/providers'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const orbitron = Orbitron({ subsets: ['latin'], variable: '--font-orbitron', weight: ['400','500','600','700','800','900'] })
 
 export const metadata: Metadata = {
   title: {
@@ -48,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} dark h-full`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${orbitron.variable} dark h-full`} suppressHydrationWarning>
       <body className="min-h-full bg-background text-text-primary antialiased">
         <Providers>{children}</Providers>
       </body>

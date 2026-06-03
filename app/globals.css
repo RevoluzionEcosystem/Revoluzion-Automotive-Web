@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  /* Fonts */
+  --font-orbitron: var(--font-orbitron);
+  --font-inter: var(--font-inter);
+
   /* Brand colors */
   --color-background: #0A0A0A;
   --color-surface: #111111;
@@ -34,9 +38,14 @@
   html,
   body {
     @apply bg-background text-text-primary;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-orbitron), system-ui, sans-serif;
+    letter-spacing: 0.05em;
   }
 
   ::-webkit-scrollbar {

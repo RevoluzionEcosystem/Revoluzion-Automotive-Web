@@ -85,8 +85,8 @@ export default async function LandingPage() {
               className="rounded-lg"
               priority
             />
-            <span className="font-bold text-base tracking-wider gradient-text uppercase">
-              Revoluzion
+            <span className="font-bold text-base tracking-widest gradient-text uppercase" style={{ fontFamily: 'var(--font-orbitron)' }}>
+              Revoluzion Automotive
             </span>
           </Link>
 
@@ -110,7 +110,7 @@ export default async function LandingPage() {
         />
 
         <div className="relative max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight mb-6" style={{ fontFamily: 'var(--font-orbitron)' }}>
             <span className="gradient-text">DRIVE YOUR</span>
             <br />
             <span className="text-text-primary">PASSION</span>
@@ -134,8 +134,8 @@ export default async function LandingPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-20 max-w-2xl mx-auto">
             {statItems.map(({ value, label }) => (
               <div key={label} className="text-center">
-                <div className="text-3xl font-black gradient-text">{value}</div>
-                <div className="text-text-muted text-sm mt-1">{label}</div>
+                <div className="text-3xl font-black gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>{value}</div>
+                <div className="text-text-muted text-sm mt-1 font-medium tracking-wider uppercase">{label}</div>
               </div>
             ))}
           </div>

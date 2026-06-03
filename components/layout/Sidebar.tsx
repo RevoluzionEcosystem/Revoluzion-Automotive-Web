@@ -45,7 +45,7 @@ export function Sidebar() {
             <Image src="/logo.png" alt="Revoluzion" width={32} height={32} className="w-8 h-8 object-contain" priority />
           </div>
           {!collapsed && (
-            <span className="font-bold text-sm tracking-wider gradient-text uppercase truncate">
+            <span className="font-bold text-xs tracking-widest gradient-text uppercase truncate" style={{ fontFamily: 'var(--font-orbitron)' }}>
               Revoluzion
             </span>
           )}

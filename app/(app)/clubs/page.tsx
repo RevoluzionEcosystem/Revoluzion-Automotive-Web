@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
 import { Users, MapPin, Calendar, ChevronRight } from 'lucide-react'
 import type { Metadata } from 'next'
+import { CreateClubDialog } from '@/components/ui/CreateClubDialog'
 
 export const metadata: Metadata = {
   title: 'Clubs',
@@ -57,6 +58,7 @@ export default async function ClubsPage() {
           <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Clubs</h1>
           <p className="text-text-muted text-sm mt-1">{displayClubs.length}+ communities to join</p>
         </div>
+        <CreateClubDialog />
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

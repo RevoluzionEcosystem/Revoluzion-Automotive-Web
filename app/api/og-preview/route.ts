@@ -27,6 +27,18 @@ function getMeta(html: string, names: string[]): string | null {
   return null
 }
 
+function decodeHtmlEntities(str: string): string {
+  return str
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#x27;|&apos;/gi, "'")
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(Number(dec)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&nbsp;/gi, ' ')
+}
+
 export async function GET(request: NextRequest) {
   const rawUrl = request.nextUrl.searchParams.get('url')
   if (!rawUrl) return NextResponse.json({ error: 'Missing url' }, { status: 400 })
@@ -98,7 +110,13 @@ export async function GET(request: NextRequest) {
     const siteName = getMeta(html, ['og:site_name']) || parsed.hostname
 
     return NextResponse.json(
-      { title, description, image, url: rawUrl, siteName },
+      {
+        title:       title       ? decodeHtmlEntities(title)       : null,
+        description: description ? decodeHtmlEntities(description) : null,
+        image,
+        url: rawUrl,
+        siteName:    siteName    ? decodeHtmlEntities(siteName)    : null,
+      },
       { headers: { 'Cache-Control': 'public, max-age=3600, s-maxage=3600' } },
     )
   } catch {

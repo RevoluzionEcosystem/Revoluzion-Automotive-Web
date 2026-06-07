@@ -39,7 +39,7 @@ export default async function PublicProfilePage({ params }: Props) {
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('*')
+    .select('id, username, display_name, avatar_url, bio, location, is_verified, role, followers_count, following_count, garage_count, created_at, instagram, tiktok, youtube, facebook, twitter_x, website')
     .eq('username', username)
     .single()
 

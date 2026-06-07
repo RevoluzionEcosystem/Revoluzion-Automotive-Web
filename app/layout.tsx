@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const orbitron = Orbitron({ subsets: ['latin'], variable: '--font-orbitron', weight: ['400','500','600','700','800','900'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://revoluzion.my'),
   title: {
     default: 'Revoluzion Automotive',
     template: '%s | Revoluzion Automotive',
@@ -15,9 +16,16 @@ export const metadata: Metadata = {
     "Malaysia's premier automotive community — builds, events, marketplace, and more.",
   keywords: ['automotive', 'cars', 'Malaysia', 'community', 'builds', 'JDM', 'modified cars'],
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
-    shortcut: '/logo.png',
+    icon: [
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
+    apple: [{ url: '/apple-icon.png', sizes: '192x192', type: 'image/png' }],
+    shortcut: '/favicon.ico',
   },
   openGraph: {
     title: 'Revoluzion Automotive',
@@ -26,13 +34,13 @@ export const metadata: Metadata = {
     siteName: 'Revoluzion Automotive',
     locale: 'en_MY',
     type: 'website',
-    images: [{ url: '/logo.png', width: 800, height: 800, alt: 'Revoluzion Automotive' }],
+    images: [{ url: '/favicon-512.png', width: 512, height: 512, alt: 'Revoluzion Automotive' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Revoluzion Automotive',
     description: "Malaysia's premier automotive community",
-    images: ['/logo.png'],
+    images: ['/favicon-512.png'],
   },
   robots: { index: true, follow: true },
 }

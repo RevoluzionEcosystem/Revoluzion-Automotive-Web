@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Car, Plus, Trash2, Fuel, Calendar, Palette } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import type { Car as CarType } from '@/lib/supabase/types'
 import { useRouter } from 'next/navigation'
 
@@ -46,7 +46,7 @@ export default function GaragePage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['my-cars'] })
-      toast.success('Car removed from garage')
+      toast.success('Vehicle removed 🗑️', { description: 'The car has been removed from your garage.' })
     },
   })
 
@@ -65,9 +65,9 @@ export default function GaragePage() {
     })
 
     if (error) {
-      toast.error('Failed to add car')
+      toast.error('Could not add vehicle', { description: 'Please check your details and try again.' })
     } else {
-      toast.success('Car added to garage!')
+      toast.success('Added to garage! 🚗', { description: 'Your vehicle has been added to your collection.' })
       setForm({ make: '', model: '', year: '', color: '', engine: '' })
       setShowAddForm(false)
       queryClient.invalidateQueries({ queryKey: ['my-cars'] })

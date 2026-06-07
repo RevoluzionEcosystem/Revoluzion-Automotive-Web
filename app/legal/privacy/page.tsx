@@ -13,7 +13,7 @@ export default function PrivacyPage() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
           <Shield size={24} className="text-primary" />
-          <h1 className="text-3xl font-bold text-text-primary">Privacy Policy</h1>
+          <h1 className="text-3xl font-bold gradient-text">Privacy Policy</h1>
         </div>
         <p className="text-text-muted">Last updated: {new Date().toLocaleDateString('en-MY', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>

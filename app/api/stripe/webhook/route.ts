@@ -1,20 +1,126 @@
-import { NextResponse } from 'next/server'
+﻿import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { createAdminClient } from '@/lib/supabase/admin'
 
+export const runtime = 'nodejs'
+
+// ── Idempotent fulfillment function ────────────────────────────────────────
+// Called from both the webhook AND the return page — safe to run multiple times.
+export async function fulfillCheckout(sessionId: string) {
+  const secretKey = process.env.STRIPE_SECRET_KEY
+  if (!secretKey) return
+
+  const stripe = new Stripe(secretKey)
+  const db = createAdminClient()
+
+  // Retrieve the session with line_items expanded
+  const session = await stripe.checkout.sessions.retrieve(sessionId, {
+    expand: ['line_items'],
+  })
+
+  // Only fulfill paid sessions
+  if (session.payment_status === 'unpaid') return
+
+  const orderId = session.metadata?.orderId
+  if (!orderId) return
+
+  // ── Idempotency check: skip if already fulfilled ───────────────────────
+  const { data: order } = await db
+    .from('orders')
+    .select('order_status, payment_status')
+    .eq('id', orderId)
+    .single()
+
+  if (!order) return
+  // Already fulfilled — don't process twice
+  if (order.order_status !== 'PENDING_PAYMENT') return
+
+  // ── Fill delivery address from Stripe ────────────────────────────────
+  const addr = session.shipping_details?.address
+  const name = session.shipping_details?.name ?? session.customer_details?.name ?? ''
+  const phone = session.customer_details?.phone ?? ''
+
+  await db.from('orders').update({
+    order_status: 'PAID',
+    payment_status: 'COMPLETED',
+    payment_method: 'STRIPE_CARD',
+    stripe_payment_intent_id: (session.payment_intent as string) ?? null,
+    paid_at: new Date().toISOString(),
+    delivery_name: name,
+    delivery_phone: phone,
+    delivery_line1: addr?.line1 ?? '',
+    delivery_line2: addr?.line2 ?? null,
+    delivery_city: addr?.city ?? '',
+    delivery_state: addr?.state ?? '',
+    delivery_postcode: addr?.postal_code ?? '',
+  }).eq('id', orderId)
+
+  // ── Decrement stock ───────────────────────────────────────────────────
+  const { data: orderItems } = await db
+    .from('order_items')
+    .select('product_id, quantity')
+    .eq('order_id', orderId)
+
+  if (orderItems) {
+    for (const item of orderItems) {
+      const { data: prod } = await db
+        .from('products')
+        .select('stock_qty')
+        .eq('id', item.product_id)
+        .single()
+      if (prod) {
+        await db.from('products')
+          .update({ stock_qty: Math.max(0, prod.stock_qty - item.quantity) })
+          .eq('id', item.product_id)
+      }
+    }
+  }
+
+  // ── Clear the user's cart ─────────────────────────────────────────────
+  const { data: orderData } = await db.from('orders').select('user_id, order_number, total, subtotal, shipping_fee').eq('id', orderId).single()
+  if (orderData?.user_id) {
+    const { data: cart } = await db.from('carts').select('id').eq('user_id', orderData.user_id).maybeSingle()
+    if (cart) await db.from('cart_items').delete().eq('cart_id', cart.id)
+  }
+
+  // ── Auto-create sales invoice ────────────────────────────────────────
+  // Check if invoice already exists for this order
+  const { data: existingInvoice } = await db.from('sales_invoices').select('id').eq('order_id', orderId).maybeSingle()
+  if (!existingInvoice) {
+    const invoiceNumber = `INV-${(orderData?.order_number ?? orderId).replace('RA-', '')}`
+    const customerEmail = session.customer_details?.email ?? ''
+    const customerName = session.shipping_details?.name ?? session.customer_details?.name ?? ''
+    const now = new Date().toISOString()
+    const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days
+
+    await db.from('sales_invoices').insert({
+      invoice_number: invoiceNumber,
+      order_id: orderId,
+      customer_name: customerName,
+      customer_email: customerEmail,
+      total: orderData?.total ?? 0,
+      status: 'PAID',
+      issue_date: now,
+      due_date: dueDate,
+      paid_at: now,
+    })
+    console.log('[Stripe] Sales invoice created:', invoiceNumber)
+  }
+
+  console.log('[Stripe] Order fulfilled:', orderId)
+}
+
+// ── Webhook endpoint ────────────────────────────────────────────────────────
 export async function POST(request: Request) {
   const secretKey = process.env.STRIPE_SECRET_KEY
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
-  if (!secretKey || !webhookSecret) {
+  if (!secretKey || !webhookSecret)
     return NextResponse.json({ error: 'Stripe not configured' }, { status: 503 })
-  }
-  const stripe = new Stripe(secretKey)
 
+  const stripe = new Stripe(secretKey)
   const body = await request.text()
   const signature = request.headers.get('stripe-signature')
-
-  if (!signature) {
-    return NextResponse.json({ error: 'No signature' }, { status: 400 })
-  }
+  if (!signature) return NextResponse.json({ error: 'No signature' }, { status: 400 })
 
   let event: Stripe.Event
   try {
@@ -23,19 +129,46 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Webhook verification failed' }, { status: 400 })
   }
 
+  const db = createAdminClient()
+
   switch (event.type) {
-    case 'checkout.session.completed': {
+    // Immediate payment (card, GrabPay)
+    case 'checkout.session.completed':
+    // Delayed payment completed (FPX bank transfer etc.)
+    case 'checkout.session.async_payment_succeeded': {
       const session = event.data.object as Stripe.Checkout.Session
-      // TODO: fulfill order — update order status in Supabase
-      console.log('[Stripe] Order completed:', session.id)
+      await fulfillCheckout(session.id)
       break
     }
-    case 'payment_intent.payment_failed': {
-      console.log('[Stripe] Payment failed:', event.data.object)
+
+    // Delayed payment failed (e.g. FPX transfer bounced)
+    case 'checkout.session.async_payment_failed': {
+      const session = event.data.object as Stripe.Checkout.Session
+      const orderId = session.metadata?.orderId
+      if (orderId) {
+        await db.from('orders')
+          .update({ order_status: 'CANCELLED', payment_status: 'FAILED' })
+          .eq('id', orderId)
+          .eq('order_status', 'PENDING_PAYMENT')
+        console.log('[Stripe] Async payment failed, order cancelled:', orderId)
+      }
       break
     }
+
+    case 'checkout.session.expired': {
+      const session = event.data.object as Stripe.Checkout.Session
+      const orderId = session.metadata?.orderId
+      if (orderId) {
+        await db.from('orders')
+          .update({ order_status: 'CANCELLED', payment_status: 'EXPIRED' })
+          .eq('id', orderId)
+          .eq('order_status', 'PENDING_PAYMENT')
+      }
+      break
+    }
+
     default:
-      console.log(`[Stripe] Unhandled event: ${event.type}`)
+      break
   }
 
   return NextResponse.json({ received: true })

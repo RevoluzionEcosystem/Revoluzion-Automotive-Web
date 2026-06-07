@@ -1,195 +1,220 @@
-import { createClient } from '@/lib/supabase/server'
+﻿import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, ShoppingCart, Star, Package, Shield, Truck } from 'lucide-react'
+import { ArrowLeft, Package, Shield, Truck, Wrench, Motorbike, BadgeCheck, Infinity, PlayCircle } from 'lucide-react'
+import { ProductImageGallery } from '@/components/shop/ProductImageGallery'
 import { formatCurrency } from '@/lib/utils'
 import type { Metadata } from 'next'
+import { ProductActions } from '@/components/shop/ProductActions'
 
-export const revalidate = 3600
+export const revalidate = 0
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
-// Demo fallback products (same as shop page)
-const DEMO_PRODUCTS = [
-  { id: '1', name: 'Revoluzion Classic Tee', price: 59.90, category: 'Apparel', image_url: null, description: 'Premium cotton tee with embroidered Revoluzion logo. Available in black and navy. 100% ring-spun cotton for ultimate comfort.', is_active: true, slug: '1' },
-  { id: '2', name: 'Racing Cap — Cyan Edition', price: 49.90, category: 'Apparel', image_url: null, description: 'Snapback cap featuring a 3D Revoluzion embroidery on the front panel. One size fits most with adjustable strap.', is_active: true, slug: '2' },
-  { id: '3', name: 'Revoluzion Hoodie', price: 119.90, category: 'Apparel', image_url: null, description: 'Heavyweight 400gsm cotton-polyester blend hoodie. Double-lined hood, kangaroo pocket, and ribbed cuffs. Perfect for cool nights at the track.', is_active: true, slug: '3' },
-  { id: '4', name: 'Sticker Pack Vol.1', price: 19.90, category: 'Accessories', image_url: null, description: '10-piece premium vinyl sticker set. UV-resistant, weatherproof, and die-cut. Perfect for laptops, cars, and helmets.', is_active: true, slug: '4' },
-  { id: '5', name: 'Phone Mount Pro', price: 89.90, category: 'Accessories', image_url: null, description: 'MagSafe-compatible magnetic dashboard mount. 360° rotation, strong adhesive base, fits all smartphones. Perfect for navigation while driving.', is_active: true, slug: '5' },
-  { id: '6', name: 'Keyrings Set', price: 29.90, category: 'Accessories', image_url: null, description: 'Zinc alloy car keyring pair featuring the Revoluzion logo. Heavy-duty construction with smooth finish. Great as a gift.', is_active: true, slug: '6' },
-]
+async function fetchProduct(slug: string) {
+  const supabase = await createClient()
+  const { data: bySlug } = await supabase
+    .from('products')
+    .select('*, categories(name), brands(name), product_images(url, sort_order, alt_text), product_specifications(spec_key, spec_value, sort_order), product_fitment(make, model, year_from, year_to, notes)')
+    .eq('slug', slug)
+    .eq('is_published', true)
+    .eq('is_deleted', false)
+    .maybeSingle()
+  if (bySlug) return bySlug
+
+  const { data: byId } = await supabase
+    .from('products')
+    .select('*, categories(name), brands(name), product_images(url, sort_order, alt_text), product_specifications(spec_key, spec_value, sort_order), product_fitment(make, model, year_from, year_to, notes)')
+    .eq('id', slug)
+    .eq('is_published', true)
+    .eq('is_deleted', false)
+    .maybeSingle()
+  return byId
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const supabase = await createClient()
-  
-  let product: any = null
-  try {
-    const { data } = await supabase
-      .from('products')
-      .select('name, description')
-      .or(`id.eq.${slug},slug.eq.${slug}`)
-      .single()
-    product = data
-  } catch {
-    product = DEMO_PRODUCTS.find((p) => p.id === slug || p.slug === slug) ?? null
-  }
-
-  if (!product) {
-    return { title: 'Product Not Found' }
-  }
-
+  const product = await fetchProduct(slug)
+  if (!product) return { title: 'Product Not Found' }
   return {
     title: product.name,
-    description: product.description,
+    description: product.short_description ?? product.description ?? undefined,
   }
 }
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params
-  const supabase = await createClient()
-
-  let product: any = null
-  try {
-    const { data } = await supabase
-      .from('products')
-      .select('*, product_images(url, sort_order)')
-      .or(`id.eq.${slug},slug.eq.${slug}`)
-      .eq('is_active', true)
-      .single()
-    product = data
-  } catch {
-    product = DEMO_PRODUCTS.find((p) => p.id === slug || p.slug === slug) ?? null
-  }
-
+  const product = await fetchProduct(slug)
   if (!product) notFound()
 
-  // Sort images if available
-  const images: { url: string; sort_order: number }[] = (
-    (product.product_images as { url: string; sort_order: number }[] | undefined) ?? []
-  ).sort((a, b) => a.sort_order - b.sort_order)
+  // Detect dealer session for tiered pricing
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  let priceDealer: number | null = null
+  if (user) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('shop_role')
+      .eq('id', user.id)
+      .single()
+    if (profile?.shop_role === 'DEALER' && product.price_dealer_1) {
+      priceDealer = product.price_dealer_1 as number
+    }
+  }
 
-  const mainImage = images[0]?.url ?? product.image_url ?? null
-  const cartItem = {
-    name: product.name,
-    price: Math.round(product.price * 100), // cents for Stripe
-    quantity: 1,
+  const images = ((product.product_images as { url: string; sort_order: number; alt_text?: string }[] ?? []))
+    .sort((a, b) => a.sort_order - b.sort_order)
+  const specs = ((product.product_specifications as { spec_key: string; spec_value: string; sort_order: number }[] ?? []))
+    .sort((a, b) => a.sort_order - b.sort_order)
+  const fitment = (product.product_fitment as { make?: string; model?: string; year_from?: number; year_to?: number; notes?: string }[] ?? [])
+
+  const mainImage = images[0]?.url ?? null
+  const categoryName = (product.categories as { name: string } | null)?.name
+  const brandName = (product.brands as { name: string } | null)?.name
+  const outOfStock = product.stock_qty === 0
+
+  function specLabel(key: string) {
+    return key.split('_').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
   }
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
-      <Link
-        href="/shop"
-        className="inline-flex items-center gap-2 text-text-muted hover:text-text-secondary transition-colors text-sm mb-6"
-      >
+      <Link href="/shop" className="inline-flex items-center gap-2 text-text-muted hover:text-text-secondary transition-colors text-sm mb-6">
         <ArrowLeft size={16} /> Back to Shop
       </Link>
 
       <div className="grid lg:grid-cols-2 gap-10">
-        {/* Image gallery */}
-        <div className="space-y-3">
-          {/* Main image */}
-          <div className="aspect-square bg-surface-variant rounded-2xl overflow-hidden border border-border">
-            {mainImage ? (
-              <Image
-                src={mainImage}
-                alt={product.name}
-                width={600}
-                height={600}
-                className="w-full h-full object-cover"
-                priority
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                <Package size={64} className="text-primary/30" />
-                <span className="text-text-muted text-sm">{product.category}</span>
+        {/* ── Image gallery ── */}
+        <ProductImageGallery images={images} productName={product.name} />
+
+        {/* ── Product info ── */}
+        <div className="flex flex-col gap-5">
+          {/* Meta line */}
+          <div className="flex items-center gap-2 text-xs text-text-muted">
+            {categoryName && <span>{categoryName}</span>}
+            {categoryName && brandName && <span>·</span>}
+            {brandName && <span>{brandName}</span>}
+            {product.sku_public && <><span>·</span><span className="font-mono">{product.sku_public}</span></>}
+          </div>
+
+          {/* Name */}
+          <h1 className="text-2xl font-bold gradient-text leading-snug" style={{ fontFamily: 'var(--font-orbitron)' }}>
+            {product.name}
+          </h1>
+
+          {/* Short description */}
+          {product.short_description && (
+            <p className="text-text-secondary text-sm leading-relaxed">{product.short_description}</p>
+          )}
+
+          {/* Add to cart + wishlist — includes price, dealer badge, SKU/stock/weight */}
+          <ProductActions
+            productId={product.id}
+            name={product.name}
+            sku={product.sku_public ?? ''}
+            imageUrl={mainImage}
+            priceRetail={product.price_retail}
+            priceDealer={priceDealer}
+            stockQty={product.stock_qty}
+            stockAlert={product.stock_alert ?? 5}
+            weight={product.weight ?? null}
+            dimensions={product.dimensions ?? null}
+          />
+
+          {/* Trust badges */}
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              { icon: Truck, text: 'Free shipping ≥ RM200' },
+              { icon: Shield, text: 'Authentic products' },
+              { icon: Wrench, text: 'Engineered to Spec' },
+              { icon: Motorbike, text: 'Dispatch via Grab/Lalamove' },
+              { icon: Truck, text: 'Same-Day Dispatch' },
+              { icon: Infinity, text: 'Revoluzion Lifetime Guarantee' },
+            ].map(({ icon: Icon, text }) => (
+              <div key={text} className="bg-surface-variant rounded-xl p-3 text-center">
+                <Icon size={16} className="text-primary mx-auto mb-1" />
+                <p className="text-[10px] text-text-muted">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Full description ── */}
+      {product.description && (
+        <div className="mt-10 card p-6">
+          <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-3">Description</h2>
+          <p className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
+        </div>
+      )}
+
+      {/* ── Specifications ── */}
+      {specs.length > 0 && (
+        <div className="mt-4 card p-6">
+          <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-3">Specifications</h2>
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
+            {specs.map((s) => (
+              <div key={s.spec_key} className="flex justify-between text-sm py-1.5 border-b border-border/50">
+                <span className="text-text-muted">{specLabel(s.spec_key)}</span>
+                <span className="text-text-primary font-medium text-right">{s.spec_value}</span>
+              </div>
+            ))}
+            {product.weight && (
+              <div className="flex justify-between text-sm py-1.5 border-b border-border/50">
+                <span className="text-text-muted">Weight</span>
+                <span className="text-text-primary font-medium">{product.weight} kg</span>
+              </div>
+            )}
+            {product.dimensions && (
+              <div className="flex justify-between text-sm py-1.5 border-b border-border/50">
+                <span className="text-text-muted">Dimensions</span>
+                <span className="text-text-primary font-medium text-right">{product.dimensions}</span>
               </div>
             )}
           </div>
+        </div>
+      )}
 
-          {/* Thumbnail strip */}
-          {images.length > 1 && (
-            <div className="grid grid-cols-4 gap-2">
-              {images.slice(1).map((img: { url: string; sort_order: number }, i: number) => (
-                <div key={i} className="aspect-square rounded-lg overflow-hidden border border-border bg-surface-variant">
-                  <Image src={img.url} alt={`${product.name} ${i + 2}`} width={150} height={150} className="w-full h-full object-cover" />
+      {/* ── Fitment ── */}
+      {fitment.length > 0 && (
+        <div className="mt-4 card p-6">
+          <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-3">Vehicle Compatibility</h2>
+          <div className="space-y-2">
+            {fitment.map((f, i) => {
+              const years = f.year_from && f.year_to ? `${f.year_from}–${f.year_to}` : f.year_from?.toString() ?? 'All Years'
+              const makeModel = [f.make, f.model].filter(Boolean).join(' ')
+              return (
+                <div key={i} className="flex items-center gap-3 text-sm py-1.5 border-b border-border/50 last:border-0">
+                  <span className="text-text-primary font-medium">{makeModel}</span>
+                  <span className="text-text-muted">{years}</span>
+                  {f.notes && <span className="text-text-muted text-xs">· {f.notes}</span>}
                 </div>
-              ))}
-            </div>
-          )}
+              )
+            })}
+          </div>
         </div>
+      )}
 
-        {/* Product info */}
-        <div className="flex flex-col gap-6">
-          {/* Badge + title */}
-          <div>
-            {product.category && (
-              <span className="badge badge-primary text-xs mb-2 inline-block">{product.category}</span>
-            )}
-            <h1 className="text-2xl font-bold gradient-text mt-1" style={{ fontFamily: 'var(--font-orbitron)' }}>{product.name}</h1>
-
-            {/* Rating placeholder */}
-            <div className="flex items-center gap-1 mt-2">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} size={14} fill={star <= 4 ? '#06B6D4' : 'none'} className="text-primary" />
-              ))}
-              <span className="text-text-muted text-xs ml-1">4.0 · 12 reviews</span>
-            </div>
+      {/* ── YouTube ── */}
+      {product.youtube_url && (
+        <div className="mt-4 card p-6">
+          <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-3 flex items-center gap-2">
+            <PlayCircle size={14} /> Product Video
+          </h2>
+          <div className="aspect-video rounded-xl overflow-hidden bg-surface-variant">
+            <iframe
+              src={`https://www.youtube.com/embed/${product.youtube_url.split('v=')[1]?.split('&')[0] ?? product.youtube_url}`}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title={`${product.name} video`}
+            />
           </div>
-
-          {/* Price */}
-          <div className="text-3xl font-bold text-primary">{formatCurrency(product.price)}</div>
-
-          {/* Description */}
-          {product.description && (
-            <div>
-              <h3 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-2">Description</h3>
-              <p className="text-text-secondary text-sm leading-relaxed">{product.description}</p>
-            </div>
-          )}
-
-          {/* Benefits */}
-          <div className="grid grid-cols-3 gap-3">
-            <div className="card p-3 text-center">
-              <Truck size={20} className="text-primary mx-auto mb-1" />
-              <p className="text-xs text-text-muted">Free delivery over RM100</p>
-            </div>
-            <div className="card p-3 text-center">
-              <Shield size={20} className="text-primary mx-auto mb-1" />
-              <p className="text-xs text-text-muted">Authentic products</p>
-            </div>
-            <div className="card p-3 text-center">
-              <Package size={20} className="text-primary mx-auto mb-1" />
-              <p className="text-xs text-text-muted">30-day returns</p>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="space-y-3">
-            <Link
-              href={`/shop/cart?add=${product.id}&name=${encodeURIComponent(product.name)}&price=${Math.round(product.price * 100)}`}
-              className="btn-primary w-full flex items-center justify-center gap-2 text-base py-3"
-            >
-              <ShoppingCart size={20} />
-              Add to Cart
-            </Link>
-            <Link
-              href="/shop/cart"
-              className="btn-secondary w-full flex items-center justify-center gap-2 text-base py-3"
-            >
-              View Cart
-            </Link>
-          </div>
-
-          {/* Meta */}
-          {product.sku && (
-            <p className="text-xs text-text-muted">SKU: {product.sku}</p>
-          )}
         </div>
-      </div>
+      )}
     </div>
   )
 }

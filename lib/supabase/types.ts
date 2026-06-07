@@ -77,6 +77,7 @@ export interface Database {
           comments_count: number
           car_id: string | null
           created_at: string
+          updated_at: string | null
         }
         Insert: Omit<Database['public']['Tables']['posts']['Row'], 'id' | 'created_at' | 'likes_count' | 'comments_count'>
         Update: Partial<Database['public']['Tables']['posts']['Row']>
@@ -88,6 +89,7 @@ export interface Database {
           user_id: string
           content: string
           parent_id: string | null
+          image_url: string | null
           created_at: string
         }
         Insert: Omit<Database['public']['Tables']['post_comments']['Row'], 'id' | 'created_at'>

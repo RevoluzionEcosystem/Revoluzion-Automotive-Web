@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { CalendarDays, MapPin, Users, Clock } from 'lucide-react'
 import { formatDate, formatCurrency } from '@/lib/utils'
 import type { Metadata } from 'next'
+import { CreateEventDialog } from '@/components/ui/CreateEventDialog'
 
 export const metadata: Metadata = {
   title: 'Events',
@@ -46,6 +47,7 @@ export default async function EventsPage({
           <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Events</h1>
           <p className="text-text-muted text-sm mt-1">Upcoming automotive events across Malaysia</p>
         </div>
+        <CreateEventDialog />
       </div>
 
       {/* Category filter */}

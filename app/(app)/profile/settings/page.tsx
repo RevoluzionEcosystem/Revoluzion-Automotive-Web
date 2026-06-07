@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useMutation } from '@tanstack/react-query'
 import { User, Lock, Bell, Shield, ChevronRight, AlertCircle, Check } from 'lucide-react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 
 type Section = 'account' | 'security' | 'notifications'
@@ -44,10 +44,10 @@ export default function SettingsPage() {
       if (error) throw error
     },
     onSuccess: () => {
-      toast.success('Confirmation email sent to ' + newEmail)
+      toast.success('Confirmation sent 📧', { description: `Check ${newEmail} to confirm your new address.` })
       setNewEmail('')
     },
-    onError: (err: any) => toast.error(err.message ?? 'Failed to update email'),
+    onError: (err: any) => toast.error('Email update failed', { description: err.message ?? 'Could not update your email address.' }),
   })
 
   const changePasswordMutation = useMutation({
@@ -58,12 +58,12 @@ export default function SettingsPage() {
       if (error) throw error
     },
     onSuccess: () => {
-      toast.success('Password updated successfully')
+      toast.success('Password changed 🔒', { description: 'Your account password has been updated successfully.' })
       setCurrentPassword('')
       setNewPassword('')
       setConfirmPassword('')
     },
-    onError: (err: any) => toast.error(err.message ?? 'Failed to update password'),
+    onError: (err: any) => toast.error('Password update failed', { description: err.message ?? 'Could not update your password.' }),
   })
 
   const deleteAccountMutation = useMutation({
@@ -71,7 +71,7 @@ export default function SettingsPage() {
       // Soft-delete — in production this would call a server action / Supabase Edge Function
       throw new Error('Please contact hello@revoluzion.my to delete your account')
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: any) => toast.error('Account deletion unavailable', { description: err.message }),
   })
 
   const NAV_ITEMS = [
@@ -238,7 +238,7 @@ export default function SettingsPage() {
                 })}
               </div>
               <button
-                onClick={() => toast.success('Preferences saved')}
+                onClick={() => toast.success('Preferences saved 🔔', { description: 'Your notification preferences have been updated.' })}
                 className="btn-primary px-6 mt-4"
               >
                 Save Preferences

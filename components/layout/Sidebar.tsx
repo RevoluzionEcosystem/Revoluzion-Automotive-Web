@@ -6,10 +6,12 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
   Home, Users, ShoppingBag, CalendarDays,
-  Car, Map, MessageSquare, Bell, User, Search, Store, BookOpen,
-  LogIn, ChevronLeft, ChevronRight
+  Car, Map, MessageSquare, Bell, User, Store, BookOpen,
+  LogIn, ChevronLeft, ChevronRight, LogOut
 } from 'lucide-react'
 import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
 
 const navItems = [
   { href: '/feed', label: 'Feed', icon: Home },
@@ -28,6 +30,14 @@ const navItems = [
 export function Sidebar() {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
+  const supabase = createClient()
+  const router = useRouter()
+
+  async function handleSignOut() {
+    await supabase.auth.signOut()
+    router.push('/login')
+    router.refresh()
+  }
 
   return (
     <aside
@@ -56,22 +66,19 @@ export function Sidebar() {
       {/* Nav items */}
       <nav className="flex-1 overflow-y-auto py-4 px-2 space-y-0.5">
         {navItems.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href || pathname.startsWith(href + '/')
+          const isActive = pathname === href || pathname.startsWith(href + '/')
           return (
             <Link
               key={href}
               href={href}
               className={cn(
                 'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150 group',
-                active
+                isActive
                   ? 'bg-primary/15 text-primary border border-primary/25'
                   : 'text-text-secondary hover:text-text-primary hover:bg-surface-variant'
               )}
             >
-              <Icon
-                size={18}
-                className={cn('shrink-0', active ? 'text-primary' : 'group-hover:text-primary transition-colors')}
-              />
+              <Icon size={18} className={cn('shrink-0', isActive ? 'text-primary' : 'group-hover:text-primary transition-colors')} />
               {!collapsed && <span className="text-sm font-medium truncate">{label}</span>}
             </Link>
           )
@@ -94,6 +101,13 @@ export function Sidebar() {
           <User size={18} className="shrink-0" />
           {!collapsed && <span className="text-sm font-medium">Profile</span>}
         </Link>
+        <button
+          onClick={handleSignOut}
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-error hover:text-error hover:bg-error/10 transition-colors"
+        >
+          <LogOut size={18} className="shrink-0" />
+          {!collapsed && <span className="text-sm font-medium">Sign Out</span>}
+        </button>
         <button
           onClick={() => setCollapsed((c) => !c)}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-muted hover:text-text-secondary hover:bg-surface-variant transition-colors"

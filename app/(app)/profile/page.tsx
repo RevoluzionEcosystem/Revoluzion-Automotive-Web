@@ -6,12 +6,12 @@ import {
   Camera, MapPin, FileText, Edit2, Share2, Smartphone, Car, Wrench, Store,
   CalendarDays, ShoppingCart, Bell, Settings, LogOut, HelpCircle, Bug,
   ScrollText, Shield, ChevronRight, Lock, MessageSquare, Mail, Globe,
-  Save, X, User,
+  Save, X, User, Heart, Package, Truck,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Profile } from '@/lib/supabase/types'
 import { useRouter } from 'next/navigation'
@@ -42,7 +42,7 @@ export default function ProfilePage() {
     queryKey: ['my-profile', user?.id],
     queryFn: async () => {
       if (!user) return null
-      const { data } = await supabase.from('profiles').select('*').eq('id', user.id).single()
+      const { data } = await supabase.from('profiles').select('id, username, display_name, avatar_url, bio, location, is_verified, role, shop_role, followers_count, following_count, garage_count, created_at, instagram, tiktok, youtube, facebook, twitter_x, website').eq('id', user.id).single()
       return data as Profile | null
     },
     enabled: !!user,
@@ -85,26 +85,26 @@ export default function ProfilePage() {
       if (error) throw error
     },
     onSuccess: () => {
-      toast.success('Profile updated')
+      toast.success('Profile saved ✨', { description: 'Your profile has been updated successfully.' })
       setEditing(false)
       queryClient.invalidateQueries({ queryKey: ['my-profile'] })
     },
-    onError: () => toast.error('Failed to update profile'),
+    onError: () => toast.error('Update failed', { description: 'Could not save your profile. Please try again.' }),
   })
 
   async function handleAvatarUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file || !user) return
-    if (file.size > 2 * 1024 * 1024) { toast.error('Image must be under 2 MB'); return }
+    if (file.size > 2 * 1024 * 1024) { toast.error('Image too large', { description: 'Please choose an image under 2 MB.' }); return }
     setUploading(true)
     const path = `avatars/${user.id}/${Date.now()}.${file.name.split('.').pop()}`
-    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true })
-    if (error) { toast.error('Upload failed'); setUploading(false); return }
+    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true, cacheControl: '31536000' })
+    if (error) { toast.error('Upload failed', { description: 'Could not upload your avatar. Please try again.' }); setUploading(false); return }
     const { data: { publicUrl } } = supabase.storage.from('avatars').getPublicUrl(path)
     await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', user.id)
     await supabase.auth.updateUser({ data: { avatar_url: publicUrl } })
     queryClient.invalidateQueries({ queryKey: ['my-profile'] })
-    toast.success('Avatar updated!')
+    toast.success('Avatar updated! 📸', { description: 'Your new profile picture is now live.' })
     setUploading(false)
   }
 
@@ -117,7 +117,7 @@ export default function ProfilePage() {
   async function handleShareProfile() {
     const url = `${window.location.origin}/u/${profile?.username}`
     await navigator.clipboard.writeText(url)
-    toast.success('Profile link copied!')
+    toast.success('Link copied! 🔗', { description: 'Share your Revoluzion profile with the community.' })
   }
 
   if (isLoading) {
@@ -296,7 +296,9 @@ export default function ProfilePage() {
       <SectionLabel label="MY SHOP" />
       <NavCard rows={[
         { icon: <ShoppingCart size={18} className="text-primary" />, label: 'My Cart', href: '/shop/cart' },
-        { icon: <ScrollText size={18} className="text-yellow-400" />, label: 'Order History', href: '/shop' },
+        { icon: <Truck size={18} className="text-teal-400" />, label: 'Track Orders', href: '/shop/orders' },
+        { icon: <ScrollText size={18} className="text-yellow-400" />, label: 'Order History', href: '/shop/orders' },
+        { icon: <Heart size={18} className="text-red-400" />, label: 'Wishlist', href: '/shop/wishlist' },
       ]} />
 
       {/* -- ACCOUNT -- */}

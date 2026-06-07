@@ -2,9 +2,11 @@ import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Heart, MessageCircle } from 'lucide-react'
+import { Heart, MessageCircle } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
+import CommentSection from './CommentSection'
+import BackButton from './BackButton'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -22,31 +24,19 @@ export default async function PostDetailPage({ params }: Props) {
   const { id } = await params
   const supabase = await createClient()
 
-  const [{ data: post }, { data: rawComments }] = await Promise.all([
-    supabase
-      .from('posts')
-      .select('*, profiles(username, display_name, avatar_url, is_verified)')
-      .eq('id', id)
-      .single(),
-    supabase
-      .from('post_comments')
-      .select('*, profiles(username, display_name, avatar_url)')
-      .eq('post_id', id)
-      .order('created_at', { ascending: true })
-      .limit(100),
-  ])
+  const { data: post } = await supabase
+    .from('posts')
+    .select('*, profiles(username, display_name, avatar_url, is_verified)')
+    .eq('id', id)
+    .single()
 
   if (!post) notFound()
-
-  const comments = rawComments ?? []
 
   const profile = post.profiles
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
-      <Link href="/community" className="inline-flex items-center gap-2 text-text-muted hover:text-text-secondary transition-colors text-sm mb-4">
-        <ArrowLeft size={16} /> Community
-      </Link>
+      <BackButton />
 
       {/* Post */}
       <article className="card p-5 mb-4">
@@ -62,7 +52,12 @@ export default async function PostDetailPage({ params }: Props) {
             <Link href={`/u/${profile?.username || post.user_id}`} className="font-semibold text-text-primary hover:text-primary transition-colors text-sm">
               {profile?.display_name || profile?.username || 'Member'}
             </Link>
-            <div className="text-text-muted text-xs">{timeAgo(post.created_at)}</div>
+            <div className="flex items-center gap-1.5 flex-wrap text-text-muted text-xs">
+              <span>{timeAgo(post.created_at)}</span>
+              {post.updated_at && Math.abs(new Date(post.updated_at).getTime() - new Date(post.created_at).getTime()) > 5000 && (
+                <span className="text-[10px]">(edited {timeAgo(post.updated_at)})</span>
+              )}
+            </div>
           </div>
         </div>
 
@@ -82,34 +77,7 @@ export default async function PostDetailPage({ params }: Props) {
         </div>
       </article>
 
-      {/* Comments */}
-      <div className="space-y-3">
-        <h2 className="font-semibold text-text-primary text-sm">{comments.length} Comments</h2>
-        {comments.map((comment) => {
-          const cp = comment.profiles
-          return (
-            <div key={comment.id} className="card p-4">
-              <div className="flex items-start gap-3">
-                {cp?.avatar_url ? (
-                  <Image src={cp.avatar_url} alt="" width={32} height={32} className="w-8 h-8 rounded-full object-cover border border-border shrink-0" />
-                ) : (
-                  <DefaultAvatar className="w-8 h-8 shrink-0" />
-                )}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-text-primary text-sm font-medium">{cp?.display_name || cp?.username || 'Member'}</span>
-                    <span className="text-text-disabled text-xs">{timeAgo(comment.created_at)}</span>
-                  </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">{comment.content}</p>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-        {comments.length === 0 && (
-          <p className="text-text-muted text-sm text-center py-6">No comments yet. Be the first!</p>
-        )}
-      </div>
+      <CommentSection postId={id} />
     </div>
   )
 }

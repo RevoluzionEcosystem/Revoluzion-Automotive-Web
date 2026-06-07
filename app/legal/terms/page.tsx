@@ -13,7 +13,7 @@ export default function TermsPage() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
           <FileText size={24} className="text-primary" />
-          <h1 className="text-3xl font-bold text-text-primary">Terms of Service</h1>
+          <h1 className="text-3xl font-bold gradient-text">Terms of Service</h1>
         </div>
         <p className="text-text-muted">Last updated: {new Date().toLocaleDateString('en-MY', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>

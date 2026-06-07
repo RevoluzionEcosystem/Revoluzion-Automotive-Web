@@ -5,6 +5,7 @@ import { ShoppingBag, Tag } from 'lucide-react'
 import { formatCurrency } from '@/lib/utils'
 import type { Metadata } from 'next'
 import type { MarketplaceListingWithProfile } from '@/lib/supabase/types'
+import { CreateListingDialog } from '@/components/ui/CreateListingDialog'
 
 export const metadata: Metadata = {
   title: 'Marketplace',
@@ -41,8 +42,13 @@ export default async function MarketplacePage({
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Marketplace</h1>
-        <p className="text-text-muted text-sm mt-1">Buy and sell automotive parts and accessories</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Marketplace</h1>
+            <p className="text-text-muted text-sm mt-1">Buy and sell automotive parts and accessories</p>
+          </div>
+          <CreateListingDialog />
+        </div>
       </div>
 
       {/* Category filter */}

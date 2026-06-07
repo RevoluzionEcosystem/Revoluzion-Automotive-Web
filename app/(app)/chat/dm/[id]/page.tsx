@@ -151,11 +151,11 @@ export default function DMPage() {
           return (
             <div key={msg.id} className={`flex items-end gap-2 ${isOwn ? 'flex-row-reverse' : ''}`}>
               {!isOwn && (
-                {recipientProfile?.avatar_url ? (
+                recipientProfile?.avatar_url ? (
                   <Image src={recipientProfile.avatar_url} alt="" width={28} height={28} className="w-7 h-7 rounded-full object-cover border border-border shrink-0" />
                 ) : (
                   <DefaultAvatar className="w-7 h-7 shrink-0" />
-                )}
+                )
               )}
               <div
                 className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${

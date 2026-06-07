@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function Loading() {
   return (
@@ -22,26 +23,13 @@ export default function Loading() {
 
         {/* Logo circle */}
         <motion.div
-          className="relative flex items-center justify-center w-20 h-20 rounded-full bg-surface border border-primary/40"
+          className="relative flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          style={{ boxShadow: '0 0 30px rgba(6,182,212,0.25)' }}
+          style={{ filter: 'drop-shadow(0 0 20px rgba(6,182,212,0.35))' }}
         >
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <circle cx="20" cy="20" r="18" stroke="#06B6D4" strokeWidth="1.5" strokeOpacity="0.4" />
-            <path
-              d="M10 20 L20 8 L30 20 L20 32 Z"
-              stroke="#06B6D4"
-              strokeWidth="1.5"
-              fill="none"
-            />
-            <path
-              d="M15 20 L20 13 L25 20 L20 27 Z"
-              fill="#06B6D4"
-              fillOpacity="0.8"
-            />
-          </svg>
+          <Image src="/logo.png" alt="Revoluzion Automotive" width={80} height={80} priority />
         </motion.div>
       </div>
 

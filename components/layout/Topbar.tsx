@@ -3,10 +3,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Search, Bell, ShoppingCart, Menu, X } from 'lucide-react'
+import { Search, Bell, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery } from '@tanstack/react-query'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
+import { CartMiniCard } from '@/components/shop/CartMiniCard'
+import { GlobalSearch } from '@/components/layout/GlobalSearch'
 
 export function Topbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -19,6 +22,21 @@ export function Topbar() {
       const { data: { user } } = await supabase.auth.getUser()
       return user
     },
+    staleTime: 5 * 60 * 1000,
+  })
+
+  const { data: profile } = useQuery({
+    queryKey: ['profile', user?.id],
+    queryFn: async () => {
+      if (!user) return null
+      const { data } = await supabase
+        .from('profiles')
+        .select('avatar_url')
+        .eq('id', user.id)
+        .single()
+      return data
+    },
+    enabled: !!user,
     staleTime: 5 * 60 * 1000,
   })
 
@@ -57,10 +75,10 @@ export function Topbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-background h-16">
-        <div className="max-w-2xl mx-auto h-full flex items-center gap-2">
+      <header className="sticky top-0 z-40 bg-background h-16 border-b border-border">
+        <div className="h-full flex items-center gap-2 px-4">
         {/* Left: mobile menu + logo */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => setMobileMenuOpen((o) => !o)}
             className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
@@ -78,25 +96,45 @@ export function Topbar() {
           </Link>
         </div>
 
+        {/* Left actions: notifications + avatar */}
+        {user ? (
+          <div className="flex items-center gap-1 shrink-0">
+            <Link
+              href="/notifications"
+              className="relative p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
+            >
+              <Bell size={23} />
+              {unreadCount ? (
+                <span className="absolute top-1 right-1 w-4 h-4 bg-primary text-black text-[9px] font-bold rounded-full flex items-center justify-center">
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              ) : null}
+            </Link>
+            <Link href="/profile">
+              {profile?.avatar_url ? (
+                <Image
+                  src={profile.avatar_url}
+                  alt="Profile"
+                  width={36}
+                  height={36}
+                  className="w-9 h-9 rounded-full object-cover border border-primary/40 hover:border-primary transition-colors"
+                />
+              ) : (
+                <DefaultAvatar className="w-9 h-9 hover:border-primary transition-colors" />
+              )}
+            </Link>
+          </div>
+        ) : null}
+
         {/* Center: search */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0 px-12">
           <div className="hidden md:block w-full">
-            <div className="relative w-full">
-              <Search size={17} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted" />
-              <input
-                type="text"
-                placeholder="Search builds, events, members..."
-                className="input pl-10 py-2.5 text-sm bg-surface"
-                onFocus={() => router.push('/search')}
-                readOnly
-              />
-            </div>
+            <GlobalSearch />
           </div>
         </div>
 
-        {/* Right: actions */}
-        <div className="flex items-center gap-1">
-          {/* Search (mobile) */}
+        {/* Right: cart + mobile search + sign in */}
+        <div className="flex items-center gap-1 shrink-0">
           <button
             onClick={() => router.push('/search')}
             className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
@@ -105,30 +143,7 @@ export function Topbar() {
           </button>
 
           {user ? (
-            <>
-              <Link
-                href="/notifications"
-                className="relative p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
-              >
-                <Bell size={23} />
-                {unreadCount ? (
-                  <span className="absolute top-1 right-1 w-4 h-4 bg-primary text-black text-[9px] font-bold rounded-full flex items-center justify-center">
-                    {unreadCount > 9 ? '9+' : unreadCount}
-                  </span>
-                ) : null}
-              </Link>
-              <Link
-                href="/shop/cart"
-                className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
-              >
-                <ShoppingCart size={23} />
-              </Link>
-              <Link href="/profile">
-                <div className="w-9 h-9 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary text-sm font-bold hover:border-primary transition-colors">
-                  U
-                </div>
-              </Link>
-            </>
+            <CartMiniCard />
           ) : (
             <Link href="/login" className="btn-primary text-sm py-1.5 px-3">
               Sign In

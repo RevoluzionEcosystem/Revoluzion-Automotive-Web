@@ -5,7 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Bell, Check, CheckCheck } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import type { Notification } from '@/lib/supabase/types'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 
 const NOTIFICATION_ICONS: Record<string, string> = {
@@ -53,7 +53,7 @@ export default function NotificationsPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notifications'] })
-      toast.success('All notifications marked as read')
+      toast.success('All caught up! ✅', { description: 'All notifications have been marked as read.' })
     },
   })
 

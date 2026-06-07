@@ -15,7 +15,7 @@ export default async function ShopPage() {
   const { data } = await supabase
     .from('products')
     .select(
-      'id, name, slug, sku_public, price_retail, stock_qty, is_featured, short_description, categories(name), product_images(url, sort_order)',
+      'id, name, slug, sku_public, price_retail, stock_qty, is_featured, meta_description, description, categories(name), product_images(url, sort_order)',
     )
     .eq('is_published', true)
     .eq('is_deleted', false)
@@ -35,7 +35,7 @@ export default async function ShopPage() {
       priceRetail: p.price_retail,
       stockQty: p.stock_qty,
       isFeatured: p.is_featured ?? false,
-      shortDescription: p.short_description ?? null,
+      shortDescription: p.meta_description ?? p.description ?? null,
       categoryName: (p.categories as unknown as { name: string } | null)?.name ?? null,
       imageUrl: imgs[0]?.url ?? null,
     }

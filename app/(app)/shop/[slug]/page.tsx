@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: 'Product Not Found' }
   return {
     title: product.name,
-    description: product.short_description ?? product.description ?? undefined,
+    description: product.meta_description ?? product.description ?? undefined,
   }
 }
 
@@ -106,8 +106,8 @@ export default async function ProductDetailPage({ params }: Props) {
           </h1>
 
           {/* Short description */}
-          {product.short_description && (
-            <p className="text-text-secondary text-sm leading-relaxed">{product.short_description}</p>
+          {(product.meta_description ?? product.description) && (
+            <p className="text-text-secondary text-sm leading-relaxed">{product.meta_description ?? product.description}</p>
           )}
 
           {/* Add to cart + wishlist — includes price, dealer badge, SKU/stock/weight */}

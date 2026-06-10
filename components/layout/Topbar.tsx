@@ -31,7 +31,7 @@ export function Topbar() {
       if (!user) return null
       const { data } = await supabase
         .from('profiles')
-        .select('avatar_url')
+        .select('avatar_url, display_name, username')
         .eq('id', user.id)
         .single()
       return data
@@ -76,29 +76,34 @@ export function Topbar() {
   return (
     <>
       <header className="sticky top-0 z-40 bg-background h-16 border-b border-border">
-        <div className="h-full flex items-center gap-2 px-4">
-        {/* Left: mobile menu + logo */}
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            onClick={() => setMobileMenuOpen((o) => !o)}
-            className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+        <div className="h-full grid grid-cols-[auto_1fr_auto] gap-6 items-center px-4">
+          {/* Left: notifications + profile (avatar, name, email) + mobile menu */}
+          <div className="flex items-center gap-3">
 
-          <Link href="/" className="lg:hidden flex items-center gap-2">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg overflow-hidden">
-              <Image src="/logo.png" alt="Revoluzion" width={32} height={32} className="w-8 h-8 object-contain" priority />
-            </div>
-            <span className="font-bold text-xs tracking-widest gradient-text uppercase" style={{ fontFamily: 'var(--font-orbitron)' }}>
-              Revoluzion
-            </span>
-          </Link>
-        </div>
+            {user ? (
+              <Link href="/profile" className="flex items-center gap-3">
+                {profile?.avatar_url ? (
+                  <Image
+                    src={profile.avatar_url}
+                    alt={profile.display_name || 'Profile'}
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 rounded-full object-cover border border-border"
+                  />
+                ) : (
+                  <DefaultAvatar className="w-10 h-10" />
+                )}
+                <div className="flex flex-col leading-tight">
+                  <span className="font-semibold text-sm text-text-primary">{profile?.display_name ?? profile?.username ?? user.email}</span>
+                  <span className="text-xs text-text-muted">{user?.email ?? ''}</span>
+                </div>
+              </Link>
+            ) : (
+              <Link href="/login" className="btn-primary text-sm py-1.5 px-3">
+                Sign In
+              </Link>
+            )}
 
-        {/* Left actions: notifications + avatar */}
-        {user ? (
-          <div className="flex items-center gap-1 shrink-0">
             <Link
               href="/notifications"
               className="relative p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
@@ -110,46 +115,33 @@ export function Topbar() {
                 </span>
               ) : null}
             </Link>
-            <Link href="/profile">
-              {profile?.avatar_url ? (
-                <Image
-                  src={profile.avatar_url}
-                  alt="Profile"
-                  width={36}
-                  height={36}
-                  className="w-9 h-9 rounded-full object-cover border border-primary/40 hover:border-primary transition-colors"
-                />
-              ) : (
-                <DefaultAvatar className="w-9 h-9 hover:border-primary transition-colors" />
-              )}
-            </Link>
+
+            <button
+              onClick={() => setMobileMenuOpen((o) => !o)}
+              className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
-        ) : null}
 
-        {/* Center: search */}
-        <div className="flex-1 min-w-0 px-12">
-          <div className="hidden md:block w-full">
-            <GlobalSearch />
+          {/* Center: search (full width inside center column) */}
+          <div className="flex justify-center">
+            <div className="w-full hidden md:block">
+              <GlobalSearch />
+            </div>
           </div>
-        </div>
 
-        {/* Right: cart + mobile search + sign in */}
-        <div className="flex items-center gap-1 shrink-0">
-          <button
-            onClick={() => router.push('/search')}
-            className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
-          >
-            <Search size={20} />
-          </button>
+          {/* Right: cart + mobile search */}
+          <div className="flex items-center justify-end gap-2">
+            <button
+              onClick={() => router.push('/search')}
+              className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
+            >
+              <Search size={20} />
+            </button>
 
-          {user ? (
             <CartMiniCard />
-          ) : (
-            <Link href="/login" className="btn-primary text-sm py-1.5 px-3">
-              Sign In
-            </Link>
-          )}
-        </div>
+          </div>
         </div>
       </header>
 

@@ -49,7 +49,7 @@ export function ShopProductCard({ productId, name, slug, sku, priceRetail, stock
         {imageUrl ? (
           <Image src={imageUrl} alt={name} fill
             loading={priority ? 'eager' : 'lazy'}
-            priority={priority} loading={priority ? "eager" : "lazy"} priority={priority}
+            priority={priority}
             sizes="(max-width:640px)48vw,(max-width:768px)32vw,(max-width:1024px)24vw,(max-width:1280px)19vw,(max-width:1536px)16vw,14vw"
             className={`object-cover transition-transform duration-300 ${outOfStock ? '' : 'group-hover:scale-105'}`} />
         ) : (

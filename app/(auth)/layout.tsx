@@ -17,12 +17,13 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
           />
           <Image src="/logo.png" alt="Revoluzion Automotive" width={100} height={100} className="relative object-contain drop-shadow-[0_0_14px_rgba(6,182,212,0.35)]" priority />
         </div>
-        <span
-          className="font-black text-2xl tracking-widest gradient-text uppercase text-center"
+        <div
+          className="font-black text-2xl tracking-widest gradient-text uppercase text-center leading-tight"
           style={{ fontFamily: 'var(--font-orbitron)' }}
         >
-          Revoluzion Automotive
-        </span>
+          <div>Revoluzion</div>
+          <div className="text-xl">Automotive</div>
+        </div>
       </Link>
       {children}
     </div>

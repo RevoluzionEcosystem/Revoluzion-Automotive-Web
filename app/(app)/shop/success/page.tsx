@@ -25,8 +25,8 @@ export default async function ShopSuccessPage({ searchParams }: Props) {
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
       const session = await stripe.checkout.sessions.retrieve(session_id)
-      stripeStatus = session.status as typeof stripeStatus
-      stripePaymentStatus = session.payment_status as typeof stripePaymentStatus
+      stripeStatus = session.status as unknown as typeof stripeStatus
+      stripePaymentStatus = session.payment_status as unknown as typeof stripePaymentStatus
     } catch (err) {
       console.error('[Success page] Stripe session retrieve error:', err)
     }

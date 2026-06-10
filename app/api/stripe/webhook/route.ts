@@ -19,9 +19,10 @@ export async function fulfillCheckout(sessionId: string) {
   })
 
   // Only fulfill paid sessions
-  if (session.payment_status === 'unpaid') return
+  const sessionObj: any = session
+  if (sessionObj.payment_status === 'unpaid') return
 
-  const orderId = session.metadata?.orderId
+  const orderId = sessionObj.metadata?.orderId
   if (!orderId) return
 
   // ── Idempotency check: skip if already fulfilled ───────────────────────
@@ -36,15 +37,15 @@ export async function fulfillCheckout(sessionId: string) {
   if (order.order_status !== 'PENDING_PAYMENT') return
 
   // ── Fill delivery address from Stripe ────────────────────────────────
-  const addr = session.shipping_details?.address
-  const name = session.shipping_details?.name ?? session.customer_details?.name ?? ''
-  const phone = session.customer_details?.phone ?? ''
+  const addr = sessionObj.shipping_details?.address
+  const name = sessionObj.shipping_details?.name ?? sessionObj.customer_details?.name ?? ''
+  const phone = sessionObj.customer_details?.phone ?? ''
 
   await db.from('orders').update({
     order_status: 'PAID',
     payment_status: 'COMPLETED',
     payment_method: 'STRIPE_CARD',
-    stripe_payment_intent_id: (session.payment_intent as string) ?? null,
+    stripe_payment_intent_id: (sessionObj.payment_intent as string) ?? null,
     paid_at: new Date().toISOString(),
     delivery_name: name,
     delivery_phone: phone,
@@ -88,8 +89,8 @@ export async function fulfillCheckout(sessionId: string) {
   const { data: existingInvoice } = await db.from('sales_invoices').select('id').eq('order_id', orderId).maybeSingle()
   if (!existingInvoice) {
     const invoiceNumber = `INV-${(orderData?.order_number ?? orderId).replace('RA-', '')}`
-    const customerEmail = session.customer_details?.email ?? ''
-    const customerName = session.shipping_details?.name ?? session.customer_details?.name ?? ''
+    const customerEmail = sessionObj.customer_details?.email ?? ''
+    const customerName = sessionObj.shipping_details?.name ?? sessionObj.customer_details?.name ?? ''
     const now = new Date().toISOString()
     const dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days
 

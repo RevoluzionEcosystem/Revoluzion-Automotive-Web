@@ -570,11 +570,14 @@ export default function FeedPage() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('posts')
-        .select('id, user_id, content, image_url, likes_count, comments_count, created_at, updated_at, profiles(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, content, image_url, likes_count, comments_count, car_id, created_at, updated_at, profiles(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(50)
       if (error) throw error
-      const posts = data as PostWithProfile[]
+      const posts = (data ?? []).map((r: any) => ({
+        ...r,
+        profiles: Array.isArray(r.profiles) ? (r.profiles[0] ?? null) : (r.profiles ?? null),
+      })) as PostWithProfile[]
 
       const postIds = posts.map(p => p.id)
       const commentMap: Record<string, TopComment> = {}

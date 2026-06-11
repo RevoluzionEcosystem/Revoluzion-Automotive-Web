@@ -30,11 +30,24 @@ export default function LoginPage() {
   }
 
   async function handleGoogleLogin() {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : '')
+
+    // Generate a cryptographically-strong random state and store it in a
+    // SameSite cookie so we can validate it server-side on callback.
+    const generateState = (len = 16) => {
+      const arr = new Uint8Array(len)
+      window.crypto.getRandomValues(arr)
+      return Array.from(arr).map((b) => b.toString(16).padStart(2, '0')).join('')
+    }
+    const state = generateState(18)
+    const secureFlag = baseUrl.startsWith('https:') ? 'Secure; ' : ''
+    document.cookie = `rev_oauth_state=${state}; Path=/; SameSite=Lax; Max-Age=600; ${secureFlag}`
+
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-        queryParams: { access_type: 'offline', prompt: 'consent' },
+        redirectTo: `${baseUrl}/auth/callback`,
+        queryParams: { access_type: 'offline', prompt: 'consent', state },
       },
     })
   }

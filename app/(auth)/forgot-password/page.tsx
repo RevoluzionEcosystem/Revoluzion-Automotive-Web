@@ -15,8 +15,19 @@ export default function ForgotPasswordPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : '')
+
+    const generateState = (len = 16) => {
+      const arr = new Uint8Array(len)
+      window.crypto.getRandomValues(arr)
+      return Array.from(arr).map((b) => b.toString(16).padStart(2, '0')).join('')
+    }
+    const state = generateState(18)
+    const secureFlag = baseUrl.startsWith('https:') ? 'Secure; ' : ''
+    document.cookie = `rev_oauth_state=${state}; Path=/; SameSite=Lax; Max-Age=600; ${secureFlag}`
+
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/callback?type=recovery`,
+      redirectTo: `${baseUrl}/auth/callback?type=recovery&state=${state}`,
     })
     if (error) {
       toast.error('Failed to send reset email', { description: error.message })

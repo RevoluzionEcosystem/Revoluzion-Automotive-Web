@@ -115,9 +115,20 @@ export default function ProfilePage() {
   }
 
   async function handleShareProfile() {
-    const url = `${window.location.origin}/u/${profile?.username}`
-    await navigator.clipboard.writeText(url)
-    toast.success('Link copied! 🔗', { description: 'Share your Revoluzion profile with the community.' })
+    const origin = typeof window !== 'undefined' ? window.location.origin : ''
+    const url = `${origin}/u/${profile?.username}`
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(url)
+        toast.success('Link copied! 🔗', { description: 'Share your Revoluzion profile with the community.' })
+      } catch {
+        toast.error('Could not copy link to clipboard')
+      }
+    } else if (typeof window !== 'undefined') {
+      window.open(url, '_blank')
+    } else {
+      toast.error('Copy not available in this environment')
+    }
   }
 
   if (isLoading) {
@@ -199,7 +210,7 @@ export default function ProfilePage() {
       <div className="flex gap-2.5 pt-3 pb-1">
         <ActionBtn label="Edit Profile" icon={<Edit2 size={14} />} onClick={() => setEditing(true)} />
         <ActionBtn label="Share Profile" icon={<Share2 size={14} />} onClick={handleShareProfile} />
-        <ActionBtn label="Get App" icon={<Smartphone size={14} />} onClick={() => window.open('https://revoluzion.my', '_blank')} />
+        <ActionBtn label="Get App" icon={<Smartphone size={14} />} onClick={() => { if (typeof window !== 'undefined') window.open('https://revoluzion.my', '_blank') }} />
       </div>
 
       {/* -- Bio and Location -- */}
@@ -341,7 +352,7 @@ export default function ProfilePage() {
             icon={<Mail size={18} className="text-teal-400" />}
             label="Email Support"
             sub="hello@revoluzion.my"
-            onClick={() => { window.location.href = 'mailto:hello@revoluzion.my?subject=App%20Support' }}
+            onClick={() => { if (typeof window !== 'undefined') window.location.href = 'mailto:hello@revoluzion.my?subject=App%20Support' }}
           />
           <SheetRow
             icon={<Globe size={18} className="text-teal-400" />}
@@ -364,7 +375,7 @@ export default function ProfilePage() {
             icon={<Mail size={18} className="text-teal-400" />}
             label="Email Report"
             sub="hello@revoluzion.my"
-            onClick={() => { window.location.href = 'mailto:hello@revoluzion.my?subject=Bug%20Report%20-%20Revoluzion%20Web' }}
+            onClick={() => { if (typeof window !== 'undefined') window.location.href = 'mailto:hello@revoluzion.my?subject=Bug%20Report%20-%20Revoluzion%20Web' }}
           />
         </BottomSheet>
       )}

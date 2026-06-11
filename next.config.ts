@@ -1,5 +1,24 @@
 import type { NextConfig } from 'next'
 
+// Provide a minimal `location` polyfill on the Node side during build/SSR
+// so third-party browser code that (incorrectly) references `location` won't throw.
+if (typeof (globalThis as any).location === 'undefined') {
+  const fallback = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+  try {
+    const u = new URL(fallback)
+    ;(globalThis as any).location = {
+      href: u.href,
+      origin: u.origin,
+      protocol: u.protocol,
+      host: u.host,
+      hostname: u.hostname,
+      port: u.port,
+    }
+  } catch {
+    ;(globalThis as any).location = { origin: fallback, href: fallback }
+  }
+}
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [

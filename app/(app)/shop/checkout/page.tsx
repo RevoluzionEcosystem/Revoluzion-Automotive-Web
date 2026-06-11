@@ -85,7 +85,7 @@ export default function CheckoutPage() {
       })
       const data = await res.json()
       if (!res.ok) { toast.error(data.error ?? 'Checkout failed'); return }
-      if (data.url) window.location.href = data.url
+      if (data.url && typeof window !== 'undefined') window.location.href = data.url
     } catch { toast.error('Network error') }
     finally { setCheckingOut(false) }
   }

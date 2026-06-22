@@ -1,6 +1,7 @@
-﻿'use client'
+﻿ 'use client'
 
-import { useState, useMemo } from 'react'
+import Link from 'next/link'
+import { useState, useMemo, useEffect } from 'react'
 import { Search, X, Package, ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ShopProductCard } from './ShopProductCard'
@@ -11,11 +12,12 @@ type Product = {
   categoryName: string | null; imageUrl: string | null
 }
 
-export function ShopClient({ products }: { products: Product[] }) {
+export function ShopClient({ products, coverImage }: { products: Product[]; coverImage?: string | null }) {
   const [query, setQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('All')
   const [sort, setSort] = useState<'default' | 'price-asc' | 'price-desc' | 'name'>('default')
   const [mobileCatOpen, setMobileCatOpen] = useState(false)
+  const [showBanner, setShowBanner] = useState(true)
 
   const categories = useMemo(() => {
     const map = new Map<string, number>()
@@ -64,10 +66,15 @@ export function ShopClient({ products }: { products: Product[] }) {
   const hasFilters = !!(query || activeCategory !== 'All' || sort !== 'default')
   const SH = 'calc(100vh - 64px)'
 
+  useEffect(() => {
+    const t = setTimeout(() => setShowBanner(false), 1200)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <div className="flex">
       {/* ── Left: Category Sidebar (208px → 280px) ─── */}
-      <aside className="w-72 shrink-0 border-r border-border hidden lg:flex flex-col sticky top-0" style={{ height: SH }}>
+      <aside className="w-60 shrink-0 border-r border-border hidden lg:flex flex-col sticky top-0" style={{ height: SH }}>
         <div className="px-5 py-4 border-b border-border shrink-0">
           <h2 className="text-xs font-black uppercase tracking-[0.2em] gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>
             Categories
@@ -164,6 +171,49 @@ export function ShopClient({ products }: { products: Product[] }) {
 
         {/* Grid */}
         <div className="p-4">
+          {/* Animated cover overlay (shows once on entry) */}
+          {showBanner && (
+            <div className="fixed inset-0 z-[1000] flex items-center justify-center" role="dialog" aria-modal="true">
+              <div
+                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                style={{ animation: 'overlayFade 1s ease forwards' }}
+                onClick={() => setShowBanner(false)}
+              />
+              <div
+                className="max-w-7xl w-[90%] rounded-xl overflow-hidden shadow-2xl transform relative z-10"
+                style={{ animation: 'bannerZoom 1s ease forwards' }}
+                onAnimationEnd={() => setShowBanner(false)}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Link href="/guides" className="block">
+                  {coverImage && coverImage.trim() ? (
+                    <div style={{ aspectRatio: '1376 / 596', width: '100%' }} className="w-full overflow-hidden">
+                      <img src={coverImage} alt="Revoluzion Store" className="w-full h-full object-cover" />
+                    </div>
+                  ) : (
+                    <div style={{ aspectRatio: '1376 / 596', width: '100%' }} className="w-full overflow-hidden bg-[#303030] flex items-center justify-center text-white">
+                      <Package size={40} className="text-white/60 mr-2" />
+                      <span className="text-sm font-medium">Revoluzion Store</span>
+                    </div>
+                  )}
+                </Link>
+              </div>
+              <style>{`
+                @keyframes bannerZoom {
+                  0% { transform: scale(0.95); opacity: 0; }
+                  10% { opacity: 1; transform: scale(0.97); }
+                  80% { transform: scale(1.02); opacity: 1; }
+                  100% { transform: scale(1.05); opacity: 0; }
+                }
+                @keyframes overlayFade {
+                  0% { opacity: 0; }
+                  10% { opacity: 1; }
+                  80% { opacity: 1; }
+                  100% { opacity: 0; }
+                }
+              `}</style>
+            </div>
+          )}
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-center">
               <Package size={48} className="text-primary/20 mb-4" />
@@ -174,7 +224,7 @@ export function ShopClient({ products }: { products: Product[] }) {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2.5">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-2 lg:gap-3 2xl:gap-4">
               {filtered.map((product, idx) => (
                 <ShopProductCard
                   key={product.id}

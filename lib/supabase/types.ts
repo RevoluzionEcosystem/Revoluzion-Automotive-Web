@@ -14,6 +14,7 @@ export interface Database {
           id: string
           username: string | null
           display_name: string | null
+          company_name: string | null
           bio: string | null
           avatar_url: string | null
           location: string | null
@@ -29,6 +30,29 @@ export interface Database {
         }
         Insert: Omit<Database['public']['Tables']['profiles']['Row'], 'created_at'>
         Update: Partial<Database['public']['Tables']['profiles']['Row']>
+      }
+      ,
+      users: {
+        Row: {
+          id: string
+          username: string | null
+          display_name: string | null
+          company_name: string | null
+          bio: string | null
+          avatar_url: string | null
+          location: string | null
+          phone: string | null
+          is_verified: boolean
+          role: string
+          shop_role: string | null
+          dealer_tier: string | null
+          stripe_customer_id: string | null
+          followers_count: number
+          following_count: number
+          created_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['users']['Row'], 'created_at'>
+        Update: Partial<Database['public']['Tables']['users']['Row']>
       }
       cars: {
         Row: {
@@ -231,3 +255,11 @@ export type BuildWithProfile = Build & { profiles: Profile | null; cars: Car | n
 export type MarketplaceListingWithProfile = MarketplaceListing & { profiles: Profile | null; marketplace_images: { image_url: string }[] }
 export type EventWithProfile = Event & { profiles: Profile | null }
 export type CommentWithProfile = PostComment & { profiles: Profile | null }
+
+// New aliases for renamed table
+export type User = Database['public']['Tables']['users']['Row']
+export type PostWithUser = Post & { users: User | null }
+export type BuildWithUser = Build & { users: User | null; cars: Car | null }
+export type MarketplaceListingWithUser = MarketplaceListing & { users: User | null; marketplace_images: { image_url: string }[] }
+export type EventWithUser = Event & { users: User | null }
+export type CommentWithUser = PostComment & { users: User | null }

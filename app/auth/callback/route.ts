@@ -62,9 +62,9 @@ export async function GET(request: Request) {
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (!error && data.user) {
-      // Upsert profile on OAuth sign-in
+      // Upsert user on OAuth sign-in
       const meta = data.user.user_metadata
-      await supabase.from('profiles').upsert({
+      await supabase.from('users').upsert({
         id: data.user.id,
         username: (meta.preferred_username || meta.email?.split('@')[0] || data.user.id).toLowerCase(),
         display_name: meta.full_name || meta.name || null,

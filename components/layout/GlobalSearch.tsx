@@ -60,7 +60,7 @@ export function GlobalSearch() {
   const { data: members = [] } = useQuery({
     queryKey: ['gs-members', debounced],
     queryFn: async () => {
-      const { data } = await supabase.from('profiles')
+      const { data } = await supabase.from('users')
         .select('id, username, display_name, avatar_url, is_verified')
         .or(`username.ilike.%${debounced}%,display_name.ilike.%${debounced}%`).limit(5)
       return data ?? []
@@ -92,7 +92,7 @@ export function GlobalSearch() {
     queryKey: ['gs-builds', debounced],
     queryFn: async () => {
       const { data } = await supabase.from('builds')
-        .select('id, title, image_url, profiles(username, display_name)')
+        .select('id, title, image_url, users(username, display_name)')
         .ilike('title', `%${debounced}%`).limit(5)
       return data ?? []
     },

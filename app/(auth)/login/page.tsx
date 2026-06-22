@@ -55,7 +55,7 @@ export default function LoginPage() {
   return (
     <div className="w-full max-w-sm">
       <div className="card p-8">
-        <h2 className="text-center text-text-muted text-xs mb-8">Sign in to your account</h2>
+        <h1 className="text-center text-text-muted text-xs mb-8">Sign in to your account</h1>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>

@@ -102,7 +102,7 @@ export default function MapPage() {
           <MapPin size={16} className="text-primary" />
         </div>
         <div>
-          <div className="font-semibold text-text-primary text-sm">Explore Map</div>
+          <h1 className="font-semibold text-text-primary text-sm">Explore Map</h1>
           <div className="text-text-muted text-xs">Workshops, meets & community spots</div>
         </div>
 

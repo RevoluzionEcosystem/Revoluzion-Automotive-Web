@@ -42,8 +42,8 @@ export default function RegisterPage() {
     }
 
     if (data.user) {
-      // Insert profile
-      await supabase.from('profiles').upsert({
+      // Insert profile into users table
+      await supabase.from('users').upsert({
         id: data.user.id,
         username: username.toLowerCase(),
         display_name: displayName || username,
@@ -79,7 +79,7 @@ export default function RegisterPage() {
   return (
     <div className="w-full max-w-sm">
       <div className="card p-8">
-        <h2 className="text-center text-text-muted text-xs mb-8">Join the Revoluzion community</h2>
+        <h1 className="text-center text-text-muted text-xs mb-8">Join the Revoluzion community</h1>
 
         <form onSubmit={handleRegister} className="space-y-4">
           <div>

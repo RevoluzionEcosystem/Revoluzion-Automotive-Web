@@ -56,7 +56,7 @@ export default async function ProductDetailPage({ params }: Props) {
   let priceDealer: number | null = null
   if (user) {
     const { data: profile } = await supabase
-      .from('profiles')
+      .from('users')
       .select('shop_role')
       .eq('id', user.id)
       .single()
@@ -147,7 +147,7 @@ export default async function ProductDetailPage({ params }: Props) {
       {product.description && (
         <div className="mt-10 card p-6">
           <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-3">Description</h2>
-          <p className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
+          <p className="text-text-secondary text-sm leading-relaxed whitespace-pre-wrap">{product.description}</p>
         </div>
       )}
 

@@ -5,7 +5,7 @@ import { MessageSquare, Heart } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
-import type { PostWithProfile } from '@/lib/supabase/types'
+import type { PostWithUser } from '@/lib/supabase/types'
 
 export const metadata: Metadata = {
   title: 'Community',
@@ -19,11 +19,11 @@ export default async function CommunityPage() {
 
   const { data: posts = [] } = await supabase
     .from('posts')
-    .select('*, profiles(username, display_name, avatar_url, is_verified)')
+    .select('*, users(username, display_name, avatar_url, is_verified)')
     .order('created_at', { ascending: false })
     .limit(60)
 
-  const typedPosts = posts as PostWithProfile[]
+  const typedPosts = posts as PostWithUser[]
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
@@ -40,7 +40,7 @@ export default async function CommunityPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {typedPosts.map((post) => {
-            const profile = post.profiles
+            const profile = post.users
             return (
               <Link key={post.id} href={`/community/post/${post.id}`} className="card-hover group">
                 {post.image_url && (

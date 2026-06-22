@@ -54,15 +54,10 @@ const nextConfig: NextConfig = {
     },
   },
   async headers() {
-    return [
-      {
-        // Immutable static assets — hashed filenames, safe to cache forever
-        source: '/_next/static/(.*)',
-        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
-      },
+    const rules: any[] = [
       {
         // Static files in /public (icons, manifests, etc.)
-        source: '/(.*\.(?:png|jpg|jpeg|webp|avif|svg|ico|woff2|woff|ttf|otf))',
+        source: '/(.*\\.(?:png|jpg|jpeg|webp|avif|svg|ico|woff2|woff|ttf|otf))',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
       },
       {
@@ -76,6 +71,17 @@ const nextConfig: NextConfig = {
         ],
       },
     ]
+
+    // Add immutable Cache-Control for Next.js static assets only in production
+    if (process.env.NODE_ENV === 'production') {
+      rules.unshift({
+        // Immutable static assets — hashed filenames, safe to cache forever
+        source: '/_next/static/(.*)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      })
+    }
+
+    return rules
   },
 }
 

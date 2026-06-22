@@ -81,9 +81,9 @@ export async function POST(request: Request) {
     // ── 3. Create or retrieve Stripe Customer with shipping pre-filled ───
     let stripeCustomerId: string | undefined
     if (user) {
-      // Check if user already has a stripe_customer_id in profiles
+      // Check if user already has a stripe_customer_id in users
       const { data: profile } = await db
-        .from('profiles')
+        .from('users')
         .select('stripe_customer_id')
         .eq('id', user.id)
         .single()
@@ -117,8 +117,8 @@ export async function POST(request: Request) {
           shipping,
         })
         stripeCustomerId = customer.id
-        // Persist for future checkouts
-        await db.from('profiles').update({ stripe_customer_id: customer.id }).eq('id', user.id)
+        // Persist for future checkouts (write to base table)
+        await db.from('users').update({ stripe_customer_id: customer.id }).eq('id', user.id)
       }
     }
 

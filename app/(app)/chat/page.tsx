@@ -134,7 +134,7 @@ export default function ChatPage() {
     setSending(true)
 
     const { data: profile } = await supabase
-      .from('profiles')
+      .from('users')
       .select('display_name, avatar_url, username')
       .eq('id', user.id)
       .single()
@@ -162,7 +162,7 @@ export default function ChatPage() {
           <Hash size={16} className="text-primary" />
         </div>
         <div className="flex-1 min-w-0">
-          <div className="font-semibold text-text-primary text-sm">Community Global Chat</div>
+          <h1 className="font-semibold text-text-primary text-sm">Community Global Chat</h1>
           <div className="flex items-center gap-3 text-text-muted text-xs">
             <span className="flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />

@@ -68,12 +68,12 @@ export default function SplashPage() {
           transitionDelay: '200ms',
         }}
       >
-        <p
+        <h1
           className="gradient-text font-black tracking-[0.12em] text-lg uppercase"
           style={{ fontFamily: 'var(--font-orbitron)' }}
         >
           Revoluzion Automotive
-        </p>
+        </h1>
       </div>
 
       {/* Tagline */}

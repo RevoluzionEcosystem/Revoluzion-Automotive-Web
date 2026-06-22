@@ -37,7 +37,7 @@ export default function DMPage() {
 
   useEffect(() => {
     supabase
-      .from('profiles')
+      .from('users')
       .select('id, username, display_name, avatar_url')
       .eq('id', recipientId)
       .single()
@@ -129,9 +129,9 @@ export default function DMPage() {
           <DefaultAvatar className="w-9 h-9" />
         )}
         <div>
-          <div className="font-semibold text-text-primary text-sm">
+          <h1 className="font-semibold text-text-primary text-sm">
             {recipientProfile?.display_name ?? recipientProfile?.username ?? 'Loading...'}
-          </div>
+          </h1>
           {recipientProfile?.username && (
             <div className="text-text-muted text-xs">@{recipientProfile.username}</div>
           )}

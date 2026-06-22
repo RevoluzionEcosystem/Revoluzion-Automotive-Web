@@ -84,6 +84,17 @@ export async function fulfillCheckout(sessionId: string) {
     if (cart) await db.from('cart_items').delete().eq('cart_id', cart.id)
   }
 
+  // Try to read customer's company name from users
+  let customerCompany: string | null = null
+  if (orderData?.user_id) {
+    try {
+      const { data: profile } = await db.from('users').select('company_name').eq('id', orderData.user_id).single()
+      customerCompany = (profile as any)?.company_name ?? null
+    } catch (e) {
+      // non-fatal
+    }
+  }
+
   // ── Auto-create sales invoice ────────────────────────────────────────
   // Check if invoice already exists for this order
   const { data: existingInvoice } = await db.from('sales_invoices').select('id').eq('order_id', orderId).maybeSingle()
@@ -98,6 +109,8 @@ export async function fulfillCheckout(sessionId: string) {
       invoice_number: invoiceNumber,
       order_id: orderId,
       customer_name: customerName,
+      customer_company: customerCompany,
+      profile_id: orderData?.user_id ?? null,
       customer_email: customerEmail,
       total: orderData?.total ?? 0,
       status: 'PAID',
@@ -106,6 +119,48 @@ export async function fulfillCheckout(sessionId: string) {
       paid_at: now,
     })
     console.log('[Stripe] Sales invoice created:', invoiceNumber)
+
+      // Auto-post SALE journal for this paid invoice (idempotent by reference)
+      try {
+        const invoiceRef = invoiceNumber
+        const { data: existingJournal } = await db
+          .from('journals')
+          .select('id')
+          .eq('reference', invoiceRef)
+          .eq('type', 'SALE')
+          .limit(1)
+
+        if (!existingJournal || (Array.isArray(existingJournal) && existingJournal.length === 0)) {
+          const today = new Date().toISOString().slice(0, 10)
+          const { data: journal, error: jErr } = await db
+            .from('journals')
+            .insert({ date: today, description: `Invoice payment received: ${invoiceRef}`, type: 'SALE', reference: invoiceRef })
+            .select('id')
+            .single()
+
+          if (jErr || !journal) {
+            console.error('[Stripe] Failed to create journal header for invoice', invoiceRef, jErr)
+          } else {
+            const entryRows = [
+              { journal_id: journal.id, account_code: '1200', debit: Number(orderData?.total ?? 0), credit: 0, description: 'Accounts Receivable', sort_order: 0 },
+              { journal_id: journal.id, account_code: '4100', debit: 0, credit: Number(orderData?.total ?? 0), description: 'Sales Revenue', sort_order: 1 },
+            ]
+
+            const { error: eErr } = await db.from('journal_entries').insert(entryRows)
+            if (eErr) {
+              // Roll back journal header on failure to insert lines
+              await db.from('journals').delete().eq('id', journal.id)
+              console.error('[Stripe] Failed to insert journal entries for invoice', invoiceRef, eErr)
+            } else {
+              console.log('[Stripe] Sale journal posted for invoice', invoiceRef)
+            }
+          }
+        } else {
+          console.log('[Stripe] Sale journal already exists for invoice', invoiceRef)
+        }
+      } catch (e) {
+        console.error('[Stripe] Error while posting sale journal for invoice', invoiceNumber, e)
+      }
   }
 
   console.log('[Stripe] Order fulfilled:', orderId)
@@ -121,13 +176,31 @@ export async function POST(request: Request) {
   const stripe = new Stripe(secretKey)
   const body = await request.text()
   const signature = request.headers.get('stripe-signature')
-  if (!signature) return NextResponse.json({ error: 'No signature' }, { status: 400 })
+  const allowInsecure = process.env.ALLOW_INSECURE_WEBHOOK === '1'
 
   let event: Stripe.Event
-  try {
-    event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
-  } catch {
-    return NextResponse.json({ error: 'Webhook verification failed' }, { status: 400 })
+  if (!signature) {
+    if (allowInsecure && process.env.NODE_ENV !== 'production') {
+      try {
+        // DEV fallback: parse payload without verification when explicitly enabled
+        // Useful for local testing when Stripe CLI isn't available.
+        // DO NOT enable in production.
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        event = JSON.parse(body) as Stripe.Event
+        console.warn('ALLOW_INSECURE_WEBHOOK=1 — proceeding without signature verification')
+      } catch (e) {
+        return NextResponse.json({ error: 'Invalid webhook payload' }, { status: 400 })
+      }
+    } else {
+      return NextResponse.json({ error: 'No signature' }, { status: 400 })
+    }
+  } else {
+    try {
+      event = stripe.webhooks.constructEvent(body, signature, webhookSecret)
+    } catch {
+      return NextResponse.json({ error: 'Webhook verification failed' }, { status: 400 })
+    }
   }
 
   const db = createAdminClient()

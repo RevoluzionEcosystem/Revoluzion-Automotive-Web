@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "npm run submit-sitemap",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "submit-sitemap": "node scripts/submit-sitemap.js"
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.0",

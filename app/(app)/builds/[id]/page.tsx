@@ -26,13 +26,13 @@ export default async function BuildDetailPage({ params }: Props) {
 
   const { data: build } = await supabase
     .from('builds')
-    .select('*, profiles(username, display_name, avatar_url, is_verified), cars(make, model, year, color, image_url)')
+    .select('*, users(username, display_name, avatar_url, is_verified), cars(make, model, year, color, image_url)')
     .eq('id', id)
     .single()
 
   if (!build) notFound()
 
-  const profile = build.profiles
+  const profile = build.users
   const car = build.cars
 
   return (

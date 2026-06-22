@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { username } = await params
   const supabase = await createClient()
   const { data } = await supabase
-    .from('profiles')
+    .from('users')
     .select('display_name, username, bio, avatar_url')
     .eq('username', username)
     .single()
@@ -38,7 +38,7 @@ export default async function PublicProfilePage({ params }: Props) {
   const supabase = await createClient()
 
   const { data: profile } = await supabase
-    .from('profiles')
+    .from('users')
     .select('id, username, display_name, avatar_url, bio, location, is_verified, role, followers_count, following_count, garage_count, created_at, instagram, tiktok, youtube, facebook, twitter_x, website')
     .eq('username', username)
     .single()

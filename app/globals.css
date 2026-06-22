@@ -4,7 +4,8 @@
 button, [role="button"], a { cursor: pointer; }
 
 /* Global heading style — gradient text + Orbitron for all h1/h2 */
-h1, h2 {
+h1, h2
+{
   background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 50%, #14B8A6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -9,7 +9,7 @@ import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import { PostContent } from '@/components/ui/PostContent'
 import { LinkPreview } from '@/components/ui/LinkPreview'
 import { MentionTextarea } from '@/components/ui/MentionTextarea'
-import type { PostWithProfile } from '@/lib/supabase/types'
+import type { PostWithUser } from '@/lib/supabase/types'
 import { toast } from 'sonner'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -32,20 +32,20 @@ function checkPostSpam(): string | null {
   return null
 }
 
-function wasEdited(post: PostWithProfile): boolean {
+function wasEdited(post: PostWithUser): boolean {
   if (!post.updated_at) return false
   return Math.abs(new Date(post.updated_at).getTime() - new Date(post.created_at).getTime()) > 5000
 }
 
 type TopComment = {
   content: string
-  profiles: { display_name: string | null; username: string | null; avatar_url: string | null } | null
+  users: { display_name: string | null; username: string | null; avatar_url: string | null } | null
 }
 
-function PostCard({ post, currentUserId, topComment, initialLiked = false }: { post: PostWithProfile; currentUserId: string | null; topComment?: TopComment; initialLiked?: boolean }) {
+function PostCard({ post, currentUserId, topComment, initialLiked = false }: { post: PostWithUser; currentUserId: string | null; topComment?: TopComment; initialLiked?: boolean }) {
   const supabase = createClient()
   const queryClient = useQueryClient()
-  const profile = post.profiles
+  const profile = post.users
   const [liked, setLiked] = useState(initialLiked)
   const [likeCount, setLikeCount] = useState(post.likes_count ?? 0)
   const [imgError, setImgError] = useState(false)
@@ -299,9 +299,9 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
         {/* Top comment preview */}
         {topComment && (
           <div className="mt-2 pt-2 border-t border-border/30 flex items-start gap-2">
-            {topComment.profiles?.avatar_url ? (
+            {topComment.users?.avatar_url ? (
               <Image
-                src={topComment.profiles.avatar_url}
+                src={topComment.users.avatar_url}
                 alt=""
                 width={24}
                 height={24}
@@ -312,7 +312,7 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
             )}
             <div className="flex-1 min-w-0 bg-surface-variant rounded px-2.5 py-1.5">
               <span className="block font-medium text-text-primary text-[11px] mb-0.5">
-                {topComment.profiles?.display_name || topComment.profiles?.username || 'Member'}
+                {topComment.users?.display_name || topComment.users?.username || 'Member'}
               </span>
               <div className="text-text-secondary text-xs line-clamp-2">
                 <PostContent content={topComment.content} />
@@ -570,29 +570,29 @@ export default function FeedPage() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('posts')
-        .select('id, user_id, content, image_url, likes_count, comments_count, car_id, created_at, updated_at, profiles(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, content, image_url, likes_count, comments_count, car_id, created_at, updated_at, users(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(50)
       if (error) throw error
       const posts = (data ?? []).map((r: any) => ({
         ...r,
-        profiles: Array.isArray(r.profiles) ? (r.profiles[0] ?? null) : (r.profiles ?? null),
-      })) as PostWithProfile[]
+        users: Array.isArray(r.users) ? (r.users[0] ?? null) : (r.users ?? null),
+      })) as PostWithUser[]
 
       const postIds = posts.map(p => p.id)
       const commentMap: Record<string, TopComment> = {}
       if (postIds.length > 0) {
         const { data: comments } = await supabase
           .from('post_comments')
-          .select('post_id, content, profiles(display_name, username, avatar_url)')
+          .select('post_id, content, users(display_name, username, avatar_url)')
           .in('post_id', postIds)
           .order('created_at', { ascending: false })
           .limit(postIds.length * 3)
         for (const c of (comments ?? [])) {
-          const rawProfiles = (c as { post_id: string; content: string; profiles: unknown }).profiles
-          const profiles = Array.isArray(rawProfiles) ? (rawProfiles[0] as TopComment['profiles']) ?? null : rawProfiles as TopComment['profiles']
+          const rawUsers = (c as { post_id: string; content: string; users: unknown }).users
+          const users = Array.isArray(rawUsers) ? (rawUsers[0] as TopComment['users']) ?? null : rawUsers as TopComment['users']
           if (!commentMap[(c as { post_id: string }).post_id]) {
-            commentMap[(c as { post_id: string }).post_id] = { content: (c as { content: string }).content, profiles }
+            commentMap[(c as { post_id: string }).post_id] = { content: (c as { content: string }).content, users }
           }
         }
       }
@@ -629,7 +629,7 @@ export default function FeedPage() {
   }, [supabase, queryClient])
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6">
+    <div className="max-w-5xl mx-auto px-4 py-6">
       <h1 className="text-xl font-bold gradient-text mb-4" style={{ fontFamily: 'var(--font-orbitron)' }}>Community Feed</h1>
 
       {user && <CreatePost currentUserId={user.id} />}

@@ -5,7 +5,7 @@ import { Wrench, Heart } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Metadata } from 'next'
-import type { BuildWithProfile } from '@/lib/supabase/types'
+import type { BuildWithUser } from '@/lib/supabase/types'
 
 export const metadata: Metadata = {
   title: 'Garage',
@@ -19,11 +19,11 @@ export default async function BuildsPage() {
 
   const { data: builds = [] } = await supabase
     .from('builds')
-    .select('*, profiles(username, display_name, avatar_url, is_verified), cars(make, model, year)')
+    .select('*, users(username, display_name, avatar_url, is_verified), cars(make, model, year)')
     .order('created_at', { ascending: false })
     .limit(60)
 
-  const typedBuilds = builds as BuildWithProfile[]
+  const typedBuilds = builds as BuildWithUser[]
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
@@ -43,7 +43,7 @@ export default async function BuildsPage() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {typedBuilds.map((build) => {
-            const profile = build.profiles
+            const profile = build.users
             const car = build.cars
             return (
               <Link key={build.id} href={`/builds/${build.id}`} className="card-hover group overflow-hidden">

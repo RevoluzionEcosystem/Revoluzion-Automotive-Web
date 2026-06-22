@@ -48,7 +48,7 @@ export default function ForgotPasswordPage() {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h2 className="text-lg font-bold text-text-primary">Check your email</h2>
+            <h1 className="text-lg font-bold text-text-primary">Check your email</h1>
             <p className="text-sm text-text-secondary leading-relaxed">
               We sent a password reset link to <span className="text-text-primary font-medium">{email}</span>.
               The link expires in 1 hour.
@@ -74,7 +74,7 @@ export default function ForgotPasswordPage() {
           </div>
         ) : (
           <>
-            <h2 className="text-center text-text-muted text-xs mb-3">Forgot your password?</h2>
+            <h1 className="text-center text-text-muted text-xs mb-3">Forgot your password?</h1>
             <p className="text-center text-text-muted text-xs mb-10 leading-relaxed">
               Enter your email and we&apos;ll send you a reset link.
             </p>

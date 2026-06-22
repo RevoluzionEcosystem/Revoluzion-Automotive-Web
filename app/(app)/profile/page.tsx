@@ -24,7 +24,7 @@ export default function ProfilePage() {
 
   const [uploading, setUploading] = useState(false)
   const [editing, setEditing] = useState(false)
-  const [form, setForm] = useState({ display_name: '', bio: '', location: '' })
+  const [form, setForm] = useState({ display_name: '', bio: '', location: '', company_name: '' })
   const [helpOpen, setHelpOpen] = useState(false)
   const [bugOpen, setBugOpen] = useState(false)
   const [signOutOpen, setSignOutOpen] = useState(false)
@@ -42,7 +42,7 @@ export default function ProfilePage() {
     queryKey: ['my-profile', user?.id],
     queryFn: async () => {
       if (!user) return null
-      const { data } = await supabase.from('profiles').select('id, username, display_name, avatar_url, bio, location, is_verified, role, shop_role, followers_count, following_count, garage_count, created_at, instagram, tiktok, youtube, facebook, twitter_x, website').eq('id', user.id).single()
+      const { data } = await supabase.from('users').select('id, username, display_name, avatar_url, bio, location, company_name, is_verified, role, shop_role, followers_count, following_count, garage_count, created_at, instagram, tiktok, youtube, facebook, twitter_x, website').eq('id', user.id).single()
       return data as Profile | null
     },
     enabled: !!user,
@@ -67,6 +67,7 @@ export default function ProfilePage() {
         display_name: profile.display_name || '',
         bio: profile.bio || '',
         location: profile.location || '',
+        company_name: profile.company_name || '',
       })
     }
   }, [profile])
@@ -75,13 +76,14 @@ export default function ProfilePage() {
     mutationFn: async () => {
       if (!user) return
       const { error } = await supabase
-        .from('profiles')
-        .update({
-          display_name: form.display_name.trim() || null,
-          bio: form.bio.trim() || null,
-          location: form.location.trim() || null,
-        })
-        .eq('id', user.id)
+          .from('users')
+          .update({
+            display_name: form.display_name.trim() || null,
+            bio: form.bio.trim() || null,
+            location: form.location.trim() || null,
+            company_name: form.company_name?.trim() || null,
+          })
+          .eq('id', user.id)
       if (error) throw error
     },
     onSuccess: () => {
@@ -101,7 +103,7 @@ export default function ProfilePage() {
     const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true, cacheControl: '31536000' })
     if (error) { toast.error('Upload failed', { description: 'Could not upload your avatar. Please try again.' }); setUploading(false); return }
     const { data: { publicUrl } } = supabase.storage.from('avatars').getPublicUrl(path)
-    await supabase.from('profiles').update({ avatar_url: publicUrl }).eq('id', user.id)
+    await supabase.from('users').update({ avatar_url: publicUrl }).eq('id', user.id)
     await supabase.auth.updateUser({ data: { avatar_url: publicUrl } })
     queryClient.invalidateQueries({ queryKey: ['my-profile'] })
     toast.success('Avatar updated! 📸', { description: 'Your new profile picture is now live.' })
@@ -273,6 +275,16 @@ export default function ProfilePage() {
               className="input"
               placeholder="Kuala Lumpur, Malaysia"
               maxLength={100}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-text-secondary mb-1.5">Company Name</label>
+            <input
+              value={form.company_name}
+              onChange={(e) => setForm({ ...form, company_name: e.target.value })}
+              className="input"
+              placeholder="Company or business name (optional)"
+              maxLength={150}
             />
           </div>
           <div className="flex gap-3 pt-1">

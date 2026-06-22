@@ -8,7 +8,7 @@ import { timeAgo } from '@/lib/utils'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import { MentionTextarea } from '@/components/ui/MentionTextarea'
 import { PostContent } from '@/components/ui/PostContent'
-import type { CommentWithProfile } from '@/lib/supabase/types'
+import type { CommentWithUser } from '@/lib/supabase/types'
 import { toast } from 'sonner'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -58,11 +58,11 @@ export default function CommentSection({ postId }: Props) {
     queryFn: async () => {
       const { data } = await supabase
         .from('post_comments')
-        .select('*, profiles(username, display_name, avatar_url)')
+        .select('*, users(username, display_name, avatar_url)')
         .eq('post_id', postId)
         .order('created_at', { ascending: true })
         .limit(100)
-      return (data ?? []) as CommentWithProfile[]
+      return (data ?? []) as CommentWithUser[]
     },
   })
 
@@ -210,7 +210,7 @@ export default function CommentSection({ postId }: Props) {
         <p className="text-text-muted text-sm text-center py-6">No comments yet. Be the first!</p>
       ) : (
         comments.map((c) => {
-          const cp = c.profiles
+          const cp = c.users
           return (
             <div key={c.id} className="card p-4">
               <div className="flex items-start gap-3">

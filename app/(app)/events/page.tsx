@@ -25,7 +25,7 @@ export default async function EventsPage({
 
   let query = supabase
     .from('events')
-    .select('*, profiles(username, display_name, avatar_url)')
+    .select('*, users(username, display_name, avatar_url)')
     .eq('status', 'upcoming')
     .order('date', { ascending: true })
     .limit(50)

@@ -60,7 +60,7 @@ export default function ResetPasswordPage() {
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
           </div>
-          <h2 className="text-lg font-bold text-text-primary">Invalid or expired link</h2>
+          <h1 className="text-lg font-bold text-text-primary">Invalid or expired link</h1>
           <p className="text-sm text-text-secondary leading-relaxed">
             This password reset link has expired or already been used. Please request a new one.
           </p>
@@ -94,7 +94,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="w-full max-w-sm">
       <div className="card p-8">
-        <h2 className="text-center text-text-muted text-xs mb-1">Set new password</h2>
+        <h1 className="text-center text-text-muted text-xs mb-1">Set new password</h1>
         <p className="text-center text-text-muted text-xs mb-7 leading-relaxed">
           Choose a strong password for your account.
         </p>

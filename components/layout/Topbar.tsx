@@ -25,12 +25,12 @@ export function Topbar() {
     staleTime: 5 * 60 * 1000,
   })
 
-  const { data: profile } = useQuery({
+      const { data: profile } = useQuery({
     queryKey: ['profile', user?.id],
     queryFn: async () => {
       if (!user) return null
       const { data } = await supabase
-        .from('profiles')
+        .from('users')
         .select('avatar_url, display_name, username')
         .eq('id', user.id)
         .single()
@@ -66,6 +66,7 @@ export function Topbar() {
     { href: '/builds', label: 'Builds' },
     { href: '/events', label: 'Events' },
     { href: '/shop', label: 'Shop' },
+    { href: '/guides', label: 'Guides' },
     { href: '/marketplace', label: 'Marketplace' },
     { href: '/clubs', label: 'Clubs' },
     { href: '/members', label: 'Members' },

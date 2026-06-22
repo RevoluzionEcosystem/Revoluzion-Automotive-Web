@@ -11,6 +11,13 @@ export const revalidate = 300
 
 export default async function ShopPage() {
   const supabase = await createClient()
+  // Fetch site cover image URL from system_settings (key: 'shop_cover_image')
+  const { data: setting } = await supabase
+    .from('system_settings')
+    .select('value')
+    .eq('key', 'shop_cover_image')
+    .maybeSingle()
+  const coverImage = (setting as any)?.value ?? null
 
   const { data } = await supabase
     .from('products')
@@ -41,5 +48,5 @@ export default async function ShopPage() {
     }
   })
 
-  return <ShopClient products={products} />
+  return <ShopClient products={products} coverImage={coverImage} />
 }

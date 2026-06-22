@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     }
 
     // Get Stripe customer for address autofill
-    const { data: profile } = await db.from('profiles').select('stripe_customer_id').eq('id', user.id).single()
+    const { data: profile } = await db.from('users').select('stripe_customer_id').eq('id', user.id).single()
 
     // Build line items from stored order items
     const lineItems = (order.order_items ?? []).map((item: any) => ({

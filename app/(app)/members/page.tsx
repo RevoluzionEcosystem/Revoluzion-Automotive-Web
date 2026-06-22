@@ -39,7 +39,7 @@ export default function MembersPage() {
     queryKey: ['members', debouncedSearch],
     queryFn: async () => {
       let query = supabase
-        .from('profiles')
+        .from('users')
         .select('id, username, display_name, avatar_url, bio, location, is_verified, role, followers_count, following_count, created_at')
         .limit(200)
 

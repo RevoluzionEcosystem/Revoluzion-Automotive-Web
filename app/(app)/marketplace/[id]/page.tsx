@@ -28,13 +28,13 @@ export default async function MarketplaceListingPage({ params }: Props) {
 
   const { data: listing } = await supabase
     .from('marketplace_listings')
-    .select('*, profiles(username, display_name, avatar_url, is_verified), marketplace_images(image_url, sort_order)')
+    .select('*, users(username, display_name, avatar_url, is_verified), marketplace_images(image_url, sort_order)')
     .eq('id', id)
     .single()
 
   if (!listing) notFound()
 
-  const profile = listing.profiles
+  const profile = listing.users
   const images = (listing.marketplace_images as { image_url: string; sort_order: number }[] | undefined)?.sort((a: { sort_order: number }, b: { sort_order: number }) => a.sort_order - b.sort_order) ?? []
 
   return (

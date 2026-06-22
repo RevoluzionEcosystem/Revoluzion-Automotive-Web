@@ -55,8 +55,8 @@ export function MentionTextarea({ value, onChange, placeholder, maxLength, class
 
     const q = mentionQuery
     const query = q
-      ? supabase.from('profiles').select('username, display_name, avatar_url').ilike('username', `${q}%`).limit(6)
-      : supabase.from('profiles').select('username, display_name, avatar_url').limit(6)
+      ? supabase.from('users').select('username, display_name, avatar_url').ilike('username', `${q}%`).limit(6)
+      : supabase.from('users').select('username, display_name, avatar_url').limit(6)
 
     query.then(({ data }) => {
       if (data) setResults(data as Profile[])

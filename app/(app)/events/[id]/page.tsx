@@ -29,14 +29,14 @@ export default async function EventDetailPage({ params }: Props) {
   const supabase = await createClient()
 
   const { data: event } = await supabase
-    .from('events')
-    .select('*, profiles(username, display_name, avatar_url, is_verified)')
+     .from('events')
+     .select('*, users(username, display_name, avatar_url, is_verified)')
     .eq('id', id)
     .single()
 
   if (!event) notFound()
 
-  const profile = event.profiles
+  const profile = event.users
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">

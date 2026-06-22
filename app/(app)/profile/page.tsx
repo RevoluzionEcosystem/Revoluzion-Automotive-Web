@@ -16,6 +16,8 @@ import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import type { Profile } from '@/lib/supabase/types'
 import { useRouter } from 'next/navigation'
 
+import { compressImage } from '@/lib/image-utils'
+
 export default function ProfilePage() {
   const supabase = createClient()
   const queryClient = useQueryClient()
@@ -97,12 +99,20 @@ export default function ProfilePage() {
   async function handleAvatarUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     if (!file || !user) return
-    if (file.size > 2 * 1024 * 1024) { toast.error('Image too large', { description: 'Please choose an image under 2 MB.' }); return }
+    if (file.size > 5 * 1024 * 1024) { toast.error('Image too large', { description: 'Please choose an image under 5 MB.' }); return }
     setUploading(true)
-    const path = `avatars/${user.id}/${Date.now()}.${file.name.split('.').pop()}`
-    const { error } = await supabase.storage.from('avatars').upload(path, file, { upsert: true, cacheControl: '31536000' })
+    
+    let uploadFile = file
+    try {
+      uploadFile = await compressImage(file, 500, 0.8)
+    } catch (err) {
+      console.error('Image compression failed, using original', err)
+    }
+
+    const path = `avatars/${user.id}/${Date.now()}.jpg`
+    const { error } = await supabase.storage.from('user-content').upload(path, uploadFile, { upsert: true, cacheControl: '31536000' })
     if (error) { toast.error('Upload failed', { description: 'Could not upload your avatar. Please try again.' }); setUploading(false); return }
-    const { data: { publicUrl } } = supabase.storage.from('avatars').getPublicUrl(path)
+    const { data: { publicUrl } } = supabase.storage.from('user-content').getPublicUrl(path)
     await supabase.from('users').update({ avatar_url: publicUrl }).eq('id', user.id)
     await supabase.auth.updateUser({ data: { avatar_url: publicUrl } })
     queryClient.invalidateQueries({ queryKey: ['my-profile'] })

@@ -47,17 +47,6 @@ export async function GET(request: Request) {
   }
 
   if (code) {
-    // validate state cookie if present
-    const stateParam = searchParams.get('state')
-    if (stateParam) {
-      const cookieState = getCookie('rev_oauth_state')
-      if (!cookieState || cookieState !== stateParam) {
-        const resp = NextResponse.redirect(`${origin}/login?error=invalid_state`)
-        resp.headers.set('Set-Cookie', clearCookie)
-        return resp
-      }
-    }
-
     const supabase = await createClient()
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 

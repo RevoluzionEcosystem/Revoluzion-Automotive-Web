@@ -58,20 +58,11 @@ export default function RegisterPage() {
   async function handleGoogleLogin() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (typeof window !== 'undefined' ? window.location.origin : '')
 
-    const generateState = (len = 16) => {
-      const arr = new Uint8Array(len)
-      window.crypto.getRandomValues(arr)
-      return Array.from(arr).map((b) => b.toString(16).padStart(2, '0')).join('')
-    }
-    const state = generateState(18)
-    const secureFlag = baseUrl.startsWith('https:') ? 'Secure; ' : ''
-    document.cookie = `rev_oauth_state=${state}; Path=/; SameSite=Lax; Max-Age=600; ${secureFlag}`
-
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: `${baseUrl}/auth/callback`,
-        queryParams: { access_type: 'offline', prompt: 'consent', state },
+        queryParams: { access_type: 'offline', prompt: 'consent' },
       },
     })
   }

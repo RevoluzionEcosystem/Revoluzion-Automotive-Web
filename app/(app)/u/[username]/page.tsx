@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { MapPin, Calendar, Users, UserCheck, Car, Wrench, MessageSquare, Heart } from 'lucide-react'
 import { timeAgo, formatDate } from '@/lib/utils'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
+import FollowButton from '@/components/ui/FollowButton'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -109,7 +110,6 @@ export default async function PublicProfilePage({ params }: Props) {
               )}
             </div>
 
-            {/* Stats */}
             <div className="flex gap-5 mt-4 pt-4 border-t border-border">
               <div className="text-center">
                 <div className="text-text-primary font-bold">{profile.followers_count ?? 0}</div>
@@ -126,9 +126,7 @@ export default async function PublicProfilePage({ params }: Props) {
             </div>
           </div>
 
-          <button className="btn-primary shrink-0 sm:self-start flex items-center gap-2">
-            <Users size={14} /> Follow
-          </button>
+          <FollowButton profileId={profile.id} initialIsFollowing={false} />
         </div>
       </div>
 

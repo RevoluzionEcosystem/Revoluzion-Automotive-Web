@@ -24,7 +24,7 @@ export default function MembersPage() {
   const supabase = createClient()
   const [search, setSearch] = useState('')
   const [debouncedSearch, setDebouncedSearch] = useState('')
-  const [sort, setSort] = useState<SortKey>('followers_desc')
+  const [sort, setSort] = useState<SortKey>('newest')
   const [verifiedOnly, setVerifiedOnly] = useState(false)
   const [founderOnly, setFounderOnly] = useState(false)
   const [locationFilter, setLocationFilter] = useState('')

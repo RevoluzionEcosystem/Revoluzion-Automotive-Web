@@ -5,12 +5,14 @@ import { createClient } from '@/lib/supabase/client'
 import { useMutation } from '@tanstack/react-query'
 import { User, Lock, Bell, Shield, ChevronRight, AlertCircle, Check } from 'lucide-react'
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 
 type Section = 'account' | 'security' | 'notifications'
 
 export default function SettingsPage() {
   const supabase = createClient()
+  const router = useRouter()
   const [user, setUser] = useState<SupabaseUser | null>(null)
   const [section, setSection] = useState<Section>('account')
   const [currentEmail, setCurrentEmail] = useState('')
@@ -68,10 +70,23 @@ export default function SettingsPage() {
 
   const deleteAccountMutation = useMutation({
     mutationFn: async () => {
-      // Soft-delete — in production this would call a server action / Supabase Edge Function
-      throw new Error('Please contact hello@revoluzion.my to delete your account')
+      if (!user) return
+      const res = await fetch('/api/admin/delete-account', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to delete account')
+      // Sign out and redirect
+      await supabase.auth.signOut()
+      router.push('/')
+      router.refresh()
     },
-    onError: (err: any) => toast.error('Account deletion unavailable', { description: err.message }),
+    onSuccess: () => {
+      toast.success('Account Deleted Match' , { description: 'Your account has been deleted and archived successfully.' })
+    },
+    onError: (err: any) => toast.error('Account deletion failed', { description: err.message ?? 'Could not delete your account.' }),
   })
 
   const NAV_ITEMS = [

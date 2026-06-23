@@ -250,11 +250,11 @@ export type Notification = Database['public']['Tables']['notifications']['Row']
 export type ActivityFeedItem = Database['public']['Tables']['activity_feed']['Row']
 export type Follow = Database['public']['Tables']['follows']['Row']
 
-export type PostWithProfile = Post & { profiles: Profile | null }
-export type BuildWithProfile = Build & { profiles: Profile | null; cars: Car | null }
-export type MarketplaceListingWithProfile = MarketplaceListing & { profiles: Profile | null; marketplace_images: { image_url: string }[] }
-export type EventWithProfile = Event & { profiles: Profile | null }
-export type CommentWithProfile = PostComment & { profiles: Profile | null }
+export type PostWithProfile = Post & { users: User | null }
+export type BuildWithProfile = Build & { users: User | null; cars: Car | null }
+export type MarketplaceListingWithProfile = MarketplaceListing & { users: User | null; marketplace_images: { image_url: string }[] }
+export type EventWithProfile = Event & { users: User | null }
+export type CommentWithProfile = PostComment & { users: User | null }
 
 // New aliases for renamed table
 export type User = Database['public']['Tables']['users']['Row']

@@ -26,13 +26,13 @@ export default async function PostDetailPage({ params }: Props) {
 
   const { data: post } = await supabase
     .from('posts')
-    .select('*, profiles(username, display_name, avatar_url, is_verified)')
+    .select('*, users!posts_user_id_fkey(username, display_name, avatar_url, is_verified)')
     .eq('id', id)
     .single()
 
   if (!post) notFound()
 
-  const profile = post.profiles
+  const profile = post.users
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">

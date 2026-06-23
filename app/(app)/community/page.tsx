@@ -19,7 +19,7 @@ export default async function CommunityPage() {
 
   const { data: posts = [] } = await supabase
     .from('posts')
-    .select('*, users(username, display_name, avatar_url, is_verified)')
+    .select('*, users!posts_user_id_fkey(username, display_name, avatar_url, is_verified)')
     .order('created_at', { ascending: false })
     .limit(60)
 

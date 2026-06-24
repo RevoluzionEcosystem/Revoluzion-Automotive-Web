@@ -570,7 +570,7 @@ export default function FeedPage() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from('posts')
-        .select('id, user_id, content, image_url, likes_count, comments_count, car_id, created_at, updated_at, users(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, content, image_url, likes_count, comments_count, car_id, created_at, updated_at, users!posts_user_id_fkey(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(50)
       if (error) throw error
@@ -584,7 +584,7 @@ export default function FeedPage() {
       if (postIds.length > 0) {
         const { data: comments } = await supabase
           .from('post_comments')
-          .select('post_id, content, users(display_name, username, avatar_url)')
+          .select('post_id, content, users!post_comments_user_id_fkey(display_name, username, avatar_url)')
           .in('post_id', postIds)
           .order('created_at', { ascending: false })
           .limit(postIds.length * 3)

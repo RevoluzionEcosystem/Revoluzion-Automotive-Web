@@ -58,7 +58,7 @@ export default function CommentSection({ postId }: Props) {
     queryFn: async () => {
       const { data } = await supabase
         .from('post_comments')
-        .select('*, users(username, display_name, avatar_url)')
+        .select('*, users!post_comments_user_id_fkey(username, display_name, avatar_url)')
         .eq('post_id', postId)
         .order('created_at', { ascending: true })
         .limit(100)

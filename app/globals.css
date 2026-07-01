@@ -38,6 +38,19 @@ h1, h2
   --color-success: #22C55E;
   --color-warning: #F59E0B;
 
+  /* Pulsating animation for on-going events */
+  @keyframes status-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.82;
+      transform: scale(1.05);
+    }
+  }
+  --animate-status-pulse: status-pulse 2s infinite ease-in-out;
+
   /* Minimal border radius — override Tailwind defaults so every rounded-* class
      maps to 4px. rounded-full (9999px) is intentionally left untouched so
      avatar circles and status dots stay circular. */
@@ -94,6 +107,21 @@ h1, h2
 }
 
 @layer components {
+  /* Comment Premium Slate-Gradient Layer */
+  .comment-slate {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .comment-body {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+
+  .bg-gradient {
+    background: linear-gradient(135deg, #181d29 0%, #0d1017 100%);
+  }
+
   .card {
     @apply bg-surface border border-border rounded-xl;
   }
@@ -155,7 +183,7 @@ h1, h2
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 50%, #14B8A6 100%);
+    background: linear-gradient(135deg, #3babf6 0%, #06B6D4 50%, #16cab5 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -65,6 +65,9 @@ export interface Database {
           image_url: string | null
           car_bio: string | null
           engine: string | null
+          cc: string | null
+          hp: string | null
+          torque: string | null
           likes_count: number
           views: number
           created_at: string
@@ -82,11 +85,17 @@ export interface Database {
           time: string | null
           location: string | null
           state: string | null
-          price: number
+          price: any
           attendees: number
           banner_url: string | null
           status: string
           created_at: string
+          views: number | null
+          likes_count: number | null
+          comments_count: number | null
+          images_gallery: string[] | null
+          latitude: number | null
+          longitude: number | null
         }
         Insert: Omit<Database['public']['Tables']['events']['Row'], 'id' | 'created_at' | 'attendees'>
         Update: Partial<Database['public']['Tables']['events']['Row']>

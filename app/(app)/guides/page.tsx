@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BookOpen, Clock, Eye, ChevronRight } from 'lucide-react'
+import { GuidesHeaderWithSuspense } from '@/components/ui/GuidesHeaderWithSuspense'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -40,41 +41,9 @@ export default async function GuidesPage({
   const { data: guides } = await q.limit(60)
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Guides</h1>
-        <p className="text-text-secondary mt-1">
-          Step-by-step DIY guides for every skill level
-        </p>
-      </div>
-
-      {/* Category pills */}
-      <div className="flex flex-wrap gap-2">
-        <Link
-          href="/guides"
-          className={`px-4 py-1.5 rounded-full text-sm border transition-colors ${
-            !category
-              ? 'bg-primary text-black border-primary font-semibold'
-              : 'border-border text-text-secondary hover:border-primary hover:text-white'
-          }`}
-        >
-          All
-        </Link>
-        {CATEGORIES.map((c) => (
-          <Link
-            key={c}
-            href={`/guides?category=${c}`}
-            className={`px-4 py-1.5 rounded-full text-sm border transition-colors capitalize ${
-              category === c
-                ? 'bg-primary text-black border-primary font-semibold'
-                : 'border-border text-text-secondary hover:border-primary hover:text-white'
-            }`}
-          >
-            {c}
-          </Link>
-        ))}
-      </div>
+    <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
+      {/* Guides Submenu & Header wrapper */}
+      <GuidesHeaderWithSuspense />
 
       {/* Guides grid */}
       {(guides ?? []).length === 0 ? (

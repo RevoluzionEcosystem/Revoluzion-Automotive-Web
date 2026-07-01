@@ -34,12 +34,12 @@ export default function MapPage() {
 
     ;(async () => {
       try {
-        const { Loader } = await import('@googlemaps/js-api-loader')
-        const loader = new Loader({
-          apiKey: GOOGLE_MAPS_API_KEY,
-          version: 'weekly',
+        const { setOptions, importLibrary } = await import('@googlemaps/js-api-loader')
+        setOptions({
+          key: GOOGLE_MAPS_API_KEY,
+          v: 'weekly',
         })
-        const mapsLib = (await (loader as any).importLibrary('maps')) as any
+        const mapsLib = (await importLibrary('maps')) as any
         if (!mapRef.current) return
 
         const map = new mapsLib.Map(mapRef.current, {

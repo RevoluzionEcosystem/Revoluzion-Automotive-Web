@@ -36,8 +36,8 @@ export default async function MarketplacePage({
   if (condition && condition !== 'All') query = query.eq('condition', condition)
   if (q) query = query.ilike('title', `%${q}%`)
 
-  const { data: listings = [] } = await query
-  const typedListings = listings as MarketplaceListingWithProfile[]
+  const { data: listings } = await query
+  const typedListings = (listings ?? []) as MarketplaceListingWithProfile[]
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">

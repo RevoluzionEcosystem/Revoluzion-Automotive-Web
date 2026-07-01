@@ -12,13 +12,13 @@ export default function Loading() {
           className="absolute rounded-full border-2 border-primary/30"
           style={{ width: 100, height: 100 }}
           animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="absolute rounded-full border border-primary/20"
           style={{ width: 130, height: 130 }}
           animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0, 0.2] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+          transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
         />
 
         {/* Logo circle */}
@@ -53,12 +53,12 @@ export default function Loading() {
         className="mt-8 w-48 h-0.5 bg-surface-variant rounded-full overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
+        transition={{ delay: 0.2 }}
       >
         <motion.div
           className="h-full bg-gradient-cyan rounded-full"
           animate={{ x: ['-100%', '100%'] }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 0.7, repeat: Infinity, ease: 'easeInOut' }}
         />
       </motion.div>
     </div>

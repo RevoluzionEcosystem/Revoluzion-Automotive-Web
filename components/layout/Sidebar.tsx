@@ -15,16 +15,14 @@ import { useRouter } from 'next/navigation'
 
 const navItems = [
   { href: '/feed', label: 'Feed', icon: Home },
-  { href: '/community', label: 'Community', icon: Users },
-  { href: '/builds', label: 'Garage', icon: Car },
+  { href: '/chat', label: 'Chat', icon: MessageSquare },
   { href: '/events', label: 'Events', icon: CalendarDays },
-  { href: '/shop', label: 'Shop', icon: ShoppingBag },
-  { href: '/guides', label: 'Guides', icon: BookOpen },
+  { href: '/garage', label: 'Garage', icon: Car },
   { href: '/marketplace', label: 'Marketplace', icon: Store },
   { href: '/clubs', label: 'Clubs', icon: Users },
   { href: '/members', label: 'Members', icon: User },
-  { href: '/explore/map', label: 'Map', icon: Map },
-  { href: '/chat', label: 'Chat', icon: MessageSquare },
+  // { href: '/explore/map', label: 'Map', icon: Map },
+  { href: '/guides', label: 'Guides', icon: BookOpen },
 ]
 
 export function Sidebar() {
@@ -68,6 +66,30 @@ export function Sidebar() {
 
       {/* Nav items */}
       <nav className="flex-1 overflow-y-auto py-4 px-2 space-y-0.5">
+        {/* Glow-highlighted "Shop Revoluzion Automotive Products" Option at Very Top */}
+        <div className="px-1 pb-3">
+          <Link
+            href="/shop"
+            className={cn(
+              'flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 relative group overflow-hidden border',
+              pathname === '/shop' || pathname.startsWith('/shop/')
+                ? 'bg-primary/25 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.3)]'
+                : 'bg-primary/5 hover:bg-primary/10 border-primary/20 text-[#06B6D4] hover:text-[#22D3EE] shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.25)]'
+            )}
+          >
+            <ShoppingBag size={18} className="shrink-0 animate-pulse text-primary group-hover:scale-110 transition-transform" />
+            {!collapsed && (
+              <span 
+                className="text-xs font-bold leading-normal" 
+                style={{ fontFamily: 'var(--font-orbitron)', letterSpacing: '0.05em' }}
+              >
+                Shop Revoluzion Products
+              </span>
+            )}
+          </Link>
+          <div className="w-full border-b border-border/40 mt-3" />
+        </div>
+
         {navItems.map(({ href, label, icon: Icon }) => {
           const isActive = pathname === href || pathname.startsWith(href + '/')
           return (

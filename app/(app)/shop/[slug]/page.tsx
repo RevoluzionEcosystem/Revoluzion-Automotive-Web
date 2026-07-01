@@ -18,7 +18,7 @@ async function fetchProduct(slug: string) {
   const supabase = await createClient()
   const { data: bySlug } = await supabase
     .from('products')
-    .select('*, categories(name), brands(name), product_images(url, sort_order, alt_text), product_specifications(spec_key, spec_value, sort_order), product_fitment(make, model, year_from, year_to, notes)')
+    .select('*, categories(name), brands(name), product_images(url, sort_order, alt_text), product_fitment(make, model, year_from, year_to, notes)')
     .eq('slug', slug)
     .eq('is_published', true)
     .eq('is_deleted', false)
@@ -27,7 +27,7 @@ async function fetchProduct(slug: string) {
 
   const { data: byId } = await supabase
     .from('products')
-    .select('*, categories(name), brands(name), product_images(url, sort_order, alt_text), product_specifications(spec_key, spec_value, sort_order), product_fitment(make, model, year_from, year_to, notes)')
+    .select('*, categories(name), brands(name), product_images(url, sort_order, alt_text), product_fitment(make, model, year_from, year_to, notes)')
     .eq('id', slug)
     .eq('is_published', true)
     .eq('is_deleted', false)
@@ -66,8 +66,6 @@ export default async function ProductDetailPage({ params }: Props) {
   }
 
   const images = ((product.product_images as { url: string; sort_order: number; alt_text?: string }[] ?? []))
-    .sort((a, b) => a.sort_order - b.sort_order)
-  const specs = ((product.product_specifications as { spec_key: string; spec_value: string; sort_order: number }[] ?? []))
     .sort((a, b) => a.sort_order - b.sort_order)
   const fitment = (product.product_fitment as { make?: string; model?: string; year_from?: number; year_to?: number; notes?: string }[] ?? [])
 
@@ -152,16 +150,10 @@ export default async function ProductDetailPage({ params }: Props) {
       )}
 
       {/* ── Specifications ── */}
-      {specs.length > 0 && (
+      {(product.weight || product.dimensions) && (
         <div className="mt-4 card p-6">
           <h2 className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-3">Specifications</h2>
           <div className="grid sm:grid-cols-2 gap-x-8 gap-y-2">
-            {specs.map((s) => (
-              <div key={s.spec_key} className="flex justify-between text-sm py-1.5 border-b border-border/50">
-                <span className="text-text-muted">{specLabel(s.spec_key)}</span>
-                <span className="text-text-primary font-medium text-right">{s.spec_value}</span>
-              </div>
-            ))}
             {product.weight && (
               <div className="flex justify-between text-sm py-1.5 border-b border-border/50">
                 <span className="text-text-muted">Weight</span>

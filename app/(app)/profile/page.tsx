@@ -314,7 +314,7 @@ export default function ProfilePage() {
       {/* -- MY GARAGE -- */}
       <SectionLabel label="MY GARAGE" />
       <NavCard rows={[
-        { icon: <Car size={18} />, label: 'My Garage', href: '/garage' },
+        { icon: <Car size={18} />, label: 'My Garage', href: '/garage/me' },
         { icon: <Wrench size={18} />, label: 'My Builds', href: '/builds' },
         { icon: <Store size={18} />, label: 'Marketplace Listings', href: '/marketplace' },
       ]} />

@@ -1,126 +1,167 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
-import { Users, MapPin, Calendar, ChevronRight } from 'lucide-react'
+import { Users } from 'lucide-react'
 import type { Metadata } from 'next'
 import { CreateClubDialog } from '@/components/ui/CreateClubDialog'
+import { ClubsSidebar } from '@/components/ui/ClubsSidebar'
 
 export const metadata: Metadata = {
   title: 'Clubs',
   description: 'Discover automotive clubs and car communities across Malaysia',
 }
 
-export const revalidate = 600
-
-// Define a simple Club type for display purposes
 interface Club {
   id: string
   name: string
   description?: string
-  logo_url?: string
+  avatar_url?: string
   banner_url?: string
   location?: string
   member_count?: number
   created_at?: string
-  category?: string
 }
 
-export default async function ClubsPage() {
+export default async function ClubsPage({ searchParams }: { searchParams: Promise<{ location?: string }> }) {
   const supabase = await createClient()
+  const { location: activeLocation } = await searchParams
 
-  // Attempt to fetch clubs — table may not exist yet
+  // Fetch verified clubs directly from PG database table car_clubs
   let clubs: Club[] = []
   try {
-    const { data } = await supabase
-      .from('clubs')
+    let query = supabase
+      .from('car_clubs')
       .select('*')
       .order('member_count', { ascending: false })
-      .limit(24)
+
+    if (activeLocation && activeLocation !== 'All') {
+      query = query.eq('location', activeLocation)
+    }
+
+    const { data } = await query
     clubs = (data as Club[]) ?? []
-  } catch {
+  } catch (err) {
     clubs = []
   }
 
-  // Fallback demo clubs if none in DB
-  const displayClubs: Club[] = clubs.length > 0 ? clubs : [
-    { id: '1', name: 'KL Modified Club', description: 'Kuala Lumpur\'s premier modified car community', location: 'Kuala Lumpur', member_count: 342, category: 'Modified' },
-    { id: '2', name: 'Malaysian JDM Owners', description: 'For lovers of Japanese domestic market vehicles', location: 'Selangor', member_count: 891, category: 'JDM' },
-    { id: '3', name: 'Penang Drift Alliance', description: 'Drift enthusiasts in the Pearl of the Orient', location: 'Penang', member_count: 127, category: 'Drift' },
-    { id: '4', name: 'MY Classic Cars', description: 'Preserving Malaysia\'s automotive heritage', location: 'Nationwide', member_count: 204, category: 'Classic' },
-    { id: '5', name: 'EV Malaysia', description: 'Electric vehicle owners and advocates', location: 'Nationwide', member_count: 418, category: 'EV' },
-    { id: '6', name: 'Johor Track Days', description: 'Track day enthusiasts and time attack racers', location: 'Johor', member_count: 156, category: 'Track' },
-  ]
+  // Common location list across Malaysia hubs to use as filtering
+  const STATES = ['All', 'Selangor', 'Kuala Lumpur', 'Penang', 'Johor', 'Pahang', 'Sabah', 'Sarawak', 'Nationwide']
+
+  const getHrefForLocation = (st: string) => {
+    if (st === 'All') return '/clubs'
+    return `/clubs?location=${encodeURIComponent(st)}`
+  }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Clubs</h1>
-          <p className="text-text-muted text-sm mt-1">{displayClubs.length}+ communities to join</p>
-        </div>
-        <CreateClubDialog />
-      </div>
+    <div className="flex flex-col lg:flex-row gap-8 p-6">
+      {/* Unified Left Sidebar */}
+      <ClubsSidebar activeLocation={activeLocation || 'All'} />
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {displayClubs.map((club) => (
-          <Link
-            key={club.id}
-            href={`/clubs/${club.id}`}
-            className="card-hover group overflow-hidden"
-          >
-            {/* Banner */}
-            <div className="h-24 bg-gradient-to-br from-primary/20 via-teal/10 to-background relative overflow-hidden">
-              {club.banner_url && (
-                <Image
-                  src={club.banner_url}
-                  alt={club.name}
-                  fill
-                  className="object-cover opacity-50 group-hover:opacity-70 transition-opacity"
-                />
-              )}
-              {club.category && (
-                <span className="absolute top-2 right-2 badge badge-primary text-[10px]">{club.category}</span>
-              )}
+      {/* Right Main Interface */}
+      <main className="flex-1 min-w-0 space-y-6">
+        
+        {/* Title Panel */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-border/40">
+          <div>
+            <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Clubs</h1>
+            <p className="text-text-muted text-sm mt-1">{clubs.length} official automotive communities to discover & join</p>
+          </div>
+
+          <div className="flex items-center gap-3">
+            {/* Quick Hub Filter */}
+            <div className="flex flex-wrap gap-1.5 bg-slate-900/40 p-1 rounded-xl border border-slate-800">
+              {['All', 'Selangor', 'Kuala Lumpur', 'Penang', 'Johor'].map((st) => {
+                const isActive = activeLocation ? activeLocation === st : st === 'All'
+                return (
+                  <Link
+                    key={st}
+                    href={getHrefForLocation(st)}
+                    className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all duration-200 ${
+                      isActive
+                        ? 'bg-primary text-black font-black'
+                        : 'text-text-muted hover:text-white hover:bg-white/5'
+                    }`}
+                    style={{ fontFamily: 'var(--font-orbitron)' }}
+                  >
+                    {st}
+                  </Link>
+                )
+              })}
             </div>
 
-            <div className="p-4">
-              {/* Logo + name */}
-              <div className="flex items-center gap-3 -mt-8 mb-3">
-                <div className="w-14 h-14 rounded-xl bg-surface border-2 border-border overflow-hidden flex items-center justify-center shrink-0">
-                  {club.logo_url ? (
-                    <Image src={club.logo_url} alt={club.name} width={56} height={56} className="w-full h-full object-cover" />
+            <CreateClubDialog />
+          </div>
+        </div>
+
+        {clubs.length === 0 ? (
+          <div className="p-12 text-center text-text-muted bg-surface/5 border border-border/60 rounded-2xl flex flex-col items-center justify-center space-y-3">
+            <Users size={48} className="text-primary/20 animate-pulse" />
+            <p className="text-sm font-bold uppercase tracking-widest text-[#8A90A0]" style={{ fontFamily: 'var(--font-orbitron)' }}>
+              No Clubs Found
+            </p>
+            <p className="text-xs max-w-sm leading-relaxed">
+              No established car groups are registered under this hub. Be the first to launch or establish a new local automotive club!
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in pb-16">
+            {clubs.map((club) => (
+              <Link
+                key={club.id}
+                href={`/clubs/${club.id}`}
+                className="group relative flex flex-col justify-between h-90 rounded-2xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 hover:border-white/10 transition-all duration-300 cursor-pointer overflow-hidden text-left"
+              >
+                {/* Banner Area */}
+                <div className="relative w-full h-45 bg-[#0e1017] overflow-hidden shrink-0">
+                  {club.banner_url ? (
+                    <Image
+                      src={club.banner_url}
+                      alt={club.name}
+                      fill
+                      className="object-cover group-hover:scale-103 transition-transform duration-500"
+                    />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-teal/10 flex items-center justify-center">
-                      <span className="text-primary font-bold text-lg">{club.name.charAt(0)}</span>
+                    <div className="absolute inset-0 bg-[#0e1017] flex flex-col items-center justify-center overflow-hidden select-none">
+                      <Users size={40} className="text-slate-700 group-hover:text-primary/20 transition-colors duration-500" />
                     </div>
                   )}
+
+                  {club.location && (
+                    <span 
+                      className="absolute top-3 right-3 py-1 px-2.5 rounded-full border border-white/10 bg-black/60 backdrop-blur-sm text-[10px] font-bold font-mono text-white transition-all z-10 hover:border-white/30"
+                      style={{ fontFamily: 'var(--font-orbitron)' }}
+                    >
+                      {club.location}
+                    </span>
+                  )}
                 </div>
-              </div>
 
-              <h3 className="font-semibold text-text-primary text-base leading-tight">{club.name}</h3>
+                {/* Info Container */}
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <h3 className="text-sm font-bold text-white group-hover:text-primary transition-colors leading-tight line-clamp-1">
+                      {club.name}
+                    </h3>
+                    <p className="text-xs text-text-muted line-clamp-3 leading-relaxed" style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
+                      {club.description || 'Welcome to our official automotive group!'}
+                    </p>
+                  </div>
 
-              {club.description && (
-                <p className="text-text-muted text-xs mt-1 line-clamp-2">{club.description}</p>
-              )}
-
-              <div className="flex items-center gap-4 mt-3 text-xs text-text-muted">
-                {club.member_count !== undefined && (
-                  <span className="flex items-center gap-1">
-                    <Users size={12} />
-                    {club.member_count.toLocaleString()} members
-                  </span>
-                )}
-                {club.location && (
-                  <span className="flex items-center gap-1">
-                    <MapPin size={12} />
-                    {club.location}
-                  </span>
-                )}
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+                  <div className="flex items-center justify-between pt-3 border-t border-white/5 mt-4">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                      <Users size={12} className="text-primary" />
+                      {club.member_count ?? 1} Members
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary group-hover:translate-x-1 transition-transform duration-200" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                      View Club &rarr;
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </main>
     </div>
   )
 }

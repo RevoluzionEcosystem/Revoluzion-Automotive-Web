@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { Search, Bell, Menu, X } from 'lucide-react'
+import { Search, Bell, Menu, X, ArrowLeft } from 'lucide-react'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery } from '@tanstack/react-query'
@@ -78,8 +78,16 @@ export function Topbar() {
     <>
       <header className="sticky top-0 z-40 bg-background h-16 border-b border-border">
         <div className="h-full grid grid-cols-[auto_1fr_auto] gap-6 items-center px-4">
-          {/* Left: notifications + profile (avatar, name, email) + mobile menu */}
+          {/* Left: back button + notifications + profile (avatar, name, email) + mobile menu */}
           <div className="flex items-center gap-3">
+            {/* Global navigation Back trigger button */}
+            <button
+              onClick={() => router.back()}
+              title="Go Back"
+              className="h-10 w-10 flex items-center justify-center rounded-xl border border-slate-900 bg-slate-950/20 text-text-secondary hover:text-white hover:border-slate-800 transition-all duration-200 shrink-0 cursor-pointer"
+            >
+              <ArrowLeft size={16} className="stroke-[2.5]" />
+            </button>
 
             {user ? (
               <Link href="/profile" className="flex items-center gap-3">

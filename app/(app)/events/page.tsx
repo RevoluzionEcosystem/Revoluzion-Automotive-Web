@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
 import { CreateEventDialog } from '@/components/ui/CreateEventDialog'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import { EventsOverviewMap } from '@/components/ui/EventsOverviewMap'
+import { EventsSidebar } from '@/components/ui/EventsSidebar'
 
 export const metadata: Metadata = {
   title: 'Events',
@@ -15,9 +16,6 @@ export const metadata: Metadata = {
 
 // Disable rough static caches for active events exploration page so that view stats rehydrate dynamically/directly on navigation!
 export const dynamic = 'force-dynamic'
-
-const EVENT_CATEGORIES = ['All', 'Car Meet', 'Track Day', 'Show & Shine', 'Rally', 'Charity', 'Club Run', 'Workshop', 'Cruise', 'Other']
-const STATE_FILTERS = ['All States', 'Selangor', 'Kuala Lumpur', 'Penang', 'Johor', 'Melaka', 'Perak', 'Sabah', 'Sarawak', 'Pahang']
 
 export default async function EventsPage({
   searchParams,
@@ -70,93 +68,7 @@ export default async function EventsPage({
       <div className="flex flex-col lg:flex-row gap-8">
         
         {/* Left Side Submenu / Sidebar Filters */}
-        <aside className="w-full lg:w-64 lg:shrink-0 space-y-6">
-          
-          {/* Section 1: Categories Submenu */}
-          <div className="space-y-3">
-            <span className="text-[10px] font-black uppercase text-primary tracking-widest block style-orbitron" style={{ fontFamily: 'var(--font-orbitron)' }}>
-              EVENT SPEC
-            </span>
-            <div className="flex flex-col gap-0.5">
-              {EVENT_CATEGORIES.map((cat) => {
-                const isActive = (category || 'All') === cat
-                const href = isActive ? '/events' : `/events?category=${cat}${state ? `&state=${state}` : ''}`
-                
-                return (
-                  <Link
-                    key={cat}
-                    href={href}
-                    className={`group flex items-center justify-between py-1 px-2.5 rounded-lg border transition-all text-left ${
-                      isActive
-                        ? 'bg-primary/5 border-primary/40 text-primary font-bold shadow-lg shadow-primary/5'
-                        : 'bg-transparent border-transparent text-text-secondary hover:border-border/80 hover:bg-surface-variant/30 hover:text-white'
-                    }`}
-                  >
-                    <span 
-                      className="text-xs font-semibold" 
-                      style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-                    >
-                      {cat}
-                    </span>
-                    <ChevronRight
-                      className={`h-3.5 w-3.5 shrink-0 transition-transform ${
-                        isActive ? 'opacity-100 translate-x-0.5 text-primary' : 'opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0'
-                      }`}
-                    />
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Section 2: Regional States Submenu */}
-          <div className="space-y-3 pt-2">
-            <span className="text-[10px] font-black uppercase text-text-muted tracking-widest block style-orbitron" style={{ fontFamily: 'var(--font-orbitron)' }}>
-              📍 BY REGION
-            </span>
-            <div className="flex flex-col gap-0.5">
-              {STATE_FILTERS.map((st) => {
-                const isActive = (state || 'All States') === st
-                const href = isActive ? '/events' : `/events?state=${st}${category ? `&category=${category}` : ''}`
-                
-                return (
-                  <Link
-                    key={st}
-                    href={href}
-                    className={`group flex items-center justify-between py-1 px-2.5 rounded-lg border transition-all text-left ${
-                      isActive
-                        ? 'bg-primary/5 border-primary/40 text-primary font-bold shadow-lg shadow-primary/5'
-                        : 'bg-transparent border-transparent text-text-secondary hover:border-border/80 hover:bg-surface-variant/30 hover:text-white'
-                    }`}
-                  >
-                    <span 
-                      className="text-xs font-semibold" 
-                      style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-                    >
-                      {st}
-                    </span>
-                    <ChevronRight
-                      className={`h-3.5 w-3.5 shrink-0 transition-transform ${
-                        isActive ? 'opacity-100 translate-x-0.5 text-primary' : 'opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0'
-                      }`}
-                    />
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Verified stamp footer */}
-          <div className="bg-surface/80 border border-border/80 rounded-2xl p-4 space-y-2.5 hidden lg:block shadow-xl">
-            <div className="flex items-center gap-1.5 text-primary text-xs font-bold leading-none style-orbitron" style={{ fontFamily: 'var(--font-orbitron)' }}>
-              <BadgeCheck className="h-4 w-4 stroke-[2.5]" /> LIVE EVENTS DIRECTORY
-            </div>
-            <p className="text-[9.5px] text-text-muted leading-relaxed">
-              These are 3rd party events hosted by independent organizers or users. Revoluzion is not liable for event safety, scheduling, or operations. Verify permits, legal status, and RSVP caps before driving to venues.
-            </p>
-          </div>
-
-        </aside>
+        <EventsSidebar />
 
         {/* Right Side: Main Comprehensive Events Grid with bigger width and length */}
         <main className="flex-1 min-w-0">

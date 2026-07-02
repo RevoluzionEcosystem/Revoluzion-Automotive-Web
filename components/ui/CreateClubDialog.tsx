@@ -62,7 +62,7 @@ export function CreateClubDialog() {
       role: 'owner',
     })
 
-    toast.success('Club created!', { description: `"${form.name}" is now live. You're the owner!` })
+    toast.success('Club created!', { description: `"${form.name}" has been launched successfully.` })
     setOpen(false)
     setForm({ name: '', category: 'General', location: 'Selangor', description: '', rules: '' })
     router.refresh()
@@ -78,6 +78,7 @@ export function CreateClubDialog() {
           setOpen(true)
         }}
         className="btn-primary flex items-center gap-2 px-4 py-2 text-sm"
+        style={{ fontFamily: 'var(--font-orbitron)' }}
       >
         <Plus size={16} />
         Create Club

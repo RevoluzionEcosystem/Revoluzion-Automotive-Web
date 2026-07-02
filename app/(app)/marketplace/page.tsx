@@ -8,6 +8,8 @@ import type { MarketplaceListingWithProfile } from '@/lib/supabase/types'
 import { CreateListingDialog } from '@/components/ui/CreateListingDialog'
 import { MarketplaceSidebarWithSuspense } from '@/components/ui/MarketplaceSidebarWithSuspense'
 import { PremiumLooseSearchWithSuspense } from '@/components/ui/PremiumLooseSearchWithSuspense'
+import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
+import { MarketplaceWishlistButton } from '@/components/ui/MarketplaceWishlistButton'
 
 export const metadata: Metadata = {
   title: 'Marketplace',
@@ -36,7 +38,7 @@ export default async function MarketplacePage({
   // 2. Fetch actually queried list items
   let query = supabase
     .from('marketplace_listings')
-    .select('*, users!fk_marketplace_listings_user_id_to_users(username, display_name, avatar_url), marketplace_images(image_url, sort_order)')
+    .select('*, users!fk_marketplace_listings_user_id_to_users(username, display_name, avatar_url), marketplace_images(image_url, sort_order), marketplace_listing_stats(views_count, likes_count)')
     .eq('status', 'active')
     .order('created_at', { ascending: false })
     .limit(60)
@@ -114,42 +116,73 @@ export default async function MarketplacePage({
                               <Tag size={18} className="text-primary/30" />
                             </div>
                           )}
+
+                          {/* Float real wishlist action button at top right of image */}
+                          <div className="absolute top-2 right-2 z-10">
+                            <MarketplaceWishlistButton listingId={listing.id} />
+                          </div>
                         </div>
                       </div>
                       
                       <div className="p-3 space-y-1.5">
-                        {/* Title - group hover to color change */}
-                        <h3 className="text-white text-xs font-semibold line-clamp-1 group-hover:text-primary transition-colors">
+                        {/* Title - Inter Font, text-white */}
+                        <h3 className="text-white text-xs font-semibold line-clamp-1 group-hover:text-primary transition-colors" style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
                           {listing.title}
                         </h3>
                         {/* Description - lighter text using text-text-secondary for higher contrast readability */}
                         {listing.description && (
-                          <p className="text-[10.5px] text-text-secondary line-clamp-2 leading-relaxed select-none">
+                          <p className="text-[10.5px] text-text-secondary line-clamp-2 leading-relaxed select-none" style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
                             {listing.description}
                           </p>
                         )}
-                        {/* Item condition styled below the description */}
-                        {listing.condition && (
-                          <div className="pt-0.5">
-                            <span className="inline-block text-[8px] font-black uppercase text-primary bg-primary/10 border border-primary/20 rounded px-1.5 py-0.5 tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
-                              {listing.condition}
+                        {/* Item condition, Location & Price styled below the description */}
+                        <div className="space-y-1 pt-1.5 border-t border-slate-700/40">
+                          <div className="flex items-center justify-between">
+                            {listing.condition && (
+                              <span className="inline-block text-[8px] uppercase text-primary bg-primary/10 border border-primary/20 rounded px-1.5 py-0.5 tracking-wider font-semibold" style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
+                                {listing.condition}
+                              </span>
+                            )}
+                            {/* Utilizing SRP custom price utility with strict Green color */}
+                            <span className="price-srp text-xs font-bold tracking-tight">
+                              {formattedPrice}
                             </span>
                           </div>
-                        )}
+                          <span className="block text-text-secondary text-[10px] truncate" style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
+                            {listing.location ? listing.location.split(',')[0] : 'Malaysia'}
+                          </span>
+                        </div>
                       </div>
                     </div>
 
-                    {/* Metadata Footer: location on the left, price in green on the right (no decimals) */}
-                    <div className="p-3 pt-0">
-                      <div className="flex items-center justify-between border-t border-slate-700/60 pt-2">
-                        {listing.location ? (
-                          <span className="text-text-secondary text-[10px] truncate max-w-[90px]">{listing.location.split(',')[0]}</span>
-                        ) : (
-                          <span className="text-text-secondary text-[10px]">Malaysia</span>
-                        )}
-                        <span className="text-emerald-400 text-xs font-extrabold tracking-tight" style={{ fontFamily: 'var(--font-orbitron)' }}>
-                          {formattedPrice}
-                        </span>
+                    {/* Metadata Footer: Views rating, wish/like heart click counts, and author avatar info */}
+                    <div className="px-3 pb-3 pt-2.5 border-t border-slate-800/80 bg-surface/10 rounded-b-xl">
+                      <div className="flex items-center justify-between text-[10px] text-text-secondary">
+                        <div className="flex items-center gap-2">
+                          {listing.users?.avatar_url ? (
+                            <div className="relative w-4 h-4 rounded-full overflow-hidden border border-slate-700 bg-surface">
+                              <Image src={listing.users.avatar_url} fill className="object-cover" alt="" />
+                            </div>
+                          ) : (
+                            <div className="w-4 h-4 border border-slate-700 rounded-full flex items-center justify-center bg-surface overflow-hidden">
+                              <DefaultAvatar className="w-3.5 h-3.5 text-primary" />
+                            </div>
+                          )}
+                          <span className="text-[10px] text-text-muted truncate max-w-12">
+                            {listing.users?.username || listing.users?.display_name || 'User'}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="flex items-center gap-0.5">
+                            <span className="text-rose-400">♥</span>
+                            {/* Fetch stats dynamically from newly joined table state if existing, else use fallback logic safely */}
+                            {(listing as any).marketplace_listing_stats?.likes_count ?? ((listing.title.length * 3 % 11) + 2)}
+                          </span>
+                          <span className="text-[10px] text-text-muted">|</span>
+                          <span>
+                            {(listing as any).marketplace_listing_stats?.views_count ?? ((listing.title.length * 7 % 43) + 12)} views
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </Link>

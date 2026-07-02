@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
-import { GarageSidebar } from '../GarageSidebar'
+import { GarageSidebar } from '@/components/ui/GarageSidebar'
 import type { BuildWithUser } from '@/lib/supabase/types'
 
 export default function BuildsPage() {

@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import { useSearchParams } from 'next/navigation'
-import { Tag, Layers, CheckCircle } from 'lucide-react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { Tag, Layers, CheckCircle, LayoutDashboard } from 'lucide-react'
 import { StandardSubmenuSidebar, SidebarSection } from '@/components/ui/StandardSubmenuSidebar'
 
 interface Props {
@@ -14,6 +14,7 @@ const CONDITIONS = ['All', 'New', 'Like New', 'Good', 'Fair']
 
 export function MarketplaceSidebar({ className = '' }: Props) {
   const searchParams = useSearchParams()
+  const router = useRouter()
 
   const activeCategory = searchParams.get('category') || 'All'
   const activeCondition = searchParams.get('condition') || 'All'
@@ -73,10 +74,24 @@ export function MarketplaceSidebar({ className = '' }: Props) {
     </div>
   )
 
+  const headerWidget = (
+    <div className="w-full mb-4">
+      <button
+        onClick={() => router.push('/marketplace/dashboard')}
+        className="w-full h-11 bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/60 rounded-xl flex items-center justify-center gap-2 text-white font-bold text-xs uppercase tracking-wider transition-all duration-200"
+        style={{ fontFamily: 'var(--font-orbitron)' }}
+      >
+        <LayoutDashboard className="h-4 w-4" />
+        My Dashboard
+      </button>
+    </div>
+  )
+
   return (
     <StandardSubmenuSidebar
       sections={sections}
       className={className}
+      headerWidget={headerWidget}
       footerWidget={footerWidget}
     />
   )

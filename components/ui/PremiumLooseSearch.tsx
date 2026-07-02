@@ -154,7 +154,7 @@ export function PremiumLooseSearch({ allListingsTitles }: Props) {
   }
 
   return (
-    <div className="w-full space-y-2 mb-6">
+    <div className="w-full space-y-2 mb-2">
       <form onSubmit={handleFormSubmit} className="flex gap-2 relative group w-full">
         <div className="relative flex-1">
           <input

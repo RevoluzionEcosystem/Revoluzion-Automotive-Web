@@ -1,10 +1,14 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { timeAgo } from '@/lib/utils'
-import { Heart, MessageCircle, Image as ImageIcon, X, Send, RefreshCw, AtSign, MoreVertical, Pencil, Trash2, Flag } from 'lucide-react'
+import { 
+  Heart, MessageCircle, Image as ImageIcon, X, Send, RefreshCw, 
+  AtSign, MoreVertical, Pencil, Trash2, Flag, Radio, Calendar, 
+  Car, Wrench, ShoppingBag, Eye, UserPlus 
+} from 'lucide-react'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import { PostContent } from '@/components/ui/PostContent'
 import { LinkPreview } from '@/components/ui/LinkPreview'
@@ -13,6 +17,33 @@ import type { PostWithUser } from '@/lib/supabase/types'
 import { toast } from 'sonner'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
+import { FeedSidebar } from '@/components/ui/FeedSidebar'
+
+interface FeedItem {
+  id: string
+  feedType: 'post' | 'car' | 'build' | 'event' | 'listing'
+  created_at: string
+  user_id: string
+  content: string
+  image_url: string | null
+  likes_count?: number
+  comments_count?: number
+  metadata: {
+    title?: string
+    make?: string
+    model?: string
+    year?: number | string
+    location?: string
+    price?: number | string
+    category?: string
+    mods?: string[]
+    username?: string
+    display_name?: string
+    avatar_url?: string
+    is_verified?: boolean
+  }
+}
 
 // ── Anti-spam: max 3 posts in any 60-second window ───────────────────────────
 const POST_SPAM_WINDOW_MS = 60_000
@@ -53,7 +84,7 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
   const [menuOpen, setMenuOpen] = useState(false)
 
   // Track parent comment expand threads, replying states, etc.
-  const [isCommentsExpanded, setIsCommentsExpanded] = useState(true)
+  const [isCommentsExpanded, setIsCommentsExpanded] = useState(false)
   const [quickCommentText, setQuickCommentText] = useState('')
   const [postingComment, setPostingComment] = useState(false)
   const [expandedThreads, setExpandedThreads] = useState<Record<string, boolean>>({})
@@ -70,7 +101,7 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
         .order('created_at', { ascending: true })
       return data ?? []
     },
-    enabled: true
+    enabled: isCommentsExpanded
   })
 
   // Submit Quick Comment (handles both main comments and sub-replies)
@@ -185,7 +216,6 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
     if (!reportReason.trim()) { toast.error('Select a reason', { description: 'Please choose a report reason before submitting.' }); return }
     if (!currentUserId) { toast.error('Sign in to report', { description: 'You must be signed in to report posts.' }); return }
     setReportSending(true)
-    // Try the RPC first (saves report + DMs admin); fall back to direct insert
     const { error: rpcError } = await supabase.rpc('report_post', {
       p_post_id: post.id,
       p_reason: reportReason,
@@ -196,7 +226,6 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
         .insert({ post_id: post.id, reporter_id: currentUserId, reason: reportReason })
         .single()
       if (insertError && insertError.code !== '23505') {
-        // 23505 = unique_violation (already reported) — treat as success
         setReportSending(false)
         toast.error('Report failed', { description: 'Could not submit your report. Please try again.' })
         return
@@ -221,7 +250,7 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
 
   return (
     <>
-      <article className="group relative flex flex-col justify-between rounded-2xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 hover:border-white/11 transition-all duration-300 p-5 mb-4 shadow-xl">
+      <article className="group relative flex flex-col justify-between rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 hover:border-white/11 transition-all duration-300 p-5 mb-4 shadow-xl">
         {/* Header */}
         <div className="flex items-start gap-3 mb-3">
           <Link href={`/u/${profile?.username || post.user_id}`}>
@@ -257,7 +286,6 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
             )}
           </div>
 
-          {/* Three-dot menu — owner sees Edit/Delete, others see Report */}
           {(isOwner || (currentUserId && currentUserId !== post.user_id)) && (
             <div className="relative" ref={menuRef}>
               <button
@@ -307,7 +335,7 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
 
         {/* Image */}
         {post.image_url && (
-          <div className="mb-3 rounded-lg overflow-hidden border border-border">
+          <div className="mb-3 rounded-lg overflow-hidden border border-border mt-3">
             {imgError ? (
               <div className="flex flex-col items-center justify-center gap-3 py-10 bg-surface-variant">
                 <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12 opacity-50">
@@ -367,14 +395,12 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
         {isCommentsExpanded && (
           <div className="mt-4 pt-4 border-t border-border/40 space-y-4">
             <div className="space-y-4">
-              {/* Separate into parent comments and their nested replies */}
               {(() => {
                 const parentComments = inlineComments.filter((c: any) => !c.parent_id)
                 const childComments = inlineComments.filter((c: any) => c.parent_id)
 
                 return parentComments.map((parent: any) => {
                   const replies = childComments.filter((c: any) => c.parent_id === parent.id)
-                  const isThreadExpanded = !!expandedThreads[parent.id]
 
                   return (
                     <div key={parent.id} className="space-y-2 border-b border-border/10 pb-3 last:border-0 last:pb-0">
@@ -409,7 +435,6 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
                           >
                             <PostContent content={parent.content} />
                             
-                            {/* Hover overlay with word click to reply */}
                             <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover/comment:opacity-100 transition-opacity duration-200 flex items-center justify-end pr-3">
                               <span className="text-[9px] text-primary font-bold tracking-widest uppercase bg-slate-950/80 border border-primary/30 px-1.5 py-0.5 rounded shadow-[0_0_10px_rgba(6,182,212,0.15)] animate-fade-in">
                                 Click to Reply
@@ -419,7 +444,7 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
                         </div>
                       </div>
 
-                      {/* Nested Replies List (always visible, no collapsible/hide actions) */}
+                      {/* Nested Replies List */}
                       {replies.length > 0 && (
                         <div className="pl-9 space-y-2.5 border-l border-white/5 ml-3.5 pt-1">
                           {replies.map((reply: any) => (
@@ -453,7 +478,6 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
                                 >
                                   <PostContent content={reply.content} />
 
-                                  {/* Hover overlay with word click to reply */}
                                   <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover/comment:opacity-100 transition-opacity duration-200 flex items-center justify-end pr-2.5">
                                     <span className="text-[8px] text-primary font-bold tracking-widest uppercase bg-slate-950/80 border border-primary/30 px-1 py-0.5 rounded shadow-[0_0_10px_rgba(6,182,212,0.15)] animate-fade-in">
                                       Click to Reply
@@ -710,19 +734,19 @@ function CreatePost({ currentUserId }: { currentUserId: string }) {
       setContent('')
       setImageFile(null)
       setImagePreview(null)
-      queryClient.invalidateQueries({ queryKey: ['feed'] })
+      queryClient.invalidateQueries({ queryKey: ['aggregated-feed'] })
       toast.success('Post published! 🚀', { description: 'Your post is now live in the community feed.' })
     }
     setSubmitting(false)
   }
 
   return (
-    <form onSubmit={handleSubmit} className="group relative flex flex-col justify-between rounded-2xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 hover:border-white/11 transition-all duration-300 p-5 mb-4 shadow-xl">
+    <form onSubmit={handleSubmit} className="group relative flex flex-col justify-between rounded-xl bg-[#141721] border border-white/5 hover:border-white/10 transition-all duration-300 p-5 mb-5 shadow-xl">
       <MentionTextarea
         value={content}
         onChange={setContent}
         placeholder="What's happening in the automotive world? Use @ to mention members."
-        className="input resize-none text-sm min-h-20 mb-3 bg-black text-white w-full border border-white/10"
+        className="input resize-none text-xs min-h-20 mb-3 bg-black text-white w-full border border-white/10"
         maxLength={20000}
       />
       <LinkPreview content={content} />
@@ -760,7 +784,7 @@ function CreatePost({ currentUserId }: { currentUserId: string }) {
         <button
           type="submit"
           disabled={submitting || (!content.trim() && !imageFile)}
-          className="btn-primary py-1.5 px-4 text-sm flex items-center gap-2"
+          className="btn-primary py-1.5 px-4 text-xs flex items-center gap-2"
         >
           <Send size={14} />
           {submitting ? 'Posting...' : 'Post'}
@@ -773,6 +797,9 @@ function CreatePost({ currentUserId }: { currentUserId: string }) {
 export default function FeedPage() {
   const supabase = createClient()
   const queryClient = useQueryClient()
+  const searchParams = useSearchParams()
+
+  const activeType = searchParams.get('type') || 'all'
 
   const { data: user } = useQuery({
     queryKey: ['auth-user'],
@@ -785,21 +812,169 @@ export default function FeedPage() {
 
   const userId = user?.id ?? null
 
-  const { data: feedData, isLoading } = useQuery({
-    queryKey: ['feed', userId],
+  const { data: aggregatedFeed, isLoading } = useQuery({
+    queryKey: ['aggregated-feed', userId],
     queryFn: async () => {
-      const { data, error } = await supabase
+      // 1. Fetch Posts
+      const { data: postsRaw } = await supabase
         .from('posts')
-        .select('id, user_id, content, image_url, likes_count, comments_count, car_id, created_at, updated_at, users!posts_user_id_fkey(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, content, image_url, likes_count, comments_count, created_at, users!posts_user_id_fkey(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
-        .limit(50)
-      if (error) throw error
-      const posts = (data ?? []).map((r: any) => ({
-        ...r,
-        users: Array.isArray(r.users) ? (r.users[0] ?? null) : (r.users ?? null),
-      })) as PostWithUser[]
+        .limit(30)
 
-      const postIds = posts.map(p => p.id)
+      // 2. Fetch Cars added to garages
+      const { data: carsRaw } = await supabase
+        .from('cars')
+        .select('id, user_id, make, model, year, color, image_url, car_bio, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .order('created_at', { ascending: false })
+        .limit(15)
+
+      // 3. Fetch builds added to profiles
+      const { data: buildsRaw } = await supabase
+        .from('builds')
+        .select('id, user_id, title, description, image_url, mods, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .order('created_at', { ascending: false })
+        .limit(15)
+
+      // 4. Fetch public upcoming meets / events
+      const { data: eventsRaw } = await supabase
+        .from('events')
+        .select('id, user_id, title, category, date, location, banner_url, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .order('created_at', { ascending: false })
+        .limit(15)
+
+      // 5. Fetch marketplace classified listings
+      const { data: listingsRaw } = await supabase
+        .from('marketplace_listings')
+        .select('id, user_id, title, description, price, category, condition, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .order('created_at', { ascending: false })
+        .limit(15)
+
+      // Format everything into standardized FeedItems
+      const items: FeedItem[] = []
+
+      // Standard manual chitchats
+      if (postsRaw) {
+        postsRaw.forEach((p: any) => {
+          const profile = Array.isArray(p.users) ? p.users[0] : p.users
+          items.push({
+            id: p.id,
+            feedType: 'post',
+            created_at: p.created_at,
+            user_id: p.user_id,
+            content: p.content,
+            image_url: p.image_url,
+            likes_count: p.likes_count,
+            comments_count: p.comments_count,
+            metadata: {
+              username: profile?.username,
+              display_name: profile?.display_name,
+              avatar_url: profile?.avatar_url,
+              is_verified: profile?.is_verified,
+            }
+          })
+        })
+      }
+
+      // New collection car notices
+      if (carsRaw) {
+        carsRaw.forEach((c: any) => {
+          items.push({
+            id: c.id,
+            feedType: 'car',
+            created_at: c.created_at,
+            user_id: c.user_id,
+            content: c.car_bio || `Added ${c.make} ${c.model} to garage pack.`,
+            image_url: c.image_url,
+            metadata: {
+              make: c.make,
+              model: c.model,
+              year: c.year,
+              location: c.color,
+              username: c.users?.username,
+              display_name: c.users?.display_name,
+              avatar_url: c.users?.avatar_url,
+              is_verified: c.users?.is_verified,
+            }
+          })
+        })
+      }
+
+      // Live modifying build timeline logs
+      if (buildsRaw) {
+        buildsRaw.forEach((b: any) => {
+          items.push({
+            id: b.id,
+            feedType: 'build',
+            created_at: b.created_at,
+            user_id: b.user_id,
+            content: b.description || `Updated car build timeline logs.`,
+            image_url: b.image_url,
+            metadata: {
+              title: b.title,
+              mods: b.mods || [],
+              username: b.users?.username,
+              display_name: b.users?.display_name,
+              avatar_url: b.users?.avatar_url,
+              is_verified: b.users?.is_verified,
+            }
+          })
+        })
+      }
+
+      // Public meets
+      if (eventsRaw) {
+        eventsRaw.forEach((e: any) => {
+          items.push({
+            id: e.id,
+            feedType: 'event',
+            created_at: e.created_at,
+            user_id: e.user_id,
+            content: `Event scheduled: ${e.title}`,
+            image_url: e.banner_url,
+            metadata: {
+              title: e.title,
+              category: e.category,
+              location: e.location,
+              year: e.date,
+              username: e.users?.username,
+              display_name: e.users?.display_name,
+              avatar_url: e.users?.avatar_url,
+              is_verified: e.users?.is_verified,
+            }
+          })
+        })
+      }
+
+      // Marketplace components deals
+      if (listingsRaw) {
+        listingsRaw.forEach((l: any) => {
+          items.push({
+            id: l.id,
+            feedType: 'listing',
+            created_at: l.created_at,
+            user_id: l.user_id,
+            content: l.description || `Listed component on market.`,
+            image_url: null,
+            metadata: {
+              title: l.title,
+              price: l.price,
+              category: l.category,
+              location: l.condition,
+              username: l.users?.username,
+              display_name: l.users?.display_name,
+              avatar_url: l.users?.avatar_url,
+              is_verified: l.users?.is_verified,
+            }
+          })
+        })
+      }
+
+      // Sort everything reverse-chronologically (newest occurrence first)
+      items.sort((a,b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+
+      // Fetch like state mappings for standard posts:
+      const postIds = items.filter(x => x.feedType === 'post').map(x => x.id)
       const commentMap: Record<string, TopComment> = {}
       if (postIds.length > 0) {
         const { data: comments } = await supabase
@@ -817,7 +992,6 @@ export default function FeedPage() {
         }
       }
 
-      // Fetch which posts the current user has liked
       let likedSet = new Set<string>()
       if (userId && postIds.length > 0) {
         const { data: likes } = await supabase
@@ -828,60 +1002,317 @@ export default function FeedPage() {
         likedSet = new Set((likes ?? []).map(r => (r as { post_id: string }).post_id))
       }
 
-      return { posts, commentMap, likedSet }
-    },
+      return { items, likedSet, commentMap }
+    }
   })
 
-  const posts = feedData?.posts ?? []
-  const commentMap = feedData?.commentMap ?? {}
-  const likedSet = feedData?.likedSet ?? new Set<string>()
+  const rawItems = aggregatedFeed?.items ?? []
+  const likedSet = aggregatedFeed?.likedSet ?? new Set<string>()
+  const commentMap = aggregatedFeed?.commentMap ?? {}
 
-  // Realtime subscription
-  useEffect(() => {
-    const channel = supabase
-      .channel('posts-feed')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'posts' }, () => {
-        queryClient.invalidateQueries({ queryKey: ['feed'] })
-      })
-      .subscribe()
-
-    return () => { supabase.removeChannel(channel) }
-  }, [supabase, queryClient])
+  // Filter based on active sidebar tab trigger:
+  const filteredFeed = useMemo(() => {
+    if (activeType === 'all') return rawItems
+    if (activeType === 'posts') return rawItems.filter(item => item.feedType === 'post')
+    if (activeType === 'garage') return rawItems.filter(item => item.feedType === 'car')
+    if (activeType === 'builds') return rawItems.filter(item => item.feedType === 'build')
+    if (activeType === 'events') return rawItems.filter(item => item.feedType === 'event')
+    if (activeType === 'listings') return rawItems.filter(item => item.feedType === 'listing')
+    return rawItems
+  }, [rawItems, activeType])
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold gradient-text mb-4">Community Feed Timeline</h1>
+    <div className="flex flex-col lg:flex-row gap-8 p-6">
+      
+      {/* Dynamic Network Feed Navigation */}
+      <FeedSidebar />
 
-      {user && <CreatePost currentUserId={user.id} />}
+      {/* Main Stream Hub Feed */}
+      <main className="flex-1 min-w-0">
+        
+        {/* Quick Header */}
+        <div className="flex items-center justify-between pb-4 border-b border-border/40 mb-6 font-semibold">
+          <div>
+            <h1 className="text-2xl font-bold gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Revoluzion Feeds</h1>
+            <p className="text-text-muted text-sm mt-1">Real-time telemetry of members chitchat, car updates, event launches, and custom modification builds</p>
+          </div>
+        </div>
 
-      {isLoading ? (
-        <div className="space-y-4">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="card p-4 animate-pulse">
-              <div className="flex gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-surface-variant" />
-                <div className="flex-1">
-                  <div className="h-3 bg-surface-variant rounded w-32 mb-2" />
-                  <div className="h-2 bg-surface-variant rounded w-20" />
+        {activeType === 'all' && user && <CreatePost currentUserId={user.id} />}
+
+        {isLoading ? (
+          <div className="space-y-4">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="card p-4 animate-pulse">
+                <div className="flex gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-surface-variant" />
+                  <div className="flex-1">
+                    <div className="h-3.5 bg-surface-variant rounded w-32 mb-2" />
+                    <div className="h-2 bg-surface-variant rounded w-16" />
+                  </div>
                 </div>
+                <div className="h-3 bg-surface-variant rounded w-full mb-1.5" />
+                <div className="h-3 bg-surface-variant rounded w-2/3" />
               </div>
-              <div className="h-4 bg-surface-variant rounded w-full mb-2" />
-              <div className="h-4 bg-surface-variant rounded w-3/4" />
-            </div>
-          ))}
-        </div>
-      ) : posts.length === 0 ? (
-        <div className="text-center py-16 text-text-muted">
-          <MessageCircle size={40} className="mx-auto mb-3 opacity-30" />
-          <p>No posts yet. Be the first to share!</p>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} currentUserId={user?.id ?? null} topComment={commentMap[post.id]} initialLiked={likedSet.has(post.id)} />
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        ) : filteredFeed.length === 0 ? (
+          <div className="text-center py-20 text-text-muted bg-surface/10 border border-slate-900 rounded-2xl">
+            <Radio size={40} className="mx-auto mb-3 text-primary/10 animate-pulse" />
+            <p className="font-semibold text-white uppercase text-xs tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>Timeline silent</p>
+            <p className="text-xs max-w-xs mx-auto leading-relaxed mt-1">No activities found under this timeline tab currently. Submit a post to start the stream!</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filteredFeed.map((item) => {
+              
+              // ── 1. POST chitchat type card ──
+              if (item.feedType === 'post') {
+                const legacyPost: PostWithUser = {
+                  id: item.id,
+                  user_id: item.user_id,
+                  content: item.content,
+                  image_url: item.image_url,
+                  likes_count: item.likes_count ?? 0,
+                  comments_count: item.comments_count ?? 0,
+                  car_id: null,
+                  created_at: item.created_at,
+                  updated_at: item.created_at,
+                  users: {
+                    id: item.user_id,
+                    username: item.metadata.username || 'member',
+                    display_name: item.metadata.display_name ?? null,
+                    avatar_url: item.metadata.avatar_url ?? null,
+                    is_verified: item.metadata.is_verified || false,
+                    company_name: null,
+                    bio: null,
+                    location: null,
+                    phone: null,
+                    role: 'user',
+                    shop_role: null,
+                    dealer_tier: null,
+                    stripe_customer_id: null,
+                    followers_count: 0,
+                    following_count: 0,
+                    created_at: item.created_at
+                  }
+                }
+                return (
+                  <PostCard 
+                    key={item.id} 
+                    post={legacyPost} 
+                    currentUserId={userId} 
+                    topComment={commentMap[item.id]} 
+                    initialLiked={likedSet.has(item.id)} 
+                  />
+                )
+              }
+
+              // ── 2. CAR added list type card ──
+              if (item.feedType === 'car') {
+                return (
+                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                    <div className="flex gap-3 leading-none items-center">
+                      <Link href={`/u/${item.metadata.username}`}>
+                        {item.metadata.avatar_url ? (
+                          <img src={item.metadata.avatar_url} alt="" className="w-8 h-8 rounded-full object-cover border border-slate-800 shrink-0" />
+                        ) : (
+                          <DefaultAvatar className="w-8 h-8 font-semibold shrink-0" />
+                        )}
+                      </Link>
+                      <div>
+                        <div className="text-xs text-white">
+                          <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
+                            {item.metadata.display_name || item.metadata.username}
+                          </Link>
+                          <span className="text-text-muted font-medium ml-1.5">added a new car collection</span>
+                        </div>
+                        <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                      </div>
+                      <Car size={13} className="text-primary ml-auto opacity-40" />
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
+                      <div className="space-y-1 inline-block min-w-0 flex-1">
+                        <Link 
+                          href={`/u/${item.metadata.username}`} 
+                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                        >
+                          {item.metadata.year} {item.metadata.make} {item.metadata.model}
+                        </Link>
+                        <p className="text-[11px] text-text-disabled pt-1">{item.content}</p>
+                      </div>
+
+                      {item.image_url && (
+                        <div className="h-16 w-24 bg-surface rounded-lg border border-slate-800 shrink-0 overflow-hidden relative">
+                          <img src={item.image_url} alt="" className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              }
+
+              // ── 3. BUILD update timeline card ──
+              if (item.feedType === 'build') {
+                return (
+                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                    <div className="flex gap-3 leading-none items-center">
+                      <Link href={`/u/${item.metadata.username}`}>
+                        {item.metadata.avatar_url ? (
+                          <img src={item.metadata.avatar_url} alt="" className="w-8 h-8 rounded-full object-cover border border-slate-800 shrink-0" />
+                        ) : (
+                          <DefaultAvatar className="w-8 h-8 font-semibold shrink-0" />
+                        )}
+                      </Link>
+                      <div>
+                        <div className="text-xs text-white">
+                          <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
+                            {item.metadata.display_name || item.metadata.username}
+                          </Link>
+                          <span className="text-text-muted font-medium ml-1.5">published a custom build log</span>
+                        </div>
+                        <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                      </div>
+                      <Wrench size={13} className="text-primary ml-auto opacity-40" />
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
+                      <div className="space-y-1 block min-w-0 pr-2 flex-1">
+                        <Link 
+                          href={`/u/${item.metadata.username}`} 
+                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                        >
+                          BUILD: {item.metadata.title}
+                        </Link>
+                        <p className="text-[11px] text-text-disabled pt-1 leading-relaxed">{item.content}</p>
+                        
+                        {item.metadata.mods && item.metadata.mods.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {item.metadata.mods.slice(0,3).map((m) => (
+                              <span key={m} className="px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20 text-[9px] font-mono text-primary uppercase">{m}</span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {item.image_url && (
+                        <div className="h-16 w-24 bg-surface rounded-lg border border-slate-800 shrink-0 overflow-hidden relative">
+                          <img src={item.image_url} alt="" className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              }
+
+              // ── 4. EVENT car meets schedule card ──
+              if (item.feedType === 'event') {
+                return (
+                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                    <div className="flex gap-3 leading-none items-center justify-between">
+                      <div className="flex gap-3 leading-none items-center">
+                        <Link href={`/u/${item.metadata.username}`}>
+                          {item.metadata.avatar_url ? (
+                            <img src={item.metadata.avatar_url} alt="" className="w-8 h-8 rounded-full object-cover border border-slate-800 shrink-0" />
+                          ) : (
+                            <DefaultAvatar className="w-8 h-8 font-semibold shrink-0" />
+                          )}
+                        </Link>
+                        <div>
+                          <div className="text-xs text-white">
+                            <span className="text-text-muted font-medium mr-1.5">New event listed by</span>
+                            <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
+                              {item.metadata.display_name || item.metadata.username}
+                            </Link>
+                          </div>
+                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                        </div>
+                      </div>
+                      <span className="text-[9px] font-black uppercase text-primary border border-primary/40 rounded px-1.5 py-0.5 bg-primary/5 tracking-widest">{item.metadata.category || 'Meet'}</span>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
+                      <div className="space-y-1 block min-w-0 flex-1">
+                        <Link 
+                          href="/events" 
+                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                        >
+                          UPCOMING: {item.metadata.title}
+                        </Link>
+                        <p className="text-[11px] text-text-disabled pt-1">Location: {item.metadata.location}</p>
+                      </div>
+
+                      <div className="flex gap-2 shrink-0">
+                        <Link
+                          href="/events"
+                          className="h-8 px-3 rounded-lg border border-slate-800 hover:border-slate-700 font-mono text-[9px] font-black text-white hover:bg-slate-900 inline-flex items-center uppercase tracking-widest"
+                        >
+                          RSVP &rarr;
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+
+              // ── 5. MARKETPLACE listing catalog card ──
+              if (item.feedType === 'listing') {
+                return (
+                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                    <div className="flex gap-3 leading-none items-center justify-between">
+                      <div className="flex gap-3 leading-none items-center">
+                        <Link href={`/u/${item.metadata.username}`}>
+                          {item.metadata.avatar_url ? (
+                            <img src={item.metadata.avatar_url} alt="" className="w-8 h-8 rounded-full object-cover border border-slate-800 shrink-0" />
+                          ) : (
+                            <DefaultAvatar className="w-8 h-8 font-semibold shrink-0" />
+                          )}
+                        </Link>
+                        <div>
+                          <div className="text-xs text-white">
+                            <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
+                              {item.metadata.display_name || item.metadata.username}
+                            </Link>
+                            <span className="text-text-muted font-medium ml-1.5">placed item in marketplace classifieds</span>
+                          </div>
+                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                        </div>
+                      </div>
+                      <ShoppingBag size={13} className="text-primary opacity-40 shrink-0" />
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
+                      <div className="space-y-1 block min-w-0 flex-1">
+                        <Link 
+                          href="/marketplace" 
+                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                        >
+                          FOR SALE: {item.metadata.title} ({item.metadata.location})
+                        </Link>
+                        <p className="text-[11px] text-text-disabled pt-1 leading-relaxed line-clamp-1">{item.content}</p>
+                      </div>
+
+                      <div className="flex items-center gap-3 shrink-0">
+                        <span className="text-xs text-primary font-mono font-black">RM {item.metadata.price}</span>
+                        <Link
+                          href="/marketplace"
+                          className="h-8 px-3 rounded-lg border border-slate-800 hover:border-slate-700 font-mono text-[9px] font-black text-white hover:bg-slate-900 inline-flex items-center uppercase tracking-widest"
+                        >
+                          View Deal
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+
+              return null
+            })}
+          </div>
+        )}
+      </main>
+
     </div>
   )
 }

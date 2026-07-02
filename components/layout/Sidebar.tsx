@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import {
   Home, Users, ShoppingBag, CalendarDays,
   Car, Map, MessageSquare, Bell, User, Store, BookOpen,
-  LogIn, ChevronLeft, ChevronRight, LogOut
+  LogIn, ChevronLeft, ChevronRight, LogOut, Mail
 } from 'lucide-react'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -73,14 +73,14 @@ export function Sidebar() {
             className={cn(
               'flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 relative group overflow-hidden border',
               pathname === '/shop' || pathname.startsWith('/shop/')
-                ? 'bg-primary/25 border-primary text-primary shadow-[0_0_15px_rgba(6,182,212,0.3)]'
-                : 'bg-primary/5 hover:bg-primary/10 border-primary/20 text-[#06B6D4] hover:text-[#22D3EE] shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.25)]'
+                ? 'bg-primary/25 border-primary text-white shadow-[0_0_15px_rgba(6,182,212,0.3)]'
+                : 'bg-primary/5 hover:bg-primary/10 border-primary/20 text-white hover:text-white shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.25)]'
             )}
           >
             <ShoppingBag size={18} className="shrink-0 animate-pulse text-primary group-hover:scale-110 transition-transform" />
             {!collapsed && (
               <span 
-                className="text-xs font-bold leading-normal" 
+                className="text-xs font-bold leading-normal text-white" 
                 style={{ fontFamily: 'var(--font-orbitron)', letterSpacing: '0.05em' }}
               >
                 Shop Revoluzion Products
@@ -118,6 +118,13 @@ export function Sidebar() {
         >
           <Bell size={18} className="shrink-0" />
           {!collapsed && <span className="text-sm font-medium">Notifications</span>}
+        </Link>
+        <Link
+          href="/chat/dm/inbox"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
+        >
+          <Mail size={18} className="shrink-0" />
+          {!collapsed && <span className="text-sm font-medium">Inbox</span>}
         </Link>
         <Link
           href="/profile"

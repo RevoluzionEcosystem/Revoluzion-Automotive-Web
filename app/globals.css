@@ -191,10 +191,14 @@ h1, h2
 
   /* Global price utilities */
   .price-srp {
-    @apply text-green-400/90 font-bold tabular-nums;
+    color: #22C55E !important;
+    font-family: var(--font-inter), sans-serif !important;
+    font-weight: 700 !important;
   }
   .price-dealer {
-    @apply text-orange-400/80 font-semibold tabular-nums text-sm;
+    color: #86EFAC !important;
+    font-family: var(--font-inter), sans-serif !important;
+    font-weight: 700 !important;
   }
   .price-out-of-stock {
     @apply text-text-muted line-through tabular-nums;

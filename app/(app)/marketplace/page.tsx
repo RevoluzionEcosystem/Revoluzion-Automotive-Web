@@ -36,7 +36,7 @@ export default async function MarketplacePage({
   // 2. Fetch actually queried list items
   let query = supabase
     .from('marketplace_listings')
-    .select('*, users(username, display_name, avatar_url), marketplace_images(image_url, sort_order)')
+    .select('*, users!fk_marketplace_listings_user_id_to_users(username, display_name, avatar_url), marketplace_images(image_url, sort_order)')
     .eq('status', 'active')
     .order('created_at', { ascending: false })
     .limit(60)

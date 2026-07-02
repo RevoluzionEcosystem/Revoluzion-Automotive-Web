@@ -28,7 +28,7 @@ export default async function MarketplaceListingPage({ params }: Props) {
 
   const { data: listing } = await supabase
     .from('marketplace_listings')
-    .select('*, users(username, display_name, avatar_url, is_verified), marketplace_images(image_url, sort_order)')
+    .select('*, users!fk_marketplace_listings_user_id_to_users(username, display_name, avatar_url, is_verified), marketplace_images(image_url, sort_order)')
     .eq('id', id)
     .single()
 

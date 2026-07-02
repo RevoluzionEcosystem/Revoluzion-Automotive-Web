@@ -87,14 +87,20 @@ export default async function MarketplacePage({
               <p className="text-sm mt-1">Try adapting categories, conditions, or keywords search in the sidebar</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
               {typedListings.map((listing) => {
                 const images = (listing.marketplace_images as { image_url: string; sort_order: number }[] | undefined)?.sort((a, b) => a.sort_order - b.sort_order)
                 const mainImage = images?.[0]?.image_url
+                
+                // Format price to remove .00 decimals and any extra currency spacing
+                const rawPrice = Math.floor(listing.price)
+                const formattedPrice = `RM ${rawPrice.toLocaleString('en-US')}`
+
                 return (
-                  <Link key={listing.id} href={`/marketplace/${listing.id}`} className="card-hover group overflow-hidden bg-surface/40 border border-border/80 rounded-2xl flex flex-col justify-between">
+                  <Link key={listing.id} href={`/marketplace/${listing.id}`} className="card-hover group overflow-hidden bg-surface/30 border border-border/40 rounded-xl flex flex-col justify-between text-xs transition-all duration-200">
                     <div>
-                      <div className="relative aspect-square bg-surface-variant overflow-hidden rounded-t-2xl">
+                      {/* 1:1 Aspect Ratio Image Frame */}
+                      <div className="relative aspect-square bg-surface-variant overflow-hidden rounded-t-xl border-b border-border/20">
                         {mainImage ? (
                           <Image
                             src={mainImage}
@@ -104,36 +110,43 @@ export default async function MarketplacePage({
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <Tag size={28} className="text-primary/40" />
+                            <Tag size={20} className="text-primary/30" />
                           </div>
                         )}
                         {listing.condition && (
-                          <div className="absolute top-2.5 left-2.5">
-                            <span className="text-[9px] font-black uppercase text-primary bg-black/80 border border-primary/25 rounded-md px-1.5 py-0.5 tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                          <div className="absolute top-2 left-2">
+                            <span className="text-[8px] font-black uppercase text-primary bg-black/80 border border-primary/20 rounded px-1.5 py-0.5 tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
                               {listing.condition}
                             </span>
                           </div>
                         )}
                       </div>
-                      <div className="p-4 space-y-1.5">
-                        {listing.category && (
-                          <span className="text-[10px] font-extrabold uppercase tracking-widest text-primary">
-                            {listing.category}
-                          </span>
-                        )}
-                        <h3 className="text-white text-xs font-semibold line-clamp-2 leading-relaxed group-hover:text-primary transition-colors">
+                      
+                      <div className="p-3 space-y-2">
+                        {/* Title - group hover to color change */}
+                        <h3 className="text-white text-xs font-semibold line-clamp-1 group-hover:text-primary transition-colors">
                           {listing.title}
                         </h3>
+                        {/* Description - truncated to exactly 2 rows */}
+                        {listing.description && (
+                          <p className="text-[10.5px] text-text-muted line-clamp-2 leading-relaxed opacity-75 select-none">
+                            {listing.description}
+                          </p>
+                        )}
                       </div>
                     </div>
-                    <div className="p-4 pt-0">
-                      <div className="flex items-center justify-between border-t border-border/40 pt-2.5 mt-2">
-                        <span className="text-primary text-xs font-extrabold" style={{ fontFamily: 'var(--font-orbitron)' }}>
-                          {formatCurrency(listing.price)}
-                        </span>
-                        {listing.location && (
-                          <span className="text-text-muted text-[10px] truncate max-w-25">{listing.location}</span>
+
+                    {/* Metadata Footer: location on the left, price in green on the right (no decimals) */}
+                    <div className="p-3 pt-0">
+                      <div className="flex items-center justify-between border-t border-border/20 pt-2">
+                        {listing.location ? (
+                          <span className="text-text-muted text-[10px] truncate max-w-[90px]">{listing.location.split(',')[0]}</span>
+                        ) : (
+                          <span className="text-text-muted text-[10px]">Malaysia</span>
                         )}
+                        <span className="text-emerald-400 text-xs font-extrabold tracking-tight" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                          {formattedPrice}
+                        </span>
                       </div>
                     </div>
                   </Link>

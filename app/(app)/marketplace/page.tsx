@@ -114,13 +114,6 @@ export default async function MarketplacePage({
                               <Tag size={18} className="text-primary/30" />
                             </div>
                           )}
-                          {listing.condition && (
-                            <div className="absolute top-1.5 left-1.5">
-                              <span className="text-[7.5px] font-black uppercase text-primary bg-black/85 border border-primary/20 rounded px-1 py-0.5 tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
-                                {listing.condition}
-                              </span>
-                            </div>
-                          )}
                         </div>
                       </div>
                       
@@ -134,6 +127,14 @@ export default async function MarketplacePage({
                           <p className="text-[10.5px] text-text-secondary line-clamp-2 leading-relaxed select-none">
                             {listing.description}
                           </p>
+                        )}
+                        {/* Item condition styled below the description */}
+                        {listing.condition && (
+                          <div className="pt-0.5">
+                            <span className="inline-block text-[8px] font-black uppercase text-primary bg-primary/10 border border-primary/20 rounded px-1.5 py-0.5 tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                              {listing.condition}
+                            </span>
+                          </div>
                         )}
                       </div>
                     </div>

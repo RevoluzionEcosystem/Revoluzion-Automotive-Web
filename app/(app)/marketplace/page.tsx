@@ -99,37 +99,39 @@ export default async function MarketplacePage({
                 return (
                   <Link key={listing.id} href={`/marketplace/${listing.id}`} className="card-hover group overflow-hidden bg-surface/30 border border-border/40 rounded-xl flex flex-col justify-between text-xs transition-all duration-200">
                     <div>
-                      {/* 1:1 Aspect Ratio Image Frame */}
-                      <div className="relative aspect-square bg-surface-variant overflow-hidden rounded-t-xl border-b border-border/20">
-                        {mainImage ? (
-                          <Image
-                            src={mainImage}
-                            alt={listing.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <Tag size={20} className="text-primary/30" />
-                          </div>
-                        )}
-                        {listing.condition && (
-                          <div className="absolute top-2 left-2">
-                            <span className="text-[8px] font-black uppercase text-primary bg-black/80 border border-primary/20 rounded px-1.5 py-0.5 tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
-                              {listing.condition}
-                            </span>
-                          </div>
-                        )}
+                      {/* Aspect Frame containing slightly smaller image and border margins to fit card bounds nicely */}
+                      <div className="p-2 pb-0">
+                        <div className="relative aspect-square bg-surface-variant overflow-hidden rounded-lg border border-border/10">
+                          {mainImage ? (
+                            <Image
+                              src={mainImage}
+                              alt={listing.title}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <Tag size={18} className="text-primary/30" />
+                            </div>
+                          )}
+                          {listing.condition && (
+                            <div className="absolute top-1.5 left-1.5">
+                              <span className="text-[7.5px] font-black uppercase text-primary bg-black/85 border border-primary/20 rounded px-1 py-0.5 tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                                {listing.condition}
+                              </span>
+                            </div>
+                          )}
+                        </div>
                       </div>
                       
-                      <div className="p-3 space-y-2">
+                      <div className="p-3 space-y-1.5">
                         {/* Title - group hover to color change */}
                         <h3 className="text-white text-xs font-semibold line-clamp-1 group-hover:text-primary transition-colors">
                           {listing.title}
                         </h3>
-                        {/* Description - truncated to exactly 2 rows */}
+                        {/* Description - lighter text using text-text-secondary for higher contrast readability */}
                         {listing.description && (
-                          <p className="text-[10.5px] text-text-muted line-clamp-2 leading-relaxed opacity-75 select-none">
+                          <p className="text-[10.5px] text-text-secondary line-clamp-2 leading-relaxed select-none">
                             {listing.description}
                           </p>
                         )}
@@ -140,9 +142,9 @@ export default async function MarketplacePage({
                     <div className="p-3 pt-0">
                       <div className="flex items-center justify-between border-t border-border/20 pt-2">
                         {listing.location ? (
-                          <span className="text-text-muted text-[10px] truncate max-w-[90px]">{listing.location.split(',')[0]}</span>
+                          <span className="text-text-secondary text-[10px] truncate max-w-[90px]">{listing.location.split(',')[0]}</span>
                         ) : (
-                          <span className="text-text-muted text-[10px]">Malaysia</span>
+                          <span className="text-text-secondary text-[10px]">Malaysia</span>
                         )}
                         <span className="text-emerald-400 text-xs font-extrabold tracking-tight" style={{ fontFamily: 'var(--font-orbitron)' }}>
                           {formattedPrice}

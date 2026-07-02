@@ -97,11 +97,11 @@ export default async function MarketplacePage({
                 const formattedPrice = `RM ${rawPrice.toLocaleString('en-US')}`
 
                 return (
-                  <Link key={listing.id} href={`/marketplace/${listing.id}`} className="card-hover group overflow-hidden bg-surface/30 border border-border/40 rounded-xl flex flex-col justify-between text-xs transition-all duration-200">
+                  <Link key={listing.id} href={`/marketplace/${listing.id}`} className="card-hover group overflow-hidden bg-gradient border border-slate-700 hover:border-slate-400 rounded-xl flex flex-col justify-between text-xs transition-all duration-200 shadow-md">
                     <div>
                       {/* Aspect Frame containing slightly smaller image and border margins to fit card bounds nicely */}
                       <div className="p-2 pb-0">
-                        <div className="relative aspect-square bg-surface-variant overflow-hidden rounded-lg border border-border/10">
+                        <div className="relative aspect-square bg-surface-variant overflow-hidden rounded-lg border border-slate-700/60 group-hover:border-slate-500/50 transition-colors">
                           {mainImage ? (
                             <Image
                               src={mainImage}
@@ -140,7 +140,7 @@ export default async function MarketplacePage({
 
                     {/* Metadata Footer: location on the left, price in green on the right (no decimals) */}
                     <div className="p-3 pt-0">
-                      <div className="flex items-center justify-between border-t border-border/20 pt-2">
+                      <div className="flex items-center justify-between border-t border-slate-700/60 pt-2">
                         {listing.location ? (
                           <span className="text-text-secondary text-[10px] truncate max-w-[90px]">{listing.location.split(',')[0]}</span>
                         ) : (

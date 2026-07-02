@@ -155,26 +155,38 @@ export function PremiumLooseSearch({ allListingsTitles }: Props) {
 
   return (
     <div className="w-full space-y-2 mb-6">
-      <form onSubmit={handleFormSubmit} className="relative group">
-        <input
-          type="text"
-          placeholder="Search parts, engines, brands, tyres (Typo-safe)..."
-          value={inputVal}
-          onChange={(e) => setInputVal(e.target.value)}
-          className="w-full h-11 pl-11 pr-10 rounded-2xl bg-surface/50 border border-primary/40 focus:border-primary text-sm text-white placeholder-text-muted/60 focus:outline-none focus:ring-1 focus:ring-primary/25 transition-all shadow-lg"
-          style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-        />
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-primary group-focus-within:text-primary transition-colors" />
-        
-        {inputVal && (
-          <button
-            type="button"
-            onClick={handleClear}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-white p-1"
-          >
-            <X className="h-3.5 w-3.5" />
-          </button>
-        )}
+      <form onSubmit={handleFormSubmit} className="flex gap-2 relative group w-full">
+        <div className="relative flex-1">
+          <input
+            type="text"
+            placeholder="Search parts, engines, brands, tyres (Typo-safe)..."
+            value={inputVal}
+            onChange={(e) => setInputVal(e.target.value)}
+            className="w-full h-11 pl-11 pr-10 rounded-2xl bg-surface/50 border border-primary/40 focus:border-primary text-sm text-white placeholder-text-muted/60 focus:outline-none focus:ring-1 focus:ring-primary/25 transition-all shadow-lg"
+            style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+          />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-primary group-focus-within:text-primary transition-colors" />
+          
+          {inputVal && (
+            <button
+              type="button"
+              onClick={handleClear}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-white p-1"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          )}
+        </div>
+
+        {/* Small backup Search Button */}
+        <button
+          type="submit"
+          className="h-11 px-6 rounded-2xl bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/60 text-primary text-xs font-semibold tracking-wide transition-all shadow-md flex items-center gap-1.5 shrink-0"
+          style={{ fontFamily: 'var(--font-orbitron)' }}
+        >
+          <Search className="h-3 w-3" />
+          <span>Search</span>
+        </button>
       </form>
 
       {/* Suggested Typo correction element */}

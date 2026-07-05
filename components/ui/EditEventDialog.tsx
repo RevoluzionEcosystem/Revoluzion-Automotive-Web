@@ -17,6 +17,7 @@ interface EditEventDialogProps {
     state: string | null
     external_link: string | null
     price: string | null
+    status: string | null
   }
 }
 
@@ -38,6 +39,7 @@ export function EditEventDialog({ event }: EditEventDialogProps) {
     state: event.state || 'Selangor',
     externalLink: event.external_link || '',
     price: event.price || 'Free',
+    status: event.status || 'upcoming',
   })
 
   function set(field: string, value: any) {
@@ -64,6 +66,7 @@ export function EditEventDialog({ event }: EditEventDialogProps) {
         state: form.state,
         external_link: form.externalLink.trim() || null,
         price: form.price,
+        status: form.status,
       })
       .eq('id', event.id)
 
@@ -130,13 +133,29 @@ export function EditEventDialog({ event }: EditEventDialogProps) {
                 <label className="block text-[10px] font-black uppercase text-text-secondary tracking-widest mb-1.5">
                   Meetup Title <span className="text-red-500 font-bold">*</span>
                 </label>
-                <input
-                  className="input w-full bg-gradient-to-b from-black to-[#090b10] border border-white/10 rounded-lg p-2.5 text-white placeholder:text-text-muted/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/25 text-xs font-semibold"
-                  placeholder="e.g. PJ Midnight Coffee Cruise & Meet"
-                  value={form.title}
-                  onChange={(e) => set('title', e.target.value)}
-                  required
-                />
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="col-span-2">
+                    <input
+                      className="input w-full bg-gradient-to-b from-black to-[#090b10] border border-white/10 rounded-lg p-2.5 text-white placeholder:text-text-muted/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/25 text-xs font-semibold"
+                      placeholder="e.g. PJ Midnight Coffee Cruise & Meet"
+                      value={form.title}
+                      onChange={(e) => set('title', e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <select
+                      className={`input w-full bg-gradient-to-b from-black to-[#090b10] border border-white/10 rounded-lg p-2.5 text-xs font-black uppercase tracking-wider focus:border-primary/50 ${
+                        form.status === 'upcoming' || form.status === 'active' ? 'text-emerald-400' : form.status === 'draft' ? 'text-slate-400' : 'text-yellow-400'
+                      }`}
+                      value={form.status}
+                      onChange={(e) => set('status', e.target.value)}
+                    >
+                      <option value="upcoming" className="text-emerald-400 bg-background">Upcoming (Publish)</option>
+                      <option value="draft" className="text-slate-400 bg-background">Draft (Private)</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
               <div>

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Compass, BookmarkCheck, Users, ChevronRight, LayoutDashboard, PlusCircle } from 'lucide-react'
 import { StandardSubmenuSidebar, SidebarSection, SidebarSectionItem } from '@/components/ui/StandardSubmenuSidebar'
 
-interface ClubsSidebarProps {
+interface CarClubsSidebarProps {
   className?: string
   activeLocation?: string
   onCreateClubClick?: () => void
@@ -18,22 +18,22 @@ interface ClubsSidebarProps {
 const DEFAULTS_LOCATIONS = ['All', 'Selangor', 'Kuala Lumpur', 'Penang', 'Johor', 'Nationwide']
 
 /**
- * Super flexible global sidebar for the Clubs page and related views.
+ * Super flexible global sidebar for the Car Clubs page and related views.
  * Extends the global StandardSubmenuSidebar template pattern.
  */
-export function ClubsSidebar({
+export function CarClubsSidebar({
   className = '',
   activeLocation = 'All',
   onCreateClubClick,
   onMyDashboardClick,
   customSections,
   customFooter
-}: ClubsSidebarProps) {
+}: CarClubsSidebarProps) {
   const router = useRouter()
 
   const getHrefForLocation = (locationName: string) => {
-    if (locationName === 'All') return '/clubs'
-    return `/clubs?location=${encodeURIComponent(locationName)}`
+    if (locationName === 'All') return '/car-clubs'
+    return `/car-clubs?location=${encodeURIComponent(locationName)}`
   }
 
   // Define default section layout if no customSections are passed:
@@ -72,7 +72,7 @@ export function ClubsSidebar({
           REVOLUZION COMMUNITIES
         </span>
         <h2 className="text-sm font-bold text-white tracking-wide uppercase" style={{ fontFamily: 'var(--font-orbitron)' }}>
-          CLUBS PORTAL
+          CAR CLUBS PORTAL
         </h2>
       </div>
 

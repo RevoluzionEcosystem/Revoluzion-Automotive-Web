@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Rss, FileText, Car, Wrench, Calendar, ShoppingBag, Radio } from 'lucide-react'
+import { Rss, FileText, Car, Wrench, Calendar, ShoppingBag, Radio, MapPin } from 'lucide-react'
 import { StandardSubmenuSidebar, SidebarSection } from '@/components/ui/StandardSubmenuSidebar'
 
 interface Props {
@@ -71,6 +71,13 @@ export function FeedSidebar({ className = '' }: Props) {
           href: getHrefForType('listings'),
           isActive: activeType === 'listings',
           icon: <ShoppingBag className="h-3.5 w-3.5 text-text-muted shrink-0" />
+        },
+        {
+          key: 'services',
+          label: 'Automotive Services',
+          href: getHrefForType('services'),
+          isActive: activeType === 'services',
+          icon: <MapPin className="h-3.5 w-3.5 text-text-muted shrink-0" />
         }
       ]
     }

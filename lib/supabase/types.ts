@@ -238,6 +238,34 @@ export interface Database {
         Insert: Omit<Database['public']['Tables']['follows']['Row'], 'id' | 'created_at'>
         Update: Partial<Database['public']['Tables']['follows']['Row']>
       }
+      halfcuts: {
+        Row: {
+          id: string
+          user_id: string
+          title: string
+          location: string | null
+          contact: string | null
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['halfcuts']['Row'], 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Database['public']['Tables']['halfcuts']['Row']>
+      }
+      halfcut_items: {
+        Row: {
+          id: string
+          halfcut_id: string
+          title: string
+          price: number
+          oem_part_number: string | null
+          description: string | null
+          images_gallery: string[]
+          created_at: string
+        }
+        Insert: Omit<Database['public']['Tables']['halfcut_items']['Row'], 'id' | 'created_at'>
+        Update: Partial<Database['public']['Tables']['halfcut_items']['Row']>
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
@@ -258,12 +286,15 @@ export type ChatMessage = Database['public']['Tables']['chat_messages']['Row']
 export type Notification = Database['public']['Tables']['notifications']['Row']
 export type ActivityFeedItem = Database['public']['Tables']['activity_feed']['Row']
 export type Follow = Database['public']['Tables']['follows']['Row']
+export type Halfcut = Database['public']['Tables']['halfcuts']['Row']
+export type HalfcutItem = Database['public']['Tables']['halfcut_items']['Row']
 
 export type PostWithProfile = Post & { users: User | null }
 export type BuildWithProfile = Build & { users: User | null; cars: Car | null }
 export type MarketplaceListingWithProfile = MarketplaceListing & { users: User | null; marketplace_images: { image_url: string }[] }
 export type EventWithProfile = Event & { users: User | null }
 export type CommentWithProfile = PostComment & { users: User | null }
+export type HalfcutWithProfile = Halfcut & { users: User | null; halfcut_items: HalfcutItem[] }
 
 // New aliases for renamed table
 export type User = Database['public']['Tables']['users']['Row']
@@ -272,3 +303,4 @@ export type BuildWithUser = Build & { users: User | null; cars: Car | null }
 export type MarketplaceListingWithUser = MarketplaceListing & { users: User | null; marketplace_images: { image_url: string }[] }
 export type EventWithUser = Event & { users: User | null }
 export type CommentWithUser = PostComment & { users: User | null }
+export type HalfcutWithUser = Halfcut & { users: User | null; halfcut_items: HalfcutItem[] }

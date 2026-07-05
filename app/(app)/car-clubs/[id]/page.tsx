@@ -7,7 +7,7 @@ import { formatDate, timeAgo } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import { ClubActionsClient } from './ClubActionsClient'
-import { ClubsSidebar } from '@/components/ui/ClubsSidebar'
+import { CarClubsSidebar } from '@/components/ui/CarClubsSidebar'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -84,7 +84,7 @@ export default async function ClubDetailPage({ params }: Props) {
   return (
     <div className="flex flex-col lg:flex-row gap-8 p-6">
       {/* Unified Left Sidebar */}
-      <ClubsSidebar />
+      <CarClubsSidebar />
 
       {/* Right Main Interface */}
       <main className="flex-1 min-w-0 space-y-6">
@@ -98,7 +98,7 @@ export default async function ClubDetailPage({ params }: Props) {
 
           <div className="flex gap-2 shrink-0">
             <Link
-              href="/clubs"
+              href="/car-clubs"
               className="h-9 px-4 rounded-xl border border-slate-800 hover:border-slate-700 bg-transparent text-text-secondary hover:text-white font-bold text-[10px] uppercase tracking-wider flex items-center gap-1.5 transition-all"
               style={{ fontFamily: 'var(--font-orbitron)' }}
             >

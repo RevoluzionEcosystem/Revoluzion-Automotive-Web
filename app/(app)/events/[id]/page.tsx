@@ -39,11 +39,17 @@ export default async function EventDetailPage({ params }: Props) {
     .eq('id', id)
     .single()
 
-  const profile = event.users
+  if (!event) notFound()
 
-  // Check if session user matches event creator to enable edit/delete rights
+  // If the event is a draft, only allow the creator to view it
   const { data: { session } } = await supabase.auth.getSession()
   const isCreator = session?.user?.id === event.user_id
+
+  if (event.status === 'draft' && !isCreator) {
+    notFound()
+  }
+
+  const profile = event.users
 
   return (
     <div className="w-full mx-auto p-6 space-y-6">
@@ -51,9 +57,7 @@ export default async function EventDetailPage({ params }: Props) {
       <EventViewIncrement eventId={event.id} />
 
       <div className="flex items-center justify-between gap-4">
-        <Link href="/events" className="inline-flex items-center gap-2 text-text-muted hover:text-text-secondary transition-colors text-sm">
-          <ArrowLeft size={16} /> Back to Events
-        </Link>
+        <div />
         <div className="flex items-center gap-2">
           <EventLikeButton eventId={event.id} initialLikes={event.likes_count || 0} />
           {isCreator && (

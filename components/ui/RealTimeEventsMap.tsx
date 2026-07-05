@@ -181,39 +181,40 @@ export function RealTimeEventsMap({ events }: { events: EventMarker[] }) {
           const descText = ev.description ? ev.description : 'Join other active members and car enthusiasts at this Selangor staging meetup. Click to view.'
           const truncatedDesc = descText.length > 140 ? descText.substring(0, 140) + '...' : descText
 
+          const searchAddress = ev.state ? `${ev.location}, ${ev.state}` : ev.location
+          const coordinateFocus = `${ev.latitude},${ev.longitude}`
+          const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(coordinateFocus)}&theme=dark`
+          const wazeUrl = `https://waze.com/ul?ll=${ev.latitude},${ev.longitude}&q=${encodeURIComponent(searchAddress)}&navigate=yes`
+
           const contentString = `
-            <div style="font-family: var(--font-inter), sans-serif; color: #FFFFFF; width: 280px; display: flex; flex-col; gap: 8px;">
+            <div style="font-family: var(--font-inter), sans-serif; color: #FFFFFF; width: 280px; display: flex; flex-direction: column; gap: 8px;">
               
-              {/* Header tags badge */}
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; width: 100%;">
-                <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 4px;">
                   ${isToday ? `
-                    <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 900; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
+                    <span style="display: inline-flex; align-items: center; gap: 4.5px; font-size: 8px; font-weight: 900; background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
                       <span class="live-flashing-dot"></span> ONGOING / TODAY
                     </span>
                   ` : `
-                    <span style="display: inline-flex; align-items: center; font-size: 8.5px; font-weight: 900; background: rgba(6, 182, 212, 0.15); color: #06B6D4; border: 1px solid rgba(6, 182, 212, 0.3); padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
+                    <span style="display: inline-flex; align-items: center; font-size: 8px; font-weight: 900; background: rgba(6, 182, 212, 0.15); color: #06B6D4; border: 1px solid rgba(6, 182, 212, 0.3); padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
                       UPCOMING
                     </span>
                   `}
                 </div>
-                <span style="font-size: 8.5px; font-weight: 800; background: rgba(255,255,255,0.06); color: #9CA3AF; padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
+                <span style="font-size: 8px; font-weight: 800; background: rgba(255,255,255,0.06); color: #9CA3AF; padding: 2px 7px; border-radius: 4px; text-transform: uppercase;">
                   ${ev.category}
                 </span>
               </div>
 
-              {/* Meet Title */}
-              <div style="font-weight: 800; font-size: 15px; line-height: 1.25; margin-bottom: 6px; color: #FFFFFF; font-family: var(--font-orbitron), sans-serif; letter-spacing: -0.01em;">
+              <div style="font-weight: 800; font-size: 15px; line-height: 1.25; margin-bottom: 4px; color: #FFFFFF; font-family: var(--font-orbitron), sans-serif; letter-spacing: -0.01em;">
                 ${ev.title}
               </div>
 
-              {/* Description box: 4 rows truncated style */}
-              <div style="font-size: 11px; color: #9CA3AF; line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; height: 60px;">
+              <div style="font-size: 11px; color: #9CA3AF; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; height: 60px;">
                 ${truncatedDesc}
               </div>
 
-              {/* Meta details listings grid layout */}
-              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; padding: 8px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px;">
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; padding: 8px; margin-bottom: 4px; display: flex; flex-direction: column; gap: 4px;">
                 <div style="font-size: 10px; color: #D1D5DB; display: flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                   📍 <strong style="color: #6B7280; font-weight: 600;">Venue:</strong> ${ev.location}
                 </div>
@@ -227,8 +228,16 @@ export function RealTimeEventsMap({ events }: { events: EventMarker[] }) {
                 ` : ''}
               </div>
 
-              {/* Big Call-to-action button */}
-              <a href="/events/${ev.id}" style="display: block; text-align: center; font-size: 10.5px; font-weight: 800; background: #06B6D4; color: #000000; text-transform: uppercase; padding: 8px; border-radius: 6px; text-decoration: none; letter-spacing: 0.05em; box-shadow: 0 4px 10px rgba(6, 182, 212, 0.2); transition: all 0.2s;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 4px;">
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #06B6D4; color: #000000; text-decoration: none; padding: 6px 0; border-radius: 6px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.4px; font-family: var(--font-orbitron);">
+                  GO NOW
+                </a>
+                <a href="${wazeUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #1f2937; color: #ffffff; text-decoration: none; padding: 6px 0; border-radius: 6px; font-size: 10px; font-weight: 700; border: 1px solid #374151; text-transform: uppercase; letter-spacing: 0.4px; font-family: var(--font-orbitron);">
+                  Waze Nav
+                </a>
+              </div>
+
+              <a href="/events/${ev.id}" style="display: block; text-align: center; font-size: 10.5px; font-weight: 800; background: #1f2937; color: #ffffff; text-transform: uppercase; padding: 8px; border-radius: 6px; text-decoration: none; letter-spacing: 0.05em; transition: all 0.2s; border: 1px solid #374151;">
                 Join Meet / Details
               </a>
             </div>

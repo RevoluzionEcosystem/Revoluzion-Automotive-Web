@@ -84,7 +84,12 @@ export default function CommentSection({ postId }: Props) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!comment.trim() || !user) return
+    if (!comment.trim()) return
+
+    if (!user) {
+      toast.error('Sign In Required 🔒', { description: 'Please sign in to reply or post comments.' })
+      return
+    }
 
     const spamError = checkCommentSpam()
     if (spamError) {

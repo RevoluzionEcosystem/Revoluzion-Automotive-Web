@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import {
   Home, Users, ShoppingBag, CalendarDays,
   Car, Map, MessageSquare, Bell, User, Store, BookOpen,
-  LogIn, ChevronLeft, ChevronRight, LogOut, Mail
+  LogIn, ChevronLeft, ChevronRight, LogOut, Mail, Wrench, Bike
 } from 'lucide-react'
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -18,8 +18,11 @@ const navItems = [
   { href: '/chat', label: 'Chat', icon: MessageSquare },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/garage', label: 'Garage', icon: Car },
+  { href: '/vehicle-ads', label: 'Vehicle Ads', icon: Bike },
   { href: '/marketplace', label: 'Marketplace', icon: Store },
-  { href: '/clubs', label: 'Clubs', icon: Users },
+  { href: '/halfcuts', label: 'Halfcuts', icon: ShoppingBag },
+  { href: '/services', label: 'Services', icon: Wrench },
+  { href: '/car-clubs', label: 'Car Clubs', icon: Users },
   { href: '/members', label: 'Members', icon: User },
   // { href: '/explore/map', label: 'Map', icon: Map },
   { href: '/guides', label: 'Guides', icon: BookOpen },

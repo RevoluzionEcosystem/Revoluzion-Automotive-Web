@@ -73,10 +73,6 @@ export default async function MarketplaceListingPage({ params }: Props) {
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-      <Link href="/marketplace" className="inline-flex items-center gap-2 text-text-muted hover:text-text-secondary transition-colors text-sm mb-6">
-        <ArrowLeft size={16} /> Back to Marketplace
-      </Link>
-
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Custom 3-column layout where image grid carries 1fr (col-span-1) and descriptors stretch across 2fr (col-span-2) */}
         

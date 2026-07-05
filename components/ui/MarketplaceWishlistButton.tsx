@@ -40,10 +40,9 @@ export function MarketplaceWishlistButton({ listingId }: Props) {
     e.stopPropagation()
 
     if (!userId) {
-      toast.error('Sign In Required', {
-        description: 'Please sign in to add items directly to your wishlist dashboard.',
+      toast.error('Sign In Required 🔒', {
+        description: 'Please sign in to add listings to your wishlist.',
       })
-      router.push('/login')
       return
     }
 

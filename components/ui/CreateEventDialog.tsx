@@ -84,6 +84,7 @@ export function CreateEventDialog() {
     externalLink: '',
     latitude: '',
     longitude: '',
+    status: 'upcoming', // can be 'upcoming' (published) or 'draft'
     
     // Type-specific details template matching form layers
     ticketPrice: '',
@@ -390,7 +391,7 @@ export function CreateEventDialog() {
       
       images_gallery: uploadedUrls,
       banner_url: bannerUrl,
-      status: 'upcoming',
+      status: form.status,
     })
 
     if (error) {
@@ -401,7 +402,7 @@ export function CreateEventDialog() {
       setStep('type-select')
       setForm({
         title: '', date: '', time: '', location: '', state: 'Selangor', externalLink: '',
-        latitude: '', longitude: '',
+        latitude: '', longitude: '', status: 'upcoming',
         ticketPrice: '', description: '', isMultipleDays: false, endDate: '',
         contactNumber: '', contactInstagram: '', slotsLimit: '', organizerName: '',
         allowedVehicles: '', parkingInfo: '', registrationLink: '',
@@ -502,17 +503,34 @@ export function CreateEventDialog() {
                   
                   {/* Left Column: Basic Details */}
                   <div className="space-y-4">
-                    <div>
-                      <label className="block text-[10px] font-black uppercase text-text-secondary tracking-widest mb-1.5">
-                        Event Title <span className="text-red-500 font-bold">*</span>
-                      </label>
-                      <input
-                        className="input w-full bg-linear-to-b from-black to-[#090b10] border border-white/10 rounded-lg p-2.5 text-white focus:border-primary/50 text-xs font-bold"
-                        placeholder="e.g. PJ Staging Night Cars & Coffee"
-                        value={form.title}
-                        onChange={(e) => set('title', e.target.value)}
-                        required
-                      />
+                    <div className="grid grid-cols-3 gap-3">
+                      <div className="col-span-2">
+                        <label className="block text-[10px] font-black uppercase text-text-secondary tracking-widest mb-1.5">
+                          Event Title <span className="text-red-500 font-bold">*</span>
+                        </label>
+                        <input
+                          className="input w-full bg-linear-to-b from-black to-[#090b10] border border-white/10 rounded-lg p-2.5 text-white focus:border-primary/50 text-xs font-bold"
+                          placeholder="e.g. PJ Staging Night Cars & Coffee"
+                          value={form.title}
+                          onChange={(e) => set('title', e.target.value)}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[10px] font-black uppercase text-text-secondary tracking-widest mb-1.5">
+                          Publish State
+                        </label>
+                        <select
+                          className={`input w-full bg-linear-to-b from-black to-[#090b10] border border-white/10 rounded-lg p-2.5 text-xs font-black uppercase tracking-wider ${
+                            form.status === 'upcoming' || form.status === 'active' ? 'text-emerald-400' : form.status === 'draft' ? 'text-slate-400' : 'text-yellow-400'
+                          }`}
+                          value={form.status}
+                          onChange={(e) => set('status', e.target.value)}
+                        >
+                          <option value="upcoming" className="text-emerald-400 bg-[#0d1017]">Upcoming / Active</option>
+                          <option value="draft" className="text-slate-400 bg-[#0d1017]">Draft (Private)</option>
+                        </select>
+                      </div>
                     </div>
 
                     <div className="grid grid-cols-3 gap-3">

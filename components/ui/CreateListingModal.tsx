@@ -20,6 +20,7 @@ export function CreateListingModal({ onSuccess, onClose }: CreateListingModalPro
   const [category, setCategory] = useState('Engine')
   const [condition, setCondition] = useState('New')
   const [location, setLocation] = useState('')
+  const [status, setStatus] = useState('active') // Default published, can be 'draft'
   
   // Real database binary file uploads (up to 10 files max)
   const [imageFiles, setImageFiles] = useState<File[]>([])
@@ -100,7 +101,7 @@ export function CreateListingModal({ onSuccess, onClose }: CreateListingModalPro
           category,
           condition,
           location,
-          status: 'active',
+          status,
           listing_type: 'p2p'
         })
         .select()
@@ -235,7 +236,23 @@ export function CreateListingModal({ onSuccess, onClose }: CreateListingModalPro
             </div>
           </div>
 
-          <div className="space-y-2 border-t border-slate-800/60 pt-3">
+          <div className="space-y-1 border-t border-slate-800/60 pt-3">
+            <label className="text-[9px] text-text-muted font-black uppercase tracking-wider">Publish State</label>
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              className={`input bg-background border-slate-800 focus:border-primary/50 w-full h-9 px-3 rounded-lg text-xs uppercase font-extrabold tracking-wider ${
+                status === 'active' ? 'text-emerald-400' : status === 'draft' ? 'text-slate-400' : 'text-yellow-400'
+              }`}
+              style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+            >
+              <option value="active" className="text-emerald-400 bg-background">Active (Publish Live)</option>
+              <option value="draft" className="text-slate-400 bg-background">Draft (Save privately)</option>
+              <option value="inactive" className="text-yellow-400 bg-background">Inactive (Hide)</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
             <div className="flex justify-between items-center mb-1">
               <label className="text-[9px] text-text-muted font-black uppercase tracking-wider block">Listing Photographs ({imageFiles.length}/10 max)</label>
             </div>

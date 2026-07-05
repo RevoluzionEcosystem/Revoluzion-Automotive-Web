@@ -26,8 +26,8 @@ export async function proxy(request: NextRequest) {
   // Refresh the session — important for Server Components to access user session
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Protect auth-required routes
-  const protectedPaths = ['/profile/settings', '/garage']
+  // Protect auth-required routes — public elements like marketplace lists & individual item pages shouldn't bounce guests
+  const protectedPaths = ['/profile/settings', '/garage', '/chat', '/notifications', '/halfcuts/post', '/halfcuts/edit', '/halfcuts/dashboard', '/marketplace/dashboard', '/services/dashboard']
   const pathname = request.nextUrl.pathname
 
   if (!user && protectedPaths.some((p) => pathname.startsWith(p))) {

@@ -73,20 +73,24 @@ export default function MyGaragePage() {
 
   async function handleAddCar(e: React.FormEvent) {
     e.preventDefault()
-    const finalUserId = activeUserId || user?.id
-    if (!finalUserId) { router.push('/login'); return }
+    const { data: { user: currentUser } } = await supabase.auth.getUser()
+    if (!currentUser) {
+      toast.error('Please sign in to add a vehicle')
+      router.push('/login')
+      return
+    }
     setSaving(true)
 
     const { error } = await supabase.from('cars').insert({
-      user_id: finalUserId,
+      user_id: currentUser.id,
       make: form.make.trim(),
       model: form.model.trim(),
       year: form.year ? parseInt(form.year, 10) : null,
       color: form.color.trim() || null,
       engine: form.engine.trim() || null,
-      cc: form.cc ? parseInt(form.cc, 10) : null,
-      hp: form.hp ? parseInt(form.hp, 10) : null,
-      torque: form.torque ? parseInt(form.torque, 10) : null,
+      cc: form.cc ? String(form.cc).trim() : null,
+      hp: form.hp ? String(form.hp).trim() : null,
+      torque: form.torque ? String(form.torque).trim() : null,
     })
 
     if (error) {

@@ -81,7 +81,33 @@ export default function MapPage() {
             },
           })
 
-          const infoContent = `<div style="background:#111111;border:1px solid #1F2937;border-radius:8px;padding:12px;min-width:160px;font-family:Inter,sans-serif;"><div style="font-weight:600;color:#FFFFFF;font-size:14px;margin-bottom:4px;">${loc.title}</div><div style="color:#9CA3AF;font-size:12px;">${loc.description}</div><div style="display:inline-block;margin-top:6px;padding:2px 8px;background:${color}20;color:${color};border-radius:4px;font-size:11px;">${loc.type.charAt(0).toUpperCase() + loc.type.slice(1)}</div></div>`
+          const searchAddress = loc.title
+          const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${loc.lat},${loc.lng}`)}&theme=dark`
+          const wazeUrl = `https://waze.com/ul?ll=${loc.lat},${loc.lng}&q=${encodeURIComponent(searchAddress)}&navigate=yes`
+
+          const infoContent = `
+            <div style="background:#111111; border:1px solid #1F2937; border-radius:12px; padding:12px; width:220px; font-family:Inter, sans-serif; text-align:left; color:#ffffff;">
+              <div style="font-weight:700; color:#FFFFFF; font-size:14px; margin-bottom:4px; font-family: var(--font-orbitron); text-transform: uppercase;">
+                ${loc.title}
+              </div>
+              <div style="color:#9CA3AF; font-size:11px; margin-bottom:8px; line-height:1.35;">
+                ${loc.description}
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="display:inline-block; padding:2px 8px; background:${color}20; color:${color}; border-radius:4px; font-size:10px; font-weight:800; text-transform:uppercase;">
+                  ${loc.type}
+                </span>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #06B6D4; color: #000000; text-decoration: none; padding: 5px 0; border-radius: 6px; font-size: 10px; font-weight: 900; text-transform: uppercase; font-family: var(--font-orbitron);">
+                  GO NOW
+                </a>
+                <a href="${wazeUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #1f2937; color: #ffffff; text-decoration: none; padding: 5px 0; border-radius: 6px; font-size: 10px; font-weight: 700; border: 1px solid #374151; text-transform: uppercase; font-family: var(--font-orbitron);">
+                  WAZE
+                </a>
+              </div>
+            </div>
+          `
 
           const infoWindow = new mapsLib.InfoWindow({ content: infoContent })
           marker.addListener('click', () => infoWindow.open(map, marker))

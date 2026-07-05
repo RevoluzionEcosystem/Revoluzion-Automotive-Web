@@ -3,16 +3,16 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { Home, Users, Car, CalendarDays, ShoppingBag, MessageSquare, Map, User } from 'lucide-react'
+import { Home, Users, Car, CalendarDays, ShoppingBag, MessageSquare, Map, User, Bike } from 'lucide-react'
 
 const items = [
   { href: '/feed', label: 'Feed', icon: Home },
   { href: '/community', label: 'Community', icon: Users },
+  { href: '/vehicle-ads', label: 'Vehicle Ads', icon: Bike },
   { href: '/builds', label: 'Garage', icon: Car },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/shop', label: 'Shop', icon: ShoppingBag },
   { href: '/chat', label: 'Chat', icon: MessageSquare },
-  { href: '/explore/map', label: 'Map', icon: Map },
   { href: '/profile', label: 'Profile', icon: User },
 ]
 

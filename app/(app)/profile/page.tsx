@@ -311,12 +311,12 @@ export default function ProfilePage() {
         </div>
       )}
 
-      {/* -- MY GARAGE -- */}
-      <SectionLabel label="MY GARAGE" />
+      {/* -- MY GARAGE & ADS Dashboard -- */}
+      <SectionLabel label="MY ADS & GARAGE" />
       <NavCard rows={[
+        { icon: <Store size={18} className="text-secondary" />, label: 'My Ads Dashboard', href: '/marketplace/dashboard' },
         { icon: <Car size={18} />, label: 'My Garage', href: '/garage/me' },
         { icon: <Wrench size={18} />, label: 'My Builds', href: '/builds' },
-        { icon: <Store size={18} />, label: 'Marketplace Listings', href: '/marketplace' },
       ]} />
 
       {/* -- ACTIVITY -- */}

@@ -22,7 +22,7 @@ import { FeedSidebar } from '@/components/ui/FeedSidebar'
 
 interface FeedItem {
   id: string
-  feedType: 'post' | 'car' | 'build' | 'event' | 'listing'
+  feedType: 'post' | 'car' | 'build' | 'event' | 'listing' | 'service'
   created_at: string
   user_id: string
   content: string
@@ -850,6 +850,13 @@ export default function FeedPage() {
         .order('created_at', { ascending: false })
         .limit(15)
 
+      // 6. Fetch registered directory services
+      const { data: servicesRaw } = await supabase
+        .from('services')
+        .select('id, user_id, title, description, price, category, location, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .order('created_at', { ascending: false })
+        .limit(15)
+
       // Format everything into standardized FeedItems
       const items: FeedItem[] = []
 
@@ -970,6 +977,31 @@ export default function FeedPage() {
         })
       }
 
+      // Registered directory services
+      if (servicesRaw) {
+        servicesRaw.forEach((s: any) => {
+          const profile = Array.isArray(s.users) ? s.users[0] : s.users
+          items.push({
+            id: s.id,
+            feedType: 'service',
+            created_at: s.created_at,
+            user_id: s.user_id,
+            content: s.description || `Registered a new automotive service in directory.`,
+            image_url: s.banner_url || null,
+            metadata: {
+              title: s.title,
+              price: s.price,
+              category: s.category,
+              location: s.location || 'Klang Valley',
+              username: profile?.username,
+              display_name: profile?.display_name,
+              avatar_url: profile?.avatar_url,
+              is_verified: profile?.is_verified,
+            }
+          })
+        })
+      }
+
       // Sort everything reverse-chronologically (newest occurrence first)
       items.sort((a,b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
@@ -1018,6 +1050,7 @@ export default function FeedPage() {
     if (activeType === 'builds') return rawItems.filter(item => item.feedType === 'build')
     if (activeType === 'events') return rawItems.filter(item => item.feedType === 'event')
     if (activeType === 'listings') return rawItems.filter(item => item.feedType === 'listing')
+    if (activeType === 'services') return rawItems.filter(item => item.feedType === 'service')
     return rawItems
   }, [rawItems, activeType])
 
@@ -1111,7 +1144,7 @@ export default function FeedPage() {
               // ── 2. CAR added list type card ──
               if (item.feedType === 'car') {
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center">
                       <Link href={`/u/${item.metadata.username}`}>
                         {item.metadata.avatar_url ? (
@@ -1156,7 +1189,7 @@ export default function FeedPage() {
               // ── 3. BUILD update timeline card ──
               if (item.feedType === 'build') {
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center">
                       <Link href={`/u/${item.metadata.username}`}>
                         {item.metadata.avatar_url ? (
@@ -1209,7 +1242,7 @@ export default function FeedPage() {
               // ── 4. EVENT car meets schedule card ──
               if (item.feedType === 'event') {
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center justify-between">
                       <div className="flex gap-3 leading-none items-center">
                         <Link href={`/u/${item.metadata.username}`}>
@@ -1259,7 +1292,7 @@ export default function FeedPage() {
               // ── 5. MARKETPLACE listing catalog card ──
               if (item.feedType === 'listing') {
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-slate-950/20 border border-slate-900 shadow-xl text-left hover:border-slate-800 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center justify-between">
                       <div className="flex gap-3 leading-none items-center">
                         <Link href={`/u/${item.metadata.username}`}>
@@ -1300,6 +1333,59 @@ export default function FeedPage() {
                           className="h-8 px-3 rounded-lg border border-slate-800 hover:border-slate-700 font-mono text-[9px] font-black text-white hover:bg-slate-900 inline-flex items-center uppercase tracking-widest"
                         >
                           View Deal
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+
+              // ── 6. DIRECTORY SERVICE card ──
+              if (item.feedType === 'service') {
+                return (
+                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
+                    <div className="flex gap-3 leading-none items-center justify-between">
+                      <div className="flex gap-3 leading-none items-center">
+                        <Link href={`/u/${item.metadata.username}`}>
+                          {item.metadata.avatar_url ? (
+                            <img src={item.metadata.avatar_url} alt="" className="w-8 h-8 rounded-full object-cover border border-slate-800 shrink-0" />
+                          ) : (
+                            <DefaultAvatar className="w-8 h-8 font-semibold shrink-0" />
+                          )}
+                        </Link>
+                        <div>
+                          <div className="text-xs text-white">
+                            <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
+                              {item.metadata.display_name || item.metadata.username}
+                            </Link>
+                            <span className="text-text-muted font-medium ml-1.5">registered an automotive service</span>
+                          </div>
+                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                        </div>
+                      </div>
+                      <Radio size={13} className="text-primary opacity-40 shrink-0" />
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
+                      <div className="space-y-1 block min-w-0 pr-2 flex-1">
+                        <Link 
+                          href="/services" 
+                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                        >
+                          SERVICE: {item.metadata.title} ({item.metadata.location})
+                        </Link>
+                        <p className="text-[11px] text-text-disabled pt-1 leading-relaxed line-clamp-1">{item.content}</p>
+                      </div>
+
+                      <div className="flex items-center gap-3 shrink-0">
+                        {item.metadata.price ? (
+                          <span className="text-xs text-primary font-mono font-black">RM {item.metadata.price}</span>
+                        ) : null}
+                        <Link
+                          href="/services"
+                          className="h-8 px-3 rounded-lg border border-slate-800 hover:border-slate-700 font-mono text-[9px] font-black text-white hover:bg-slate-900 inline-flex items-center uppercase tracking-widest"
+                        >
+                          View Directory
                         </Link>
                       </div>
                     </div>

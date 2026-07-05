@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
-import { CalendarDays, MapPin, Users, Clock, ChevronRight, BadgeCheck, Eye, Heart, MessageSquare, Flag } from 'lucide-react'
+import { CalendarDays, MapPin, Clock, Eye, Heart, MessageSquare, Search, X } from 'lucide-react'
 import { formatDate, formatCurrency } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { CreateEventDialog } from '@/components/ui/CreateEventDialog'
@@ -20,17 +20,19 @@ export const dynamic = 'force-dynamic'
 export default async function EventsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; state?: string }>
+  searchParams: Promise<{ category?: string; state?: string; q?: string }>
 }) {
-  const { category, state } = await searchParams
+  const { category, state, q } = await searchParams
   const supabase = await createClient()
 
   let query = supabase
     .from('events')
     .select('*, users(username, display_name, avatar_url)')
-    .eq('status', 'upcoming')
     .order('date', { ascending: true })
-    .limit(50)
+    .limit(100)
+
+  // Fetch current user if available to allow displaying their own drafts
+  const { data: { user } } = await supabase.auth.getUser()
 
   if (category && category !== 'All') {
     if (category === 'Car Meet') {
@@ -48,7 +50,23 @@ export default async function EventsPage({
   }
 
   const { data: rawEvents } = await query
-  const events = rawEvents ?? []
+  
+  // Filter drafts privately: only show if draft status belongs to matching authenticated poster user
+  const rawEventsTyped = (rawEvents ?? []).filter((event) => {
+    if (event.status === 'draft') {
+      return user && event.user_id === user.id
+    }
+    return true
+  })
+
+  // Apply card search query string if present
+  const events = q && q.trim()
+    ? rawEventsTyped.filter(ev =>
+        ev.title.toLowerCase().includes(q.toLowerCase().trim()) ||
+        (ev.description || '').toLowerCase().includes(q.toLowerCase().trim()) ||
+        (ev.location || '').toLowerCase().includes(q.toLowerCase().trim())
+      )
+    : rawEventsTyped
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-4 space-y-6">
@@ -72,6 +90,50 @@ export default async function EventsPage({
 
         {/* Right Side: Main Comprehensive Events Grid with bigger width and length */}
         <main className="flex-1 min-w-0">
+          
+          {/* Centered page-level search form for Events Directory cards */}
+          <div className="flex justify-center w-full px-2 sm:px-4 mb-4">
+            <form action="/events" method="GET" className="flex gap-2 relative group w-full max-w-2xl">
+              {category && <input type="hidden" name="category" value={category} />}
+              {state && <input type="hidden" name="state" value={state} />}
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  name="q"
+                  defaultValue={q || ''}
+                  placeholder="Search meets, tracks, or gather venue cards (Typo-safe)..."
+                  className="w-full h-11 pl-11 pr-10 rounded-2xl bg-surface/50 border border-primary/40 focus:border-primary text-sm text-sm text-white placeholder-text-muted/60 focus:outline-none focus:ring-1 focus:ring-primary/25 transition-all shadow-lg"
+                  style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+                />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-primary group-focus-within:text-primary transition-colors" />
+                
+                {q && (
+                  <a
+                    href={`/events${category ? `?category=${category}` : ''}${state ? `${category ? '&' : '?'}state=${state}` : ''}`}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-white p-1"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="h-11 px-6 rounded-2xl bg-primary/10 hover:bg-primary/20 border border-primary/30 hover:border-primary/60 text-primary text-xs font-semibold tracking-wide transition-all shadow-md flex items-center gap-1.5 shrink-0"
+                style={{ fontFamily: 'var(--font-orbitron)' }}
+              >
+                <Search className="h-4 w-4" />
+                <span>Search</span>
+              </button>
+            </form>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-950/20 border border-slate-900 rounded-xl px-4 py-3 mb-6">
+            <span className="text-xs text-text-secondary">
+              Viewing <strong className="text-primary font-mono">{events.length}</strong> upcoming automotive event sessions
+            </span>
+          </div>
+
           {events.length === 0 ? (
             <div className="text-center py-20 text-text-muted bg-surface/5 border border-border/60 rounded-2xl">
               <CalendarDays size={48} className="mx-auto mb-4 opacity-20" />
@@ -119,13 +181,19 @@ export default async function EventsPage({
                         </span>
                       )}
 
-                      {/* Floating Status Badge (Dynamic Upcoming, Ongoing with pulsation, Ended with red) */}
+                      {/* Floating Status Badge (Dynamic Upcoming, Ongoing with pulsation, Ended with red, or private Draft) */}
                       {(() => {
                         const statusStr = (event.status || 'upcoming').toLowerCase()
-                        if (statusStr === 'ongoing' || statusStr === 'on going' || statusStr === 'live') {
+                        if (statusStr === 'draft') {
+                          return (
+                            <span className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-slate-700 text-slate-100 border border-slate-500/40 text-[9px] font-black tracking-wider uppercase leading-none shadow-md z-1">
+                              Private Draft
+                            </span>
+                          )
+                        } else if (statusStr === 'ongoing' || statusStr === 'on going' || statusStr === 'live') {
                           return (
                             <span 
-                              className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-emerald-500 text-black text-[9px] font-black tracking-wider uppercase leading-none shadow-md z-1 animate-status-pulse flex items-center gap-1"
+                              className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-emerald-500 text-black text-[9px] font-black tracking-wider uppercase leading-none shadow-md z-1 flex items-center gap-1"
                               style={{ animation: 'status-pulse 2s infinite ease-in-out' }}
                             >
                               <span className="w-1 h-1 rounded-full bg-black animate-ping" />

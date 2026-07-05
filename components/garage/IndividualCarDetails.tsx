@@ -28,6 +28,7 @@ export default function IndividualCarDetails({ carId }: Props) {
 
   // Specifications / Overview Editing state
   const [isEditingSpecs, setIsEditingSpecs] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [specsForm, setSpecsForm] = useState({
     make: '',
     model: '',
@@ -1115,15 +1116,11 @@ export default function IndividualCarDetails({ carId }: Props) {
                               <Edit3 size={12} /> Edit Specs & Cover
                             </button>
                             <button
-                              onClick={() => {
-                                if (confirm('Are you absolutely sure you want to delete this entire vehicle profile? All specs and build logs will be permanently deleted!')) {
-                                  deleteCarMutation.mutate();
-                                }
-                              }}
+                              onClick={() => setShowDeleteModal(true)}
                               disabled={deleteCarMutation.isPending}
                               className="flex items-center gap-1.5 text-[11px] font-bold text-error border border-error/30 hover:bg-error/5 rounded-md px-3 py-1.5 transition-all uppercase cursor-pointer disabled:opacity-50"
                             >
-                              <Trash2 size={12} /> {deleteCarMutation.isPending ? 'Deleting...' : 'Delete Profile'}
+                              <Trash2 size={12} /> {deleteCarMutation.isPending ? 'Deleting...' : 'Delete Car'}
                             </button>
                           </div>
                         )}
@@ -1833,6 +1830,68 @@ export default function IndividualCarDetails({ carId }: Props) {
           <span className="text-[10px] text-text-muted mt-5 font-mono select-none tracking-widest uppercase">
             Click anywhere or tap top-right cross to return to workshop
           </span>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md bg-black/85 transition-all animate-fadeIn">
+          {/* Backdrop click to dismiss */}
+          <div className="absolute inset-0 cursor-default" onClick={() => !deleteCarMutation.isPending && setShowDeleteModal(false)} />
+          
+          <div className="relative w-full max-w-md overflow-hidden rounded-2xl border border-error/20 bg-linear-to-b from-[#181d29] to-[#0d1017] p-6 shadow-2xl transition-all duration-300">
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-error/10 text-error-variant animate-pulse">
+                <ShieldAlert size={28} className="stroke-[2.5]" />
+              </div>
+              
+              <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-2" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                Delete Car
+              </h3>
+              
+              <p className="text-sm text-text-secondary mb-6 leading-relaxed">
+                Are you absolutely sure you want to delete <span className="font-extrabold text-white">{car?.make} {car?.model}</span>? <br />
+                <span className="text-error font-semibold mt-2 block uppercase tracking-wide text-xs">
+                  ⚠️ This action is irreversible—there is no turning back.
+                </span>
+              </p>
+              
+              <div className="flex w-full items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteModal(false)}
+                  disabled={deleteCarMutation.isPending}
+                  className="flex-1 rounded-xl border border-white/10 bg-white/5 py-2.5 text-xs font-bold text-white uppercase tracking-wider hover:bg-white/10 active:scale-95 transition-all cursor-pointer disabled:opacity-50 disabled:pointer-events-none"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    deleteCarMutation.mutate(undefined, {
+                      onSuccess: () => {
+                        setShowDeleteModal(false);
+                      }
+                    });
+                  }}
+                  disabled={deleteCarMutation.isPending}
+                  className="flex-1 rounded-xl bg-error hover:bg-error-variant py-2.5 text-xs font-bold text-white uppercase tracking-wider shadow-lg active:scale-95 transition-all cursor-pointer disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-1.5"
+                >
+                  {deleteCarMutation.isPending ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" />
+                      Deleting...
+                    </>
+                  ) : (
+                    <>
+                      <Trash2 size={14} />
+                      Delete Car
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 

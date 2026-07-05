@@ -24,6 +24,7 @@ export function CreateListingDialog() {
     price: '',
     location: '',
     description: '',
+    status: 'active', // Default published
   })
 
   function set(field: string, value: string) {
@@ -48,15 +49,15 @@ export function CreateListingDialog() {
       price: parseFloat(form.price),
       location: form.location.trim() || null,
       description: form.description.trim() || null,
-      status: 'active',
+      status: form.status,
     })
 
     if (error) {
       toast.error('Failed to post listing', { description: error.message })
     } else {
-      toast.success('Listing posted!', { description: `"${form.title}" is now live on the marketplace.` })
+      toast.success('Listing posted!', { description: `"${form.title}" has been processed.` })
       setOpen(false)
-      setForm({ title: '', category: 'Parts', condition: 'Good', listing_type: 'part', price: '', location: '', description: '' })
+      setForm({ title: '', category: 'Parts', condition: 'Good', listing_type: 'part', price: '', location: '', description: '', status: 'active' })
       router.refresh()
     }
     setSaving(false)
@@ -160,6 +161,21 @@ export function CreateListingDialog() {
                   value={form.description}
                   onChange={(e) => set('description', e.target.value)}
                 />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-text-secondary mb-1.5">Publish State</label>
+                <select 
+                  className={`input uppercase font-extrabold tracking-wide text-xs ${
+                    form.status === 'active' ? 'text-emerald-400' : form.status === 'draft' ? 'text-slate-400' : 'text-yellow-400'
+                  }`} 
+                  value={form.status} 
+                  onChange={(e) => set('status', e.target.value)}
+                >
+                  <option value="active" className="text-emerald-400 bg-background">Active (Publish Live)</option>
+                  <option value="draft" className="text-slate-400 bg-background">Draft (Save privately)</option>
+                  <option value="inactive" className="text-yellow-400 bg-background">Inactive</option>
+                </select>
               </div>
 
               <div className="flex gap-3 pt-2">

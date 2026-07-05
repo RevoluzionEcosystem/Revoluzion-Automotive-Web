@@ -48,7 +48,7 @@ export default function EventCommentSection({ eventId }: Props) {
     if (!comment.trim()) return
 
     if (!user) {
-      toast.error('Sign in required 🔒', { description: 'Please log in to leave a comment on this event.' })
+      toast.error('Sign In Required 🔒', { description: 'Please log in to leave a comment.' })
       return
     }
 

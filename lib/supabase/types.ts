@@ -71,8 +71,9 @@ export interface Database {
           likes_count: number
           views: number
           created_at: string
+          updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['cars']['Row'], 'id' | 'created_at' | 'likes_count' | 'views'>
+        Insert: Omit<Database['public']['Tables']['cars']['Row'], 'id' | 'created_at' | 'updated_at' | 'likes_count' | 'views'>
         Update: Partial<Database['public']['Tables']['cars']['Row']>
       }
       events: {
@@ -90,6 +91,7 @@ export interface Database {
           banner_url: string | null
           status: string
           created_at: string
+          updated_at: string
           views: number | null
           likes_count: number | null
           comments_count: number | null
@@ -97,7 +99,7 @@ export interface Database {
           latitude: number | null
           longitude: number | null
         }
-        Insert: Omit<Database['public']['Tables']['events']['Row'], 'id' | 'created_at' | 'attendees'>
+        Insert: Omit<Database['public']['Tables']['events']['Row'], 'id' | 'created_at' | 'updated_at' | 'attendees'>
         Update: Partial<Database['public']['Tables']['events']['Row']>
       }
       posts: {
@@ -144,8 +146,9 @@ export interface Database {
           mods: string[] | null
           likes_count: number
           created_at: string
+          updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['builds']['Row'], 'id' | 'created_at' | 'likes_count'>
+        Insert: Omit<Database['public']['Tables']['builds']['Row'], 'id' | 'created_at' | 'updated_at' | 'likes_count'>
         Update: Partial<Database['public']['Tables']['builds']['Row']>
       }
       marketplace_listings: {
@@ -160,8 +163,9 @@ export interface Database {
           location: string | null
           status: string
           created_at: string
+          updated_at: string
         }
-        Insert: Omit<Database['public']['Tables']['marketplace_listings']['Row'], 'id' | 'created_at'>
+        Insert: Omit<Database['public']['Tables']['marketplace_listings']['Row'], 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Database['public']['Tables']['marketplace_listings']['Row']>
       }
       marketplace_images: {

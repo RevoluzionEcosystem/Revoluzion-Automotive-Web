@@ -19,11 +19,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { FeedSidebar } from '@/components/ui/FeedSidebar'
+import { InlineCommentSection } from '@/components/ui/InlineCommentSection'
 
 interface FeedItem {
   id: string
   feedType: 'post' | 'car' | 'build' | 'event' | 'listing' | 'service'
   created_at: string
+  updated_at?: string
   user_id: string
   content: string
   image_url: string | null
@@ -250,7 +252,7 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
 
   return (
     <>
-      <article className="group relative flex flex-col justify-between rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 hover:border-white/11 transition-all duration-300 p-5 mb-4 shadow-xl">
+      <article className="group relative flex flex-col justify-between rounded-xl bg-gradient border border-white/5 hover:border-white/11 transition-all duration-300 p-5 mb-4 shadow-xl">
         {/* Header */}
         <div className="flex items-start gap-3 mb-3">
           <Link href={`/u/${profile?.username || post.user_id}`}>
@@ -741,7 +743,7 @@ function CreatePost({ currentUserId }: { currentUserId: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="group relative flex flex-col justify-between rounded-xl bg-[#141721] border border-white/5 hover:border-white/10 transition-all duration-300 p-5 mb-5 shadow-xl">
+    <form onSubmit={handleSubmit} className="group relative flex flex-col justify-between rounded-xl bg-gradient border border-white/5 hover:border-white/10 transition-all duration-300 p-5 mb-5 shadow-xl">
       <MentionTextarea
         value={content}
         onChange={setContent}
@@ -825,35 +827,35 @@ export default function FeedPage() {
       // 2. Fetch Cars added to garages
       const { data: carsRaw } = await supabase
         .from('cars')
-        .select('id, user_id, make, model, year, color, image_url, car_bio, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, make, model, year, color, image_url, car_bio, created_at, updated_at, users!cars_user_id_fkey(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(15)
 
       // 3. Fetch builds added to profiles
       const { data: buildsRaw } = await supabase
         .from('builds')
-        .select('id, user_id, title, description, image_url, mods, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, title, description, image_url, mods, created_at, updated_at, users!builds_user_id_fkey(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(15)
 
       // 4. Fetch public upcoming meets / events
       const { data: eventsRaw } = await supabase
         .from('events')
-        .select('id, user_id, title, category, date, location, banner_url, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, title, category, date, location, banner_url, created_at, updated_at, users(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(15)
 
       // 5. Fetch marketplace classified listings
       const { data: listingsRaw } = await supabase
         .from('marketplace_listings')
-        .select('id, user_id, title, description, price, category, condition, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, title, description, price, category, condition, created_at, updated_at, users!fk_marketplace_listings_user_id_to_users(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(15)
 
       // 6. Fetch registered directory services
       const { data: servicesRaw } = await supabase
         .from('services')
-        .select('id, user_id, title, description, price, category, location, created_at, users:user_id(id, username, display_name, avatar_url, is_verified)')
+        .select('id, user_id, title, description, price, category, location, created_at, updated_at, users(id, username, display_name, avatar_url, is_verified)')
         .order('created_at', { ascending: false })
         .limit(15)
 
@@ -890,6 +892,7 @@ export default function FeedPage() {
             id: c.id,
             feedType: 'car',
             created_at: c.created_at,
+            updated_at: c.updated_at,
             user_id: c.user_id,
             content: c.car_bio || `Added ${c.make} ${c.model} to garage pack.`,
             image_url: c.image_url,
@@ -914,6 +917,7 @@ export default function FeedPage() {
             id: b.id,
             feedType: 'build',
             created_at: b.created_at,
+            updated_at: b.updated_at,
             user_id: b.user_id,
             content: b.description || `Updated car build timeline logs.`,
             image_url: b.image_url,
@@ -936,6 +940,7 @@ export default function FeedPage() {
             id: e.id,
             feedType: 'event',
             created_at: e.created_at,
+            updated_at: e.updated_at,
             user_id: e.user_id,
             content: `Event scheduled: ${e.title}`,
             image_url: e.banner_url,
@@ -960,6 +965,7 @@ export default function FeedPage() {
             id: l.id,
             feedType: 'listing',
             created_at: l.created_at,
+            updated_at: l.updated_at,
             user_id: l.user_id,
             content: l.description || `Listed component on market.`,
             image_url: null,
@@ -985,6 +991,7 @@ export default function FeedPage() {
             id: s.id,
             feedType: 'service',
             created_at: s.created_at,
+            updated_at: s.updated_at,
             user_id: s.user_id,
             content: s.description || `Registered a new automotive service in directory.`,
             image_url: s.banner_url || null,
@@ -1096,7 +1103,7 @@ export default function FeedPage() {
             <p className="text-xs max-w-xs mx-auto leading-relaxed mt-1">No activities found under this timeline tab currently. Submit a post to start the stream!</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             {filteredFeed.map((item) => {
               
               // ── 1. POST chitchat type card ──
@@ -1143,8 +1150,9 @@ export default function FeedPage() {
 
               // ── 2. CAR added list type card ──
               if (item.feedType === 'car') {
+                const hasUpdated = item.updated_at && Math.abs(new Date(item.updated_at).getTime() - new Date(item.created_at).getTime()) > 5000
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-2xl bg-gradient border border-white/5 hover:border-white/11 shadow-xl text-left transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center">
                       <Link href={`/u/${item.metadata.username}`}>
                         {item.metadata.avatar_url ? (
@@ -1158,38 +1166,47 @@ export default function FeedPage() {
                           <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
                             {item.metadata.display_name || item.metadata.username}
                           </Link>
-                          <span className="text-text-muted font-medium ml-1.5">added a new car collection</span>
+                          <span className="text-text-muted font-medium ml-1.5">
+                            {hasUpdated ? 'updated their car specs' : 'added a new car collection'}
+                          </span>
                         </div>
-                        <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                        <span className="text-[10px] text-text-disabled mt-1 block font-medium">
+                          broadcast {timeAgo(hasUpdated ? item.updated_at! : item.created_at)}
+                          {hasUpdated && <span className="text-primary font-mono text-[9px] uppercase tracking-wider ml-1.5 font-black">&bull; updated</span>}
+                        </span>
                       </div>
-                      <Car size={13} className="text-primary ml-auto opacity-40" />
+                      <Car size={14} className="text-primary ml-auto opacity-45 shrink-0" />
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
+                    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3.5 mt-3.5">
                       <div className="space-y-1 inline-block min-w-0 flex-1">
                         <Link 
                           href={`/u/${item.metadata.username}`} 
-                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                          className="font-bold text-sm uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
                         >
                           {item.metadata.year} {item.metadata.make} {item.metadata.model}
                         </Link>
-                        <p className="text-[11px] text-text-disabled pt-1">{item.content}</p>
+                        <p className="text-xs text-text-secondary pt-1 leading-relaxed">{item.content}</p>
                       </div>
 
                       {item.image_url && (
-                        <div className="h-16 w-24 bg-surface rounded-lg border border-slate-800 shrink-0 overflow-hidden relative">
+                        <div className="h-16 w-24 bg-surface rounded-lg border border-slate-850 shrink-0 overflow-hidden relative shadow-lg">
                           <img src={item.image_url} alt="" className="w-full h-full object-cover" />
                         </div>
                       )}
                     </div>
+
+                    {/* Inline Comment thread support */}
+                    <InlineCommentSection itemId={item.id} feedType="car" currentUserId={userId} />
                   </div>
                 )
               }
 
               // ── 3. BUILD update timeline card ──
               if (item.feedType === 'build') {
+                const hasUpdated = item.updated_at && Math.abs(new Date(item.updated_at).getTime() - new Date(item.created_at).getTime()) > 5000
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-2xl bg-gradient border border-white/5 hover:border-white/11 shadow-xl text-left transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center">
                       <Link href={`/u/${item.metadata.username}`}>
                         {item.metadata.avatar_url ? (
@@ -1203,46 +1220,55 @@ export default function FeedPage() {
                           <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
                             {item.metadata.display_name || item.metadata.username}
                           </Link>
-                          <span className="text-text-muted font-medium ml-1.5">published a custom build log</span>
+                          <span className="text-text-muted font-medium ml-1.5">
+                            {hasUpdated ? 'modified custom build details' : 'published a custom build log'}
+                          </span>
                         </div>
-                        <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                        <span className="text-[10px] text-text-disabled mt-1 block font-medium">
+                          broadcast {timeAgo(hasUpdated ? item.updated_at! : item.created_at)}
+                          {hasUpdated && <span className="text-primary font-mono text-[9px] uppercase tracking-wider ml-1.5 font-black">&bull; updated</span>}
+                        </span>
                       </div>
-                      <Wrench size={13} className="text-primary ml-auto opacity-40" />
+                      <Wrench size={14} className="text-primary ml-auto opacity-45 shrink-0" />
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
                       <div className="space-y-1 block min-w-0 pr-2 flex-1">
                         <Link 
                           href={`/u/${item.metadata.username}`} 
-                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                          className="font-bold text-sm uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
                         >
                           BUILD: {item.metadata.title}
                         </Link>
-                        <p className="text-[11px] text-text-disabled pt-1 leading-relaxed">{item.content}</p>
+                        <p className="text-xs text-text-secondary pt-1 leading-relaxed">{item.content}</p>
                         
                         {item.metadata.mods && item.metadata.mods.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-2">
-                            {item.metadata.mods.slice(0,3).map((m) => (
-                              <span key={m} className="px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20 text-[9px] font-mono text-primary uppercase">{m}</span>
+                          <div className="flex flex-wrap gap-1.5 mt-2.5">
+                            {item.metadata.mods.slice(0, 5).map((m) => (
+                              <span key={m} className="px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-[9px] font-mono text-primary uppercase font-bold tracking-wider">{m}</span>
                             ))}
                           </div>
                         )}
                       </div>
 
                       {item.image_url && (
-                        <div className="h-16 w-24 bg-surface rounded-lg border border-slate-800 shrink-0 overflow-hidden relative">
+                        <div className="h-16 w-24 bg-surface rounded-lg border border-slate-850 shrink-0 overflow-hidden relative shadow-lg">
                           <img src={item.image_url} alt="" className="w-full h-full object-cover" />
                         </div>
                       )}
                     </div>
+
+                    {/* Inline Comment thread support */}
+                    <InlineCommentSection itemId={item.id} feedType="build" currentUserId={userId} />
                   </div>
                 )
               }
 
               // ── 4. EVENT car meets schedule card ──
               if (item.feedType === 'event') {
+                const hasUpdated = item.updated_at && Math.abs(new Date(item.updated_at).getTime() - new Date(item.created_at).getTime()) > 5000
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-2xl bg-gradient border border-white/5 hover:border-white/11 shadow-xl text-left transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center justify-between">
                       <div className="flex gap-3 leading-none items-center">
                         <Link href={`/u/${item.metadata.username}`}>
@@ -1254,26 +1280,31 @@ export default function FeedPage() {
                         </Link>
                         <div>
                           <div className="text-xs text-white">
-                            <span className="text-text-muted font-medium mr-1.5">New event listed by</span>
+                            <span className="text-text-muted font-medium mr-1.5">
+                              {hasUpdated ? 'Event rescheduled by' : 'New event listed by'}
+                            </span>
                             <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
                               {item.metadata.display_name || item.metadata.username}
                             </Link>
                           </div>
-                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">
+                            broadcast {timeAgo(hasUpdated ? item.updated_at! : item.created_at)}
+                            {hasUpdated && <span className="text-primary font-mono text-[9px] uppercase tracking-wider ml-1.5 font-black">&bull; updated</span>}
+                          </span>
                         </div>
                       </div>
-                      <span className="text-[9px] font-black uppercase text-primary border border-primary/40 rounded px-1.5 py-0.5 bg-primary/5 tracking-widest">{item.metadata.category || 'Meet'}</span>
+                      <span className="text-[9px] font-black uppercase text-primary border border-primary/40 rounded px-1.5 py-0.5 bg-primary/5 tracking-widest font-mono shrink-0">{item.metadata.category || 'Meet'}</span>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
-                      <div className="space-y-1 block min-w-0 flex-1">
+                      <div className="space-y-1 block min-w-0 flex-1 font-sans">
                         <Link 
                           href="/events" 
-                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                          className="font-bold text-sm uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
                         >
                           UPCOMING: {item.metadata.title}
                         </Link>
-                        <p className="text-[11px] text-text-disabled pt-1">Location: {item.metadata.location}</p>
+                        <p className="text-xs text-text-secondary pt-1 font-sans">Location: {item.metadata.location}</p>
                       </div>
 
                       <div className="flex gap-2 shrink-0">
@@ -1285,14 +1316,18 @@ export default function FeedPage() {
                         </Link>
                       </div>
                     </div>
+
+                    {/* Inline Comment thread support */}
+                    <InlineCommentSection itemId={item.id} feedType="event" currentUserId={userId} />
                   </div>
                 )
               }
 
               // ── 5. MARKETPLACE listing catalog card ──
               if (item.feedType === 'listing') {
+                const hasUpdated = item.updated_at && Math.abs(new Date(item.updated_at).getTime() - new Date(item.created_at).getTime()) > 5000
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-2xl bg-gradient border border-white/5 hover:border-white/11 shadow-xl text-left transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center justify-between">
                       <div className="flex gap-3 leading-none items-center">
                         <Link href={`/u/${item.metadata.username}`}>
@@ -1307,43 +1342,52 @@ export default function FeedPage() {
                             <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
                               {item.metadata.display_name || item.metadata.username}
                             </Link>
-                            <span className="text-text-muted font-medium ml-1.5">placed item in marketplace classifieds</span>
+                            <span className="text-text-muted font-medium ml-1.5">
+                              {hasUpdated ? 'updated item price/info in classifieds' : 'placed item in marketplace classifieds'}
+                            </span>
                           </div>
-                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">
+                            broadcast {timeAgo(hasUpdated ? item.updated_at! : item.created_at)}
+                            {hasUpdated && <span className="text-primary font-mono text-[9px] uppercase tracking-wider ml-1.5 font-black">&bull; updated</span>}
+                          </span>
                         </div>
                       </div>
-                      <ShoppingBag size={13} className="text-primary opacity-40 shrink-0" />
+                      <ShoppingBag size={14} className="text-primary opacity-45 shrink-0" />
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
-                      <div className="space-y-1 block min-w-0 flex-1">
+                      <div className="space-y-1 block min-w-0 pr-2 flex-1">
                         <Link 
                           href="/marketplace" 
-                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                          className="font-bold text-sm uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
                         >
                           FOR SALE: {item.metadata.title} ({item.metadata.location})
                         </Link>
-                        <p className="text-[11px] text-text-disabled pt-1 leading-relaxed line-clamp-1">{item.content}</p>
+                        <p className="text-xs text-text-secondary pt-1 leading-relaxed line-clamp-2">{item.content}</p>
                       </div>
 
                       <div className="flex items-center gap-3 shrink-0">
-                        <span className="text-xs text-primary font-mono font-black">RM {item.metadata.price}</span>
+                        <span className="text-sm text-primary font-mono font-black">RM {item.metadata.price}</span>
                         <Link
-                          href="/marketplace"
+                          href={`/marketplace/${item.id}`}
                           className="h-8 px-3 rounded-lg border border-slate-800 hover:border-slate-700 font-mono text-[9px] font-black text-white hover:bg-slate-900 inline-flex items-center uppercase tracking-widest"
                         >
                           View Deal
                         </Link>
                       </div>
                     </div>
+
+                    {/* Inline Comment thread support */}
+                    <InlineCommentSection itemId={item.id} feedType="listing" currentUserId={userId} />
                   </div>
                 )
               }
 
               // ── 6. DIRECTORY SERVICE card ──
               if (item.feedType === 'service') {
+                const hasUpdated = item.updated_at && Math.abs(new Date(item.updated_at).getTime() - new Date(item.created_at).getTime()) > 5000
                 return (
-                  <div key={item.id} className="p-5 rounded-xl bg-linear-to-b from-[#181d29] to-[#0d1017] border border-white/5 shadow-xl text-left hover:border-white/11 transition-all duration-300">
+                  <div key={item.id} className="p-5 rounded-2xl bg-gradient border border-white/5 hover:border-white/11 shadow-xl text-left transition-all duration-300">
                     <div className="flex gap-3 leading-none items-center justify-between">
                       <div className="flex gap-3 leading-none items-center">
                         <Link href={`/u/${item.metadata.username}`}>
@@ -1358,37 +1402,43 @@ export default function FeedPage() {
                             <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
                               {item.metadata.display_name || item.metadata.username}
                             </Link>
-                            <span className="text-text-muted font-medium ml-1.5">registered an automotive service</span>
+                            <span className="text-text-muted font-medium ml-1.5">
+                              {hasUpdated ? 'updated their service directory entry' : 'registered an automotive service'}
+                            </span>
                           </div>
-                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">broadcast {timeAgo(item.created_at)}</span>
+                          <span className="text-[10px] text-text-disabled mt-1 block font-medium">
+                            broadcast {timeAgo(hasUpdated ? item.updated_at! : item.created_at)}
+                            {hasUpdated && <span className="text-primary font-mono text-[9px] uppercase tracking-wider ml-1.5 font-black">&bull; updated</span>}
+                          </span>
                         </div>
                       </div>
-                      <Radio size={13} className="text-primary opacity-40 shrink-0" />
+                      <Radio size={14} className="text-primary opacity-45 shrink-0" />
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between border-t border-slate-900 pt-3 mt-3.5">
                       <div className="space-y-1 block min-w-0 pr-2 flex-1">
                         <Link 
                           href="/services" 
-                          className="font-bold text-xs uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
+                          className="font-bold text-sm uppercase text-white hover:text-primary leading-tight font-mono tracking-wide"
                         >
                           SERVICE: {item.metadata.title} ({item.metadata.location})
                         </Link>
-                        <p className="text-[11px] text-text-disabled pt-1 leading-relaxed line-clamp-1">{item.content}</p>
+                        <p className="text-xs text-text-secondary pt-1 leading-relaxed line-clamp-2">{item.content}</p>
                       </div>
 
                       <div className="flex items-center gap-3 shrink-0">
-                        {item.metadata.price ? (
-                          <span className="text-xs text-primary font-mono font-black">RM {item.metadata.price}</span>
-                        ) : null}
+                        {/* Price badge stripped from feeds section per user instruction */}
                         <Link
-                          href="/services"
-                          className="h-8 px-3 rounded-lg border border-slate-800 hover:border-slate-700 font-mono text-[9px] font-black text-white hover:bg-slate-900 inline-flex items-center uppercase tracking-widest"
+                          href={`/services/${item.id}`}
+                          className="h-8 px-3 rounded-lg border border-slate-850 hover:border-slate-750 font-mono text-[9px] font-black text-white hover:bg-slate-900 inline-flex items-center uppercase tracking-widest overflow-hidden"
                         >
                           View Directory
                         </Link>
                       </div>
                     </div>
+
+                    {/* Inline Comment thread support */}
+                    <InlineCommentSection itemId={item.id} feedType="service" currentUserId={userId} />
                   </div>
                 )
               }

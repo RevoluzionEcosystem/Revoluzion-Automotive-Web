@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { MapPin, Search, AlertCircle } from 'lucide-react'
+import Link from 'next/link'
 import { timeAgo } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { ServicesSidebarWithSuspense } from '@/components/ui/ServicesSidebarWithSuspense'
@@ -192,72 +193,73 @@ export default async function ServicesPage({
                     key={item.id} 
                     className="card-hover group overflow-hidden bg-gradient border border-slate-700 hover:border-slate-400 rounded-xl flex flex-col justify-between text-xs transition-all duration-200 shadow-md"
                   >
-                    <div>
-                      {/* Cover image banner */}
-                      <div className="p-2 pb-0">
-                        <div className="relative aspect-square w-full bg-surface-variant overflow-hidden rounded-lg border border-slate-700/60 group-hover:border-slate-500/50 transition-colors shrink-0">
-                          <img 
-                            src={item.banner_url || DEFAULT_IMAGES[item.category] || 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=400&q=80'} 
-                            alt="" 
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/30 to-transparent" />
-                          
-                          {item.status === 'draft' && (
-                            <div className="absolute top-2 left-2 z-10">
-                              <span className="text-[8px] font-black uppercase tracking-widest border border-slate-500/40 bg-slate-700 text-slate-100 rounded px-1.5 py-0.5">
-                                Draft
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="p-3 space-y-1.5 flex-1 flex flex-col justify-between">
-                        {/* Title block */}
-                        <div className="space-y-1 text-left">
-                          <h3 
-                            className="text-white text-xs font-semibold line-clamp-1 group-hover:text-primary transition-colors"
-                            style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-                          >
-                            {item.title.replace(' [SeedMock]', '')}
-                          </h3>
-
-                          {/* Description body */}
-                          <p 
-                            className="text-[10.5px] text-text-secondary line-clamp-2 leading-relaxed select-none"
-                            style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-                          >
-                            {item.description || 'Verified member service provider. Reach out to inspect specs, match pricing, and check scheduling.'}
-                          </p>
+                    <Link href={`/services/${item.id}`} className="block">
+                      <div>
+                        {/* Cover image banner */}
+                        <div className="p-2 pb-0">
+                          <div className="relative aspect-square w-full bg-surface-variant overflow-hidden rounded-lg border border-slate-700/60 group-hover:border-slate-500/50 transition-colors shrink-0">
+                            <img 
+                              src={item.banner_url || DEFAULT_IMAGES[item.category] || 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=400&q=80'}
+                              alt="" 
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/30 to-transparent" />
+                            
+                            {item.status === 'draft' && (
+                              <div className="absolute top-2 left-2 z-10">
+                                <span className="text-[8px] font-black uppercase tracking-widest border border-slate-500/40 bg-slate-700 text-slate-100 rounded px-1.5 py-0.5">
+                                  Draft
+                                </span>
+                              </div>
+                            )}
+                          </div>
                         </div>
 
-                        {/* Location, category & Price styled below description */}
-                        <div className="space-y-1 pt-1.5 border-t border-slate-700/40">
-                          <div className="flex items-center justify-between">
-                            <span 
-                              className="inline-block text-[8px] uppercase text-primary bg-primary/10 border border-primary/20 rounded px-1.5 py-0.5 tracking-wider font-semibold"
+                        <div className="p-3 space-y-1.5 flex-1 flex flex-col justify-between">
+                          {/* Title block */}
+                          <div className="space-y-1 text-left">
+                            <h3 
+                              className="text-white text-xs font-semibold line-clamp-1 group-hover:text-primary transition-colors"
                               style={{ fontFamily: 'var(--font-inter), sans-serif' }}
                             >
-                              {item.category.replace('_', ' ')}
-                            </span>
+                              {item.title.replace(' [SeedMock]', '')}
+                            </h3>
 
-                            <span 
-                              className="text-emerald-400 font-extrabold text-xs tracking-wider"
-                              style={{ fontFamily: 'var(--font-orbitron)' }}
+                            {/* Description body */}
+                            <p 
+                              className="text-[10.5px] text-text-secondary line-clamp-2 leading-relaxed select-none"
+                              style={{ fontFamily: 'var(--font-inter), sans-serif' }}
                             >
-                              RM {priceVal}
-                            </span>
+                              {item.description || 'Verified member service provider. Reach out to inspect specs, match pricing, and check scheduling.'}
+                            </p>
                           </div>
 
-                          {item.location && (
-                            <div className="flex items-center gap-1 text-text-muted text-[10px] pt-1">
-                              <MapPin size={11} className="text-rose-500 shrink-0" />
-                              <span className="truncate">{item.location}</span>
-                            </div>
-                          )}
-                        </div>
+                          {/* Location, category & Price styled below description */}
+                          <div className="space-y-1 pt-1.5 border-t border-slate-700/40">
+                            <div className="flex items-center justify-between">
+                              <span 
+                                className="inline-block text-[8px] uppercase text-primary bg-primary/10 border border-primary/20 rounded px-1.5 py-0.5 tracking-wider font-semibold"
+                                style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+                              >
+                                {item.category.replace('_', ' ')}
+                              </span>
 
+                              {/* Price removed from card list view per user instruction */}
+                            </div>
+
+                            {item.location && (
+                              <div className="flex items-center gap-1 text-text-muted text-[10px] pt-1">
+                                <MapPin size={11} className="text-rose-500 shrink-0" />
+                                <span className="truncate">{item.location}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+
+                    <div>
+                      <div className="px-3">
                         {/* Geospatial Directions Buttons */}
                         <div className="grid grid-cols-2 gap-1.5 pt-2 border-t border-slate-800/60 mt-1">
                           <a 
@@ -277,28 +279,26 @@ export default async function ServicesPage({
                             Waze Nav
                           </a>
                         </div>
-
                       </div>
-                    </div>
 
-                    {/* Metadata Footer: Views, Likes, Creator Info */}
-                    <div className="px-3 pb-3 pt-2.5 border-t border-slate-800/80 bg-surface/10 rounded-b-xl">
-                      <div className="flex items-center justify-between text-[10px] text-text-secondary">
-                        <div className="flex items-center gap-1.5 min-w-0">
-                          {item.users?.avatar_url ? (
-                            <div className="relative w-4 h-4 rounded-full overflow-hidden border border-slate-700 bg-surface flex-shrink-0">
-                              <img src={item.users.avatar_url} className="object-cover w-full h-full" alt="" />
-                            </div>
-                          ) : (
-                            <div className="w-4 h-4 border border-slate-700 rounded-full flex items-center justify-center bg-surface overflow-hidden flex-shrink-0">
-                              <DefaultAvatar className="w-3.5 h-3.5 text-primary" />
-                            </div>
-                          )}
-                          <span className="text-[10px] text-text-muted truncate max-w-16">
-                            {item.users?.username || item.users?.display_name || 'Owner'}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1.5 shrink-0">
+                      {/* Metadata Footer: Views, Likes, Creator Info */}
+                      <div className="px-3 pb-3 pt-2.5 border-t border-slate-800/80 bg-surface/10 rounded-b-xl mt-2.5">
+                        <div className="flex items-center justify-between text-[10px] text-text-secondary">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            {item.users?.avatar_url ? (
+                              <div className="relative w-4 h-4 rounded-full overflow-hidden border border-slate-700 bg-surface flex-shrink-0">
+                                <img src={item.users.avatar_url} className="object-cover w-full h-full" alt="" />
+                              </div>
+                            ) : (
+                              <div className="w-4 h-4 border border-slate-700 rounded-full flex items-center justify-center bg-surface overflow-hidden flex-shrink-0">
+                                <DefaultAvatar className="w-3.5 h-3.5 text-primary" />
+                              </div>
+                            )}
+                            <span className="text-[10px] text-text-muted truncate max-w-16">
+                              {item.users?.username || item.users?.display_name || 'Owner'}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1.5 shrink-0">
                           <span className="flex items-center gap-0.5">
                             <span className="text-rose-400">♥</span>
                             {mockLikes}
@@ -318,7 +318,8 @@ export default async function ServicesPage({
                         </div>
                       </div>
                     </div>
-                  </article>
+                  </div>
+                </article>
                 )
               })}
             </div>

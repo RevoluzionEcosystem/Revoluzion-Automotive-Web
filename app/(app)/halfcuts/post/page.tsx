@@ -36,7 +36,7 @@ export default function PostHalfcutPage() {
       price: '',
       oem_part_number: '',
       description: '',
-      images: [null, null, null, null, null],
+      images: Array(50).fill(null),
       uploading: false,
     }
   ])
@@ -54,7 +54,7 @@ export default function PostHalfcutPage() {
         price: '',
         oem_part_number: '',
         description: '',
-        images: [null, null, null, null, null],
+        images: Array(50).fill(null),
         uploading: false,
       }
     ])
@@ -91,13 +91,13 @@ export default function PostHalfcutPage() {
       .filter((idx) => idx !== -1)
 
     if (emptySlotIndexes.length === 0) {
-      toast.error('This part already has 5 images')
+      toast.error('This part already has 50 images')
       return
     }
 
     const filesToUpload = Array.from(files).slice(0, emptySlotIndexes.length)
     if (files.length > emptySlotIndexes.length) {
-      toast.warning(`Only uploading first ${emptySlotIndexes.length} files to fit 5 slots limit.`)
+      toast.warning(`Only uploading first ${emptySlotIndexes.length} files to fit 50 slots limit.`)
     }
 
     updateItem(itemIdx, 'uploading', true)
@@ -130,7 +130,7 @@ export default function PostHalfcutPage() {
         const rowImages = [...copy[itemIdx].images]
         
         let urlIdx = 0
-        for (let sIdx = 0; sIdx < 5; sIdx++) {
+        for (let sIdx = 0; sIdx < 50; sIdx++) {
           if (rowImages[sIdx] === null && urlIdx < newUrls.length) {
             rowImages[sIdx] = newUrls[urlIdx]
             urlIdx++
@@ -201,7 +201,7 @@ export default function PostHalfcutPage() {
     const slotsToFill: number[] = []
     
     // Find empty spots from the starting index forward, then any remaining empty spots
-    for (let i = startImgIdx; i < 5; i++) {
+    for (let i = startImgIdx; i < 50; i++) {
       if (rowImages[i] === null) slotsToFill.push(i)
     }
     for (let i = 0; i < startImgIdx; i++) {
@@ -521,7 +521,7 @@ export default function PostHalfcutPage() {
                 <div className="space-y-3 pt-4 border-t border-white/5">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                      <h4 className="text-white text-xs font-bold uppercase tracking-wider">Donor Part Images (Maximum 5)</h4>
+                      <h4 className="text-white text-xs font-bold uppercase tracking-wider">Donor Part Images (Maximum 50)</h4>
                       <p className="text-[10px] text-text-muted">
                         First non-empty slot is the cover image. Draggable: hover over an image, click and drag to reorder.
                       </p>

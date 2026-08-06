@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, MapPin, Tag, Phone, MessageCircle } from 'lucide-react'
@@ -71,12 +71,14 @@ export default async function ServiceDetailPage({ params }: Props) {
         {/* Banner Column - 1fr */}
         <div className="lg:col-span-1 space-y-4">
           <div className="rounded-xl overflow-hidden border border-border aspect-square bg-[#0c0e14] relative">
-            <Image
+            <SafeImage
               src={service.banner_url || DEFAULT_IMAGE_FALLBACK}
               alt={service.title}
               fill
               className="w-full h-full object-cover"
               priority
+              fallbackSrc="/cover-image/halfcut-default.jpg"
+              fallbackAlt="Default Service Fallback"
             />
           </div>
 
@@ -148,7 +150,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           )}
 
           {/* Seller / Workshop Provider Card */}
-          {profile && (
+          {profile ? (
             <div className="card p-4 bg-gradient border border-slate-700/80 rounded-xl space-y-4 max-w-xl">
               <div className="flex justify-between items-center pb-2 border-b border-slate-800">
                 <span className="text-[10px] text-text-muted uppercase tracking-wider font-semibold font-mono">Verified Service Provider</span>
@@ -158,7 +160,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <Link href={`/u/${profile.username}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
                 {profile.avatar_url ? (
                   <div className="relative w-11 h-11 rounded-full overflow-hidden border border-slate-700">
-                    <Image src={profile.avatar_url} alt="" fill className="object-cover" />
+                    <SafeImage src={profile.avatar_url} alt="" fill className="object-cover" />
                   </div>
                 ) : (
                   <div className="w-11 h-11 border border-slate-700 rounded-full flex items-center justify-center bg-surface overflow-hidden">
@@ -174,40 +176,76 @@ export default async function ServiceDetailPage({ params }: Props) {
                 </div>
               </Link>
             </div>
+          ) : (
+            <div className="card p-4 bg-gradient border border-amber-600/30 bg-amber-950/5 rounded-xl space-y-4 max-w-xl">
+              <div className="flex justify-between items-center pb-2 border-b border-slate-800/80">
+                <span className="text-[10px] text-amber-400 font-bold uppercase tracking-wider font-mono">Guest / Unregistered Listing</span>
+                <span className="bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[8px] font-black uppercase px-1.5 py-0.5 rounded">EXTERNAL</span>
+              </div>
+              <div className="space-y-1.5">
+                <p className="text-xs text-text-secondary leading-relaxed">
+                  This service is listed as an external directory partner reference found online. The provider does not have an active registered member account on the platform yet.
+                </p>
+                <p className="text-[11px] text-amber-400 font-medium">
+                  Please direct dial or contact the provider via WhatsApp only.
+                </p>
+              </div>
+            </div>
           )}
 
           <div className="grid grid-cols-2 gap-3.5 max-w-xl">
-            {user?.id === profile?.id ? (
+            {profile ? (
+              user?.id === profile?.id ? (
+                <button
+                  disabled
+                  className="w-full flex items-center justify-center gap-2 h-11 bg-slate-800 border border-slate-700 text-slate-500 text-xs uppercase tracking-wider font-bold rounded-xl cursor-not-allowed font-mono"
+                >
+                  Your own service
+                </button>
+              ) : (
+                <Link
+                  href={`/chat/dm/${profile?.id || ''}?preset=${encodeURIComponent(`Hi there! I'm interested in your directory service listing: "${service.title}" on Revoluzion!`)}`}
+                  className="w-full flex items-center justify-center gap-2 h-11 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary text-xs uppercase tracking-wider font-bold rounded-xl transition-all duration-200 font-mono"
+                >
+                  <MessageCircle size={15} /> Book Consultation
+                </Link>
+              )
+            ) : (
               <button
                 disabled
-                className="w-full flex items-center justify-center gap-2 h-11 bg-slate-800 border border-slate-700 text-slate-500 text-xs uppercase tracking-wider font-bold rounded-xl cursor-not-allowed font-mono"
+                className="w-full flex items-center justify-center gap-2 h-11 bg-slate-850 border border-slate-800 text-slate-600 text-[10px] uppercase tracking-wider font-bold rounded-xl cursor-not-allowed font-mono"
+                title="Only registered directory providers can accept system direct bookings. Use WhatsApp option instead!"
               >
-                Your own service
+                Booking Disabled
               </button>
-            ) : (
-              <Link
-                href={`/chat/dm/${profile?.id || ''}?preset=${encodeURIComponent(`Hi there! I'm interested in your directory service listing: "${service.title}" on Revoluzion!`)}`}
-                className="w-full flex items-center justify-center gap-2 h-11 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary text-xs uppercase tracking-wider font-bold rounded-xl transition-all duration-200 font-mono"
-              >
-                <MessageCircle size={15} /> Book Consultation
-              </Link>
             )}
 
-            {user?.id === profile?.id ? (
-              <button
-                disabled
-                className="w-full flex items-center justify-center gap-2 h-11 bg-slate-800 border border-slate-700 text-slate-500 text-xs uppercase tracking-wider font-bold rounded-xl cursor-not-allowed font-mono"
-              >
-                Your own service
-              </button>
+            {profile ? (
+              user?.id === profile?.id ? (
+                <button
+                  disabled
+                  className="w-full flex items-center justify-center gap-2 h-11 bg-slate-800 border border-slate-700 text-slate-500 text-xs uppercase tracking-wider font-bold rounded-xl cursor-not-allowed font-mono"
+                >
+                  Your own service
+                </button>
+              ) : (
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full flex items-center justify-center gap-2 h-11 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs uppercase tracking-wider font-bold rounded-xl transition-all duration-200 font-mono"
+                >
+                  <Phone size={15} /> Contact WhatsApp
+                </a>
+              )
             ) : (
               <a
                 href={waUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full flex items-center justify-center gap-2 h-11 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs uppercase tracking-wider font-bold rounded-xl transition-all duration-200 font-mono"
+                className="w-full col-span-2 flex items-center justify-center gap-2 h-11 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 hover:from-emerald-500/35 hover:to-teal-500/35 border border-emerald-500/40 text-emerald-400 text-xs uppercase tracking-wider font-bold rounded-xl transition-all duration-200 font-mono shadow-lg shadow-emerald-950/20"
               >
-                <Phone size={15} /> Contact WhatsApp
+                <Phone size={15} /> Contact WhatsApp Directly
               </a>
             )}
           </div>

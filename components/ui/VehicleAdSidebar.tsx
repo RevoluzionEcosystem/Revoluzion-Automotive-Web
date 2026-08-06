@@ -2,14 +2,40 @@
 
 import React from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Layers, CheckCircle, LayoutDashboard, Bike } from 'lucide-react'
+import { CheckCircle, LayoutDashboard, Car } from 'lucide-react'
 import { StandardSubmenuSidebar, SidebarSection } from '@/components/ui/StandardSubmenuSidebar'
 
 interface Props {
   className?: string
 }
 
-const MAKES = ['All', 'BMW', 'Mercedes-Benz', 'Toyota', 'Honda', 'Nissan', 'Porsche', 'Mazda', 'Ducati', 'Yamaha', 'Harley-Davidson', 'Other']
+const MAKES = [
+  'All', 
+  'BMW', 
+  'Mercedes-Benz', 
+  'Toyota', 
+  'Honda', 
+  'Nissan', 
+  'Porsche', 
+  'Mazda', 
+  'Mitsubishi', 
+  'Subaru', 
+  'Audi', 
+  'Volkswagen', 
+  'Ford', 
+  'Chevrolet', 
+  'Hyundai', 
+  'Kia', 
+  'Ferrari', 
+  'Lamborghini', 
+  'Aston Martin', 
+  'Lexus', 
+  'Land Rover', 
+  'Ducati', 
+  'Yamaha', 
+  'Harley-Davidson', 
+  'Other'
+]
 
 export function VehicleAdSidebar({ className = '' }: Props) {
   const searchParams = useSearchParams()
@@ -24,13 +50,13 @@ export function VehicleAdSidebar({ className = '' }: Props) {
     } else {
       params.set('make', make)
     }
-    return `/vehicles?${params.toString()}`
+    return `/vehicle-ads?${params.toString()}`
   }
 
   const sections: SidebarSection[] = [
     {
       headerText: 'VEHICLE MANUFACTURER',
-      headerIcon: <Bike className="h-3.5 w-3.5 text-primary" />,
+      headerIcon: <Car className="h-3.5 w-3.5 text-primary" />,
       items: MAKES.map((make) => ({
         key: make,
         label: make,

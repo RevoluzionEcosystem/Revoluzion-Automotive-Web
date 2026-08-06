@@ -1,8 +1,5 @@
 import Link from 'next/link'
 
-const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/g
-const MENTION_REGEX = /@([a-zA-Z0-9_]+)/g
-
 interface Segment {
   start: number
   end: number
@@ -11,6 +8,9 @@ interface Segment {
 }
 
 export function PostContent({ content }: { content: string }) {
+  const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/g
+  const MENTION_REGEX = /@([a-zA-Z0-9_]+)/g
+
   const segments: Segment[] = []
 
   let m: RegExpExecArray | null

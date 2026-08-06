@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Link from 'next/link'
 import { ShoppingCart, Package, Zap, Heart, Loader2 } from 'lucide-react'
 import { formatCurrency } from '@/lib/utils'
@@ -46,17 +46,11 @@ export function ShopProductCard({ productId, name, slug, sku, priceRetail, stock
     <div className={`rounded-xl border overflow-hidden flex flex-col group transition-colors ${outOfStock ? 'border-border opacity-70' : 'bg-surface border-border hover:border-primary/30'}`}>
       {/* Image */}
       <Link href={href} className="block aspect-square relative overflow-hidden bg-surface-variant">
-        {imageUrl ? (
-          <Image src={imageUrl} alt={name} fill
-            loading={priority ? 'eager' : 'lazy'}
-            priority={priority}
-            sizes="(max-width:640px)48vw,(max-width:768px)32vw,(max-width:1024px)24vw,(max-width:1280px)19vw,(max-width:1536px)16vw,14vw"
-            className={`object-cover transition-transform duration-300 ${outOfStock ? '' : 'group-hover:scale-105'}`} />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-surface-variant">
-            <Package size={36} className="text-primary/20" />
-          </div>
-        )}
+        <SafeImage src={imageUrl || ''} alt={name} fill
+          loading={priority ? 'eager' : 'lazy'}
+          priority={priority}
+          sizes="(max-width:640px)48vw,(max-width:768px)32vw,(max-width:1024px)24vw,(max-width:1280px)19vw,(max-width:1536px)16vw,14vw"
+          className={`object-cover transition-transform duration-300 ${outOfStock ? '' : 'group-hover:scale-105'}`} />
 
         {/* Out-of-stock overlay */}
         {outOfStock && (

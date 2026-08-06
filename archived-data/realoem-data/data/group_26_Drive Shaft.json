@@ -1,0 +1,341 @@
+{
+  "group_name": "Drive Shaft",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=26",
+  "diagrams": [
+    {
+      "id": "26_0240",
+      "name": "DRIVE SHAFT/INSERT NUT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=26_0240",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "Important!Note Repair ManualReplace bolts on transmission!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Drive shaft automatic transmission",
+          "suppl": "L=1869MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26107614653",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Repair kit recessed nut blue",
+          "suppl": "M39X1,5X20",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "33127607158",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Hex bolt",
+          "suppl": "M12X1,5X71-ZNS3",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26117527475",
+          "price_approx": "$2.08",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Repair kit recessed nut blue",
+          "suppl": "M39X1,5X20",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "33127607158",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "26_0241",
+      "name": "HARDY COUPLINGS/CENTER BEARING/INNER NUT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=26_0241",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Universal joint",
+          "suppl": "LK=105MM/12",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "26117610061",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Centering sleeve",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26117526611",
+          "price_approx": "$11.32",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Hex bolt",
+          "suppl": "M12X1,5X71-ZNS3",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26117527475",
+          "price_approx": "$2.08",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Bolt on Hardy coupling",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Self-locking hex nut",
+          "suppl": "M12X1,5-10-ZNS3",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26127536563",
+          "price_approx": "$1.00",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Bolt on Hardy coupling",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Damper ring",
+          "suppl": "D=39/D=35",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "11/2009",
+          "part_number": "26117527617",
+          "price_approx": "$1.82",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Rubber boot, center bearing",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "11/2024",
+          "part_number": "26117526628",
+          "price_approx": "$8.45",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Rubber boot, center bearing",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26118881330",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Center Mount, aluminium",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26127564695",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Central mount aluminum",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26118858476",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Grooved ball bearing",
+          "suppl": "D=55/D=35",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26121225002",
+          "price_approx": "$30.45",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Hex bolt with washer",
+          "suppl": "M8X24-8.8-ZNS3",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26127521853",
+          "price_approx": "$1.18",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Universal joint",
+          "suppl": "LK=105MM/12",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26117610061",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "see PuMA Measure 35464351",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Centering sleeve hard",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "05/2010",
+          "part_number": "26117526806",
+          "price_approx": "$28.35",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Hex bolt",
+          "suppl": "M12X1,5X71-ZNS3",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26117527475",
+          "price_approx": "$2.08",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "Hexagon nut with collar",
+          "suppl": "M12X1,5-10 ZNS3",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "33326760368",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "14",
+          "description": "Torx screw",
+          "suppl": "M12X1,5X55-ZNS3",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "26118607971",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "15",
+          "description": "Repair kit recessed nut blue",
+          "suppl": "M39X1,5X20",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "33127607158",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Important!Note Repair Manual",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "16",
+          "description": "Lubricat.mat.Optitemp 2 LN 584 LO",
+          "suppl": "100G",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "83195B4D4F9",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "16",
+          "description": "Lubricat.mat.Optitemp 2 LN 584 LO",
+          "suppl": "100G",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "06/2024",
+          "part_number": "83190447919",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

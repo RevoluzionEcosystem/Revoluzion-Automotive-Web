@@ -1,0 +1,639 @@
+{
+  "group_name": "Engine Electrical System",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=12",
+  "diagrams": [
+    {
+      "id": "12_1417",
+      "name": "IGNITION COIL/SPARK PLUG",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1417",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Ignition coil",
+          "suppl": "ELDOR",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12138657273",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ignition coil",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12135A06753",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Locking mechanism",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12131437986",
+          "price_approx": "$1.10",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Spark plug, High Power",
+          "suppl": "BOSCH ZGR6STE2",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12120037244",
+          "price_approx": "$21.32",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Socket housing",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527519996",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Socket terminal SLK 2.8 ELA with wire",
+          "suppl": "0,2- 0,5MM²/AG",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12520143427",
+          "price_approx": "$2.03",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Socket terminal SLK 2.8 ELA with wire",
+          "suppl": "0,5- 1,0 MM²/AG",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12520143433",
+          "price_approx": "$4.00",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1533",
+      "name": "SENSORS AND RELAYS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1533",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "Before replacing the oil level sensoralways note PuMA measure 29604954!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Oil levelling sensor",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12617607910",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Hex nut with plate",
+          "suppl": "M6-8-ZNNIV SI",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905544",
+          "price_approx": "$0.64",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Gasket ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12611744292",
+          "price_approx": "$6.42",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Oil pressure switch",
+          "suppl": "M12X1,5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12618611273",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Relay, make contact, sky-blue",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61366915327",
+          "price_approx": "$13.96",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1455",
+      "name": "BASIC CONTROL UNIT DME / MSD87_6",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1455",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For national-market version China L8AAAan additional label for the DME basiccontrol unit must also be ordered.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Exch. basic control unit DME",
+          "suppl": "MSD87_6",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2009",
+          "part_number": "12147593669",
+          "price_approx": "$1186.02",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Basic cotrol unit DME",
+          "suppl": "MSD87_6",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12148609535",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1637",
+      "name": "ALTERNATOR",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1637",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "Please determine the installedalternatorindependently or via diagnosis.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Alternator",
+          "suppl": "VALEO 230A",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12317603778",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "RP REMAN alternator",
+          "suppl": "VALEO 230A",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12317603781",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Hex bolt",
+          "suppl": "M8X105-8.8",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119908002",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Hex bolt",
+          "suppl": "M8X85-8.8",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119908003",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1909",
+      "name": "STARTER",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1909",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "RP REMAN starter motor",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "12412354701",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "RP starter motor",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "12417610343",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Solenoid switch",
+          "suppl": "BOSCH",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "12417526238",
+          "price_approx": "$103.45",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "ASA-Bolt",
+          "suppl": "M10X30",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129903798",
+          "price_approx": "$0.96",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "ASA-Bolt",
+          "suppl": "M10X85-8.8-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129903800",
+          "price_approx": "$1.78",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1482",
+      "name": "ENGINE WIRING HARNESS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1482",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Engine wiring harness, engine module",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12517591570",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Wiring harness, engine, front module",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12517582665",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "wiring harness, engine ignition module",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12517582668",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "wiring harness, engine trans. module",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12517582696",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Tubing for clamp 50",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12517561401",
+          "price_approx": "$15.23",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1470",
+      "name": "BATTERY, STARTER MOTOR, GROUND CABLE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1470",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Cable, altern, start motor supp point B+",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12427582323",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Hex nut",
+          "suppl": "M8",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07149125856",
+          "price_approx": "$1.33",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Cap nut",
+          "suppl": "M8",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12528576285",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Protection cap",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527567099",
+          "price_approx": "$1.68",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Ground cable",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12427580334",
+          "price_approx": "$19.88",
+          "notes": ""
+        },
+        {
+          "pos": "14",
+          "description": "Tubing for clamp 50",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12517561401",
+          "price_approx": "$15.23",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1553",
+      "name": "CABLE HOLDER/COVERING",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1553",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Upper part of cable guide",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527578952",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Bottom part of cable guide",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527578954",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Bracket for corrugated tubing",
+          "suppl": "",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527577352",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "12_1476",
+      "name": "CONTROL UNIT BOX",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=12_1476",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "E-Box with ventilation",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907555186",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Sealing frame",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907555190",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907555188",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Front end plug, ECU box",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907580414",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Front end plug, ECU box",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907555146",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Mounting plate",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907555149",
+          "price_approx": "$7.82",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Screw",
+          "suppl": "5X20",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11617535849",
+          "price_approx": "$0.75",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X16-U2-ZNS3",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119902913",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Retainer for grommet",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907594605",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "19",
+          "description": "Retainer for grommet",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12907555191",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

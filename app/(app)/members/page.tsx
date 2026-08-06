@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useQuery } from '@tanstack/react-query'
 import { Users, Search, UserCheck, MapPin, SlidersHorizontal, ArrowUpDown, ChevronUp, ChevronDown, Award } from 'lucide-react'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
+import { FallbackAvatar } from '@/components/ui/FallbackAvatar'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type { Profile } from '@/lib/supabase/types'
@@ -279,19 +280,18 @@ export default function MembersPage() {
                   >
                     {/* Member Profile block */}
                     <td className="py-3 px-5 flex items-center gap-3">
-                      {member.avatar_url ? (
-                        <div className="relative w-8 h-8 rounded-full overflow-hidden border border-slate-800 shrink-0">
-                          <img 
+                      <div className="relative w-8 h-8 rounded-full border border-slate-800 shrink-0 flex items-center justify-center bg-surface overflow-hidden">
+                        {member.avatar_url ? (
+                          <FallbackAvatar 
                             src={member.avatar_url} 
                             alt={member.display_name || member.username || ''} 
                             className="w-full h-full object-cover"
+                            fallbackClassName="w-7 h-7"
                           />
-                        </div>
-                      ) : (
-                        <div className="w-8 h-8 rounded-full border border-slate-800 shrink-0 flex items-center justify-center bg-surface overflow-hidden">
+                        ) : (
                           <DefaultAvatar className="w-7 h-7" />
-                        </div>
-                      )}
+                        )}
+                      </div>
                       
                       <div className="min-w-0">
                         <div className="flex items-center gap-1">

@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { Mail, MessageSquare, ArrowRight, UserCircle } from 'lucide-react'
+import { Mail, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
@@ -22,18 +22,7 @@ export function ChatInboxList() {
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
 
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setUserId(user.id)
-        fetchDirectChatInbox(user.id)
-      } else {
-        setLoading(false)
-      }
-    })
-  }, [supabase])
-
-  async function fetchDirectChatInbox(uid: string) {
+  const fetchDirectChatInbox = useCallback(async (uid: string) => {
     try {
       // Find all inboxes where user is the sender or receiver
       const { data, error } = await supabase
@@ -46,7 +35,6 @@ export function ChatInboxList() {
 
       if (!data || data.length === 0) {
         setConversations([])
-        setLoading(false)
         return
       }
 
@@ -90,7 +78,18 @@ export function ChatInboxList() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [supabase])
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        setUserId(user.id)
+        fetchDirectChatInbox(user.id)
+      } else {
+        setLoading(false)
+      }
+    })
+  }, [supabase, fetchDirectChatInbox])
 
   if (loading) {
     return <div className="text-center py-6 text-xs text-text-muted">Loading inbox thread summaries...</div>

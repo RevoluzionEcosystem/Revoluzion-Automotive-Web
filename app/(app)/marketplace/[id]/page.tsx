@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, MapPin, Tag, Phone, MessageCircle } from 'lucide-react'
 import { formatCurrency, timeAgo } from '@/lib/utils'
@@ -81,7 +82,7 @@ export default async function MarketplaceListingPage({ params }: Props) {
           {images.length > 0 ? (
             <>
               <div className="rounded-xl overflow-hidden border border-border aspect-square bg-surface-variant relative">
-                <Image
+                <SafeImage
                   src={images[0].image_url}
                   alt={listing.title}
                   fill
@@ -93,15 +94,15 @@ export default async function MarketplaceListingPage({ params }: Props) {
                 <div className="grid grid-cols-4 gap-2">
                   {images.slice(1).map((img: { image_url: string }, i: number) => (
                     <div key={i} className="aspect-square rounded-lg overflow-hidden border border-border bg-surface-variant relative">
-                      <Image src={img.image_url} alt={`Image ${i + 2}`} fill className="w-full h-full object-cover" />
+                      <SafeImage src={img.image_url} alt={`Image ${i + 2}`} fill className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
               )}
             </>
           ) : (
-            <div className="aspect-square rounded-xl bg-surface-variant border border-border flex items-center justify-center">
-              <Tag size={48} className="text-primary/30" />
+            <div className="aspect-square rounded-xl bg-surface-variant border border-border relative overflow-hidden flex items-center justify-center">
+              <SafeImage src="" alt="Placeholder" fill className="object-cover" />
             </div>
           )}
 

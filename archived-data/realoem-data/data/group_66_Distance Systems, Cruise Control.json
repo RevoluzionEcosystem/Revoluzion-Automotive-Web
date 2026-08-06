@@ -1,0 +1,1616 @@
+{
+  "group_name": "Distance Systems, Cruise Control",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=66",
+  "diagrams": [
+    {
+      "id": "66_0204",
+      "name": "PARK DISTANCE CONTROL (PDC)",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0204",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "IMPORTANT NOTICE!The replacement part concept for theultrasonic converter has been revised!For important information refer toproduct information in the ASAP'New replacement concept for paintedPark Distance Control (PDC)ultrasonic converter'",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, color code",
+          "suppl": "",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66202180495",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Important notice:Control number for Individualand unlisted colors.Attention, important info forvehicles with individual painting:After entering the vehicleidentification number in\"Vehicle details\", select the\"Equipment\" option.For vehicles with individual painting,the key numbermust be searched for/selected manuallyin the condition evaluation, whichallowsthe sensor to appear in the correctcolor.If the key number cannot be found in thelist, the sensor color code must beordered with theappropriate key number.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withSakhir-orange metallic",
+          "suppl": "WB50=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Sakhir Orange",
+          "suppl": "WB50",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209279947",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withtitan-silber",
+          "suppl": "M354=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Titan Silver",
+          "suppl": "M354",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233028",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withalpinweiss 3",
+          "suppl": "U300=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Alpine White",
+          "suppl": "U300",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233031",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withhavanna metallic",
+          "suppl": "WA17=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Havanna",
+          "suppl": "WA17",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233049",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withblue-water metallic",
+          "suppl": "M896=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Blue Water",
+          "suppl": "M896",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233050",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withglacier-silber metallic",
+          "suppl": "WA83=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Glacier Silver",
+          "suppl": "WA83",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209275737",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withcarbon-schwarz",
+          "suppl": "M416=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Carbon Black",
+          "suppl": "M416",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233047",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withkallisto-grau metallic",
+          "suppl": "WB64=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Callisto Gray",
+          "suppl": "WB64",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209297699",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withalpina-grün 2 metallic",
+          "suppl": "WU08=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Alpina Green",
+          "suppl": "WU08",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66207976524",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withmilano-beige metallic",
+          "suppl": "WA84=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Milano Beige",
+          "suppl": "WA84",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233039",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withimperial-blau brillant metallic",
+          "suppl": "WA89=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Imperial Blue",
+          "suppl": "WA89",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233036",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withspace-grey metallic",
+          "suppl": "WA52=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Space Gray",
+          "suppl": "WA52",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233034",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withblack 2",
+          "suppl": "U668=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Black 2",
+          "suppl": "U668",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233032",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withtief-grün metallic",
+          "suppl": "WA43=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Deep Green",
+          "suppl": "WA43",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233033",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withmineral-weiss metallic",
+          "suppl": "WA96=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Mineral White",
+          "suppl": "WA96",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209275704",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withTiefsee-blau metallic",
+          "suppl": "WA76=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, deep sea blue",
+          "suppl": "WA76",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233035",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withkaschmir-silver metallic",
+          "suppl": "WA72=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Kashmir Silver",
+          "suppl": "WA72",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233040",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withblack-sapphire metallic",
+          "suppl": "M475=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Black Sapphire",
+          "suppl": "M475",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209233029",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withJatoba metallic",
+          "suppl": "WB65=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Jatoba",
+          "suppl": "WB65",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209297700",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withsophisto-grau brillant metallicorsophisto-grau Brillanteffekt metallic",
+          "suppl": "WA90=YesWB90=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Sophisto Gray",
+          "suppl": "WA90 WB90",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209270050",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withalpina-blau metallicorblue 2 metallicoralpina-blau metallic",
+          "suppl": "WA46=YesWA46=YesWX06=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Ultrasonic sensor, Alpina Blue 2",
+          "suppl": "WA46 WX06",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66207976520",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Decoupling ring PDC torque converter",
+          "suppl": "",
+          "qty": "9",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66209142107",
+          "price_approx": "$1.05",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0165",
+      "name": "LANE-CHANGE WARNING",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0165",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Sensor, lane change warning, slave, LE",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66326862766",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Sensor, lane change warning, slave, LE",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66326880094",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Sensor, lane change warning, master, RI",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66326862765",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Sensor, lane change warning, master, RI",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66326880093",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Screening, left",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66326783357",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Screening, right",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66326783358",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Fillister head screw",
+          "suppl": "TS 5X16",
+          "qty": "10",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51417067920",
+          "price_approx": "$0.39",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0335",
+      "name": "ACC-SENSOR",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0335",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "ACC-Sensor 2",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316790171",
+          "price_approx": "$3067.27",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Bracket f ACC 2",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316775360",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Fillister head screw",
+          "suppl": "M5X10-ZNNID SW",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "07146777838",
+          "price_approx": "$0.36",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Adjustment equipment",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316762520",
+          "price_approx": "$1.90",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Sensor SRR",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316790877",
+          "price_approx": "$545.42",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Bracket f ACC 2",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316782689",
+          "price_approx": "$4.25",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Adapter",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316782690",
+          "price_approx": "$1.82",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Blind rivet",
+          "suppl": "D = 4MM",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316777308",
+          "price_approx": "$0.33",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Repair kit",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "66316786711",
+          "price_approx": "$47.25",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0340",
+      "name": "ACC-SENSOR",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0340",
+      "image_url": "",
+      "parts": []
+    },
+    {
+      "id": "66_0167",
+      "name": "REVERSING CAMERA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0167",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withReversing camera",
+          "suppl": "S3AGA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Reversing camera",
+          "suppl": "MIT GEHÄUSE",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66539240351",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Holder",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51137206430",
+          "price_approx": "$2.28",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Set of cables, reversing camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61119182293",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withSurround View",
+          "suppl": "S5DLA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Control module, backup camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66536994555",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Hex nut",
+          "suppl": "M5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129906048",
+          "price_approx": "$0.73",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0168",
+      "name": "SIDE-VIEW CAMERA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0168",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "For vehicles withSide View CameraorSurround View",
+          "suppl": "S5DKA=YesS5DLA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Side-view camera",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66539240352",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Bracket left",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51117203825",
+          "price_approx": "$5.76",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Bracket right",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51117203826",
+          "price_approx": "$5.76",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Body nut",
+          "suppl": "ST4,8-16-ZNS3",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904243",
+          "price_approx": "$0.36",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Hex head screw",
+          "suppl": "ST4,8X16-ZNS3",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119901299",
+          "price_approx": "$0.25",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Fillister head screw",
+          "suppl": "",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07149166316",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withBackup camera and Top View",
+          "suppl": "S3AHA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Wiring harness, 360 degree camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61119182330",
+          "price_approx": "$95.95",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withSide View Camera",
+          "suppl": "S5DKA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Wiring harness, Side View Camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61119186295",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withSide View CameraorSurround View",
+          "suppl": "S5DKA=YesS5DLA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Bracket \"Top-Rear-Side-View\"",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65159153137",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Hex nut",
+          "suppl": "M6-8-ZNFE SW",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904022",
+          "price_approx": "$0.09",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0171",
+      "name": "KAFAS CAMERA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0171",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "For vehicles withLane departure warningandDriving AssistantandDriving Assistant PlusandActive cruise control+Stop&Go functionandRoad sign detection",
+          "suppl": "S5ADA=YesS5ASA=YesS5ATA=YesS5DFA=YesS8THA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "KaFAS camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "07/2012",
+          "part_number": "66519188377",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0208",
+      "name": "TOP-VIEW CAMERA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0208",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withBackup camera and Top VieworSurround View",
+          "suppl": "S3AHA=YesS5DLA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Top-view camera",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66539240274",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "HSD - wire for outside mirror",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61129281712",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Torx screw",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51167180727",
+          "price_approx": "$0.17",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0210",
+      "name": "CONTROL UNIT FOR SURROUND-VIEW CAMERA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0210",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withBackup camera and Top VieworSurround View",
+          "suppl": "S3AHA=YesS5DLA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "ECU for Top Rear Side View camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66536994554",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Hex nut",
+          "suppl": "M5",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129906048",
+          "price_approx": "$0.73",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0222",
+      "name": "CONTROL UNIT FOR SIDE-VIEW CAMERA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0222",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withSide View Camera",
+          "suppl": "S5DKA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "ECU for Top Rear Side View camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66536994554",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Hex nut",
+          "suppl": "M5",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129906048",
+          "price_approx": "$0.73",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Wiring harness, 360 degree camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61119182330",
+          "price_approx": "$95.95",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Wiring harness, 360 degree camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61119182330",
+          "price_approx": "$95.95",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0315",
+      "name": "ECU FOR CAMERA-BASED DRIVER SUPPORT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0315",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withLane departure warningorDriving AssistantorDriving Assistant PlusorActive cruise control+Stop&Go functionorRoad sign detection",
+          "suppl": "S5ADA=YesS5ASA=YesS5ATA=YesS5DFA=YesS8THA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Control unit, camera-based systems",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "07/2012",
+          "part_number": "66519259021",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Oval-head screw with washer",
+          "suppl": "ISA M5X10",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07146988531",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0166",
+      "name": "NIGHT VISION CAMERA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0166",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "Not suitable for use in the countriesCuba, Iran, Syria, Libya,Sudan and North Korea.For vehicles withNight Vision with human recognition",
+          "suppl": "S6UKA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Night vision camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66549203322",
+          "price_approx": "$4652.02",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Bracket, night vision camera",
+          "suppl": "NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51137211665",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Support",
+          "suppl": "NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51117163471",
+          "price_approx": "$9.58",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Oval head screw",
+          "suppl": "M5X10-10.9 ZNS3",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "06/2010",
+          "part_number": "36317678083",
+          "price_approx": "$1.78",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Oval-head screw, self-tapping",
+          "suppl": "M5X12",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07149241365",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Cover for lens",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66549175668",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "HSD wire",
+          "suppl": "L= 960 MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "61129201763",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Grille, front, left",
+          "suppl": "NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51137203197",
+          "price_approx": "$100.88",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withM Aerodynamics package",
+          "suppl": "S715A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Grille, front, left",
+          "suppl": "M - NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51138035973",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Support",
+          "suppl": "NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51117163471",
+          "price_approx": "$9.58",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Compression spring",
+          "suppl": "NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147222655",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Adjusting screw",
+          "suppl": "NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147220824",
+          "price_approx": "$8.87",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Hex bolt with washer",
+          "suppl": "TS5X35 D=18",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147055085",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Plastic nut",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147212877",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "High-pressure nozzle",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61677149466",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Fillister head screw",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147246086",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "Control unit, Night Vision Camera",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "66549286713",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "14",
+          "description": "Snap-lock coupling",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "46637691016",
+          "price_approx": "$1.54",
+          "notes": ""
+        },
+        {
+          "pos": "15",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X45-U1",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905547",
+          "price_approx": "$1.17",
+          "notes": ""
+        },
+        {
+          "pos": "16",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471237",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS ELA with cable",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130056384",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS ELA with cable",
+          "suppl": "0,35-0,5 MM² AG",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130056961",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471237",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "17",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471237",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS ELA with cable",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130056384",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS ELA with cable",
+          "suppl": "0,35-0,5 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130056961",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471237",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "19",
+          "description": "Bracket, night vision camera",
+          "suppl": "NIVI",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51137211665",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "20",
+          "description": "Fillister head screw with collar",
+          "suppl": "NIVI",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07149113515",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "66_0497",
+      "name": "RADIO REMOTE CONTROL",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=66_0497",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "Attention:Theradio remote control units (IDG),radio remote control units with displayandsmall parts for these derivatives canbe found in HG 41 UG 50!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Read comments and instruct. carefully!",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "01104444444",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

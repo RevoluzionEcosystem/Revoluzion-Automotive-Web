@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
+import React, { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
-import { Search, X, MapPin, Phone, Layers, ArrowRight, Edit, Edit2 } from 'lucide-react'
-import type { HalfcutWithUser, HalfcutItem } from '@/lib/supabase/types'
+import { Search, X, MapPin, Phone, Layers, ArrowRight, Edit2, ShieldCheck, Banknote } from 'lucide-react'
+import { SafeImage } from '@/components/ui/SafeImage'
+import type { HalfcutWithUser } from '@/lib/supabase/types'
 import { createClient } from '@/lib/supabase/client'
 
 interface Props {
@@ -14,7 +14,6 @@ interface Props {
 
 export function HalfcutsClientList({ halfcuts, initialQuery }: Props) {
   const [q, setQ] = useState(initialQuery)
-  const [activeImageModal, setActiveImageModal] = useState<string | null>(null)
   const [sessionUserId, setSessionUserId] = useState<string | null>(null)
   const supabase = createClient()
 
@@ -29,24 +28,27 @@ export function HalfcutsClientList({ halfcuts, initialQuery }: Props) {
   }, [supabase])
 
   // Client side matching for phonetic resilience
-  const filteredListings = halfcuts.filter((hc) => {
-    const cleanSearch = q.trim().toLowerCase()
-    if (!cleanSearch) return true
+  const filteredListings = useMemo(() => {
+    return halfcuts.filter((hc) => {
+      const cleanSearch = q.trim().toLowerCase()
+      if (!cleanSearch) return true
 
-    // Check main parent title, location
-    const matchParent = 
-      hc.title.toLowerCase().includes(cleanSearch) || 
-      (hc.location && hc.location.toLowerCase().includes(cleanSearch))
+      // Check main parent title, location
+      const matchParent =
+        hc.title.toLowerCase().includes(cleanSearch) ||
+        (hc.location && hc.location.toLowerCase().includes(cleanSearch))
 
-    // Check any included part's title, oem part number or description
-    const matchChildren = hc.halfcut_items?.some((item) => 
-      item.title.toLowerCase().includes(cleanSearch) ||
-      (item.oem_part_number && item.oem_part_number.toLowerCase().includes(cleanSearch)) ||
-      (item.description && item.description.toLowerCase().includes(cleanSearch))
-    )
+      // Check any included part's title, oem part number or description
+      const matchChildren = hc.halfcut_items?.some(
+        (item) =>
+          item.title.toLowerCase().includes(cleanSearch) ||
+          (item.oem_part_number && item.oem_part_number.toLowerCase().includes(cleanSearch)) ||
+          (item.description && item.description.toLowerCase().includes(cleanSearch))
+      )
 
-    return matchParent || matchChildren
-  })
+      return matchParent || matchChildren
+    })
+  }, [halfcuts, q])
 
   return (
     <div className="space-y-6">
@@ -87,189 +89,180 @@ export function HalfcutsClientList({ halfcuts, initialQuery }: Props) {
           <p className="text-sm mt-1">Try tweaking your search term or register a new spare part list above!</p>
         </div>
       ) : (
-        <div className="space-y-8 max-w-7xl mx-auto">
+        <div className="space-y-6 max-w-5xl mx-auto px-4 md:px-0">
           {filteredListings.map((hc) => {
             const itemsList = hc.halfcut_items || []
             const waPhone = hc.contact ? hc.contact.replace(/[^0-9]/g, '') : ''
-            const waUrl = hc.contact 
+            const waUrl = hc.contact
               ? `https://wa.me/${waPhone.startsWith('60') || waPhone.startsWith('1') ? waPhone : '6' + waPhone}?text=Hi,%20I'm%20interested%20in%20your%20halfcut%20listing:%20${encodeURIComponent(hc.title)}`
               : null
 
+            // Prices calculation
+            const itemPrices = itemsList.map((i) => Number(i.price)).filter((p) => !isNaN(p))
+            const minPrice = itemPrices.length ? Math.min(...itemPrices) : 0
+            const maxPrice = itemPrices.length ? Math.max(...itemPrices) : 0
+
+            // Preview parts text list
+            const featuredParts = itemsList.slice(0, 4).map((i) => i.title).join(', ')
+
+            // Grab up to 4 photos to build a collage cover block
+            const previewImages = itemsList
+              .map((i) => (i.images_gallery as string[] | undefined)?.[0])
+              .filter((x): x is string => !!x)
+              .slice(0, 4)
+
             return (
-              <div 
-                key={hc.id} 
-                className="bg-surface border border-slate-800 rounded-2xl overflow-hidden shadow-xl"
+              <div
+                key={hc.id}
+                className="bg-surface border border-slate-800 rounded-3xl overflow-hidden hover:border-slate-700/80 hover:shadow-2xl transition-all duration-300 grid grid-cols-1 md:grid-cols-4 shadow-xl"
               >
-                {/* Header listing bar */}
-                <div className="p-4 bg-gradient-to-r from-slate-900 to-surface border-b border-slate-800/80 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="space-y-1.5">
-                    <span 
-                      className="text-xs font-bold text-primary tracking-widest uppercase"
+                {/* 1. Left Section: Interactive Collage cover */}
+                <Link
+                  href={`/halfcuts/${hc.id}`}
+                  className="relative md:col-span-1 h-56 md:h-full min-h-[170px] bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800/85 overflow-hidden flex items-center justify-center group/collage shrink-0"
+                >
+                  {previewImages.length === 0 ? (
+                    <div className="relative w-full h-full min-h-[150px]">
+                      <SafeImage
+                        src="/cover-image/halfcut-default.jpg"
+                        alt="No Cover Image"
+                        fill
+                        className="object-cover opacity-50 group-hover/collage:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center p-4">
+                        <span className="text-white text-xs font-black tracking-widest uppercase bg-black/80 px-3 py-1.5 rounded-md border border-slate-700 shadow-2xl">
+                          No Cover Image
+                        </span>
+                      </div>
+                    </div>
+                  ) : previewImages.length === 1 ? (
+                    <div className="relative w-full h-full">
+                      <SafeImage
+                        src={previewImages[0]}
+                        alt={hc.title}
+                        fill
+                        className="object-cover group-hover/collage:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  ) : previewImages.length < 4 ? (
+                    // Dual panel gallery layout
+                    <div className="grid grid-cols-2 w-full h-full gap-0.5">
+                      <div className="relative h-full">
+                        <SafeImage src={previewImages[0]} alt="p0" fill className="object-cover" />
+                      </div>
+                      <div className="relative h-full">
+                        <SafeImage src={previewImages[1] || previewImages[0]} alt="p1" fill className="object-cover" />
+                      </div>
+                    </div>
+                  ) : (
+                    // 2x2 grid collage block style! Perfectly advanced!
+                    <div className="grid grid-cols-2 grid-rows-2 w-full h-full gap-0.5 bg-black/40">
+                      {previewImages.map((img, idx) => (
+                        <div key={idx} className="relative h-full w-full">
+                          <SafeImage
+                            src={img}
+                            alt={`Grid preview ${idx}`}
+                            fill
+                            className="object-cover opacity-80 hover:opacity-100 transition-opacity"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Absolute visual stats badge on collage */}
+                  <span className="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[9px] font-black text-primary px-2.5 py-1 rounded-md border border-primary/20 tracking-wider">
+                    {itemsList.length} COMPONENT PARTS
+                  </span>
+                </Link>
+
+                {/* 2. Middle Section: Key descriptive metadata (Spans 2 columns) */}
+                <div className="md:col-span-2 p-6 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <span
+                      className="text-[9px] font-bold text-primary tracking-widest uppercase block"
                       style={{ fontFamily: 'var(--font-orbitron)' }}
                     >
-                      Halfcut Donor Package
+                      Premium Donor Package
                     </span>
-                    <h2 className="text-lg font-bold text-white leading-tight">
+                    <Link
+                      href={`/halfcuts/${hc.id}`}
+                      className="text-lg font-extrabold text-white hover:text-primary transition-colors leading-snug block select-text"
+                    >
                       {hc.title}
-                    </h2>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-text-secondary">
+                    </Link>
+
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-text-secondary pt-0.5">
                       {hc.location && (
-                        <span className="flex items-center gap-1.5">
-                          <MapPin size={14} className="text-primary" />
+                        <span className="flex items-center gap-1.5 font-medium">
+                          <MapPin size={13} className="text-primary-light" />
                           {hc.location}
                         </span>
                       )}
                       {hc.contact && (
-                        <span className="flex items-center gap-1.5">
-                          <Phone size={14} className="text-teal-400" />
+                        <span className="flex items-center gap-1.5 font-medium">
+                          <Phone size={13} className="text-teal-400" />
                           {hc.contact}
                         </span>
                       )}
                     </div>
+
+                    {/* Featured summary text block */}
+                    {featuredParts && (
+                      <p className="text-[11px] text-text-muted leading-relaxed font-medium pt-1">
+                        <strong className="text-white">Contains:</strong> {featuredParts}... and more.
+                      </p>
+                    )}
                   </div>
 
-                  {/* Core Actions */}
-                  <div className="flex gap-2 shrink-0 self-start md:self-center">
-                    {sessionUserId === hc.user_id && (
-                      <Link
-                        href={`/halfcuts/edit/${hc.id}`}
-                        className="inline-flex items-center justify-center gap-1.5 bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20 px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all"
-                      >
-                        <Edit2 size={13} /> Edit Bundle
-                      </Link>
-                    )}
-
-                    {/* Immediate WhatsApp connect action */}
-                    {waUrl && (
-                      <a
-                        href={waUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/30 hover:border-[#25D366]/60 px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all"
-                      >
-                        <Phone size={14} /> Contact Seller
-                      </a>
-                    )}
+                  {/* Pricing dynamic ranges with badges */}
+                  <div className="flex items-center gap-4 pt-3 border-t border-slate-800/60 text-xs">
+                    <span className="text-[10px] text-text-muted font-bold uppercase tracking-wide flex items-center gap-1">
+                      <Banknote size={14} className="text-primary" /> Spares Price Range:
+                    </span>
+                    <span className="font-extrabold text-white">
+                      RM {minPrice.toLocaleString()} — RM {maxPrice.toLocaleString()}
+                    </span>
                   </div>
                 </div>
 
-                {/* Sub items layout cards containing list items list */}
-                <div className="p-5">
-                  {itemsList.length === 0 ? (
-                    <div className="text-center py-6 text-text-muted text-xs">
-                      No matching individual strip-parts registered under this kit yet.
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-                      {itemsList.map((item: HalfcutItem) => {
-                        const images = item.images_gallery as string[] | undefined
-                        const coverImg = images?.[0] || 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=400&q=80'
-                        
-                        return (
-                          <div 
-                            key={item.id} 
-                            // Exact standard height, identical height limits everywhere grid layout bounds
-                            className="group flex flex-col bg-surface-variant/30 border border-slate-700/60 hover:border-slate-500/80 rounded-xl overflow-hidden h-[330px] transition-all"
-                          >
-                            {/* Graphic preview layout context (Optimized max size 200x200px or full ratio fitting) */}
-                            <div className="relative h-44 w-full bg-black/40 border-b border-border/10 overflow-hidden flex items-center justify-center">
-                              {/* Central 1:1 fitting bounds box keeping max 200x200px limits */}
-                              <div className="relative aspect-square w-40 h-40 max-w-full max-h-full rounded-lg overflow-hidden border border-slate-800/80 group-hover:border-slate-500/30 transition-colors shadow-black/40 shadow-inner">
-                                <Image
-                                  src={coverImg}
-                                  alt={item.title}
-                                  fill
-                                  sizes="160px"
-                                  className="object-cover group-hover:scale-105 transition-transform duration-300 cursor-zoom-in"
-                                  onClick={() => setActiveImageModal(coverImg)}
-                                />
-                              </div>
+                {/* 3. Right Section: CTA triggers panel */}
+                <div className="p-6 bg-slate-900/30 border-t md:border-t-0 md:border-l border-slate-800 flex flex-col justify-center space-y-3">
+                  <Link
+                    href={`/halfcuts/${hc.id}`}
+                    className="w-full text-center py-2.5 bg-primary/10 hover:bg-primary text-primary hover:text-black border border-primary/30 hover:border-transparent rounded-xl text-xs font-black tracking-widest uppercase transition-all duration-200 flex items-center justify-center gap-1.5"
+                    style={{ fontFamily: 'var(--font-orbitron)' }}
+                  >
+                    View Spares <ArrowRight size={13} />
+                  </Link>
 
-                              {/* Multi-images badge indicator */}
-                              {images && images.length > 1 && (
-                                <span className="absolute bottom-2 right-2 bg-black/70 text-[9px] font-black text-white px-1.5 py-0.5 rounded tracking-wide border border-border/15">
-                                  + {images.length - 1} MORE IMAGES
-                                </span>
-                              )}
-                            </div>
+                  {/* Immediate WhatsApp trigger */}
+                  {waUrl && (
+                    <a
+                      href={waUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full text-center py-2.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] border border-[#25D366]/20 hover:border-[#25D366]/40 rounded-xl text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-1.5 transition-colors"
+                      style={{ fontFamily: 'var(--font-orbitron)' }}
+                    >
+                      <Phone size={13} /> Message Seller
+                    </a>
+                  )}
 
-                            {/* Descriptions set (Guaranteed 200 chars card heights and text limits, no truncated heights layout breaks) */}
-                            <div className="p-3.5 flex-1 flex flex-col justify-between">
-                              <div className="space-y-1">
-                                <div className="flex items-start justify-between gap-2">
-                                  <h4 className="text-white text-xs font-bold leading-normal tracking-wide group-hover:text-primary transition-colors line-clamp-1">
-                                    {item.title}
-                                  </h4>
-                                  <span className="text-primary font-bold text-xs shrink-0 tracking-tight">
-                                    RM {Math.floor(item.price).toLocaleString('en-US')}
-                                  </span>
-                                </div>
-
-                                {item.oem_part_number && (
-                                  <div className="text-[10px] text-text-muted flex items-center gap-1">
-                                    <span className="font-extrabold uppercase text-[8px] bg-slate-800 px-1 rounded border border-border/20 text-white leading-relaxed">
-                                      OEM
-                                    </span>
-                                    <span className="font-semibold select-all font-mono">
-                                      {item.oem_part_number}
-                                    </span>
-                                  </div>
-                                )}
-
-                                <p 
-                                  className="text-[11px] text-text-secondary leading-snug font-medium pr-1 select-text h-11 line-clamp-3 mb-1"
-                                  style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-                                >
-                                  {item.description ? item.description : 'No description'}
-                                </p>
-                              </div>
-
-                              <div className="pt-2 border-t border-slate-800/40 flex items-center justify-between text-[10px] text-text-muted">
-                                <span>Gallery View available</span>
-                                <button 
-                                  onClick={() => setActiveImageModal(coverImg)}
-                                  className="text-primary font-bold hover:underline inline-flex items-center gap-0.5 uppercase tracking-wide text-[9px]"
-                                >
-                                  Zoom <ArrowRight size={10} />
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
+                  {/* Owner Controls */}
+                  {sessionUserId === hc.user_id && (
+                    <Link
+                      href={`/halfcuts/edit/${hc.id}`}
+                      className="w-full text-center py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-xl text-[10px] font-extrabold uppercase tracking-widest border border-slate-800 flex items-center justify-center gap-1.5 transition-colors"
+                      style={{ fontFamily: 'var(--font-orbitron)' }}
+                    >
+                      <Edit2 size={11} /> Modify Package
+                    </Link>
                   )}
                 </div>
               </div>
             )
           })}
-        </div>
-      )}
-
-      {/* Lightbox Modal frame popup inside standard screen viewport */}
-      {activeImageModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div 
-            className="absolute inset-0 bg-black/90 backdrop-blur-md" 
-            onClick={() => setActiveImageModal(null)} 
-          />
-          <div className="relative max-w-3xl max-h-[85vh] overflow-hidden rounded-2xl border border-slate-700 shadow-2xl flex flex-col items-center justify-center bg-black">
-            <button 
-              onClick={() => setActiveImageModal(null)}
-              className="absolute top-4 right-4 bg-black/70 hover:bg-black/90 text-white rounded-full p-2 transition-colors border border-border/20 z-10"
-              title="Close Image Modal"
-            >
-              <X size={18} />
-            </button>
-            <div className="relative w-full h-[70vh] aspect-video">
-              <Image 
-                src={activeImageModal} 
-                alt="Zoomed Detail" 
-                fill
-                className="w-full h-full object-contain" 
-              />
-            </div>
-          </div>
         </div>
       )}
     </div>

@@ -1,29 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState, useMemo } from 'react'
+import { getMapsLoader } from '@/lib/google-maps-loader'
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!
-
-// Low-cost optimization: Avoid reinitialization. Pre-cached loader lib.
-let loaderPromise: Promise<any> | null = null
-function getMapsLoader() {
-  if (typeof window === 'undefined') return Promise.reject()
-  if (loaderPromise) return loaderPromise
-
-  loaderPromise = (async () => {
-    const { setOptions, importLibrary } = await import('@googlemaps/js-api-loader')
-    setOptions({
-      key: GOOGLE_MAPS_API_KEY,
-      v: 'weekly',
-    })
-    await Promise.all([
-      importLibrary('maps'),
-      importLibrary('marker')
-    ])
-    return (window as any).google.maps
-  })()
-  return loaderPromise
-}
 
 interface EventMarker {
   id: string
@@ -278,7 +258,7 @@ export function RealTimeEventsMap({ events }: { events: EventMarker[] }) {
   }, [activePins, isClient])
 
   if (!isClient) {
-    return <div className="h-[360px] w-full bg-[#111111] animate-pulse rounded-2xl border border-border" />
+    return <div className="h-[500px] w-full bg-[#111111] animate-pulse rounded-2xl border border-border" />
   }
 
   if (activePins.length === 0) {
@@ -294,7 +274,7 @@ export function RealTimeEventsMap({ events }: { events: EventMarker[] }) {
     <div ref={mapContainerRef} className="w-full rounded-2xl overflow-hidden border border-border bg-[#0A0A0A] relative">
       <div
         ref={mapElementRef}
-        className="w-full h-[360px] max-h-[500px]"
+        className="w-full h-[500px] max-h-[700px]"
       />
       {!loaded && !error && (
         <div className="absolute inset-0 bg-black/95 z-20 flex flex-col items-center justify-center gap-3">

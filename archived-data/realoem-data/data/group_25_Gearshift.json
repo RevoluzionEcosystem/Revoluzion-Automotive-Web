@@ -1,0 +1,223 @@
+{
+  "group_name": "Gearshift",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=25",
+  "diagrams": [
+    {
+      "id": "25_0475",
+      "name": "GEAR SELECTOR SWITCH",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=25_0475",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "IMPORTANT NOTICE!Use cover repair kit (Pos. 7 or8) to repair surface damage tothe grip guard.BMW recommends the Security Kit TNR2 464 228 as theft protection.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withCeramic appliques for controls",
+          "suppl": "S4U1A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Gear selector switch",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "08/2009",
+          "part_number": "61319251185",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Gear selector switch",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "08/2009",
+          "part_number": "61317950407",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Universal socket housing uncoded",
+          "suppl": "10-POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "08/2009",
+          "part_number": "61139132577",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Observe repair instructionsREP-61 31 342!additionally required parts:6113 9 132 577",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withCeramic appliques for controls",
+          "suppl": "S4U1A=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Gear selector switch",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "08/2009",
+          "part_number": "61317950391",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Universal socket housing uncoded",
+          "suppl": "10-POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "08/2009",
+          "part_number": "61139132577",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Observe repair instructionsREP-61 31 342!additionally required parts:6113 9 132 577",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Cover, gear selector switch",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61319189065",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Oval-head machine screw, self-locking",
+          "suppl": "M5X25 ZNFE SW",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147118984",
+          "price_approx": "$0.44",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Fillister head screw",
+          "suppl": "4X13",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07149252655",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withCeramic appliques for controls",
+          "suppl": "S4U1A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Repair kit f gear selector switch cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2011",
+          "part_number": "61319204484",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withCeramic appliques for controls",
+          "suppl": "S4U1A=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Repair kit f gear selector switch cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2011",
+          "part_number": "61319204482",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

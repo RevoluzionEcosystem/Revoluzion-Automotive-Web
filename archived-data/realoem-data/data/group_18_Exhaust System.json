@@ -1,0 +1,692 @@
+{
+  "group_name": "Exhaust System",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=18",
+  "diagrams": [
+    {
+      "id": "18_0805",
+      "name": "CATALYTIC CONVERTER/FRONT SILENCER",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=18_0805",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "RP exhaust pipe catalytic converter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307585330",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Flat gasket",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307553603",
+          "price_approx": "$18.21",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Collar nut",
+          "suppl": "M8",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "10/2009",
+          "part_number": "11627509731",
+          "price_approx": "$4.18",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Bracket",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207585328",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Bracket, front pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207585329",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Joint sleeve",
+          "suppl": "D=8MM",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207546579",
+          "price_approx": "$2.86",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Star-socket screw",
+          "suppl": "M8X35",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119907865",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Hex nut",
+          "suppl": "BM8-8-ZNNIV-SI",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904874",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Clamping bush",
+          "suppl": "D=60 X 70MM",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307560779",
+          "price_approx": "$34.61",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "18_0806",
+      "name": "CENTER MUFFLER",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=18_0806",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Center muffler",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307646925",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Bracket for rear silencer, left",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207585348",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Bracket, rear muffler right",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207585349",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Rubber Mounting",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "05/2009",
+          "part_number": "18207807132",
+          "price_approx": "$16.30",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Hex nut",
+          "suppl": "M12X1,5ZNNIV SI",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904866",
+          "price_approx": "$1.85",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Rod",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207585755",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Collar nut",
+          "suppl": "M8-8-SC-ZNNIV",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119906089",
+          "price_approx": "$0.32",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Clamping bush",
+          "suppl": "D=60 X 70MM",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307560779",
+          "price_approx": "$34.61",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "18_0821",
+      "name": "ENGINE-SIDE CATALYTIC CONVERTER",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=18_0821",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "RP catalytic conv.close to the engine",
+          "suppl": "ZYL. 1-3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307594018",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "RP catalytic conv.close to the engine",
+          "suppl": "ZYL. 4-6",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307594019",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Exhaust pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307594028",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Screw clamp",
+          "suppl": "D=108,4",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11658585233",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Gasket exh.turbocharger/cat.converter",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307553601",
+          "price_approx": "$18.21",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Hex bolt",
+          "suppl": "M8X40 A2-70",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307562224",
+          "price_approx": "$2.17",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Holder catalytic converter near engine",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207587753",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Collar nut",
+          "suppl": "M8",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "10/2009",
+          "part_number": "11627509731",
+          "price_approx": "$4.18",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Screw clamp",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307606136",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Gasket ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307581970",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Flat gasket",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307553603",
+          "price_approx": "$18.21",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Collar nut",
+          "suppl": "M8",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "10/2009",
+          "part_number": "18107523805",
+          "price_approx": "$2.55",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "18_0825",
+      "name": "LAMBDA PROBE FIXINGS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=18_0825",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Regulating lambda probe",
+          "suppl": "L= 1230MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787586692",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Regulating lambda probe",
+          "suppl": "L= 960MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787586693",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Lambda Monitor sensor",
+          "suppl": "L= 600MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787577666",
+          "price_approx": "$215.65",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Lambda Monitor sensor",
+          "suppl": "L= 560MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787577667",
+          "price_approx": "$215.65",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Holder",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787533565",
+          "price_approx": "$11.59",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Holder",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787547163",
+          "price_approx": "$0.83",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "ASA-Bolt",
+          "suppl": "M8X20-U1-8.8",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904559",
+          "price_approx": "$0.71",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Bracket",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207562125",
+          "price_approx": "$17.29",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "Cable clamp",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787547198",
+          "price_approx": "$1.25",
+          "notes": ""
+        },
+        {
+          "pos": "14",
+          "description": "Clip",
+          "suppl": "",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12521437136",
+          "price_approx": "$0.63",
+          "notes": ""
+        },
+        {
+          "pos": "15",
+          "description": "Cable clip",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717557970",
+          "price_approx": "$1.16",
+          "notes": ""
+        },
+        {
+          "pos": "16",
+          "description": "Collar nut",
+          "suppl": "M8-8-SC-ZNNIV",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119906089",
+          "price_approx": "$0.32",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "18_2101",
+      "name": "REP. KIT WELDED CASE EXHAUST GAS SENSORS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=18_2101",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Regulating lambda probe",
+          "suppl": "L= 1230MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787586692",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Regulating lambda probe",
+          "suppl": "L= 960MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787586693",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Lambda Monitor sensor",
+          "suppl": "L= 600MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787577666",
+          "price_approx": "$215.65",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Lambda Monitor sensor",
+          "suppl": "L= 560MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787577667",
+          "price_approx": "$215.65",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "VALUE REPAIR PARTS!Product significantly reducesrepair costs. Primary part no longerrequires replacement.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Welded case oxygen sensor",
+          "suppl": "VALUE PARTS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18305A93365",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Observe repair manual.Do not use in cast metal!Use only for 90° installation position!Restore positioning exactly!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "18_0807",
+      "name": "EXHAUST SYSTEM, REAR",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=18_0807",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Rear muffler left",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307646926",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Rear muffler right",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307646972",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Vibration absorber",
+          "suppl": "37 HZ",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307593199",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Collar screw",
+          "suppl": "M8X70",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18407540023",
+          "price_approx": "$4.07",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Clamping bush",
+          "suppl": "D=60 X 70MM",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18307560779",
+          "price_approx": "$34.61",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Bracket",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "07/2009",
+          "part_number": "18307521388",
+          "price_approx": "$17.63",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Rubber Mounting",
+          "suppl": "",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "05/2009",
+          "part_number": "18207807132",
+          "price_approx": "$16.30",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Collar nut",
+          "suppl": "M8-8-SC-ZNNIV",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "10/2010",
+          "part_number": "07119906089",
+          "price_approx": "$0.32",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Bracket, resonator, rear left",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207578229",
+          "price_approx": "$18.80",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Bracket, resonator, rear right",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18207578230",
+          "price_approx": "$18.80",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
   Home, Users, ShoppingBag, CalendarDays,
-  Car, Map, MessageSquare, Bell, User, Store, BookOpen,
+  Car, Map as LucideMap, MessageSquare, Bell, User, Store, BookOpen,
   LogIn, ChevronLeft, ChevronRight, LogOut, Mail, Wrench, Bike
 } from 'lucide-react'
 import { useState } from 'react'
@@ -18,13 +18,14 @@ const navItems = [
   { href: '/chat', label: 'Chat', icon: MessageSquare },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/garage', label: 'Garage', icon: Car },
+  // { href: '/parts', label: 'Spareparts', icon: LucideMap },
   { href: '/vehicle-ads', label: 'Vehicle Ads', icon: Bike },
   { href: '/marketplace', label: 'Marketplace', icon: Store },
   { href: '/halfcuts', label: 'Halfcuts', icon: ShoppingBag },
   { href: '/services', label: 'Services', icon: Wrench },
   { href: '/car-clubs', label: 'Car Clubs', icon: Users },
   { href: '/members', label: 'Members', icon: User },
-  // { href: '/explore/map', label: 'Map', icon: Map },
+  // { href: '/explore/map', label: 'Map', icon: LucideMap },
   { href: '/guides', label: 'Guides', icon: BookOpen },
 ]
 

@@ -265,6 +265,7 @@ export interface Database {
           oem_part_number: string | null
           description: string | null
           images_gallery: string[]
+          status: string
           created_at: string
         }
         Insert: Omit<Database['public']['Tables']['halfcut_items']['Row'], 'id' | 'created_at'>

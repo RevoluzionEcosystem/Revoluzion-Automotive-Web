@@ -1,0 +1,1151 @@
+{
+  "group_name": "Fuel Preparation System",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=13",
+  "diagrams": [
+    {
+      "id": "13_1179",
+      "name": "FUEL TANK BREATHER VALVE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=13_1179",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Fuel tank ventilation valve with pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13907618652",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Bracket ventilation valve",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13907509975",
+          "price_approx": "$5.37",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "fuel tank breather line",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13907567398",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Toothed ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61137838084",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "13_1181",
+      "name": "THROTTLE HOUSING ASSY",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=13_1181",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Throttle Housing Assy",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13547556119",
+          "price_approx": "$362.72",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only applies to13 54 7 556 118 up to ModificationIndex 0313 54 7 556 119 up to ModificationIndex 05",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Preformed seal",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "10/2009",
+          "part_number": "13547522361",
+          "price_approx": "$11.89",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X50-ZNNIV SI",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905377",
+          "price_approx": "$0.53",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Socket housing",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527594282",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Single conductor seal",
+          "suppl": "0,22-1,0MM²",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527503411",
+          "price_approx": "$0.18",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Bushing contact",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527580632",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "13_1182",
+      "name": "HIGH-PRESSURE RAIL/INJECTOR/LINE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=13_1182",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "High-pressure rail",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537575480",
+          "price_approx": "$197.35",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Sensor, high-pressure",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537537319",
+          "price_approx": "$75.10",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Hex bolt",
+          "suppl": "M7X18-U1-ZNFESW",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537583747",
+          "price_approx": "$0.73",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "High pressure pipe",
+          "suppl": "",
+          "qty": "5",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537536565",
+          "price_approx": "$29.02",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "High pressure pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537552284",
+          "price_approx": "$29.02",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Bracket, injection valve",
+          "suppl": "",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537537318",
+          "price_approx": "$10.70",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "ASA-Bolt",
+          "suppl": "M7X20",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537545904",
+          "price_approx": "$1.15",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Injector",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13538616079",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Required for repair",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Decoupling element",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537564751",
+          "price_approx": "$7.73",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Gasket ring",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537584315",
+          "price_approx": "$3.86",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Decoupling element",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537564751",
+          "price_approx": "$7.73",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Decoupling element",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "05/2020",
+          "part_number": "13538651060",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Socket housing, blue",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527507526",
+          "price_approx": "$2.53",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Single conductor seal",
+          "suppl": "0.5-1.0MM² GN",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138366245",
+          "price_approx": "$0.17",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Gasket Steel",
+          "suppl": "",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11417503932",
+          "price_approx": "$6.02",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Socket housing",
+          "suppl": "",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527507529",
+          "price_approx": "$2.53",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MLK 1.2 strand sealing",
+          "suppl": "0,35-0,5MM² AG",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138722290",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Single conductor seal",
+          "suppl": "0,22-1,0MM²",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527503411",
+          "price_approx": "$0.18",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "13_1183",
+      "name": "HIGH-PRESSURE PUMP/TUBING",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=13_1183",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "High-pressure pump",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13517616170",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "O-ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13517571363",
+          "price_approx": "$4.38",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Fillister-head screw",
+          "suppl": "M6X25-U0-ZNS3",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904954",
+          "price_approx": "$0.36",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "High pressure pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537536566",
+          "price_approx": "$55.95",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Hex bolt",
+          "suppl": "M7X18-U1-ZNFESW",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537583747",
+          "price_approx": "$0.73",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Supply line with sensor",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537622751",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Fuel pressure sensor",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2011",
+          "part_number": "13539899007",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only applies to",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Feed line",
+          "suppl": "",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "09/2011",
+          "part_number": "13537545725",
+          "price_approx": "$120.78",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "O-ring",
+          "suppl": "8,2X1,5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537559991",
+          "price_approx": "$3.11",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "ASA-Bolt",
+          "suppl": "M8X17.5-AL",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537582770",
+          "price_approx": "$1.07",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Fuel hose",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537595612",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Bracket fuel pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537576816",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Cable holder",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12521732532",
+          "price_approx": "$0.70",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "Hex bolt",
+          "suppl": "M6X15-U1-8.8",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119902937",
+          "price_approx": "$0.80",
+          "notes": ""
+        },
+        {
+          "pos": "14",
+          "description": "Protection",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537583212",
+          "price_approx": "$1.03",
+          "notes": ""
+        },
+        {
+          "pos": "16",
+          "description": "Socket housing, blue",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527507526",
+          "price_approx": "$2.53",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Single conductor seal",
+          "suppl": "0.5-1.0MM² GN",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138366245",
+          "price_approx": "$0.17",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MLK 1.2 strand sealing",
+          "suppl": "0,35-0,5MM² AG",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138722290",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "17",
+          "description": "Lock Ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13537530426",
+          "price_approx": "$1.07",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "13_1262",
+      "name": "AIR DUCT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=13_1262",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Filtered air pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717582312",
+          "price_approx": "$112.54",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "C-clip nut",
+          "suppl": "M6-ZNS3",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51127070202",
+          "price_approx": "$1.00",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Gasket",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717571359",
+          "price_approx": "$12.43",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Hose clamp",
+          "suppl": "80-100X9",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905469",
+          "price_approx": "$1.82",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Hose clamp",
+          "suppl": "L=53-60MM",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129952123",
+          "price_approx": "$1.78",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Air duct",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717571347",
+          "price_approx": "$40.14",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "screw for plastic",
+          "suppl": "50X30",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717571357",
+          "price_approx": "$1.11",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Air duct",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717571348",
+          "price_approx": "$79.16",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Heater element",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717560227",
+          "price_approx": "$62.02",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "O-ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717787197",
+          "price_approx": "$3.75",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Socket housing",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527507529",
+          "price_approx": "$2.53",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MLK 1.2 strand sealing",
+          "suppl": "0,35-0,5MM² AG",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138722290",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Single conductor seal",
+          "suppl": "0,22-1,0MM²",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527503411",
+          "price_approx": "$0.18",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "13_1263",
+      "name": "CHARGE AIR INDUCTION TRACT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=13_1263",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Charge air induction tract",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717582313",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "O-ring",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717568030",
+          "price_approx": "$3.75",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Preformed seal",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13718596850",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Clamp",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11657558922",
+          "price_approx": "$9.40",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Charge air induction tract",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717582314",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Preformed seal",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13718596850",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Hose clamp",
+          "suppl": "L65-72",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "06/2011",
+          "part_number": "07129952127",
+          "price_approx": "$1.89",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Charge air induction tract",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "03/2009",
+          "to_date": "06/2011",
+          "part_number": "13717594722",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "O-ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717568031",
+          "price_approx": "$3.75",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Pressure sensor",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13629797773",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Fillister head screw",
+          "suppl": "TS 5X16",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51417067920",
+          "price_approx": "$0.39",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Bracket, charge-air ducting",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "06/2011",
+          "part_number": "13717571354",
+          "price_approx": "$8.48",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "Hex bolt with washer",
+          "suppl": "M8X55-U1",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905391",
+          "price_approx": "$1.27",
+          "notes": ""
+        },
+        {
+          "pos": "14",
+          "description": "Tube, turbocharger bypass",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "03/2009",
+          "to_date": "",
+          "part_number": "13717594721",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only applies to",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Charge air induction tract",
+          "suppl": "",
+          "qty": "X",
+          "from_date": "03/2009",
+          "to_date": "",
+          "part_number": "13717594722",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "16",
+          "description": "Vacuum hose black",
+          "suppl": "3,5X2,0",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11747797129",
+          "price_approx": "$17.14",
+          "notes": ""
+        },
+        {
+          "pos": "17",
+          "description": "Changeover valve",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13637591625",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "20",
+          "description": "O-ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13627532318",
+          "price_approx": "$3.11",
+          "notes": ""
+        },
+        {
+          "pos": "21",
+          "description": "Rubber Mounting",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717582315",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "22",
+          "description": "Screw",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147582316",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "13_1293",
+      "name": "INTAKE SILENCER / FILTER CARTRIDGE INTAKE SILENCER / FILTER CARTRIDGE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=13_1293",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Intake muffler",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717582311",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Air filter element",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717571355",
+          "price_approx": "$31.24",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "screw for plastic",
+          "suppl": "50X34",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717571358",
+          "price_approx": "$1.11",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Bracket. intake silencer",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527574100",
+          "price_approx": "$7.82",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Fillister head screw",
+          "suppl": "TS 5X16",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "51417067920",
+          "price_approx": "$0.39",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Rubber buffer",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717571356",
+          "price_approx": "$3.41",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Air channel",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717582310",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Air channel",
+          "suppl": "5-8",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717577471",
+          "price_approx": "$17.43",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Screw",
+          "suppl": "5X20",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11617535849",
+          "price_approx": "$0.75",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Intake manifold",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "13717577469",
+          "price_approx": "$5.50",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

@@ -13,9 +13,12 @@ if (typeof (globalThis as any).location === 'undefined') {
       host: u.host,
       hostname: u.hostname,
       port: u.port,
+      pathname: '/',
+      search: '',
+      hash: '',
     }
   } catch {
-    ;(globalThis as any).location = { origin: fallback, href: fallback }
+    ;(globalThis as any).location = { origin: fallback, href: fallback, pathname: '/', search: '', hash: '' }
   }
 }
 

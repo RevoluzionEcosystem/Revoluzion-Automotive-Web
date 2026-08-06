@@ -1,30 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { getMapsLoader } from '@/lib/google-maps-loader'
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!
-
-// Low-cost cache logic to avoid excessive API requests. Map instances are loaded on-demand,
-// and we store the library promise in window to reuse it across components & page renders.
-let loaderPromise: Promise<any> | null = null
-function getMapsLoader() {
-  if (typeof window === 'undefined') return Promise.reject()
-  if (loaderPromise) return loaderPromise
-
-  loaderPromise = (async () => {
-    const { setOptions, importLibrary } = await import('@googlemaps/js-api-loader')
-    setOptions({
-      key: GOOGLE_MAPS_API_KEY,
-      v: 'weekly',
-    })
-    await Promise.all([
-      importLibrary('maps'),
-      importLibrary('marker')
-    ])
-    return (window as any).google.maps
-  })()
-  return loaderPromise
-}
 
 interface EventMapProps {
   latitude?: number | null
@@ -101,7 +80,7 @@ export function SingleEventMap({ latitude, longitude, locationName, stateName }:
     }
   }, [latitude, longitude, locationName, isClient])
 
-  if (!isClient) return <div className="h-48 w-full bg-[#111111] animate-pulse rounded-xl border border-border" />
+  if (!isClient) return <div className="h-80 w-full bg-[#111111] animate-pulse rounded-xl border border-border" />
 
   const searchAddress = `${locationName}${stateName ? `, ${stateName}` : ''}`
   // Adding coordinates if available, and query coordinates or address.
@@ -147,7 +126,7 @@ export function SingleEventMap({ latitude, longitude, locationName, stateName }:
     <div className="space-y-3">
       <div 
         ref={mapRef} 
-        className="w-full h-48 rounded-xl overflow-hidden border border-border bg-[#0A0A0A]"
+        className="w-full h-80 rounded-xl overflow-hidden border border-border bg-[#0A0A0A]"
       />
       
       <div className="grid grid-cols-3 gap-2">

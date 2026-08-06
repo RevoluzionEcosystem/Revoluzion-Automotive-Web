@@ -15,6 +15,7 @@ import { LinkPreview } from '@/components/ui/LinkPreview'
 import { MentionTextarea } from '@/components/ui/MentionTextarea'
 import type { PostWithUser } from '@/lib/supabase/types'
 import { toast } from 'sonner'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -257,13 +258,14 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
         <div className="flex items-start gap-3 mb-3">
           <Link href={`/u/${profile?.username || post.user_id}`}>
             {profile?.avatar_url ? (
-              <Image
-                src={profile.avatar_url}
-                alt={profile.display_name || 'User'}
-                width={40}
-                height={40}
-                className="w-10 h-10 rounded-full object-cover border border-border"
-              />
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-border relative">
+                <SafeImage
+                  src={profile.avatar_url}
+                  alt={profile.display_name || 'User'}
+                  fill
+                  className="object-cover"
+                />
+              </div>
             ) : (
               <DefaultAvatar className="w-10 h-10" />
             )}
@@ -337,34 +339,13 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
 
         {/* Image */}
         {post.image_url && (
-          <div className="mb-3 rounded-lg overflow-hidden border border-border mt-3">
-            {imgError ? (
-              <div className="flex flex-col items-center justify-center gap-3 py-10 bg-surface-variant">
-                <svg viewBox="0 0 48 48" fill="none" className="w-12 h-12 opacity-50">
-                  <rect x="4" y="8" width="40" height="32" rx="3" stroke="#9CA3AF" strokeWidth="2" />
-                  <path d="M4 30 L15 19 L22 26 L30 16 L44 30" stroke="#9CA3AF" strokeWidth="2" strokeLinejoin="round" />
-                  <circle cx="14" cy="18" r="3" stroke="#9CA3AF" strokeWidth="2" />
-                  <path d="M26 8 L22 22 L30 26 L26 40" stroke="#EF4444" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <p className="text-text-muted text-xs">Image failed to load</p>
-                <button
-                  onClick={() => { setImgError(false); setImgKey((k) => k + 1) }}
-                  className="flex items-center gap-1.5 text-primary text-xs border border-primary/30 px-3 py-1 rounded-md hover:bg-primary/10 transition-colors"
-                >
-                  <RefreshCw size={12} /> Reload
-                </button>
-              </div>
-            ) : (
-              <Image
-                key={imgKey}
-                src={post.image_url}
-                alt="Post image"
-                width={600}
-                height={400}
-                className="w-full object-cover max-h-96"
-                onError={() => setImgError(true)}
-              />
-            )}
+          <div className="mb-3 rounded-lg overflow-hidden border border-border mt-3 w-full h-80 relative">
+            <SafeImage
+              src={post.image_url}
+              alt="Post image"
+              fill
+              className="object-cover"
+            />
           </div>
         )}
 
@@ -410,13 +391,14 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
                       <div className="flex gap-2.5 items-start text-xs">
                         <Link href={`/u/${parent.users?.username}`}>
                           {parent.users?.avatar_url ? (
-                            <Image
-                              src={parent.users.avatar_url}
-                              alt=""
-                              width={28}
-                              height={28}
-                              className="w-7 h-7 rounded-full object-cover border border-border"
-                            />
+                            <div className="w-7 h-7 rounded-full overflow-hidden border border-border relative">
+                              <SafeImage
+                                src={parent.users.avatar_url}
+                                alt=""
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
                           ) : (
                             <DefaultAvatar className="w-7 h-7" />
                           )}
@@ -451,19 +433,20 @@ function PostCard({ post, currentUserId, topComment, initialLiked = false }: { p
                         <div className="pl-9 space-y-2.5 border-l border-white/5 ml-3.5 pt-1">
                           {replies.map((reply: any) => (
                             <div key={reply.id} className="flex gap-2.5 items-start text-xs">
-                              <Link href={`/u/${reply.users?.username}`}>
-                                {reply.users?.avatar_url ? (
-                                  <Image
+                            <Link href={`/u/${reply.users?.username}`}>
+                              {reply.users?.avatar_url ? (
+                                <div className="w-6 h-6 rounded-full overflow-hidden border border-border relative">
+                                  <SafeImage
                                     src={reply.users.avatar_url}
                                     alt=""
-                                    width={24}
-                                    height={24}
-                                    className="w-6 h-6 rounded-full object-cover border border-border"
+                                    fill
+                                    className="object-cover"
                                   />
-                                ) : (
-                                  <DefaultAvatar className="w-6 h-6" />
-                                )}
-                              </Link>
+                                </div>
+                              ) : (
+                                <DefaultAvatar className="w-6 h-6" />
+                              )}
+                            </Link>
                               <div className="flex-1 min-w-0">
                                 <div className="flex justify-between items-center text-[10px] text-text-muted mb-0.5">
                                   <span 
@@ -755,11 +738,13 @@ function CreatePost({ currentUserId }: { currentUserId: string }) {
 
       {imagePreview && (
         <div className="relative mb-3 inline-block">
-          <Image src={imagePreview} alt="Preview" width={200} height={150} className="rounded-lg object-cover border border-border max-h-40 w-auto" />
+          <div className="w-52 h-36 rounded-lg overflow-hidden border border-border relative">
+            <SafeImage src={imagePreview} alt="Preview" fill className="object-cover" />
+          </div>
           <button
             type="button"
             onClick={() => { setImageFile(null); setImagePreview(null) }}
-            className="absolute top-1 right-1 w-5 h-5 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black transition-colors"
+            className="absolute top-1 right-1 w-5 h-5 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black transition-colors z-10"
           >
             <X size={10} />
           </button>

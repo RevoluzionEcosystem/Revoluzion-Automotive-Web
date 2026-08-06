@@ -1,0 +1,470 @@
+{
+  "group_name": "Instruments, Measuring Systems",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=62",
+  "diagrams": [
+    {
+      "id": "62_0506",
+      "name": "INSTRUMENT CLUSTER",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=62_0506",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Instrument cluster",
+          "suppl": "KM/H",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "07/2013",
+          "part_number": "62108795122",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Instrument cluster",
+          "suppl": "MPH",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "07/2013",
+          "part_number": "62108795124",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138384550",
+          "price_approx": "$0.77",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0.2-0.5 MM² SN",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131393704",
+          "price_approx": "$0.23",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12+2 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471239",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471240",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136931880",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Covering cap",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138387206",
+          "price_approx": "$2.07",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Envelope f optical waveguide",
+          "suppl": "2POL. /SCHWARZ",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138387214",
+          "price_approx": "$1.83",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,2- 0,5 QMM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130005197",
+          "price_approx": "$1.65",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130056960",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "62_0567",
+      "name": "INSTRUMENT CLUSTER",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=62_0567",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withMultifunctional instrument display",
+          "suppl": "S6WBA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Multifunctional instrument display",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "08/2016",
+          "part_number": "62106821074",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Multifunctional instrument display",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "11/2016",
+          "part_number": "62106844013",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Multifunctional instrument display",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "62108796113",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138384550",
+          "price_approx": "$0.77",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0.2-0.5 MM² SN",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131393704",
+          "price_approx": "$0.23",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12+2 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471239",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Rep. kit for socket housing",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132471240",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136931880",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Covering cap",
+          "suppl": "12 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138387206",
+          "price_approx": "$2.07",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Envelope f optical waveguide",
+          "suppl": "2POL. /SCHWARZ",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61138387214",
+          "price_approx": "$1.83",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Optical waveguide, pin contact",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136905233",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Optical waveguide, socket contact",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136906554",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "62_0507",
+      "name": "HEAD-UP DISPLAY",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=62_0507",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withHead-up display",
+          "suppl": "S610A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Head-up display",
+          "suppl": "RHD",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "62309252344",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Universal socket housing uncoded",
+          "suppl": "8 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136954526",
+          "price_approx": "$3.12",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0.2-0.5 MM² SN",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131393704",
+          "price_approx": "$0.23",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136931880",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Universal socket housing uncoded",
+          "suppl": "8 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136954526",
+          "price_approx": "$3.12",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0.2-0.5 MM² SN",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131393704",
+          "price_approx": "$0.23",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Terminal socket MQS ELA",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136931880",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Sound insulation, head-up display",
+          "suppl": "RHD",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "62309155104",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Fillister head screw",
+          "suppl": "",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147127027",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "group_name": "Value Parts & Packages Service And Repair",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=88",
+  "diagrams": [
+    {
+      "id": "88_0574",
+      "name": "REP. KIT WELDED CASE EXHAUST GAS SENSORS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=88_0574",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Regulating lambda probe",
+          "suppl": "L= 1230MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787586692",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Regulating lambda probe",
+          "suppl": "L= 960MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787586693",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Lambda Monitor sensor",
+          "suppl": "L= 600MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787577666",
+          "price_approx": "$215.65",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Lambda Monitor sensor",
+          "suppl": "L= 560MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11787577667",
+          "price_approx": "$215.65",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "VALUE REPAIR PARTS!Product significantly reducesrepair costs. Primary part no longerrequires replacement.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Welded case oxygen sensor",
+          "suppl": "VALUE PARTS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "18305A93365",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Observe repair manual.Do not use in cast metal!Use only for 90° installation position!Restore positioning exactly!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "88_0546",
+      "name": "FLUID-CHANGE KIT, AUTOM. TRANSMISSION",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=88_0546",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "VALUE REPAIR PARTS!Everything in one click!Contains all separate components foroil change!Improves the repair quality.Reduced wear!Extends the service life of thetransmission!Increases driving comfort!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Kit, oil pan fluid filter auto. trans.",
+          "suppl": "VALUE PARTS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24152333907",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Please observe Repair Manual.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "06/2013",
+          "part_number": "83222305396",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Important!It is vital to observe the oilbalancing procedure described in therepair instructions.The required oil quantity can vary!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Automatic transmission oil ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "83225A92866",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Important!It is vital to observe the oilbalancing procedure described in therepair instructions.The required oil quantity can vary!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

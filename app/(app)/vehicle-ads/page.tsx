@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import { Car, Tag, MapPin, Gauge } from 'lucide-react'
 import type { Metadata } from 'next'
 import { VehicleAdSidebarWithSuspense } from '@/components/ui/VehicleAdSidebarWithSuspense'
@@ -102,18 +102,12 @@ export default async function VehiclesPage({
                       {/* Image frame slot */}
                       <div className="p-2 pb-0">
                         <div className="relative aspect-[4/3] bg-surface-variant overflow-hidden rounded-xl border border-slate-700/60 group-hover:border-slate-500/50 transition-colors">
-                          {vehicle.image_url ? (
-                            <Image
-                              src={vehicle.image_url}
-                              alt={vehicle.title}
-                              fill
-                              className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                              <Car size={32} className="text-primary/30" />
-                            </div>
-                          )}
+                          <SafeImage
+                            src={vehicle.image_url || ''}
+                            alt={vehicle.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
 
                           <VehicleAdWishlistButton vehicleId={vehicle.id} />
                         </div>

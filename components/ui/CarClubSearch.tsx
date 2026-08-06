@@ -14,7 +14,6 @@ export function CarClubSearch({ allClubNames }: Props) {
   
   const [val, setVal] = useState(searchParams.get('q') || '')
   const [showSuggests, setShowSuggests] = useState(false)
-  const [suggests, setSuggests] = useState<string[]>([])
   
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -22,18 +21,14 @@ export function CarClubSearch({ allClubNames }: Props) {
     setVal(searchParams.get('q') || '')
   }, [searchParams])
 
-  useEffect(() => {
+  const suggests = React.useMemo(() => {
     if (!val.trim()) {
-      setSuggests([])
-      return
+      return []
     }
-
     const cleanedVal = val.toLowerCase().trim()
-    const matches = allClubNames
+    return allClubNames
       .filter(t => t.toLowerCase().includes(cleanedVal))
       .slice(0, 5)
-
-    setSuggests(matches)
   }, [val, allClubNames])
 
   useEffect(() => {

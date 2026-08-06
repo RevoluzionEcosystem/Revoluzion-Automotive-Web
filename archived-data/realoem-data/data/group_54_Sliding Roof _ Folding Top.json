@@ -1,0 +1,462 @@
+{
+  "group_name": "Sliding Roof / Folding Top",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=54",
+  "diagrams": [
+    {
+      "id": "54_0393",
+      "name": "LIFT-UP-AND-SLIDE-BACK SUNROOF",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=54_0393",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Sliding roof frame",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2014",
+          "part_number": "54107235471",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Sliding roof frame",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2014",
+          "part_number": "54107382981",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Mechanical parts, wind deflector",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2014",
+          "part_number": "54107209212",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Slipstream deflector",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2014",
+          "part_number": "54107382984",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Glass cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107399482",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withHeadlining anthracite",
+          "suppl": "S775A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Supended headliner",
+          "suppl": "ANTHRAZIT",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "02/2014",
+          "part_number": "54107209208",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withHeadliner in Alcantara anthracite",
+          "suppl": "S776A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Sliding headliner Alcantara",
+          "suppl": "ANTHRAZIT",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54108036187",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withLeather \"Nappa/sattel-braun\"orLeather \"Nappa/black\"",
+          "suppl": "NAD5=YesNASW=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Floating headliner, Alcantara",
+          "suppl": "EVERESTGRAU",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54108036130",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withLeather Nappa expanded/veneto-beigeorLeather \"Nappa/oyster\"orLeather \"Nappa/elfenbein-weiss\"",
+          "suppl": "NADF=YesNADH=YesNAEW=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Floating headliner, Alcantara",
+          "suppl": "OYSTER",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54108036181",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withLeather \"Dakota/sattel-braun light\"orLeather \"Dakota/everest-grau\"orLeather \"Dakota/barrique-rot\"orLeather \"Dakota\"/schwarzorLeather \"Nappa/sattel-braun\"orLeather \"Nappa/black\"",
+          "suppl": "LCD5=YesLCDE=YesLCDK=YesLCSW=YesNAD5=YesNASW=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Supended headliner",
+          "suppl": "EVERESTGRAU",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209206",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withLeather \"Dakota/oyster\"orLeather \"Dakota/veneto-beige\"orLeather \"Dakota/oyster/oyster\"orLeather \"Dakota/elfenbein-weiss\"orLeather \"Nappa/oyster\"orLeather Nappa expanded/veneto-beigeorLeather \"Nappa/oyster\"orLeather \"Nappa/elfenbein-weiss\"",
+          "suppl": "LCCX=YesLCDF=YesLCDH=YesLCEW=YesNACX=YesNADF=YesNADH=YesNAEW=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Supended headliner",
+          "suppl": "OYSTER",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209207",
+          "price_approx": "$265.84",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Important! Observe PuMA procedure AG20315810-01",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Surrounding seal",
+          "suppl": "L=2883",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107245551",
+          "price_approx": "$30.68",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Rain gutter seal",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209197",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Hex bolt",
+          "suppl": "M6X14",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147226126",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Torx screw",
+          "suppl": "M5X9",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209194",
+          "price_approx": "$4.22",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Hex bolt",
+          "suppl": "M6X23 ZNS3",
+          "qty": "8",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147209202",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Plastic washer",
+          "suppl": "5X5X0,5",
+          "qty": "12",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107153589",
+          "price_approx": "$0.12",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Reinforcement, left",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107185291",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Reinforcement, right",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107185292",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "54_0423",
+      "name": "SINGLE PARTS FOR SLIDING LIFTING ROOF",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=54_0423",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Drive unit for sunroof",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "67617316535",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Fillister head screw",
+          "suppl": "M5X28",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209205",
+          "price_approx": "$1.98",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Slipstream deflector",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2014",
+          "part_number": "54107209210",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Rain gutter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209195",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Mechanical parts, wind deflector",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209212",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Mechanism, sliding roof",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209198",
+          "price_approx": "$169.62",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Slider f sliding headliner",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209209",
+          "price_approx": "$18.57",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Rubber boot",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107181951",
+          "price_approx": "$18.05",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Repair kit sliding roof",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209196",
+          "price_approx": "$22.15",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Fillister head screw",
+          "suppl": "M5X28",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107209205",
+          "price_approx": "$1.98",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Water outlet hose rear",
+          "suppl": "L=1443",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107181949",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Cover, luggage screen",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "54107382987",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

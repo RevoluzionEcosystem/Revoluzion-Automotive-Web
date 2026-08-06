@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { MapPin, Search, AlertCircle } from 'lucide-react'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Link from 'next/link'
 import { timeAgo } from '@/lib/utils'
 import type { Metadata } from 'next'
@@ -198,10 +199,12 @@ export default async function ServicesPage({
                         {/* Cover image banner */}
                         <div className="p-2 pb-0">
                           <div className="relative aspect-square w-full bg-surface-variant overflow-hidden rounded-lg border border-slate-700/60 group-hover:border-slate-500/50 transition-colors shrink-0">
-                            <img 
+                            <SafeImage 
                               src={item.banner_url || DEFAULT_IMAGES[item.category] || 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=400&q=80'}
-                              alt="" 
+                              alt={item.title} 
+                              fill
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              fallbackSrc="/cover-image/halfcut-default.jpg"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-black/30 to-transparent" />
                             

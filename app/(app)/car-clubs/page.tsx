@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import { Users } from 'lucide-react'
 import type { Metadata } from 'next'
 import { CreateClubDialog } from '@/components/ui/CreateClubDialog'
@@ -138,18 +138,13 @@ export default async function CarClubsPage({ searchParams }: { searchParams: Pro
                 >
                   {/* Banner Area */}
                   <div className="relative w-full h-45 bg-[#0e1017] overflow-hidden shrink-0">
-                    {club.banner_url ? (
-                      <Image
-                        src={club.banner_url}
-                        alt={club.name}
-                        fill
-                        className="object-cover group-hover:scale-103 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-[#0e1017] flex flex-col items-center justify-center overflow-hidden select-none">
-                        <Users size={40} className="text-slate-700 group-hover:text-primary/20 transition-colors duration-500" />
-                      </div>
-                    )}
+                    <SafeImage
+                      src={club.banner_url || ''}
+                      alt={club.name}
+                      fill
+                      className="object-cover group-hover:scale-103 transition-transform duration-500"
+                      fallbackSrc="/cover-image/cover-image.jpg"
+                    />
 
                     {club.location && (
                       <span 

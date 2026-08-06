@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import { ShoppingBag, Tag } from 'lucide-react'
 import { formatCurrency } from '@/lib/utils'
 import type { Metadata } from 'next'
@@ -104,18 +105,12 @@ export default async function MarketplacePage({
                       {/* Aspect Frame containing slightly smaller image and border margins to fit card bounds nicely */}
                       <div className="p-2 pb-0">
                         <div className="relative aspect-square bg-surface-variant overflow-hidden rounded-lg border border-slate-700/60 group-hover:border-slate-500/50 transition-colors">
-                          {mainImage ? (
-                            <Image
-                              src={mainImage}
-                              alt={listing.title}
-                              fill
-                              className="object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                              <Tag size={18} className="text-primary/30" />
-                            </div>
-                          )}
+                          <SafeImage
+                            src={mainImage || ''}
+                            alt={listing.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
 
                           {/* Float real wishlist action button at top right of image */}
                           <div className="absolute top-2 right-2 z-10">

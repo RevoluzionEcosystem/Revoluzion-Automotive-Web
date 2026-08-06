@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import { CalendarDays, MapPin, Clock, Eye, Heart, MessageSquare, Search, X } from 'lucide-react'
 import { formatDate, formatCurrency } from '@/lib/utils'
 import type { Metadata } from 'next'
@@ -156,23 +157,15 @@ export default async function EventsPage({
                     
                     {/* Event Banner Image */}
                     <div className="relative w-full h-[200px] bg-surface-variant overflow-hidden border-b border-border/50 shrink-0">
-                      {event.banner_url ? (
-                        <Image
-                          src={event.banner_url}
-                          alt={event.title}
-                          fill
-                          className="object-cover group-hover:scale-103 transition-transform duration-300"
-                          sizes="(max-width: 768px) 100vw, 400px"
-                        />
-                      ) : (
-                        <Image
-                          src="/cover-image/event-banner-image.jpeg"
-                          alt="Car Meet Default Placeholder"
-                          fill
-                          className="object-cover opacity-35"
-                          sizes="(max-width: 768px) 100vw, 400px"
-                        />
-                      )}
+                      <SafeImage
+                        src={event.banner_url || "/cover-image/event-banner-image.jpeg"}
+                        alt={event.title}
+                        fill
+                        className="object-cover group-hover:scale-103 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 400px"
+                        fallbackSrc="/cover-image/event-banner-image.jpeg"
+                        fallbackAlt="Car Meet Default Placeholder"
+                      />
 
                       {/* Floating Category Badge inside banner */}
                       {event.category && (

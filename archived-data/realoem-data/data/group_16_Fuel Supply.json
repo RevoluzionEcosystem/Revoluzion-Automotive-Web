@@ -1,0 +1,706 @@
+{
+  "group_name": "Fuel Supply",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=16",
+  "diagrams": [
+    {
+      "id": "16_0731",
+      "name": "FUEL TANK/MOUNTING PARTS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=16_0731",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Plastic fuel tank",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117267498",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Plastic filler pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117185143",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withNational version Korea",
+          "suppl": "L802A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Plastic filler pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117185144",
+          "price_approx": "$142.03",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withIncreased size fuel filler pipeorEquipment for leaded fuel",
+          "suppl": "S1AFA=YesS199A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Plastic filler pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117213443",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Filler pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117046329",
+          "price_approx": "$25.73",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Hose clamp",
+          "suppl": "L42-48",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129952119",
+          "price_approx": "$1.15",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Tension strap",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117184963",
+          "price_approx": "$26.17",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Spacer sleeve",
+          "suppl": "",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117194458",
+          "price_approx": "$3.23",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Rubber grommet",
+          "suppl": "",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16111182454",
+          "price_approx": "$0.93",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Hex bolt",
+          "suppl": "M8X30-PF-U2-8.8",
+          "qty": "7",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119906672",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Rubber grommet",
+          "suppl": "",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16111182609",
+          "price_approx": "$1.13",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Spacer sleeve",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117248837",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Spacer sleeve",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117201486",
+          "price_approx": "$5.01",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Base",
+          "suppl": "43X35X8 MM",
+          "qty": "7",
+          "from_date": "",
+          "to_date": "11/2011",
+          "part_number": "07147273549",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "Plastic nut for coarse threaded pin",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16131183133",
+          "price_approx": "$0.37",
+          "notes": ""
+        },
+        {
+          "pos": "14",
+          "description": "Wire clip, dual",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127199666",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "15",
+          "description": "Triple clip",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117003188",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "16",
+          "description": "Filler cap",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117193372",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "18",
+          "description": "Holding strap",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16116754637",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only applies to",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Filler cap",
+          "suppl": "",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117193372",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Filler cap",
+          "suppl": "",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117193381",
+          "price_approx": "$17.88",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Filler cap",
+          "suppl": "",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117238235",
+          "price_approx": "$18.43",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "16_0736",
+      "name": "ACTIVATED CHARCOAL FILTER/FUEL VENTILAT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=16_0736",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withNational version Korea",
+          "suppl": "L802A=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Activated Charcoal Filter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16137185152",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X25-U2",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905871",
+          "price_approx": "$0.59",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Scavenge air line",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127201504",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Pipe clip",
+          "suppl": "D14",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16126766397",
+          "price_approx": "$1.05",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Wire clip, dual",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127199666",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "16_0732",
+      "name": "FUEL FILTER/PUMP/FUEL LEVEL SENSOR",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=16_0732",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Closure ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117188565",
+          "price_approx": "$3.08",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withAuxiliary heating",
+          "suppl": "S536A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Repair kit for flange cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117217264",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withOutside fuel filterandAuxiliary heating",
+          "suppl": "S1AKA=NoS536A=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Repair kit for flange cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117217265",
+          "price_approx": "$20.24",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "O-ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117188567",
+          "price_approx": "$5.34",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Delivery unit with in-tank pump, right",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117217261",
+          "price_approx": "$305.27",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Right fuel level sensor",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117217249",
+          "price_approx": "$60.82",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withOutside fuel filter",
+          "suppl": "S1AKA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Repair kit, pressure regulator, filter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117217255",
+          "price_approx": "$148.91",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Repair kit for pump cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16117217257",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "16_0733",
+      "name": "FUEL PIPE AND MOUNTING PARTS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=16_0733",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withOutside fuel filter",
+          "suppl": "S1AKA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Scavenging line front",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127186248",
+          "price_approx": "$20.85",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Feed line, front",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127186243",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Feed line, rear",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "07/2012",
+          "part_number": "16127201511",
+          "price_approx": "$48.98",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Feed line, rear",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127227999",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Scavenge air line",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "07/2012",
+          "part_number": "16127201506",
+          "price_approx": "$70.75",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Scavenge air line",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127228004",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Pipe clip",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127199667",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "ISA screw",
+          "suppl": "M6X20-8.8-ZNNIV",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129901130",
+          "price_approx": "$0.38",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "ISA screw",
+          "suppl": "M6X16-8.8-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904588",
+          "price_approx": "$0.96",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "ISA screw",
+          "suppl": "M6X16-8.8-ZNNIV",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129905536",
+          "price_approx": "$0.64",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Wiring clip, triple",
+          "suppl": "",
+          "qty": "7",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127199665",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Wiring clip, triple",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127213370",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Spacer",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127202598",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Spacer",
+          "suppl": "",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16127202597",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Pipe clip",
+          "suppl": "D14",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "16126766397",
+          "price_approx": "$1.05",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "16_0796",
+      "name": "CONTROL UNIT FOR FUEL PUMP",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=16_0796",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Control unit for fuel pump",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2011",
+          "part_number": "16147276073",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Hex nut with plate",
+          "suppl": "M6-8-ZNNIV SI",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905949",
+          "price_approx": "$0.24",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

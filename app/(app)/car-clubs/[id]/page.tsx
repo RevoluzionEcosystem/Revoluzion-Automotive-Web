@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Users, Shield, MessageSquare, Sparkles, ArrowLeft } from 'lucide-react'
@@ -115,13 +115,13 @@ export default async function ClubDetailPage({ params }: Props) {
 
         {/* Banner */}
         <div className="h-48 rounded-2xl bg-gradient-to-br from-primary/20 via-teal/10 to-background relative overflow-hidden border border-slate-800 shadow-xl shrink-0">
-          {club.banner_url ? (
-            <img src={club.banner_url} alt={club.name} className="w-full h-full object-cover opacity-60" />
-          ) : (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-surface/30 to-background flex items-center justify-center">
-              <Users size={64} className="text-primary/10 stroke-[1.5]" />
-            </div>
-          )}
+          <SafeImage
+            src={club.banner_url || ''}
+            alt={club.name}
+            fill
+            className="object-cover opacity-60"
+            fallbackSrc="/cover-image/cover-image.jpg"
+          />
         </div>
 
         {/* Club description */}
@@ -213,7 +213,7 @@ export default async function ClubDetailPage({ params }: Props) {
 
                         {post.image_url && (
                           <div className="mt-3.5 rounded-lg overflow-hidden border border-slate-900 bg-surface h-72 relative">
-                            <img src={post.image_url} alt="" className="w-full h-full object-cover" />
+                            <SafeImage src={post.image_url} alt="" fill className="object-cover" />
                           </div>
                         )}
                       </div>

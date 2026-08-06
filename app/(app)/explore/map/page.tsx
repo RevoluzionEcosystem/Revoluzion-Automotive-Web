@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { MapPin, Navigation } from 'lucide-react'
+import { getMapsLoader } from '@/lib/google-maps-loader'
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!
 
@@ -34,12 +35,7 @@ export default function MapPage() {
 
     ;(async () => {
       try {
-        const { setOptions, importLibrary } = await import('@googlemaps/js-api-loader')
-        setOptions({
-          key: GOOGLE_MAPS_API_KEY,
-          v: 'weekly',
-        })
-        const mapsLib = (await importLibrary('maps')) as any
+        const mapsLib = await getMapsLoader()
         if (!mapRef.current) return
 
         const map = new mapsLib.Map(mapRef.current, {

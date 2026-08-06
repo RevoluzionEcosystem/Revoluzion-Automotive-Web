@@ -4,33 +4,9 @@
 
 import { useEffect, useRef, useState, useMemo } from 'react'
 import { Map, Search, Info, X } from 'lucide-react'
+import { getMapsLoader } from '@/lib/google-maps-loader'
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!
-
-// Low-cost optimization: Avoid reinitialization. Pre-cached loader lib.
-let loaderPromise: Promise<any> | null = null
-let isLoaderInitialized = false
-function getMapsLoader() {
-  if (typeof window === 'undefined') return Promise.reject()
-  if (loaderPromise) return loaderPromise
-
-  loaderPromise = (async () => {
-    const { setOptions, importLibrary } = await import('@googlemaps/js-api-loader')
-    if (!isLoaderInitialized) {
-      setOptions({
-        key: GOOGLE_MAPS_API_KEY,
-        v: 'weekly',
-      })
-      isLoaderInitialized = true
-    }
-    await Promise.all([
-      importLibrary('maps'),
-      importLibrary('marker')
-    ])
-    return (window as any).google.maps
-  })()
-  return loaderPromise
-}
 
 interface EventMarker {
   id: string
@@ -334,7 +310,7 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
               <p className="text-[10px] text-text-muted mt-1">Reset your query search keywords to see physical pinpoint locations.</p>
             </div>
           )}
-          <div ref={mapRef} className="w-full h-80 bg-black" />
+          <div ref={mapRef} className="w-full h-112 bg-black" />
         </div>
       )}
     </div>

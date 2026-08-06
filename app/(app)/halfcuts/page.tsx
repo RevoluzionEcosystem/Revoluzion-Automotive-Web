@@ -27,7 +27,7 @@ export default async function HalfcutsPage({
   // Fetch halfcuts carrying fully loaded parts list records inside pg
   let halfcutsQuery = supabase
     .from('halfcuts')
-    .select('*, users!fk_halfcuts_user_id_to_users(username, display_name, avatar_url, phone), halfcut_items(*)')
+    .select('*, users!halfcuts_user_id_fkey(username, display_name, avatar_url, phone), halfcut_items(*)')
     .order('created_at', { ascending: false })
 
   if (region && region !== 'All') {

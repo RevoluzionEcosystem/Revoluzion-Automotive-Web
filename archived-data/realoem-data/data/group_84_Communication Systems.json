@@ -1,0 +1,1284 @@
+{
+  "group_name": "Communication Systems",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=84",
+  "diagrams": [
+    {
+      "id": "84_0796",
+      "name": "COMBOX MEDIA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0796",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "For vehicles withPreparation, mobile phone, BusinessandPreparation f mobile phone w BluetoothandUSB/Audio interfaceandControl for Combox",
+          "suppl": "S633A=NoS644A=YesS6FLA=YesS6VCA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Combox Media",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109257150",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withPreparation, mobile phone, BusinessandPreparation f mobile phone w BluetoothandUSB/Audio interfaceandControl for Combox",
+          "suppl": "S633A=NoS644A=YesS6FLA=NoS6VCA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Combox Media",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109257150",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withPreparation, mobile phone, BusinessandPreparation f mobile phone w BluetoothandUSB/Audio interfaceandControl for Combox",
+          "suppl": "S633A=NoS644A=NoS6FLA=YesS6VCA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Combox Media",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109257150",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Bracket, control unit",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65159153136",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Hex nut",
+          "suppl": "M5",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129906048",
+          "price_approx": "$0.73",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Hex nut",
+          "suppl": "M6-8-ZNFE SW",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904022",
+          "price_approx": "$0.09",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X16-U2-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119902913",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Body nut",
+          "suppl": "M6",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147133884",
+          "price_approx": "$0.36",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0798",
+      "name": "COMBOX TELEMATICS FOR GPS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0798",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "For vehicles withNavigation system ProfessionalandPreparation, mobile phone, BusinessandControl for Combox",
+          "suppl": "S609A=NoS633A=YesS6VCA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Combox for Telematics",
+          "suppl": "GPS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109257152",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Bracket, control unit",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65159153136",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Hex nut",
+          "suppl": "M5",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129906048",
+          "price_approx": "$0.73",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Hex nut",
+          "suppl": "M6-8-ZNFE SW",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904022",
+          "price_approx": "$0.09",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X16-U2-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119902913",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Body nut",
+          "suppl": "M6",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147133884",
+          "price_approx": "$0.36",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0877",
+      "name": "USB/AUX-IN SOCKET",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0877",
+      "image_url": "",
+      "parts": []
+    },
+    {
+      "id": "84_1332",
+      "name": "USB/AUX-IN SOCKET",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_1332",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "For vehicles withUSB/Audio interfaceandMusic interface for SmartphoneSymbol revision",
+          "suppl": "S6FLA=NoS6NFA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "AUX -In connection",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "84109237655",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withUSB/Audio interfaceandMusic interface for SmartphoneSymbol revision",
+          "suppl": "S6FLA=YesS6NFA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "AUX-IN/USB port",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "84109237653",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withUSB/Audio interfaceandMusic interface for Smartphone",
+          "suppl": "S6FLA=YesS6NFA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Retrofit cable kit, AUX socket",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "61119201734",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Rep. kit for socket housing",
+          "suppl": "4 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "61132359994",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,2- 0,5 QMM",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "61130005197",
+          "price_approx": "$1.65",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "61130056960",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withUSB/Audio interfaceandMusic interface for SmartphoneSymbol revision",
+          "suppl": "S6FLA=NoS6NFA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "AUX-IN/USB port",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "84109237654",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Symbol revision",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "USB port",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "84109237656",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "fitted in the glove box",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_1337",
+      "name": "USB/AUX-IN SOCKET",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_1337",
+      "image_url": "",
+      "parts": []
+    },
+    {
+      "id": "84_0743",
+      "name": "TELEMATICS CONTROL UNIT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0743",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "A TCU (Telematics Control Unit) canonly be ordered with specification ofthe Vehicle Identification Number. Whenshipping the exchange TCU, theVehicle Identification Number is coded.Recoding is not possible. The TCU onlyfunctions properly with suitable coding.Therefore, exchange TCUs cannot beordered for stock! Retrofitting andconversions to SA633 arenot possible!For vehicles withControl for Combox",
+          "suppl": "S6VCA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withPreparation, mobile phone, BusinessA TCU (Telematics Control Unit) canonly be ordered with specification ofthe Vehicle Identification Number. Whenshipping the exchange TCU, theVehicle Identification Number is coded.Recoding is not possible. The TCU onlyfunctions properly with suitable coding.Therefore, exchange TCUs cannot beordered for stock! Retrofitting andconversions to SA633 arenot possible!",
+          "suppl": "S633A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "RP REMAN Telematic Control Unit",
+          "suppl": "GSM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2009",
+          "part_number": "84109219824",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Exch. telematics control unit",
+          "suppl": "GSM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "84109228938",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "RP REMAN Telematic Control Unit",
+          "suppl": "GSM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "84109231093",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Bracket, control unit",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65159153136",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Hex nut",
+          "suppl": "M5",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129906048",
+          "price_approx": "$0.73",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Hex nut",
+          "suppl": "M6-8-ZNFE SW",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904022",
+          "price_approx": "$0.09",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X16-U2-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119902913",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "Body nut",
+          "suppl": "M6",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147133884",
+          "price_approx": "$0.36",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0744",
+      "name": "CHARGING ELECTRONICS, HANDS-FREE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0744",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withPreparation f mobile phone w Bluetooth",
+          "suppl": "S644A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Charging electronics, hands-free",
+          "suppl": "BASIS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2009",
+          "part_number": "84109215184",
+          "price_approx": "$586.46",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Charging electronics, hands-free",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "84109226711",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Bracket, control unit",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65159153136",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Hex nut",
+          "suppl": "M5",
+          "qty": "4",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129906048",
+          "price_approx": "$0.73",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Hex nut",
+          "suppl": "M6-8-ZNFE SW",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904022",
+          "price_approx": "$0.09",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Hex bolt with washer",
+          "suppl": "M6X16-U2-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119902913",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Body nut",
+          "suppl": "M6",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07147133884",
+          "price_approx": "$0.36",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0745",
+      "name": "SEPARATE COMPONENTS FOR REAR TELEPHONE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0745",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withRear compartment telephone",
+          "suppl": "S6NBA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Base plate",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109215826",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0746",
+      "name": "BASE PLATE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0746",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withPreparation, mobile phone, Business",
+          "suppl": "S633A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Base plate",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109215826",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0749",
+      "name": "ULF MODULE, HIGH",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0749",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withPreparation f mobile phone w Bluetooth",
+          "suppl": "S644A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "ULF module, High",
+          "suppl": "BASIS SVS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2009",
+          "part_number": "84109207360",
+          "price_approx": "$429.43",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "ULF module, High",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "84109229740",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Bracket, MULF",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65159197037",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Hex nut",
+          "suppl": "M6-8-ZNFE SW",
+          "qty": "7",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904022",
+          "price_approx": "$0.09",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0750",
+      "name": "CHARGING ELECTRONICS, HANDS-FREE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0750",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withUSB/Audio interface",
+          "suppl": "S6FLA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "ULF module, High",
+          "suppl": "BASIS SVS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2009",
+          "part_number": "84109207360",
+          "price_approx": "$429.43",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "ULF module, High",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2010",
+          "part_number": "84109229740",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Bracket, MULF",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65159197037",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Hex nut",
+          "suppl": "M6-8-ZNFE SW",
+          "qty": "7",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119904022",
+          "price_approx": "$0.09",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0752",
+      "name": "BASE PLATE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0752",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withMusic interface for Smartphone",
+          "suppl": "S6NFA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withMusic interface for SmartphoneorApps",
+          "suppl": "S6NFA=YesS6NRA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Base plate",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109220652",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0755",
+      "name": "SEPARATE COMPONENTS FOR REAR TELEPHONE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0755",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withRear compartment telephone",
+          "suppl": "S6NBA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Handset",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109194768",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Battery cover with battery",
+          "suppl": "MATT",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109134342",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Charge cradle for Bluetooth receiver",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109134343",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Universal pin terminal uncoded",
+          "suppl": "3 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136931929",
+          "price_approx": "$2.00",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact pin MQS",
+          "suppl": "0,2-0,35MM²/SN",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131383672",
+          "price_approx": "$0.42",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact pin MQS",
+          "suppl": "0,5-0,75MM² /SN",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131393723",
+          "price_approx": "$0.42",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Base plate",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109215826",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Snap-in adapter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2011",
+          "part_number": "84109218890",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withNational version China",
+          "suppl": "L8AAA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Snap-in adapter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109218890",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0820",
+      "name": "SEPARATE COMPONENTS FOR REAR TELEPHONE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0820",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withRear compartment telephone",
+          "suppl": "S6NBA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Handset",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109343399",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Battery cover with battery",
+          "suppl": "MATT",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109134342",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Charge cradle for Bluetooth receiver",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109223773",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withControl for Combox",
+          "suppl": "S6VCA=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Charge cradle for Bluetooth receiver",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109223773",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Universal pin terminal uncoded",
+          "suppl": "3 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61136931929",
+          "price_approx": "$2.00",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact pin MQS",
+          "suppl": "0,2-0,35MM²/SN",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131383672",
+          "price_approx": "$0.42",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact pin MQS",
+          "suppl": "0,5-0,75MM² /SN",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61131393723",
+          "price_approx": "$0.42",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Base plate",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109215826",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Snap-in adapter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109343398",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0753",
+      "name": "SINGLE PARTS F HANDS-FREE FACILITY",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0753",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Hands-free microphone",
+          "suppl": "GSM",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84316938762",
+          "price_approx": "$30.85",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Emergency speaker",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65139151127",
+          "price_approx": "$18.95",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0763",
+      "name": "SNAP-IN ADAPTER, SAP",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0763",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "For vehicles withNavigation system ProfessionalandPreparation, mobile phone, BusinessandPreparation f mobile phone w Bluetooth",
+          "suppl": "S609A=YesS633A=YesS644A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Snap-in adapter, SAP",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84212158363",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withNavigation system ProfessionalandPreparation, mobile phone, BusinessandPreparation f mobile phone w Bluetooth",
+          "suppl": "S609A=YesS633A=YesS644A=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Snap-in adapter, SAP",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84212158363",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "For vehicles withNavigation system ProfessionalandPreparation, mobile phone, BusinessandPreparation f mobile phone w Bluetooth",
+          "suppl": "S609A=YesS633A=NoS644A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Snap-in adapter, SAP",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84212158363",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "84_0751",
+      "name": "INDIVIDUAL PARTS FOR PHONE ANTENNA",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=84_0751",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Back-Up Antenna",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "65206935024",
+          "price_approx": "$29.04",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Sheet metal screw",
+          "suppl": "ISA M5X12",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07149158177",
+          "price_approx": "$0.25",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Antenna",
+          "suppl": "BLUETOOTH",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "84109142092",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Bracket, Bluetooth antenna",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "84109164526",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Car, MapPin, Gauge, Calendar, Disc, Shield, Mail, Phone, ArrowLeft } from 'lucide-react'
 import type { Metadata } from 'next'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
@@ -90,20 +91,13 @@ export default async function VehicleDetailsPage({ params }: Props) {
           
           {/* Cover Frame Slot */}
           <div className="relative aspect-[16/10] bg-surface rounded-2xl border border-slate-700/80 overflow-hidden shadow-2xl">
-            {vehicle.image_url ? (
-              <Image
-                src={vehicle.image_url}
-                alt={vehicle.title}
-                fill
-                priority
-                className="object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center text-text-disabled/40">
-                <Car size={64} className="animate-pulse" />
-                <span className="text-xs uppercase font-bold tracking-widest mt-2">No Image Uploaded</span>
-              </div>
-            )}
+            <SafeImage
+              src={vehicle.image_url || ''}
+              alt={vehicle.title}
+              fill
+              priority
+              className="object-cover"
+            />
             <VehicleAdWishlistButton vehicleId={vehicle.id} />
           </div>
 

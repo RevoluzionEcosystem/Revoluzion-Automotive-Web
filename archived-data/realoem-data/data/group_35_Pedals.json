@@ -1,0 +1,341 @@
+{
+  "group_name": "Pedals",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=35",
+  "diagrams": [
+    {
+      "id": "35_0319",
+      "name": "PEDAL ASSEMBLY, AUTOMATIC TRANSMISSION",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=35_0319",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Complete pedal assembly",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35006777171",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "No further intervention permitted",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Seal, brake booster",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "34336850655",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Self-locking collar nut",
+          "suppl": "M8-10  ZNS3",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905374",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Self-locking collar nut",
+          "suppl": "M8-10  ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07119905374",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Brake pedal return spring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35216772695",
+          "price_approx": "$4.92",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Brake pedal pin",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "34336772928",
+          "price_approx": "$0.66",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Fuse",
+          "suppl": "B10-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904567",
+          "price_approx": "$0.40",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Grommet",
+          "suppl": "D=7,5MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35411113728",
+          "price_approx": "$0.57",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Rubber pad",
+          "suppl": "B=100MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35211160421",
+          "price_approx": "$4.47",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "Stop light switch",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61316967601",
+          "price_approx": "$32.07",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Universal socket housing uncoded",
+          "suppl": "4 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2014",
+          "part_number": "61138380696",
+          "price_approx": "$0.93",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,2- 0,5 QMM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2014",
+          "part_number": "61130005197",
+          "price_approx": "$1.65",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "09/2014",
+          "part_number": "61130056960",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Rep. kit for socket housing",
+          "suppl": "4 POL.",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61132359994",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,2- 0,5 QMM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130005197",
+          "price_approx": "$1.65",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Contact bushing MQS with cable",
+          "suppl": "0,5-0,75 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "61130056960",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "35_0537",
+      "name": "ACCELERATION/ACCELERATOR PEDAL MODULE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=35_0537",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Accelerator pedal module",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2015",
+          "part_number": "35426860784",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Accelerator pedal module",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35406889822",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "ISA screw",
+          "suppl": "M6X16-8.8-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904588",
+          "price_approx": "$0.96",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Cover bolt",
+          "suppl": "D=10MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35426796540",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only applies to",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Cover bolt",
+          "suppl": "D=10MM",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35426796540",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Cover bolt",
+          "suppl": "D=10MM",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "35426796540",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only applies to",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "ISA screw",
+          "suppl": "M6X16-8.8-ZNS3",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129904588",
+          "price_approx": "$0.96",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

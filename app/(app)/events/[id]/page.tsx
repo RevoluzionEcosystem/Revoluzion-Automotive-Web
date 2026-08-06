@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
-import Image from 'next/image'
+import { SafeImage } from '@/components/ui/SafeImage'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { CalendarDays, MapPin, Users, ArrowLeft, Clock, DollarSign } from 'lucide-react'
 import { formatDate, formatCurrency } from '@/lib/utils'
@@ -68,37 +69,17 @@ export default async function EventDetailPage({ params }: Props) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Banner/Image column taking 5 of 12 cols for a premium wide layout with reduced size/aspect ratio */}
-        {event.banner_url ? (
-          <div className="lg:col-span-4 w-full aspect-[4/3.2] rounded-2xl overflow-hidden border border-border relative bg-surface shadow-xl">
-            <Image
-              src={event.banner_url}
-              alt={event.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 500px"
-            />
-          </div>
-        ) : (
-          <div className="lg:col-span-4 w-full aspect-[4/3.2] rounded-2xl border border-border overflow-hidden relative shadow-xl">
-            <Image
-              src="/cover-image/event-banner-image.jpeg"
-              alt="Car Meet Default Placeholder"
-              fill
-              className="object-cover opacity-35"
-              sizes="(max-width: 1024px) 100vw, 500px"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-linear-to-t from-[#0A0A0A] via-black/40 to-transparent">
-              <CalendarDays size={48} className="text-primary-light mb-2.5 drop-shadow-[0_0_8px_rgba(6,182,212,0.4)]" />
-              <span className="text-text-primary text-[10px] sm:text-xs font-black uppercase tracking-widest text-center" style={{ fontFamily: 'var(--font-orbitron)' }}>
-                No Banner Image Provided
-              </span>
-              <span className="text-text-muted text-[9px] font-semibold mt-1 tracking-wider text-center">
-                Standard Community Meetup Placeholder
-              </span>
-            </div>
-          </div>
-        )}
+        <div className="lg:col-span-4 w-full aspect-[4/3.2] rounded-2xl overflow-hidden border border-border relative bg-surface shadow-xl">
+          <SafeImage
+            src={event.banner_url || ''}
+            alt={event.title}
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 1024px) 100vw, 500px"
+            fallbackSrc="/cover-image/event-banner-image.jpeg"
+          />
+        </div>
 
         {/* Content & Info column taking remaining 8 of 12 cols */}
         <div className="lg:col-span-8 space-y-4">

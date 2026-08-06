@@ -1,0 +1,1198 @@
+{
+  "group_name": "Automatic Transmission",
+  "url": "https://www.realoem.com/bmw/enUS/partgrp?id=KB45-THA-03-2009-F02-BMW-740Li&mg=24",
+  "diagrams": [
+    {
+      "id": "24_1114",
+      "name": "AUTOMATIC TRANSMISSION GA6HP19Z",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1114",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "RP automatic transmission, Eh",
+          "suppl": "GA6HP19Z - W3M",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24007606191",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "RP REMAN automatic transmission Eh",
+          "suppl": "GA6HP19Z",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24007587748",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Hex bolt",
+          "suppl": "M10X17,5Z1-10.9",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24407561393",
+          "price_approx": "$1.68",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Torque converter",
+          "suppl": "B111",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24407584541",
+          "price_approx": "$1845.22",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Hex bolt",
+          "suppl": "M10X17,5Z1-10.9",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24407561393",
+          "price_approx": "$1.68",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Gasket set",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24277583124",
+          "price_approx": "$155.02",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Set, blind plugs",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24107604970",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "01/2023",
+          "part_number": "83222305396",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Filling quantity, see AdditionalInformation",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Automatic transmission oil ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "83225A92866",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Filling quantity, see AdditionalInformation",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_2081",
+      "name": "AUTOMATIC TRANSMISSION GA6HP19Z",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_2081",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "RP automatic transmission, Eh",
+          "suppl": "GA6HP19Z - W3M",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24007606191",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Hex bolt",
+          "suppl": "M10X17,5Z1-10.9",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24407561393",
+          "price_approx": "$1.68",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "\"China only\"",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "RP REMAN automatic transmission Eh",
+          "suppl": "GA6HP19Z-CN",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24002412861",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Hex bolt",
+          "suppl": "M10X17,5Z1-10.9",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24407561393",
+          "price_approx": "$1.68",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Torque converter",
+          "suppl": "B111",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24407584541",
+          "price_approx": "$1845.22",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Hex bolt",
+          "suppl": "M10X17,5Z1-10.9",
+          "qty": "6",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24407561393",
+          "price_approx": "$1.68",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Gasket set",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24277583124",
+          "price_approx": "$155.02",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Set, blind plugs",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24107604970",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "01/2023",
+          "part_number": "83222305396",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Filling quantity, see AdditionalInformation",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Automatic transmission oil ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "83225A92866",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Filling quantity, see AdditionalInformation",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1115",
+      "name": "GEARBOX MOUNTING PARTS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1115",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Torx bolt",
+          "suppl": "M12X50-8.8-ZNS3",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "23001222891",
+          "price_approx": "$1.32",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Torx bolt",
+          "suppl": "M12X75",
+          "qty": "5",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "23001222893",
+          "price_approx": "$1.62",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "ASA-Bolt",
+          "suppl": "M8X50-8.8-ZNS3",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "23001222887",
+          "price_approx": "$1.13",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Dowel",
+          "suppl": "D=14,5MM",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "11117524470",
+          "price_approx": "$1.65",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "ASA-Bolt",
+          "suppl": "M10X85-8.8-ZNS3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "07129903800",
+          "price_approx": "$1.78",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Cap",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24147567139",
+          "price_approx": "$10.60",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1112",
+      "name": "EMERGENCY RELEASE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1112",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Handle f emergency unlocking",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24507590395",
+          "price_approx": "$5.60",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Emergency release",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24507582066",
+          "price_approx": "$133.99",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Self-locking hex nut",
+          "suppl": "M6",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "51417053138",
+          "price_approx": "$0.38",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "fitted alternatively",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Locknut",
+          "suppl": "M6 ZNT",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "07146982788",
+          "price_approx": "$0.20",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Clip",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24507593471",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1113",
+      "name": "EMERGENCY RELEASE",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1113",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withNational version England / Ireland",
+          "suppl": "L812A=Yes",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Handle f emergency unlocking",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24507590395",
+          "price_approx": "$5.60",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Emergency release",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24507583661",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Lock cylinder with key",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24507583665",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Self-locking hex nut",
+          "suppl": "M6",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "51417053138",
+          "price_approx": "$0.38",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "fitted alternatively",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Locknut",
+          "suppl": "M6 ZNT",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "07146982788",
+          "price_approx": "$0.20",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Clip",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24507593471",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1042",
+      "name": "GA6HP19Z HOUSING WITH MOUNTING PARTS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1042",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Vent cover",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24101422142",
+          "price_approx": "$1.95",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Vent pipe",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24101422141",
+          "price_approx": "$5.93",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Screw Plug With Gasket Ring",
+          "suppl": "M18X1,5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24117552349",
+          "price_approx": "$7.65",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Screw Plug With Gasket Ring",
+          "suppl": "M10X1",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24117552351",
+          "price_approx": "$4.60",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Sealing sleeve",
+          "suppl": "L=31,20MM",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24107536339",
+          "price_approx": "$10.71",
+          "notes": ""
+        },
+        {
+          "pos": "06",
+          "description": "Sealing sleeve",
+          "suppl": "L=35,50",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24107536340",
+          "price_approx": "$10.71",
+          "notes": ""
+        },
+        {
+          "pos": "07",
+          "description": "Sealing sleeve",
+          "suppl": "L=48,90",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24107536341",
+          "price_approx": "$10.71",
+          "notes": ""
+        },
+        {
+          "pos": "08",
+          "description": "Screw Plug With Gasket Ring",
+          "suppl": "M14X1,5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24007571205",
+          "price_approx": "$6.30",
+          "notes": ""
+        },
+        {
+          "pos": "09",
+          "description": "Shaft seal",
+          "suppl": "45X58X7",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24317519352",
+          "price_approx": "$13.53",
+          "notes": ""
+        },
+        {
+          "pos": "10",
+          "description": "O-ring",
+          "suppl": "194X3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24317536355",
+          "price_approx": "$7.33",
+          "notes": ""
+        },
+        {
+          "pos": "11",
+          "description": "Torx screw with round seal ring",
+          "suppl": "M6X52",
+          "qty": "11",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24317588743",
+          "price_approx": "$1.95",
+          "notes": ""
+        },
+        {
+          "pos": "12",
+          "description": "O-ring",
+          "suppl": "128X3",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24201217321",
+          "price_approx": "$9.32",
+          "notes": ""
+        },
+        {
+          "pos": "13",
+          "description": "Shaft seal",
+          "suppl": "10X18X5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24147571213",
+          "price_approx": "$5.20",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1044",
+      "name": "GA6HP19Z OIL PAN",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1044",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "i",
+          "description": "For vehicles withControl, transmission type",
+          "suppl": "S2TMA=No",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Kit, oil pan fluid filter auto. trans.",
+          "suppl": "VALUE PARTS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24152333907",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Gasket, oil pan",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24117571235",
+          "price_approx": "$28.95",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "O-ring",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24117520714",
+          "price_approx": "$1.59",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Screw plug",
+          "suppl": "M24X1",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24007588766",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Torx screw",
+          "suppl": "M6X28,5",
+          "qty": "24",
+          "from_date": "",
+          "to_date": "10/2022",
+          "part_number": "24117552108",
+          "price_approx": "$2.03",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Torx screw",
+          "suppl": "M6X28,5",
+          "qty": "24",
+          "from_date": "",
+          "to_date": "10/2022",
+          "part_number": "24159896928",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Torx screw",
+          "suppl": "M6X28,5",
+          "qty": "24",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24115B44CF5",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1045",
+      "name": "GA6HP19Z OUTPUT",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1045",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Shaft seal",
+          "suppl": "44X72X8",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24137519344",
+          "price_approx": "$17.12",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Compensating plate",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24207521972",
+          "price_approx": "$7.33",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Output flange",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24007588769",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Collar nut",
+          "suppl": "M27X1,5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24207588761",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Shaft seal",
+          "suppl": "28X35,5X5,2",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24207588763",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1046",
+      "name": "GA6HP19Z MECHATRONICS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1046",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "REMAN repair kit, mechatronics",
+          "suppl": "REMAN",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24007647858",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Repair kit, Mechatronic",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24348671618",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Socket housing",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527503442",
+          "price_approx": "$7.82",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "only in conjunction with",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Bushing contact",
+          "suppl": "0,35-0,5 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12521436205",
+          "price_approx": "$0.50",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Bushing contact",
+          "suppl": "0,5-1,0 MM² AG",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12521436206",
+          "price_approx": "$0.50",
+          "notes": ""
+        },
+        {
+          "pos": "--",
+          "description": "Protection cap",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "12527522996",
+          "price_approx": "$1.92",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1047",
+      "name": "GA6HP19Z MECHATRONICS MOUNTING PARTS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1047",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Sealing sleeve",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24347588725",
+          "price_approx": "$17.41",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Adapter",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24347588724",
+          "price_approx": "$11.79",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Torx screw",
+          "suppl": "M6X59",
+          "qty": "10",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24347509514",
+          "price_approx": "$1.80",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Torx screw",
+          "suppl": "M6X20",
+          "qty": "3",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24347519356",
+          "price_approx": "$1.80",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1081",
+      "name": "GA6HP19Z CIRCUIT CONTROL COMPONENTS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1081",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "01",
+          "description": "Shaft seal",
+          "suppl": "10X18X5",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24147571213",
+          "price_approx": "$5.20",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Lever",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24147519414",
+          "price_approx": "$4.89",
+          "notes": ""
+        },
+        {
+          "pos": "03",
+          "description": "Hex nut",
+          "suppl": "M8X1",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24147571207",
+          "price_approx": "$1.15",
+          "notes": ""
+        },
+        {
+          "pos": "04",
+          "description": "Set, Bowden-cable mounts, disconnected",
+          "suppl": "",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24147588888",
+          "price_approx": "$18.76",
+          "notes": ""
+        },
+        {
+          "pos": "05",
+          "description": "Torx screw",
+          "suppl": "M6X20",
+          "qty": "2",
+          "from_date": "",
+          "to_date": "03/2010",
+          "part_number": "24147571249",
+          "price_approx": "$1.77",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "24_1243",
+      "name": "GA6HP26Z GEARSHIFT PARTS",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_1243",
+      "image_url": "",
+      "parts": []
+    },
+    {
+      "id": "24_2246",
+      "name": "FLUID-CHANGE KIT, AUTOM. TRANSMISSION",
+      "url": "https://www.realoem.com/bmw/enUS/showparts?id=KB45-THA-03-2009-F02-BMW-740Li&diagId=24_2246",
+      "image_url": "",
+      "parts": [
+        {
+          "pos": "",
+          "description": "VALUE REPAIR PARTS!Everything in one click!Contains all separate components foroil change!Improves the repair quality.Reduced wear!Extends the service life of thetransmission!Increases driving comfort!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "01",
+          "description": "Kit, oil pan fluid filter auto. trans.",
+          "suppl": "VALUE PARTS",
+          "qty": "1",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "24152333907",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Please observe Repair Manual.",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "06/2013",
+          "part_number": "83222305396",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Important!It is vital to observe the oilbalancing procedure described in therepair instructions.The required oil quantity can vary!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "02",
+          "description": "Automatic transmission oil ATF 2",
+          "suppl": "1L",
+          "qty": "X",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "83225A92866",
+          "price_approx": "",
+          "notes": ""
+        },
+        {
+          "pos": "",
+          "description": "Important!It is vital to observe the oilbalancing procedure described in therepair instructions.The required oil quantity can vary!",
+          "suppl": "",
+          "qty": "",
+          "from_date": "",
+          "to_date": "",
+          "part_number": "",
+          "price_approx": "",
+          "notes": ""
+        }
+      ]
+    }
+  ]
+}

@@ -8,29 +8,9 @@ import {
   CalendarDays, X, Plus, Upload, Link2, ArrowRight,
   Car, Compass, Trophy, Store, ShieldAlert, BadgeInfo, MapPin 
 } from 'lucide-react'
+import { getMapsLoader } from '@/lib/google-maps-loader'
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!
-
-// Low-cost cache logic to avoid excessive API requests.
-let loaderPromise: Promise<any> | null = null
-function getMapsLoader() {
-    if (typeof window === 'undefined') return Promise.reject()
-    if (loaderPromise) return loaderPromise
-
-    loaderPromise = (async () => {
-        const { setOptions, importLibrary } = await import('@googlemaps/js-api-loader')
-        setOptions({
-            key: GOOGLE_MAPS_API_KEY,
-            v: 'weekly',
-        })
-        await Promise.all([
-            importLibrary('maps'),
-            importLibrary('marker')
-        ])
-        return (window as any).google.maps
-    })()
-    return loaderPromise
-}
 
 const EVENT_TYPES = [
   {

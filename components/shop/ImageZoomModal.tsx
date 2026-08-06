@@ -20,6 +20,9 @@ export function ImageZoomModal({ images, startIndex = 0, open, onClose }: Props)
   const [dragging, setDragging] = useState(false)
   const dragStart = useRef<{ x: number; y: number; px: number; py: number } | null>(null)
 
+  const prev = useCallback(() => { setIdx((i) => (i - 1 + images.length) % images.length); setZoom(1); setPan({ x: 0, y: 0 }) }, [images.length])
+  const next = useCallback(() => { setIdx((i) => (i + 1) % images.length); setZoom(1); setPan({ x: 0, y: 0 }) }, [images.length])
+
   useEffect(() => { setIdx(startIndex); setZoom(1); setPan({ x: 0, y: 0 }) }, [startIndex, open])
 
   useEffect(() => {
@@ -33,10 +36,7 @@ export function ImageZoomModal({ images, startIndex = 0, open, onClose }: Props)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [open, idx]) // eslint-disable-line
-
-  const prev = useCallback(() => { setIdx((i) => (i - 1 + images.length) % images.length); setZoom(1); setPan({ x: 0, y: 0 }) }, [images.length])
-  const next = useCallback(() => { setIdx((i) => (i + 1) % images.length); setZoom(1); setPan({ x: 0, y: 0 }) }, [images.length])
+  }, [open, idx, prev, next, onClose])
 
   function onWheel(e: React.WheelEvent) {
     e.preventDefault()

@@ -24,7 +24,7 @@ import { InlineCommentSection } from '@/components/ui/InlineCommentSection'
 
 interface FeedItem {
   id: string
-  feedType: 'post' | 'car' | 'build' | 'event' | 'listing' | 'service'
+  feedType: 'post' | 'car' | 'build' | 'event' | 'listing' | 'service' | 'user'
   created_at: string
   updated_at?: string
   user_id: string
@@ -844,6 +844,13 @@ export default function FeedPage() {
         .order('created_at', { ascending: false })
         .limit(15)
 
+      // 7. Fetch recent newly registered users
+      const { data: usersRaw } = await supabase
+        .from('users')
+        .select('id, username, display_name, avatar_url, created_at, is_verified')
+        .order('created_at', { ascending: false })
+        .limit(15)
+
       // Format everything into standardized FeedItems
       const items: FeedItem[] = []
 
@@ -994,6 +1001,26 @@ export default function FeedPage() {
         })
       }
 
+      // Newly registered users
+      if (usersRaw) {
+        usersRaw.forEach((u: any) => {
+          items.push({
+            id: `user-${u.id}`,
+            feedType: 'user',
+            created_at: u.created_at,
+            user_id: u.id,
+            content: `${u.display_name || u.username || 'A new member'} joined Revoluzion!`,
+            image_url: u.avatar_url || null,
+            metadata: {
+              username: u.username,
+              display_name: u.display_name,
+              avatar_url: u.avatar_url,
+              is_verified: u.is_verified,
+            }
+          })
+        })
+      }
+
       // Sort everything reverse-chronologically (newest occurrence first)
       items.sort((a,b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
@@ -1043,6 +1070,7 @@ export default function FeedPage() {
     if (activeType === 'events') return rawItems.filter(item => item.feedType === 'event')
     if (activeType === 'listings') return rawItems.filter(item => item.feedType === 'listing')
     if (activeType === 'services') return rawItems.filter(item => item.feedType === 'service')
+    if (activeType === 'users') return rawItems.filter(item => item.feedType === 'user')
     return rawItems
   }, [rawItems, activeType])
 
@@ -1424,6 +1452,34 @@ export default function FeedPage() {
 
                     {/* Inline Comment thread support */}
                     <InlineCommentSection itemId={item.id} feedType="service" currentUserId={userId} />
+                  </div>
+                )
+              }
+
+              if (item.feedType === 'user') {
+                return (
+                  <div key={item.id} className="p-5 rounded-2xl bg-gradient border border-white/5 hover:border-white/11 shadow-xl transition-all duration-300">
+                    <div className="flex gap-3 items-center">
+                      <Link href={`/u/${item.metadata.username}`}>
+                        {item.metadata.avatar_url ? (
+                          <img src={item.metadata.avatar_url} alt="" className="w-10 h-10 rounded-full object-cover border border-slate-800 shrink-0" />
+                        ) : (
+                          <DefaultAvatar className="w-10 h-10 font-semibold shrink-0" />
+                        )}
+                      </Link>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs text-white">
+                          <Link href={`/u/${item.metadata.username}`} className="font-extrabold text-[#E2E8F0] hover:text-primary transition-colors">
+                            {item.metadata.display_name || item.metadata.username || 'New member'}
+                          </Link>
+                          <span className="text-text-muted font-medium ml-1.5">joined the community</span>
+                        </div>
+                        <span className="text-[10px] text-text-disabled mt-1 block font-medium">
+                          {timeAgo(item.created_at)}
+                        </span>
+                      </div>
+                      <UserPlus size={16} className="text-primary opacity-90 shrink-0" />
+                    </div>
                   </div>
                 )
               }

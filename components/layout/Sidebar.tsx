@@ -69,29 +69,29 @@ export function Sidebar() {
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 overflow-y-auto py-4 px-2 space-y-0.5">
+      <nav className="flex-1 overflow-y-auto px-2 space-y-0.5">
         {/* Glow-highlighted "Shop Revoluzion Automotive Products" Option at Very Top */}
-        <div className="px-1 pb-3">
+        <div className="px-1">
           <Link
             href="/shop"
             className={cn(
-              'flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 relative group overflow-hidden border',
+              'flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-300 relative group overflow-hidden',
               pathname === '/shop' || pathname.startsWith('/shop/')
-                ? 'bg-primary/25 border-primary text-white shadow-[0_0_15px_rgba(6,182,212,0.3)]'
-                : 'bg-primary/5 hover:bg-primary/10 border-primary/20 text-white hover:text-white shadow-[0_0_10px_rgba(6,182,212,0.1)] hover:shadow-[0_0_15px_rgba(6,182,212,0.25)]'
+                ? 'bg-primary/15 text-primary border border-primary/25'
+                : 'text-text-secondary hover:text-text-primary hover:bg-surface-variant'
             )}
           >
-            <ShoppingBag size={18} className="shrink-0 animate-pulse text-primary group-hover:scale-110 transition-transform" />
+            <ShoppingBag size={18} className="shrink-0 group-hover:text-primary transition-colors" />
             {!collapsed && (
-              <span 
-                className="text-xs font-bold leading-normal text-white" 
+              <span
+                className="text-xs leading-normal text-text-secondary"
                 style={{ fontFamily: 'var(--font-orbitron)', letterSpacing: '0.05em' }}
               >
                 Shop Revoluzion Products
               </span>
             )}
           </Link>
-          <div className="w-full border-b border-border/40 mt-3" />
+          <div className="w-full border-b border-border" />
         </div>
 
         {navItems.map(({ href, label, icon: Icon }) => {

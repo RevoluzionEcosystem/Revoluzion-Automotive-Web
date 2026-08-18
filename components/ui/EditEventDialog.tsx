@@ -112,7 +112,7 @@ export function EditEventDialog({ event }: EditEventDialogProps) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
+        <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-2 sm:p-4 overflow-y-auto">
           <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setOpen(false)} />
           <div className="relative bg-[#0d1017] border border-[#1f2937] rounded-x animate-scale-in w-full max-w-lg max-h-[96vh] sm:max-h-[92vh] overflow-y-auto shadow-2xl rounded-2xl">
             

@@ -45,7 +45,7 @@ export default async function HalfcutDetailPage({ params }: PageProps) {
   const castHalfcut = halfcut as HalfcutWithUser
 
   return (
-    <div className="w-full bg-[#0A0A0A] min-h-screen">
+    <div className="w-full bg-[#0A0A0A] min-h-dvh">
       <HalfcutDetailClient halfcut={castHalfcut} />
     </div>
   )

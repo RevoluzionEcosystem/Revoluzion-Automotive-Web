@@ -133,7 +133,7 @@ export function ImageZoomModal({ images, startIndex = 0, open, onClose }: Props)
 
         {/* Thumbnail strip */}
         {images.length > 1 && (
-          <div className="flex items-center justify-center gap-1.5 py-2 px-3 border-t border-white/10 shrink-0 overflow-x-auto bg-black/80">
+          <div className="flex items-center justify-center gap-1.5 py-2 px-3 border-t border-white/10 shrink-0 overflow-x-auto scrollbar-none bg-black/80">
             {images.map((im, i) => (
               <button key={i} onClick={() => { setIdx(i); setZoom(1); setPan({ x: 0, y: 0 }) }}
                 className={`w-10 h-10 rounded-lg overflow-hidden border-2 shrink-0 transition-colors ${i === idx ? 'border-primary' : 'border-white/20 hover:border-white/50'}`}>

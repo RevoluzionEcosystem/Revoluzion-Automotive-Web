@@ -59,7 +59,7 @@ export function EditHalfcutItemModal({ item, onSuccess, onClose }: EditHalfcutIt
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
       <div className="w-full max-w-lg bg-surface border border-slate-700/80 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
         {/* Header */}
         <div className="px-5 py-4 border-b border-slate-800 flex justify-between items-center bg-background">

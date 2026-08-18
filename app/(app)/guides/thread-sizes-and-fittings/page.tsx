@@ -15,7 +15,7 @@ export default function ThreadSizesGuide() {
       <h2>NPT (National Pipe Taper)</h2>
       <p>NPT is a U.S. tapered pipe thread standard (ANSI/ASME B1.20.1). NPT threads seal by interference and thread deformation — use thread sealant or tape for gas-tight joints.</p>
       <ul>
-        <li><strong>Identification:</strong> Tapered threads, measured by nominal pipe size (e.g., 1/8", 1/4", 1/2").</li>
+        <li><strong>Identification:</strong> Tapered threads, measured by nominal pipe size (e.g., 1/8&quot;, 1/4&quot;, 1/2&quot;).</li>
         <li><strong>Sealing:</strong> Thread sealant or PTFE tape.</li>
         <li><strong>Common uses:</strong> Plumbing, air and fuel lines, adapters.</li>
       </ul>
@@ -66,14 +66,14 @@ export default function ThreadSizesGuide() {
 
       <h3>NPT nominal sizes (examples)</h3>
       <ul>
-        <li>1/8" NPT — approx major OD 0.405"</li>
-        <li>1/4" NPT — approx major OD 0.540"</li>
-        <li>3/8" NPT — approx major OD 0.675"</li>
-        <li>1/2" NPT — approx major OD 0.840"</li>
+        <li>1/8&quot; NPT — approx major OD 0.405&quot;</li>
+        <li>1/4&quot; NPT — approx major OD 0.540&quot;</li>
+        <li>3/8&quot; NPT — approx major OD 0.675&quot;</li>
+        <li>1/2&quot; NPT — approx major OD 0.840&quot;</li>
       </ul>
 
       <h3>AN sizing</h3>
-      <p>AN sizes are given as -2, -3, -4 etc. where the number corresponds to 1/16ths of an inch of O.D. tubing (e.g., AN-4 = 4/16 = 1/4" tube).</p>
+      <p>AN sizes are given as -2, -3, -4 etc. where the number corresponds to 1/16ths of an inch of O.D. tubing (e.g., AN-4 = 4/16 = 1/4&quot; tube).</p>
 
       <h2>Further Reading</h2>
       <ul>

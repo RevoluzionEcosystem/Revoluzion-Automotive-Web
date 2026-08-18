@@ -78,26 +78,32 @@ export function ShopProductCard({ productId, name, slug, sku, priceRetail, stock
       </Link>
 
       {/* Body */}
-      <div className="p-3 flex flex-col gap-1 flex-1">
-        {categoryName && <span className="text-[10px] text-text-muted uppercase tracking-wide">{categoryName}</span>}
-        <Link href={href}>
-          <h3 className="text-text-primary text-sm font-medium line-clamp-2 leading-snug hover:text-primary transition-colors" style={{ fontFamily: "var(--font-inter)" }}>{name}</h3>
-        </Link>
-        {/* Price — right-aligned, larger */}
-        <div className="flex items-center justify-end mt-auto pt-1.5">
-          <span className={outOfStock ? "price-out-of-stock text-base" : "price-srp text-base"}>
-            {formatCurrency(priceRetail)}
-          </span>
+      <div className="p-3.5 flex flex-col flex-1 justify-between gap-2">
+        <div className="flex flex-col gap-1">
+          <Link href={href}>
+            <h3 className="text-text-primary text-sm font-medium line-clamp-2 leading-snug hover:text-primary transition-colors" style={{ fontFamily: "var(--font-inter)" }}>{name}</h3>
+          </Link>
+          <span className="text-[11px] font-mono text-white/90 mt-0.5">{sku}</span>
+          {categoryName && <span className="text-[10px] text-text-muted uppercase tracking-wider font-medium mt-0.5">{categoryName}</span>}
         </div>
-        {/* Add to Cart */}
-        <button onClick={handleAdd} disabled={outOfStock || adding}
-          className={`mt-1 w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold transition-colors ${
-            outOfStock ? 'bg-surface-variant text-text-muted cursor-default' : 'bg-primary/10 text-primary hover:bg-primary hover:text-black disabled:opacity-40 disabled:cursor-not-allowed'
-          }`}>
-          {adding ? <><Loader2 size={11} className="animate-spin" /> Adding...</>
-            : outOfStock ? 'Out of Stock'
-            : <><ShoppingCart size={11} /> Add to Cart</>}
-        </button>
+
+        <div className="flex flex-col gap-2 mt-auto">
+          {/* Price — right-aligned */}
+          <div className="flex items-center justify-end">
+            <span className={outOfStock ? "price-out-of-stock text-base" : "price-srp text-base"}>
+              {formatCurrency(priceRetail)}
+            </span>
+          </div>
+          {/* Add to Cart */}
+          <button onClick={handleAdd} disabled={outOfStock || adding}
+            className={`w-full flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-semibold transition-colors ${
+              outOfStock ? 'bg-surface-variant text-text-muted cursor-default' : 'bg-primary/10 text-primary hover:bg-primary hover:text-black disabled:opacity-40 disabled:cursor-not-allowed'
+            }`}>
+            {adding ? <><Loader2 size={11} className="animate-spin" /> Adding...</>
+              : outOfStock ? 'Out of Stock'
+              : <><ShoppingCart size={11} /> Add to Cart</>}
+          </button>
+        </div>
       </div>
     </div>
   )

@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { createClient } = require('@supabase/supabase-js');
 
 // Initialize client
-const supabaseUrl = 'https://bgabtiaouaycwdpspclg.supabase.co';
-const supabaseServiceKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJnYWJ0aWFvdWF5Y3dkcHNwY2xnIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3OTI5MTg1MSwiZXhwIjoyMDk0ODY3ODUxfQ.pugIBLisg0LB1WUBQNoc2coSJN7udmCCJXg0xpSlKuM';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://bgabtiaouaycwdpspclg.supabase.co';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (!supabaseServiceKey) {
+  console.error('Missing SUPABASE_SERVICE_ROLE_KEY environment variable');
+  process.exit(1);
+}
 
 const client = createClient(supabaseUrl, supabaseServiceKey);
 

@@ -291,7 +291,7 @@ export function DashboardClient({
               </h2>
               {listings.length === 0 ? (
                 <div className="text-center py-16 bg-surface/20 border border-white/5 rounded-xl space-y-3">
-                  <p className="text-text-secondary text-sm">You haven't listed any components or aftermarket accessories yet.</p>
+                  <p className="text-text-secondary text-sm">You haven&apos;t listed any components or aftermarket accessories yet.</p>
                   <button onClick={() => setShowCreateModal(true)} className="btn-primary text-xs uppercase font-bold tracking-wider">
                     Post My First Part Ad
                   </button>
@@ -372,7 +372,7 @@ export function DashboardClient({
               </h2>
               {vehicles.length === 0 ? (
                 <div className="text-center py-16 bg-surface/20 border border-white/5 rounded-xl space-y-3">
-                  <p className="text-text-secondary text-sm">You haven't registered any vehicle advertisement ads yet.</p>
+                  <p className="text-text-secondary text-sm">You haven&apos;t registered any vehicle advertisement ads yet.</p>
                   <p className="text-text-muted text-[10px]">Put up your classic ride or custom project build for collectors directly.</p>
                 </div>
               ) : (
@@ -696,7 +696,7 @@ export function DashboardClient({
 
             {ratingsCount === 0 ? (
               <div className="p-4 rounded-xl bg-surface/20 border border-white/5 text-center text-text-muted">
-                You haven't received any customer review logs yet.
+                You haven&apos;t received any customer review logs yet.
               </div>
             ) : (
               <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1">
@@ -720,7 +720,7 @@ export function DashboardClient({
                       </div>
                     </div>
                     <p className="text-text-secondary text-[11px] leading-relaxed italic">
-                      "{rev.comment || 'Awesome seller, highly recommended for parts transactions!'}"
+                      &quot;{rev.comment || 'Awesome seller, highly recommended for parts transactions!'}&quot;
                     </p>
                   </div>
                 ))}
@@ -822,7 +822,7 @@ export function DashboardClient({
                     </div>
                   </div>
                   <p className="text-text-secondary text-[11px] italic">
-                    "{rev.comment || 'Awesome seller!'}"
+                    &quot;{rev.comment || 'Awesome seller!'}&quot;
                   </p>
                 </div>
               ))}

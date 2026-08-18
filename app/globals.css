@@ -51,6 +51,52 @@ h1, h2
   }
   --animate-status-pulse: status-pulse 2s infinite ease-in-out;
 
+  /* Feed entrance / interaction micro-animations */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  --animate-fade-in-up: fade-in-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes heart-pop {
+    0% {
+      transform: scale(1);
+    }
+    40% {
+      transform: scale(1.35);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  --animate-heart-pop: heart-pop 0.35s ease;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  --animate-fade-in: fade-in 0.3s ease both;
+
+  @keyframes sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  --animate-sheet-up: sheet-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
   /* Minimal border radius — override Tailwind defaults so every rounded-* class
      maps to 4px. rounded-full (9999px) is intentionally left untouched so
      avatar circles and status dots stay circular. */
@@ -78,6 +124,9 @@ h1, h2
     font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {

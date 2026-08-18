@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Send, Hash, Users, MessageSquare } from 'lucide-react'
+import { Send, Hash, Users, MessageSquare, Loader2 } from 'lucide-react'
 import { timeAgo } from '@/lib/utils'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
 import { ChatInboxList } from '@/components/ui/ChatInboxList'
@@ -48,13 +48,20 @@ function checkSpam(): string | null {
   return null
 }
 
+const PAGE_SIZE = 50
+const MAX_MESSAGES = 10_000
+
 export default function ChatPage() {
   const supabase = createClient()
   const queryClient = useQueryClient()
   const [message, setMessage] = useState('')
   const [sending, setSending] = useState(false)
   const [onlineCount, setOnlineCount] = useState(1)
+  const [loadingOlder, setLoadingOlder] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const topSentinelRef = useRef<HTMLDivElement>(null)
+  const lastMessageIdRef = useRef<string | null>(null)
 
   const { data: user } = useQuery({
     queryKey: ['auth-user'],
@@ -65,28 +72,33 @@ export default function ChatPage() {
     staleTime: 5 * 60 * 1000,
   })
 
-  const { data: messages = [] } = useQuery({
+  const { data } = useQuery({
     queryKey: ['chat-messages'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data: rows, error } = await supabase
         .from('chat_messages')
         .select('*')
-        .order('created_at', { ascending: true })
-        .limit(100)
+        .order('created_at', { ascending: false })
+        .limit(PAGE_SIZE)
       if (error) throw error
-      return data as ChatMessage[]
+      const msgs = ((rows ?? []) as ChatMessage[]).reverse()
+      return { messages: msgs, hasMore: msgs.length === PAGE_SIZE }
     },
   })
+
+  const messages = data?.messages ?? []
+  const hasMore = data?.hasMore ?? true
 
   // Realtime messages
   useEffect(() => {
     const channel = supabase
       .channel('chat-room')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, (payload) => {
-        queryClient.setQueryData(['chat-messages'], (old: ChatMessage[] = []) => [
-          ...old,
-          payload.new as ChatMessage,
-        ])
+        queryClient.setQueryData(['chat-messages'], (old: { messages: ChatMessage[]; hasMore: boolean } | undefined) => {
+          if (!old) return old
+          if (old.messages.some((m) => m.id === payload.new.id)) return old
+          return { ...old, messages: [...old.messages, payload.new as ChatMessage] }
+        })
       })
       .subscribe()
 
@@ -113,10 +125,51 @@ export default function ChatPage() {
     return () => { supabase.removeChannel(presence) }
   }, [supabase, user])
 
-  // Auto-scroll
+  // Auto-scroll to the latest message (only on new messages, and only when near the bottom)
   useEffect(() => {
+    const last = messages[messages.length - 1]
+    if (!last || last.id === lastMessageIdRef.current) return
+    const isInitial = lastMessageIdRef.current === null
+    lastMessageIdRef.current = last.id
+    const el = scrollRef.current
+    if (el && !isInitial && el.scrollHeight - el.scrollTop - el.clientHeight > 240) return
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  const loadOlder = useCallback(async () => {
+    if (!hasMore || loadingOlder || messages.length >= MAX_MESSAGES) return
+    const oldest = messages[0]?.created_at
+    if (!oldest) return
+    setLoadingOlder(true)
+    const { data: rows } = await supabase
+      .from('chat_messages')
+      .select('*')
+      .lt('created_at', oldest)
+      .order('created_at', { ascending: false })
+      .limit(PAGE_SIZE)
+    const older = ((rows ?? []) as ChatMessage[]).reverse()
+    queryClient.setQueryData(['chat-messages'], (prev: { messages: ChatMessage[]; hasMore: boolean } | undefined) => {
+      if (!prev) return prev
+      const merged = [...older, ...prev.messages]
+      return { messages: merged, hasMore: older.length === PAGE_SIZE && merged.length < MAX_MESSAGES }
+    })
+    setLoadingOlder(false)
+  }, [supabase, queryClient, hasMore, loadingOlder, messages])
+
+  // Load older messages when the user scrolls to the top
+  useEffect(() => {
+    const el = topSentinelRef.current
+    const root = scrollRef.current
+    if (!el || !root || !hasMore || loadingOlder) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && root.scrollHeight > root.clientHeight + 40) loadOlder()
+      },
+      { root, rootMargin: '160px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [loadOlder, hasMore, loadingOlder])
 
   async function handleSend(e: React.FormEvent) {
     e.preventDefault()
@@ -157,7 +210,7 @@ export default function ChatPage() {
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-4 space-y-6">
-      <div className="flex flex-col h-[calc(100vh-140px)] border border-slate-700 bg-surface/30 rounded-xl overflow-hidden">
+      <div className="flex flex-col h-[calc(100dvh-10rem)] lg:h-[calc(100vh-9rem)] border border-slate-700 bg-surface/30 rounded-xl overflow-hidden">
         {/* Header */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-slate-800 bg-surface">
           <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -176,7 +229,30 @@ export default function ChatPage() {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+          <div ref={topSentinelRef} className="h-px" aria-hidden />
+          {hasMore || loadingOlder ? (
+            <div className="flex items-center justify-center py-2">
+              {loadingOlder ? (
+                <span className="flex items-center gap-2 text-text-muted text-xs">
+                  <Loader2 size={13} className="animate-spin text-primary" />
+                  Loading older messages…
+                </span>
+              ) : (
+                <button type="button" onClick={loadOlder} className="text-xs text-text-muted hover:text-primary transition-colors">
+                  Load older messages
+                </button>
+              )}
+            </div>
+          ) : (
+            messages.length > 0 && (
+              <div className="flex items-center gap-3 py-2">
+                <div className="flex-1 h-px bg-border" />
+                <span className="text-[10px] text-text-muted uppercase tracking-wider">Start of conversation</span>
+                <div className="flex-1 h-px bg-border" />
+              </div>
+            )
+          )}
           {messages.length === 0 && (
             <div className="text-center py-12 text-text-muted">
               <Hash size={32} className="mx-auto mb-3 opacity-30" />
@@ -188,7 +264,7 @@ export default function ChatPage() {
             const showDate = !prev || !isSameDay(prev.created_at, msg.created_at)
             const showAvatar = !prev || prev.user_id !== msg.user_id || showDate
             return (
-              <div key={msg.id}>
+              <div key={msg.id} className="[content-visibility:auto] [contain-intrinsic-size:auto_72px]">
                 {/* ── Date divider ── */}
                 {showDate && (
                   <div className="flex items-center gap-3 my-3">

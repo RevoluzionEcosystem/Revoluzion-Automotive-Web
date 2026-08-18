@@ -273,7 +273,7 @@ export default function DMInboxPage() {
 
   if (loadingInbox) {
     return (
-      <div className="w-full h-[calc(100vh-140px)] flex items-center justify-center text-xs text-text-muted">
+      <div className="w-full h-[calc(100dvh-140px)] flex items-center justify-center text-xs text-text-muted">
         Loading DM threads...
       </div>
     )
@@ -304,7 +304,7 @@ export default function DMInboxPage() {
         
         {/* Left column: Direct messaging personal inboxes list */}
         <div className="lg:col-span-1 space-y-4">
-          <div className="p-4 rounded-xl border border-slate-700/80 bg-surface/30 space-y-3.5 h-[calc(100vh-180px)] overflow-y-auto">
+          <div className="p-4 rounded-xl border border-slate-700/80 bg-surface/30 space-y-3.5 h-[calc(100dvh-180px)] overflow-y-auto">
             <div className="flex items-center gap-1.5 pb-2.5 border-b border-slate-800">
               <Mail className="h-4 w-4 text-primary" />
               <h2 className="text-xs font-black uppercase tracking-widest text-text-primary" style={{ fontFamily: 'var(--font-orbitron)' }}>
@@ -358,7 +358,7 @@ export default function DMInboxPage() {
 
         {/* Right column: Selected User Messages */}
         <div className="lg:col-span-3">
-          <div className="flex flex-col h-[calc(100vh-180px)] border border-slate-700 bg-surface/30 rounded-xl overflow-hidden shadow-xl">
+          <div className="flex flex-col h-[calc(100dvh-180px)] border border-slate-700 bg-surface/30 rounded-xl overflow-hidden shadow-xl">
             {activeParticipant ? (
               <>
                 {/* Header */}

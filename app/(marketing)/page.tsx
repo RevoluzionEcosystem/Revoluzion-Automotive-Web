@@ -29,7 +29,7 @@ export default function SplashPage() {
   }, [router])
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center relative overflow-hidden">
+    <div className="min-h-dvh bg-background flex flex-col items-center justify-center relative overflow-hidden">
       {/* Ambient glow */}
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full"

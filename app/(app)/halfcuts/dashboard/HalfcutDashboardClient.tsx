@@ -123,7 +123,7 @@ export function HalfcutDashboardClient({
         {halfcuts.length === 0 ? (
           <div className="py-24 text-center space-y-3">
             <Layers size={40} className="text-primary/30 mx-auto animate-pulse" />
-            <p className="text-text-muted text-xs">You haven't posted any halfcut bundle packages or listings yet.</p>
+            <p className="text-text-muted text-xs">You haven&apos;t posted any halfcut bundle packages or listings yet.</p>
             <Link href="/halfcuts/post" className="btn-primary inline-flex text-[10px] font-bold py-1.5 px-4 rounded-lg uppercase">
               Register First Sheet
             </Link>

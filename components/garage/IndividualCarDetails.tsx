@@ -1835,7 +1835,7 @@ export default function IndividualCarDetails({ carId }: Props) {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md bg-black/85 transition-all animate-fadeIn">
+        <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-4 backdrop-blur-md bg-black/85 transition-all animate-fadeIn overflow-y-auto">
           {/* Backdrop click to dismiss */}
           <div className="absolute inset-0 cursor-default" onClick={() => !deleteCarMutation.isPending && setShowDeleteModal(false)} />
           

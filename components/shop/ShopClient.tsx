@@ -17,7 +17,6 @@ export function ShopClient({ products, coverImage }: { products: Product[]; cove
   const [activeCategory, setActiveCategory] = useState('All')
   const [sort, setSort] = useState<'default' | 'price-asc' | 'price-desc' | 'name'>('default')
   const [mobileCatOpen, setMobileCatOpen] = useState(false)
-  const [showBanner, setShowBanner] = useState(true)
 
   const categories = useMemo(() => {
     const map = new Map<string, number>()
@@ -64,12 +63,7 @@ export function ShopClient({ products, coverImage }: { products: Product[]; cove
   }, [products, activeCategory, query, sort])
 
   const hasFilters = !!(query || activeCategory !== 'All' || sort !== 'default')
-  const SH = 'calc(100vh - 64px)'
-
-  useEffect(() => {
-    const t = setTimeout(() => setShowBanner(false), 1200)
-    return () => clearTimeout(t)
-  }, [])
+  const SH = 'calc(100dvh - 64px)'
 
   return (
     <div className="flex">
@@ -171,49 +165,6 @@ export function ShopClient({ products, coverImage }: { products: Product[]; cove
 
         {/* Grid */}
         <div className="p-4">
-          {/* Animated cover overlay (shows once on entry) */}
-          {showBanner && (
-            <div className="fixed inset-0 z-[1000] flex items-center justify-center" role="dialog" aria-modal="true">
-              <div
-                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-                style={{ animation: 'overlayFade 1s ease forwards' }}
-                onClick={() => setShowBanner(false)}
-              />
-              <div
-                className="max-w-7xl w-[90%] rounded-xl overflow-hidden shadow-2xl transform relative z-10"
-                style={{ animation: 'bannerZoom 1s ease forwards' }}
-                onAnimationEnd={() => setShowBanner(false)}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Link href="/guides" className="block">
-                  {coverImage && coverImage.trim() ? (
-                    <div style={{ aspectRatio: '1376 / 596', width: '100%' }} className="w-full overflow-hidden">
-                      <img src={coverImage} alt="Revoluzion Store" className="w-full h-full object-cover" />
-                    </div>
-                  ) : (
-                    <div style={{ aspectRatio: '1376 / 596', width: '100%' }} className="w-full overflow-hidden bg-[#303030] flex items-center justify-center text-white">
-                      <Package size={40} className="text-white/60 mr-2" />
-                      <span className="text-sm font-medium">Revoluzion Store</span>
-                    </div>
-                  )}
-                </Link>
-              </div>
-              <style>{`
-                @keyframes bannerZoom {
-                  0% { transform: scale(0.95); opacity: 0; }
-                  10% { opacity: 1; transform: scale(0.97); }
-                  80% { transform: scale(1.02); opacity: 1; }
-                  100% { transform: scale(1.05); opacity: 0; }
-                }
-                @keyframes overlayFade {
-                  0% { opacity: 0; }
-                  10% { opacity: 1; }
-                  80% { opacity: 1; }
-                  100% { opacity: 0; }
-                }
-              `}</style>
-            </div>
-          )}
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-24 text-center">
               <Package size={48} className="text-primary/20 mb-4" />

@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { Search, Bell, Menu, X, ArrowLeft } from 'lucide-react'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Search, Bell, ArrowLeft } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { useQuery } from '@tanstack/react-query'
 import { DefaultAvatar } from '@/components/ui/DefaultAvatar'
@@ -12,9 +12,9 @@ import { CartMiniCard } from '@/components/shop/CartMiniCard'
 import { GlobalSearch } from '@/components/layout/GlobalSearch'
 
 export function Topbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const router = useRouter()
   const supabase = createClient()
+  const [searchOpen, setSearchOpen] = useState(false)
 
   const { data: user } = useQuery({
     queryKey: ['auth-user'],
@@ -54,30 +54,10 @@ export function Topbar() {
     enabled: !!user,
   })
 
-  async function handleSignOut() {
-    await supabase.auth.signOut()
-    router.push('/')
-    router.refresh()
-  }
-
-  const mobileNavItems = [
-    { href: '/feed', label: 'Feed' },
-    { href: '/community', label: 'Community' },
-    { href: '/builds', label: 'Builds' },
-    { href: '/events', label: 'Events' },
-    { href: '/shop', label: 'Shop' },
-    { href: '/guides', label: 'Guides' },
-    { href: '/marketplace', label: 'Marketplace' },
-    { href: '/clubs', label: 'Clubs' },
-    { href: '/members', label: 'Members' },
-    { href: '/explore/map', label: 'Map' },
-    { href: '/chat', label: 'Chat' },
-  ]
-
   return (
     <>
       <header className="sticky top-0 z-40 bg-background h-16 border-b border-border">
-        <div className="h-full grid grid-cols-[auto_1fr_auto] gap-6 items-center px-4">
+        <div className="h-full grid grid-cols-[auto_1fr_auto] gap-2 sm:gap-6 items-center px-3 sm:px-4">
           {/* Left: back button + notifications + profile (avatar, name, email) + mobile menu */}
           <div className="flex items-center gap-3">
             {/* Global navigation Back trigger button */}
@@ -102,7 +82,7 @@ export function Topbar() {
                 ) : (
                   <DefaultAvatar className="w-10 h-10" />
                 )}
-                <div className="flex flex-col leading-tight">
+                <div className="hidden sm:flex flex-col leading-tight">
                   <span className="font-semibold text-sm text-text-primary">{profile?.display_name ?? profile?.username ?? user.email}</span>
                   <span className="text-xs text-text-muted">{user?.email ?? ''}</span>
                 </div>
@@ -124,13 +104,6 @@ export function Topbar() {
                 </span>
               ) : null}
             </Link>
-
-            <button
-              onClick={() => setMobileMenuOpen((o) => !o)}
-              className="lg:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
-            >
-              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-            </button>
           </div>
 
           {/* Center: search (full width inside center column) */}
@@ -143,8 +116,9 @@ export function Topbar() {
           {/* Right: cart + mobile search */}
           <div className="flex items-center justify-end gap-2">
             <button
-              onClick={() => router.push('/search')}
+              onClick={() => setSearchOpen(true)}
               className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors"
+              aria-label="Search"
             >
               <Search size={20} />
             </button>
@@ -154,30 +128,21 @@ export function Topbar() {
         </div>
       </header>
 
-      {/* Mobile nav drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-30 pt-16">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setMobileMenuOpen(false)} />
-          <nav className="relative bg-surface border-r border-border w-64 h-full overflow-y-auto py-4 px-2">
-            {mobileNavItems.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors text-sm font-medium"
-              >
-                {label}
-              </Link>
-            ))}
-            {user && (
-              <button
-                onClick={handleSignOut}
-                className="w-full text-left px-3 py-2.5 rounded-lg text-error hover:bg-surface-variant transition-colors text-sm font-medium mt-4"
-              >
-                Sign Out
-              </button>
-            )}
-          </nav>
+      {/* Mobile search — same GlobalSearch experience as desktop */}
+      {searchOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-background">
+          <div className="sticky top-0 flex items-center gap-2 px-3 py-2.5 border-b border-border bg-background">
+            <button
+              onClick={() => setSearchOpen(false)}
+              className="p-2 -ml-1 rounded-lg text-text-secondary hover:text-white hover:bg-surface-variant transition-colors"
+              aria-label="Close search"
+            >
+              <ArrowLeft size={18} />
+            </button>
+            <div className="flex-1 min-w-0">
+              <GlobalSearch autoFocus />
+            </div>
+          </div>
         </div>
       )}
     </>

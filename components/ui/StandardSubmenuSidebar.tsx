@@ -26,48 +26,75 @@ interface Props {
 }
 
 export function StandardSubmenuSidebar({ sections, className = '', headerWidget, footerWidget }: Props) {
+    // Flatten all sections into a single chip list for the mobile tab strip.
+    const allItems = sections.flatMap((sect, sIdx) =>
+        sect.items.map((item) => ({ ...item, key: `${sIdx}-${item.key}` }))
+    )
+
     return (
-        <aside className={`w-full lg:w-64 lg:shrink-0 bg-surface/30 h-fit lg:h-[calc(100vh-5rem)] lg:sticky lg:top-14 overflow-y-auto pb-16 space-y-6 ${className}`}>
-            {headerWidget}
+        <>
+            {/* ── Desktop sidebar ─────────────────────────────────────────── */}
+            <aside className={`hidden lg:block lg:w-64 lg:shrink-0 bg-surface/30 lg:h-[calc(100vh-5rem)] lg:sticky lg:top-14 overflow-y-auto space-y-6 ${className}`}>
+                {headerWidget}
 
-            {sections.map((sect, sIdx) => {
-                if (sect.items.length === 0) return null
+                {sections.map((sect, sIdx) => {
+                    if (sect.items.length === 0) return null
 
-                return (
-                    <div key={sect.headerText || sIdx} className="space-y-1.5 first:pt-0">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-[#8A90A0] flex items-center gap-1.5 pb-1 border-b border-border/20" style={{ fontFamily: 'var(--font-orbitron)' }}>
-                            {sect.headerIcon} {sect.headerText}
-                        </span>
-                        <div className="flex flex-col gap-0.5">
-                            {sect.items.map((item) => (
-                                <Link
-                                    key={item.key}
-                                    href={item.href}
-                                    className={`group flex items-center justify-between py-1 px-2.5 rounded-lg border transition-all text-left ${item.isActive
-                                            ? 'bg-primary/5 border-primary/40 text-primary font-bold shadow-md shadow-primary/5'
-                                            : 'bg-transparent border-transparent text-text-secondary hover:border-border/80 hover:bg-surface-variant/30 hover:text-white'
-                                        }`}
-                                >
-                                    <div className="flex items-center gap-2 truncate">
-                                        {item.icon}
-                                        <span
-                                            className={`text-xs truncate transition-all leading-normal ${item.isActive ? 'font-bold text-primary' : 'text-text-secondary group-hover:text-white'}`}
-                                            style={{ fontFamily: 'var(--font-inter), sans-serif' }}
-                                        >
-                                            {item.label}
-                                        </span>
-                                    </div>
-                                    <ChevronRight
-                                        className={`h-3 w-3 shrink-0 transition-transform ${item.isActive ? 'opacity-100 translate-x-0.5 text-primary' : 'opacity-0 -translate-x-1 group-hover:opacity-50 group-hover:translate-x-0'}`}
-                                    />
-                                </Link>
-                            ))}
+                    return (
+                        <div key={sect.headerText || sIdx} className="space-y-1.5 first:pt-0">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#8A90A0] flex items-center gap-1.5 pb-1 border-b border-border/20" style={{ fontFamily: 'var(--font-orbitron)' }}>
+                                {sect.headerIcon} {sect.headerText}
+                            </span>
+                            <div className="flex flex-col gap-0.5">
+                                {sect.items.map((item) => (
+                                    <Link
+                                        key={item.key}
+                                        href={item.href}
+                                        className={`group flex items-center justify-between py-1 px-2.5 rounded-lg border transition-all text-left ${item.isActive
+                                                ? 'bg-primary/5 border-primary/40 text-primary font-bold shadow-md shadow-primary/5'
+                                                : 'bg-transparent border-transparent text-text-secondary hover:border-border/80 hover:bg-surface-variant/30 hover:text-white'
+                                            }`}
+                                    >
+                                        <div className="flex items-center gap-2 truncate">
+                                            {item.icon}
+                                            <span
+                                                className={`text-xs truncate transition-all leading-normal ${item.isActive ? 'font-bold text-primary' : 'text-text-secondary group-hover:text-white'}`}
+                                                style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+                                            >
+                                                {item.label}
+                                            </span>
+                                        </div>
+                                        <ChevronRight
+                                            className={`h-3 w-3 shrink-0 transition-transform ${item.isActive ? 'opacity-100 translate-x-0.5 text-primary' : 'opacity-0 -translate-x-1 group-hover:opacity-50 group-hover:translate-x-0'}`}
+                                        />
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )
-            })}
+                    )
+                })}
 
-            {footerWidget}
-        </aside>
+                {footerWidget}
+            </aside>
+
+            {/* ── Mobile horizontal tab strip ─────────────────────────────── */}
+            <div className="lg:hidden sticky top-0 z-30 bg-background/90 backdrop-blur-md border-b border-border/60 py-3">
+                <div className="flex gap-2 overflow-x-auto scrollbar-none">
+                    {allItems.map((item) => (
+                        <Link
+                            key={item.key}
+                            href={item.href}
+                            className={`flex items-center gap-1.5 shrink-0 px-3 py-1.5 rounded-full border text-xs font-semibold transition-colors whitespace-nowrap ${item.isActive
+                                    ? 'bg-primary/15 border-primary/50 text-primary shadow-[0_0_14px_rgba(6,182,212,0.15)]'
+                                    : 'bg-surface border-border text-text-secondary hover:text-text-primary hover:border-border-light'
+                                }`}
+                        >
+                            {item.icon}
+                            {item.label}
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </>
     )
 }

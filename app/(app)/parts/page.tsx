@@ -366,7 +366,7 @@ export default function PartsPage() {
                         <div className="absolute inset-0 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px] opacity-10 pointer-events-none" />
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-linear-to-r from-transparent via-[#06b6d4]/20 to-transparent animate-pulse" />
                         <div className="absolute bottom-4 left-4 text-[9px] font-mono text-[#06b6d4]/40 uppercase tracking-widest hidden md:block">
-                          System Layout Ref: SEC_{selectedDiagramData.id || "F02"} // CALIBRATION: OK
+                          System Layout Ref: SEC_{selectedDiagramData.id || "F02"} {'// CALIBRATION: OK'}
                         </div>
                         <div className="absolute top-4 right-4 text-[9px] font-mono text-emerald-500/50 uppercase tracking-widest flex items-center gap-1.5 hidden md:block">
                           <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-ping" />

@@ -95,7 +95,7 @@ export function CreateVehicleAdDialog() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 text-xs">
+        <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-4 text-xs overflow-y-auto">
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setOpen(false)} />
           <div className="relative bg-surface border border-slate-800 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl">
             <div className="sticky top-0 bg-surface border-b border-white/5 px-6 py-4 flex items-center justify-between rounded-t-2xl">

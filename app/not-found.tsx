@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 text-center overflow-hidden relative">
+    <div className="min-h-dvh bg-background flex flex-col items-center justify-center px-6 text-center overflow-hidden relative">
 
       {/* Background glow blobs */}
       <div

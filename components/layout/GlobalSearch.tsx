@@ -21,7 +21,7 @@ const ALL_FILTERS: { id: FilterKey; label: string; icon: React.ElementType }[] =
   { id: 'marketplace', label: 'Marketplace', icon: Tag },
 ]
 
-export function GlobalSearch() {
+export function GlobalSearch({ autoFocus = false }: { autoFocus?: boolean }) {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [debounced, setDebounced] = useState('')
@@ -142,6 +142,7 @@ export function GlobalSearch() {
           className="input pl-10 pr-9 py-2.5 text-sm bg-surface w-full"
           autoComplete="off"
           spellCheck={false}
+          autoFocus={autoFocus}
         />
         {query && (
           <button onClick={() => { setQuery(''); setDebounced(''); inputRef.current?.focus() }}

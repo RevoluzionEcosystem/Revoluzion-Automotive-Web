@@ -160,7 +160,7 @@ export default function CheckoutPage() {
 
         {/* Right: order summary */}
         <div className="lg:col-span-2">
-          <div className="card p-5 space-y-4 sticky top-20">
+          <div className="card p-5 space-y-4 lg:sticky lg:top-20">
             <h2 className="text-sm font-black uppercase gradient-text" style={{ fontFamily: 'var(--font-orbitron)' }}>Order Summary</h2>
             <div className="space-y-2 max-h-48 overflow-y-auto">
               {items.map((item) => (

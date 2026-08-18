@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { MapPin, Navigation } from 'lucide-react'
+import { MapPin, Navigation, Plus, Minus, Maximize } from 'lucide-react'
 import { getMapsLoader } from '@/lib/google-maps-loader'
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!
@@ -24,6 +24,7 @@ const PIN_COLORS: Record<string, string> = {
 
 export default function MapPage() {
   const mapRef = useRef<HTMLDivElement>(null)
+  const mapInstanceRef = useRef<{ setZoom: (z: number) => void; getZoom: () => number | undefined } | null>(null)
   const [mapLoaded, setMapLoaded] = useState(false)
   const [error, setError] = useState(false)
 
@@ -54,11 +55,13 @@ export default function MapPage() {
             { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#1F2937' }] },
           ],
           disableDefaultUI: false,
-          zoomControl: true,
+          zoomControl: false,
           mapTypeControl: false,
           streetViewControl: false,
-          fullscreenControl: true,
+          fullscreenControl: false,
         })
+
+        mapInstanceRef.current = map
 
         // Add markers
         for (const loc of SAMPLE_LOCATIONS) {
@@ -116,8 +119,25 @@ export default function MapPage() {
     })()
   }, [])
 
+  function zoomIn() {
+    const m = mapInstanceRef.current
+    if (m) m.setZoom((m.getZoom() ?? 12) + 1)
+  }
+
+  function zoomOut() {
+    const m = mapInstanceRef.current
+    if (m) m.setZoom((m.getZoom() ?? 12) - 1)
+  }
+
+  function toggleFullscreen() {
+    const el = mapRef.current
+    if (!el) return
+    if (document.fullscreenElement) document.exitFullscreen()
+    else el.requestFullscreen()
+  }
+
   return (
-    <div className="flex flex-col h-full max-h-[calc(100vh-64px)]">
+    <div className="flex flex-col h-full max-h-[calc(100dvh-64px)]">
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-surface shrink-0">
         <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -155,6 +175,31 @@ export default function MapPage() {
           </div>
         )}
         <div ref={mapRef} className="w-full h-full" />
+
+        {/* Compact map controls */}
+        <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
+          <button
+            onClick={zoomIn}
+            aria-label="Zoom in"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-surface/90 backdrop-blur border border-border text-text-secondary hover:text-white hover:border-primary/50 flex items-center justify-center shadow-lg transition-colors"
+          >
+            <Plus size={15} />
+          </button>
+          <button
+            onClick={zoomOut}
+            aria-label="Zoom out"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-surface/90 backdrop-blur border border-border text-text-secondary hover:text-white hover:border-primary/50 flex items-center justify-center shadow-lg transition-colors"
+          >
+            <Minus size={15} />
+          </button>
+          <button
+            onClick={toggleFullscreen}
+            aria-label="Toggle fullscreen"
+            className="mt-1 w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-surface/90 backdrop-blur border border-border text-text-secondary hover:text-white hover:border-primary/50 flex items-center justify-center shadow-lg transition-colors"
+          >
+            <Maximize size={14} />
+          </button>
+        </div>
       </div>
     </div>
   )

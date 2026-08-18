@@ -105,7 +105,7 @@ export function EditServiceDialog({ service, onSuccess }: Props) {
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[1000] flex items-start sm:items-center justify-center p-4 bg-black/75 backdrop-blur-sm overflow-y-auto">
           <div className="absolute inset-0" onClick={() => setOpen(false)} />
           
           <div className="relative bg-[#0b0c10] border border-slate-800 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl p-6">

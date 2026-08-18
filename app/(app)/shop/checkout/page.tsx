@@ -45,6 +45,12 @@ export default function CheckoutPage() {
     })
   }, []) // eslint-disable-line
 
+  // Redirect away from an empty cart in an effect — never during render,
+  // otherwise `router.push` touches `location` and crashes SSR/prerender.
+  useEffect(() => {
+    if (items.length === 0) router.push('/shop')
+  }, [items.length, router])
+
   async function saveAddress(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (!userId) return
@@ -91,7 +97,6 @@ export default function CheckoutPage() {
   }
 
   if (items.length === 0) {
-    router.push('/shop')
     return null
   }
 

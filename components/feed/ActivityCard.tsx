@@ -14,6 +14,7 @@ import type { LucideIcon } from 'lucide-react'
 import { UserAvatar } from '@/components/ui/UserAvatar'
 import { SafeImage } from '@/components/ui/SafeImage'
 import { InlineCommentSection } from '@/components/ui/InlineCommentSection'
+import { ActivityLikeButton } from '@/components/ui/ActivityLikeButton'
 import { timeAgo } from '@/lib/utils'
 import { wasEdited, type FeedItem, type FeedType } from './types'
 
@@ -79,6 +80,12 @@ const LABELS: Record<ActivityType, string> = {
   listing: 'FOR SALE',
   service: 'SERVICE',
   user: 'MEMBER',
+}
+
+const LIKE_MAPPING: Partial<Record<ActivityType, { likeTable: string; idField: string; parentTable: string }>> = {
+  car: { likeTable: 'car_likes', idField: 'car_id', parentTable: 'cars' },
+  build: { likeTable: 'build_likes', idField: 'build_id', parentTable: 'builds' },
+  event: { likeTable: 'event_likes', idField: 'event_id', parentTable: 'events' },
 }
 
 export function ActivityCard({ item, currentUserId }: { item: FeedItem; currentUserId: string | null }) {
@@ -176,7 +183,22 @@ export function ActivityCard({ item, currentUserId }: { item: FeedItem; currentU
         </div>
       )}
 
-      {type !== 'user' && <InlineCommentSection itemId={item.id} feedType={type} currentUserId={currentUserId} />}
+      {type !== 'user' && (
+        <>
+          {LIKE_MAPPING[type] && (
+            <div className="flex items-center gap-5 mt-3 pt-3 border-t border-border/40">
+              <ActivityLikeButton
+                itemId={item.id}
+                likeTable={LIKE_MAPPING[type].likeTable}
+                idField={LIKE_MAPPING[type].idField}
+                parentTable={LIKE_MAPPING[type].parentTable}
+                initialLikes={item.likes_count ?? 0}
+              />
+            </div>
+          )}
+          <InlineCommentSection itemId={item.id} feedType={type} currentUserId={currentUserId} />
+        </>
+      )}
     </article>
   )
 }

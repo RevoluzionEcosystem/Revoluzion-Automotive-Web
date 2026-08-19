@@ -29,6 +29,7 @@ export default async function EventsPage({
   let query = supabase
     .from('events')
     .select('*, users(username, display_name, avatar_url)')
+    .gte('date', new Date().toISOString().slice(0, 10))
     .order('date', { ascending: true })
     .limit(100)
 

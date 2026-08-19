@@ -3,7 +3,7 @@
 'use client'
 
 import { useEffect, useRef, useState, useMemo } from 'react'
-import { Map, Search, Info, X } from 'lucide-react'
+import { Map as MapIcon, Search, Info, X } from 'lucide-react'
 import { getMapsLoader } from '@/lib/google-maps-loader'
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!
@@ -48,9 +48,14 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
     setIsClient(true)
   }, [])
 
-  // Clear older markers from map before overlaying new pins
+  // Clear older markers and listeners from map before overlaying new pins
   const clearMarkers = (refs: any[]) => {
-    refs.forEach((m) => m.setMap(null))
+    refs.forEach((item) => {
+      if (item.marker) item.marker.setMap(null)
+      if (item.handleSwitchEvent) {
+        window.removeEventListener('switch-map-event', item.handleSwitchEvent)
+      }
+    })
   }
 
   const initMapAndPins = (mapsLib: any) => {
@@ -91,6 +96,15 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
     let hasBounds = false
     const newMarkers: any[] = []
 
+    // Group pins by exact coordinate key to handle overlapping locations
+    const coordMap = new Map<string, EventMarker[]>()
+    pins.forEach((ev) => {
+      if (!ev.latitude || !ev.longitude) return
+      const key = `${Number(ev.latitude).toFixed(4)},${Number(ev.longitude).toFixed(4)}`
+      if (!coordMap.has(key)) coordMap.set(key, [])
+      coordMap.get(key)!.push(ev)
+    })
+
     // Custom CSS for InfoWindow styling container wraps
     const styleElementId = 'maps-events-infowindow-custom-css'
     if (typeof document !== 'undefined' && !document.getElementById(styleElementId)) {
@@ -129,79 +143,108 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
       document.head.appendChild(style)
     }
 
-    pins.forEach((ev) => {
-      if (!ev.latitude || !ev.longitude) return
+    coordMap.forEach((group) => {
+      group.forEach((ev, idx) => {
+        let lat = Number(ev.latitude)
+        let lng = Number(ev.longitude)
 
-      const pos = { lat: Number(ev.latitude), lng: Number(ev.longitude) }
-      bounds.extend(pos)
-      hasBounds = true
+        // If multiple events share the exact same location, apply a slight radial offset so pins don't overlap
+        if (group.length > 1 && idx > 0) {
+          const angle = (idx / group.length) * 2 * Math.PI
+          const radius = 0.0015 // roughly 150 meters offset per overlapping pin
+          lat += radius * Math.cos(angle)
+          lng += radius * Math.sin(angle)
+        }
 
-      const marker = new (mapsLib as any).Marker({
-        position: pos,
-        map: map,
-        title: ev.title,
-        icon: {
-          path: 0, // Circle Shape
-          scale: 9,
-          fillColor: '#06B6D4',
-          fillOpacity: 1,
-          strokeColor: '#0A0A0A',
-          strokeWeight: 2,
-        },
-      }) as { addListener: (evt: string, cb: () => void) => void }
+        const pos = { lat, lng }
+        bounds.extend({ lat: Number(ev.latitude), lng: Number(ev.longitude) })
+        hasBounds = true
 
-      const descText = ev.description || 'Welcome fellow drivers and car enthusiasts! Join us for this exciting automotive session.'
-      const truncatedDesc = descText.length > 90 ? descText.substring(0, 90) + '...' : descText
+        const groupIds = group.map(g => g.id)
+        const otherEventsInGroup = group.filter(g => g.id !== ev.id)
 
-      // Generate navigation links
-      const searchAddress = ev.state ? `${ev.location}, ${ev.state}` : ev.location
-      const coordinateFocus = `${ev.latitude},${ev.longitude}`
-      const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(coordinateFocus)}&theme=dark`
-      const wazeUrl = `https://waze.com/ul?ll=${ev.latitude},${ev.longitude}&q=${encodeURIComponent(searchAddress)}&navigate=yes`
+        const marker = new (mapsLib as any).Marker({
+          position: pos,
+          map: map,
+          title: ev.title,
+          icon: {
+            path: 0, // Circle Shape
+            scale: group.length > 1 ? 11 : 9,
+            fillColor: group.length > 1 ? '#F59E0B' : '#06B6D4', // Amber for clustered/overlapping events, Cyan for single
+            fillOpacity: 1,
+            strokeColor: '#0A0A0A',
+            strokeWeight: 2,
+          },
+        }) as { addListener: (evt: string, cb: () => void) => void }
 
-      const contentString = `
-        <div style="font-family: var(--font-inter), sans-serif; color: #FFFFFF; width: 280px; display: flex; flex-direction: column; gap: 6px;">
-          <div style="font-weight: 800; font-size: 15px; line-height: 1.25; color: #FFFFFF; font-family: var(--font-orbitron), sans-serif; letter-spacing: -0.01em;">
-            ${ev.title}
-          </div>
+        const descText = ev.description || 'Welcome fellow drivers and car enthusiasts! Join us for this exciting automotive session.'
+        const truncatedDesc = descText.length > 90 ? descText.substring(0, 90) + '...' : descText
 
-          <div style="font-size: 11px; color: #9CA3AF; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 32px;">
-            ${truncatedDesc}
-          </div>
+        const searchAddress = ev.state ? `${ev.location}, ${ev.state}` : ev.location
+        const coordinateFocus = `${ev.latitude},${ev.longitude}`
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(coordinateFocus)}&theme=dark`
+        const wazeUrl = `https://waze.com/ul?ll=${ev.latitude},${ev.longitude}&q=${encodeURIComponent(searchAddress)}&navigate=yes`
 
-          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px;">
-            <div style="font-size: 10px; color: #D1D5DB; display: flex; align-items: center; gap: 4px;">
-              📅 <strong style="color: #6B7280; font-weight: 600;">Schedule:</strong> ${ev.date || 'TBD'}${ev.time ? ` at ${ev.time}` : ''}
+        const contentString = `
+          <div style="font-family: var(--font-inter), sans-serif; color: #FFFFFF; width: 280px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-weight: 800; font-size: 15px; line-height: 1.25; color: #FFFFFF; font-family: var(--font-orbitron), sans-serif; letter-spacing: -0.01em;">
+              ${ev.title.replace(/[`'\"]/g, '')} ${group.length > 1 ? `<span style="font-size: 10px; background: rgba(245, 158, 11, 0.2); color: #F59E0B; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Event ${idx + 1} of ${group.length} here</span>` : ''}
             </div>
-            <div style="font-size: 10px; color: #D1D5DB; display: flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-              📍 <strong style="color: #6B7280; font-weight: 600;">Venue:</strong> ${ev.location}
+
+            <div style="font-size: 11px; color: #9CA3AF; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 32px;">
+              ${truncatedDesc.replace(/[`'\"]/g, '')}
             </div>
-          </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
-            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #06B6D4; color: #000000; text-decoration: none; padding: 6px 0; border-radius: 6px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.4px; font-family: var(--font-orbitron);">
-              GO NOW
+            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255,255,255,0.04); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px;">
+              <div style="font-size: 10px; color: #D1D5DB; display: flex; align-items: center; gap: 4px;">
+                📅 <strong style="color: #6B7280; font-weight: 600;">Schedule:</strong> ${ev.date || 'TBD'}${ev.time ? ` at ${ev.time}` : ''}
+              </div>
+              <div style="font-size: 10px; color: #D1D5DB; display: flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                📍 <strong style="color: #6B7280; font-weight: 600;">Venue:</strong> ${ev.location.replace(/[`'\"]/g, '')}
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
+              <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #06B6D4; color: #000000; text-decoration: none; padding: 6px 0; border-radius: 6px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.4px; font-family: var(--font-orbitron);">
+                GO NOW
+              </a>
+              <a href="${wazeUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #1f2937; color: #ffffff; text-decoration: none; padding: 6px 0; border-radius: 6px; font-size: 10px; font-weight: 700; border: 1px solid #374151; text-transform: uppercase; letter-spacing: 0.4px; font-family: var(--font-orbitron);">
+                Waze Nav
+              </a>
+            </div>
+
+            ${group.length > 1 ? `
+              <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 6px; padding: 4px 8px; margin-top: 4px;">
+                <span style="font-size: 10px; font-weight: 800; color: #F59E0B; text-align: center; width: 100%;">
+                  Event ${idx + 1} of ${group.length} (${ev.date || 'TBD'}) — Use Map Pins to Switch
+                </span>
+              </div>
+            ` : ''}
+
+            <a href="/events/${ev.id}" style="display: block; text-align: center; font-size: 10.5px; font-weight: 800; background: #1f2937; color: #ffffff; text-transform: uppercase; padding: 8px; border-radius: 6px; text-decoration: none; letter-spacing: 0.05em; transition: all 0.2s; margin-top: 2px; border: 1px solid #374151;">
+              View Details
             </a>
-            <a href="${wazeUrl}" target="_blank" rel="noopener noreferrer" style="display: block; text-align: center; background-color: #1f2937; color: #ffffff; text-decoration: none; padding: 6px 0; border-radius: 6px; font-size: 10px; font-weight: 700; border: 1px solid #374151; text-transform: uppercase; letter-spacing: 0.4px; font-family: var(--font-orbitron);">
-              Waze Nav
-            </a>
           </div>
+        `
 
-          <a href="/events/${ev.id}" style="display: block; text-align: center; font-size: 10.5px; font-weight: 800; background: #1f2937; color: #ffffff; text-transform: uppercase; padding: 8px; border-radius: 6px; text-decoration: none; letter-spacing: 0.05em; transition: all 0.2s; margin-top: 2px; border: 1px solid #374151;">
-            View Details
-          </a>
-        </div>
-      `
+        const infoWindow = new (mapsLib as any).InfoWindow({
+          content: contentString,
+        })
 
-      const infoWindow = new (mapsLib as any).InfoWindow({
-        content: contentString,
+        marker.addListener('click', () => {
+          infoWindow.open(map, marker)
+        })
+
+        // Listen for custom switch event from popup arrows
+        const handleSwitchEvent = (e: any) => {
+          if (e.detail && e.detail.eventId === ev.id) {
+            infoWindow.open(map, marker)
+          }
+        }
+        window.addEventListener('switch-map-event', handleSwitchEvent)
+
+        newMarkers.push({ marker, infoWindow, eventId: ev.id, handleSwitchEvent })
       })
-
-      marker.addListener('click', () => {
-        infoWindow.open(map, marker)
-      })
-
-      newMarkers.push(marker)
     })
 
     setMarkersRefs(newMarkers)
@@ -253,7 +296,7 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
       <div className="p-4 bg-linear-to-b from-[#181d29] to-[#0d1017] border-b border-border/40 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary animate-pulse">
-            <Map size={18} />
+            <MapIcon size={18} />
           </div>
           <div>
             <h3 className="font-bold text-sm text-white uppercase tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>

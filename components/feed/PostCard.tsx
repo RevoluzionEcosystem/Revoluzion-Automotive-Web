@@ -109,6 +109,7 @@ export function PostCard({ post, currentUserId, topComment, initialLiked = false
         toast.error('Sign in to interact', { description: 'Create an account to like and comment on posts.' })
         return
       }
+      const newCount = liked ? Math.max(0, likeCount - 1) : likeCount + 1
       if (liked) {
         const { error } = await supabase.from('post_likes').delete().eq('post_id', post.id).eq('user_id', currentUserId)
         if (error) throw error
@@ -116,6 +117,8 @@ export function PostCard({ post, currentUserId, topComment, initialLiked = false
         const { error } = await supabase.from('post_likes').insert({ post_id: post.id, user_id: currentUserId })
         if (error) throw error
       }
+      // Keep denormalized count in sync
+      await supabase.from('posts').update({ likes_count: newCount }).eq('id', post.id)
     },
     onMutate: () => {
       const prev = { liked, likeCount }

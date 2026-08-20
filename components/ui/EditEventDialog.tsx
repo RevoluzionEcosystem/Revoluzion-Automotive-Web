@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { toast } from 'sonner'
-import { Edit2, Trash2, X, Calendar, MapPin, Link2 } from 'lucide-react'
+import { Edit2, Trash2, X, Calendar, MapPin, Link2, Upload } from 'lucide-react'
 
 interface EditEventDialogProps {
   event: {
@@ -18,6 +18,7 @@ interface EditEventDialogProps {
     external_link: string | null
     price: string | null
     status: string | null
+    banner_url: string | null
   }
 }
 
@@ -40,10 +41,33 @@ export function EditEventDialog({ event }: EditEventDialogProps) {
     externalLink: event.external_link || '',
     price: event.price || 'Free',
     status: event.status || 'upcoming',
+    bannerUrl: event.banner_url || '',
   })
+  const [uploading, setUploading] = useState(false)
 
   function set(field: string, value: any) {
     setForm((f) => ({ ...f, [field]: value }))
+  }
+
+  async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    try {
+      const ext = file.name.split('.').pop() || 'jpg'
+      const filePath = `events/banners/${event.id}_${Date.now()}.${ext}`
+      const { error: uploadError } = await supabase.storage.from('user-content').upload(filePath, file, { upsert: true })
+      if (uploadError) throw uploadError
+
+      const { data: { publicUrl } } = supabase.storage.from('user-content').getPublicUrl(filePath)
+      set('bannerUrl', publicUrl)
+      toast.success('Poster uploaded successfully!')
+    } catch (err: any) {
+      toast.error('Upload failed', { description: err.message })
+    } finally {
+      setUploading(false)
+    }
   }
 
   async function handleUpdate(e: React.FormEvent) {
@@ -67,6 +91,7 @@ export function EditEventDialog({ event }: EditEventDialogProps) {
         external_link: form.externalLink.trim() || null,
         price: form.price,
         status: form.status,
+        banner_url: form.bannerUrl.trim() || null,
       })
       .eq('id', event.id)
 
@@ -231,16 +256,21 @@ export function EditEventDialog({ event }: EditEventDialogProps) {
               </div>
 
               <div>
-                <label className="block text-[10px] font-black uppercase text-text-secondary tracking-widest mb-1.5">External Link</label>
-                <div className="relative">
-                  <input
-                    type="url"
-                    className="input w-full bg-gradient-to-b from-black to-[#090b10] border border-white/10 rounded-lg pl-8 pr-2.5 py-2.5 text-white placeholder:text-text-muted/50 focus:border-primary/50 focus:ring-1 focus:ring-primary/25 text-xs"
-                    placeholder="https://instagram.com/..."
-                    value={form.externalLink}
-                    onChange={(e) => set('externalLink', e.target.value)}
-                  />
-                  <Link2 size={13} className="absolute left-2.5 top-3.5 text-text-muted" />
+                <label className="block text-[10px] font-black uppercase text-text-secondary tracking-widest mb-1.5">Posters / Gallery Image</label>
+                <div className="space-y-3">
+                  {form.bannerUrl && (
+                    <div className="relative w-full h-36 rounded-xl overflow-hidden border border-white/10 bg-black">
+                      <img src={form.bannerUrl} alt="Cover preview" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  <label className="flex flex-col items-center justify-center border-2 border-dashed border-white/15 hover:border-primary/50 rounded-xl p-4 cursor-pointer bg-black/40 hover:bg-black/60 transition-all group">
+                    <Upload size={20} className="text-text-muted group-hover:text-primary mb-1 transition-colors" />
+                    <span className="text-[11px] font-bold text-text-primary group-hover:text-primary">
+                      {uploading ? 'Uploading...' : 'Upload File / Poster'}
+                    </span>
+                    <span className="text-[9px] text-text-muted mt-0.5">PNG, JPG, WebP formats</span>
+                    <input type="file" accept="image/*" onChange={handleFileUpload} disabled={uploading} className="hidden" />
+                  </label>
                 </div>
               </div>
 

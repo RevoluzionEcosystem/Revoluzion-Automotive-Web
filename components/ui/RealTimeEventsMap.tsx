@@ -274,7 +274,7 @@ export function RealTimeEventsMap({ events }: { events: EventMarker[] }) {
     <div ref={mapContainerRef} className="w-full rounded-2xl overflow-hidden border border-border bg-[#0A0A0A] relative">
       <div
         ref={mapElementRef}
-        className="w-full h-[500px] max-h-[700px]"
+        className="w-full h-72 sm:h-[500px] max-h-[700px]"
       />
       {!loaded && !error && (
         <div className="absolute inset-0 bg-black/95 z-20 flex flex-col items-center justify-center gap-3">

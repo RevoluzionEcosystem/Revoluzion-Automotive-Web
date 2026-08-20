@@ -27,6 +27,15 @@ export default function MapPage() {
   const mapInstanceRef = useRef<{ setZoom: (z: number) => void; getZoom: () => number | undefined } | null>(null)
   const [mapLoaded, setMapLoaded] = useState(false)
   const [error, setError] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const filteredLocations = useMemo(() => {
+    if (!searchQuery.trim()) return SAMPLE_LOCATIONS
+    const q = searchQuery.toLowerCase()
+    return SAMPLE_LOCATIONS.filter(
+      (loc) => loc.title.toLowerCase().includes(q) || loc.description.toLowerCase().includes(q) || loc.type.toLowerCase().includes(q)
+    )
+  }, [searchQuery])
 
   useEffect(() => {
     if (!GOOGLE_MAPS_API_KEY) {
@@ -137,25 +146,36 @@ export default function MapPage() {
   }
 
   return (
-    <div className="flex flex-col h-full max-h-[calc(100dvh-64px)]">
-      {/* Header */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-border bg-surface shrink-0">
-        <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-          <MapPin size={16} className="text-primary" />
-        </div>
-        <div>
-          <h1 className="font-semibold text-text-primary text-sm">Explore Map</h1>
-          <div className="text-text-muted text-xs">Workshops, meets & community spots</div>
+    <div className="flex flex-col h-full max-h-[50vh] sm:max-h-[calc(100dvh-64px)] min-h-[350px] sm:min-h-[500px] border-b border-border bg-background">
+      {/* Header with Search */}
+      <div className="flex flex-row items-center justify-between gap-2 px-3 py-2 sm:px-4 sm:py-3 border-b border-border bg-surface shrink-0">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+            <MapPin size={14} className="text-primary sm:w-4 sm:h-4" />
+          </div>
+          <div>
+            <h1 className="font-semibold text-text-primary text-xs sm:text-sm">Explore Map</h1>
+            <div className="text-text-muted text-[10px] sm:text-xs hidden xs:block">Workshops, meets & spots</div>
+          </div>
         </div>
 
-        {/* Legend */}
-        <div className="ml-auto hidden sm:flex items-center gap-4 text-xs text-text-muted">
-          {Object.entries(PIN_COLORS).filter(([k]) => k !== 'default').map(([type, color]) => (
-            <div key={type} className="flex items-center gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
-              <span className="capitalize">{type}</span>
-            </div>
-          ))}
+        {/* Search Bar */}
+        <div className="relative w-40 sm:w-64">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search..."
+            className="w-full bg-background border border-border rounded-lg px-2.5 py-1 sm:px-3 sm:py-1.5 text-[11px] sm:text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary/50"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary text-xs"
+            >
+              ×
+            </button>
+          )}
         </div>
       </div>
 

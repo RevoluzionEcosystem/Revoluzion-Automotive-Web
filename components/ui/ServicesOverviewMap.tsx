@@ -312,7 +312,7 @@ export function ServicesOverviewMap({ services }: Props) {
               <p className="text-[10px] text-text-muted mt-1">Reset your query search keywords to see physical pinpoint locations.</p>
             </div>
           )}
-          <div ref={mapRef} className="w-full h-112 bg-black" />
+          <div ref={mapRef} className="w-full h-72 sm:h-96 bg-black" />
         </div>
       )}
     </div>

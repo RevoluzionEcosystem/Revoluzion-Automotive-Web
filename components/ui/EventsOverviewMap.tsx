@@ -290,70 +290,69 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
   if (!isClient) return null
 
   return (
-    <div className="border border-border/80 rounded-2xl bg-surface/30 overflow-hidden shadow-xl w-full">
+    <div className="border border-border/80 rounded-xl bg-surface/30 overflow-hidden shadow-lg w-full">
       
       {/* Header and Toggle of the map view */}
-      <div className="p-4 bg-linear-to-b from-[#181d29] to-[#0d1017] border-b border-border/40 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary animate-pulse">
-            <MapIcon size={18} />
+      <div className="px-3 py-2.5 bg-linear-to-b from-[#181d29] to-[#0d1017] border-b border-border/40 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="p-1.5 rounded-md bg-primary/10 border border-primary/20 text-primary shrink-0">
+            <MapIcon size={14} />
           </div>
-          <div>
-            <h3 className="font-bold text-sm text-white uppercase tracking-wider" style={{ fontFamily: 'var(--font-orbitron)' }}>
-              Interactive Car Meets Map Navigator
+          <div className="min-w-0">
+            <h3 className="font-bold text-xs text-white uppercase tracking-wider truncate" style={{ fontFamily: 'var(--font-orbitron)' }}>
+              Interactive Map Navigator
             </h3>
-            <p className="text-[10px] text-text-muted">Locate track days, dyno sessions, and automotive convoys live across Malaysia</p>
+            <p className="text-[9px] text-text-muted truncate">Locate track days & meets across Malaysia</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 shrink-0">
           <button
             onClick={() => setExpanded(!expanded)}
-            className={`px-4 py-2 font-black uppercase text-[9px] tracking-widest rounded-xl border transition-all duration-200 cursor-pointer ${
+            className={`px-2.5 py-1.5 font-black uppercase text-[8px] tracking-wider rounded-lg border transition-all duration-200 cursor-pointer ${
               expanded
-                ? 'bg-primary/20 border-primary text-primary'
+                ? 'bg-primary/25 border-primary text-primary'
                 : 'bg-black border-slate-800 text-white hover:border-slate-700'
             }`}
             style={{ fontFamily: 'var(--font-orbitron)' }}
           >
-            {expanded ? 'Hide Map Matrix' : 'Load Interactive Map'}
+            {expanded ? 'Hide Map' : 'Load Map'}
           </button>
         </div>
       </div>
 
       {expanded && (
         <div className="relative w-full">
-          {/* Centered map internal search bar placed below the map title block and on top of map layer */}
-          <div className="bg-[#0b0c10]/95 border-b border-border/40 px-4 py-3 flex justify-center">
-            <div className="relative w-full max-w-2xl">
+          {/* Centered map internal search bar */}
+          <div className="bg-[#0b0c10]/95 border-b border-border/40 px-3 py-2 flex justify-center">
+            <div className="relative w-full max-w-xl">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search tracks, dyno meets, and car gather venue pins inside map..."
-                className="w-full h-11 pl-11 pr-10 rounded-2xl bg-black border border-primary/40 focus:border-primary text-xs text-white placeholder-text-muted/60 focus:outline-none focus:ring-1 focus:ring-primary/25 transition-all shadow-lg"
+                placeholder="Search map pins..."
+                className="w-full h-8 pl-8 pr-8 rounded-xl bg-black border border-primary/40 focus:border-primary text-[11px] text-white placeholder-text-muted/60 focus:outline-none transition-all shadow-sm"
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-primary" />
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-primary" />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-white p-1"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-text-muted hover:text-white p-0.5"
                 >
-                  <X className="h-3.5 w-3.5" />
+                  <X className="h-3 w-3" />
                 </button>
               )}
             </div>
           </div>
 
           {searchFilteredPins.length === 0 && searchQuery && (
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xs p-6 text-center">
-              <Info size={24} className="text-primary/30 mb-2" />
-              <p className="text-xs font-bold uppercase text-white tracking-widest" style={{ fontFamily: 'var(--font-orbitron)' }}>No markers match search</p>
-              <p className="text-[10px] text-text-muted mt-1">Reset your query search keywords to see physical pinpoint locations.</p>
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xs p-4 text-center">
+              <Info size={20} className="text-primary/30 mb-1.5" />
+              <p className="text-[11px] font-bold uppercase text-white tracking-widest" style={{ fontFamily: 'var(--font-orbitron)' }}>No markers found</p>
             </div>
           )}
-          <div ref={mapRef} className="w-full h-112 bg-black" />
+          <div ref={mapRef} className="w-full h-60 sm:h-80 bg-black" />
         </div>
       )}
     </div>

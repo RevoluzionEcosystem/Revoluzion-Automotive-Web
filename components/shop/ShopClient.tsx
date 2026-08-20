@@ -66,7 +66,7 @@ export function ShopClient({ products, coverImage }: { products: Product[]; cove
   const SH = 'calc(100dvh - 64px)'
 
   return (
-    <div className="flex">
+    <div className="flex overflow-x-hidden">
       {/* ── Left: Category Sidebar (208px → 280px) ─── */}
       <aside className="w-60 shrink-0 border-r border-border hidden lg:flex flex-col sticky top-0" style={{ height: SH }}>
         <div className="px-5 py-4 border-b border-border shrink-0">
@@ -102,8 +102,8 @@ export function ShopClient({ products, coverImage }: { products: Product[]; cove
         {/* Sticky header */}
         <div className="sticky top-0 z-20 bg-background border-b border-border px-5 pt-4 pb-3 space-y-3">
           <div className="flex items-center justify-between gap-4">
-            <h1 className="text-lg font-black uppercase gradient-text whitespace-nowrap" style={{ fontFamily: 'var(--font-orbitron)' }}>
-              Revoluzion Automotive Store
+            <h1 className="text-lg font-black uppercase gradient-text whitespace-nowrap overflow-hidden text-ellipsis" style={{ fontFamily: 'var(--font-orbitron)' }}>
+              Revoluzion Store
             </h1>
           </div>
 

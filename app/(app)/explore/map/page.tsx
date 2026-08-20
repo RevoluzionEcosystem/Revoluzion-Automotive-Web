@@ -117,8 +117,14 @@ export default function MapPage() {
             </div>
           `
 
-          const infoWindow = new mapsLib.InfoWindow({ content: infoContent })
-          marker.addListener('click', () => infoWindow.open(map, marker))
+        let activeInfoWindow: any = null
+        const infoWindow = new mapsLib.InfoWindow({ maxWidth: 320 })
+          marker.addListener('click', () => {
+            if (activeInfoWindow) activeInfoWindow.close()
+            infoWindow.setContent(infoContent)
+            infoWindow.open(map, marker)
+            activeInfoWindow = infoWindow
+          })
         }
 
         setMapLoaded(true)

@@ -105,7 +105,9 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
       coordMap.get(key)!.push(ev)
     })
 
-    // Custom CSS for InfoWindow styling container wraps
+    // Keep track of all active open infoWindows to ensure mutual exclusivity (only 1 open at a time)
+    let activeInfoWindow: any = null
+
     const styleElementId = 'maps-events-infowindow-custom-css'
     if (typeof document !== 'undefined' && !document.getElementById(styleElementId)) {
       const style = document.createElement('style')
@@ -116,11 +118,14 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
           border: 1px solid #1f2937 !important;
           padding: 0 !important;
           max-width: 320px !important;
+          max-height: 380px !important;
+          overflow-y: auto !important;
           border-radius: 12px !important;
           box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
         }
         .gm-style .gm-style-iw-d {
-          overflow: hidden !important;
+          overflow: auto !important;
+          max-height: 360px !important;
           padding: 12px !important;
         }
         .gm-style .gm-style-iw-tc::after {
@@ -229,10 +234,15 @@ export function EventsOverviewMap({ events }: { events: EventMarker[] }) {
 
         const infoWindow = new (mapsLib as any).InfoWindow({
           content: contentString,
+          maxWidth: 320,
         })
 
         marker.addListener('click', () => {
+          if (activeInfoWindow) {
+            activeInfoWindow.close()
+          }
           infoWindow.open(map, marker)
+          activeInfoWindow = infoWindow
         })
 
         // Listen for custom switch event from popup arrows

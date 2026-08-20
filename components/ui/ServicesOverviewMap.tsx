@@ -93,6 +93,7 @@ export function ServicesOverviewMap({ services }: Props) {
     let hasBounds = false
     const newMarkers: unknown[] = []
 
+    let activeInfoWindow: any = null
     const infoWindow = new (mapsLib as any).InfoWindow({
       maxWidth: 320
     })
@@ -197,8 +198,12 @@ export function ServicesOverviewMap({ services }: Props) {
       `
 
       marker.addListener('click', () => {
+        if (activeInfoWindow) {
+          activeInfoWindow.close()
+        }
         infoWindow.setContent(content)
         infoWindow.open(map, marker)
+        activeInfoWindow = infoWindow
       })
 
       newMarkers.push(marker)

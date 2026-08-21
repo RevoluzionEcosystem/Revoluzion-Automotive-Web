@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { MapPin, Navigation, Plus, Minus, Maximize } from 'lucide-react'
 import { getMapsLoader } from '@/lib/google-maps-loader'
 
